@@ -1,0 +1,289 @@
+/* Ivory and peach below the dark banner, matching the home page; the banner sets its own colours. */
+.contactPage {
+  --ink: #241a12;
+  --muted: #6f5b47;
+  --line: #e3d3bc;
+  --gold: #a56b36;
+  overflow: hidden;
+  min-height: 0;
+  padding-bottom: 0;
+  background: linear-gradient(180deg, #f4ebdd, #fbf6ee 320px);
+  color: var(--ink);
+}
+
+/* Hero banner with royal sealed envelope & jasmine garland background */
+.contactHeroBanner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f7efe4;
+  background-image: 
+    linear-gradient(180deg, rgba(5, 5, 5, 0.45) 0%, rgba(5, 5, 5, 0.04) 70px, transparent 120px, transparent calc(100% - 100px), rgba(5, 5, 5, 0.6) calc(100% - 30px), #050505 100%),
+    url('/images/contact-banner-bg.webp');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+  margin-bottom: 16px;
+}
+
+.contactHero {
+  text-align: center;
+  padding: 32px 4% 24px;
+  max-width: 900px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  font: 700 9.5px monospace;
+  letter-spacing: 2px;
+  color: #7a5416;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  display: block;
+}
+
+.contactHero h1 {
+  font-family: var(--sans);
+  font-size: clamp(46px, 6vw, 76px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.96;
+  margin: 0 0 18px;
+  color: #120e09;
+}
+
+.contactHero h1 em {
+  font-family: var(--serif);
+  font-weight: 400;
+  color: #a7732a;
+}
+
+.contactHero p {
+  color: #382d20;
+  font-size: 15.5px;
+  font-weight: 500;
+  line-height: 1.8;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* Contact Grid */
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.22fr;
+  align-items: start;
+  gap: 20px;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 32px 4% 40px;
+}
+
+.contactInfo, .contactForm {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 1px 2px #3b29190d, 0 18px 40px #3b291914;
+}
+
+.contactInfo h2 {
+  font-family: var(--sans);
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  margin-bottom: 15px;
+  color: var(--ink);
+}
+
+.contactInfo > p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.infoIcon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #f4d49d, #efb79a);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5a3519;
+  flex-shrink: 0;
+}
+.infoItem h3 {
+  font-size: 13px;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin: 0 0 6px;
+}
+.infoItem p, .infoItem a {
+  font-size: 15px;
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1.5;
+  transition: color 0.2s;
+}
+.infoItem a:hover {
+  color: var(--gold);
+}
+
+.whatsappPromo {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fbf6ee;
+  border-radius: 12px;
+  border: 1px dashed #d9bd8c;
+  text-align: center;
+}
+.whatsappPromo p {
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.waButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #25D366;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+}
+.waButton:hover {
+  background: #128C7E;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35);
+}
+
+/* Form */
+.contactForm h2 {
+  font-family: var(--sans);
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+.formGroup {
+  margin-bottom: 20px;
+}
+.formGroup label {
+  display: block;
+  font: 10px monospace;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fffdf9;
+  font-size: 14px;
+  font-family: var(--sans);
+  color: var(--ink);
+  transition: all 0.2s;
+}
+.formGroup select {
+  cursor: pointer;
+  appearance: auto;
+}
+.formGroup select option {
+  background: #fff;
+  color: var(--ink);
+  padding: 8px;
+}
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: #fff;
+  box-shadow: 0 0 0 3px #a56b3622;
+}
+.submitButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background: linear-gradient(110deg, #dfad65, #f3d4a3, #eab69a);
+  color: var(--ink);
+  border: none;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 10px;
+}
+.submitButton:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 8px 24px #dfad6540;
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .contactGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 22px 4% 28px;
+  }
+}
+@media (max-width: 600px) {
+  .contactHero {
+    padding: 24px 5% 20px;
+  }
+  .contactHero h1 {
+    font-size: 42px;
+  }
+  .contactInfo, .contactForm {
+    padding: 20px;
+  }
+  .infoItem {
+    gap: 12px;
+  }
+}
+
+/* Placeholder bar shown while contact details load; same line height as the real text */
+.pending {
+  display: inline-block;
+  width: 160px;
+  max-width: 100%;
+  height: 0.9em;
+  vertical-align: middle;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.08)) 0 0 / 200% 100%;
+  animation: pending-shimmer 1.4s linear infinite;
+}
+@keyframes pending-shimmer {
+  to { background-position: -200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pending { animation: none; }
+}
+.formGroup input::placeholder,
+.formGroup textarea::placeholder { color: #a8957f; opacity: 1; }

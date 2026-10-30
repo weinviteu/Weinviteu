@@ -1,0 +1,410 @@
+/* ── Luxury Legal Pages Styling (Privacy & Terms) ── */
+
+.legalPage {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+/* ── Hero Section ── */
+.heroSection {
+  position: relative;
+  text-align: center;
+  padding: 48px 32px 36px;
+  margin-bottom: 40px;
+  background: rgba(14, 14, 19, 0.75);
+  backdrop-filter: blur(24px) saturate(120%);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.heroSection::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.eyebrowBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.heroTitle {
+  font-family: var(--serif);
+  font-size: clamp(34px, 4.5vw, 56px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin: 0 0 14px;
+  line-height: 1.15;
+}
+
+.heroTitle em {
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.heroSubtitle {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 620px;
+  margin: 0 auto 24px;
+  line-height: 1.6;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.6);
+  flex-wrap: wrap;
+}
+
+.metaChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 5px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Tab Switcher Bar ── */
+.tabSwitchContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.tabSwitch {
+  display: inline-flex;
+  padding: 5px;
+  background: rgba(20, 20, 26, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  gap: 4px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.tabBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tabBtn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tabBtnActive {
+  background: linear-gradient(135deg, #f7df9e 0%, #d4af37 50%, #b38b25 100%);
+  color: #0b0903 !important;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+}
+
+/* ── 2-Column Main Layout ── */
+.legalLayout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+/* ── Quick Navigation Sidebar ── */
+.stickySidebar {
+  position: sticky;
+  top: 100px;
+  background: rgba(14, 14, 19, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 20px 16px;
+}
+
+.sidebarTitle {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--gold);
+  margin-bottom: 14px;
+  padding-left: 8px;
+}
+
+.navGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  line-height: 1.3;
+}
+
+.navLink:hover {
+  background: rgba(212, 175, 55, 0.08);
+  color: var(--gold);
+  transform: translateX(3px);
+}
+
+.navNumber {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.8;
+  flex-shrink: 0;
+  width: 18px;
+}
+
+/* ── Content Container ── */
+.contentStack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sectionCard {
+  scroll-margin-top: 100px;
+  background: rgba(14, 14, 19, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 30px 34px;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.sectionCard:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.iconBox {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: var(--gold);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+}
+
+.sectionTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.numBadge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  font-family: var(--serif);
+  font-size: 21px;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.sectionBody {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0 0 16px;
+}
+
+.sectionBody p {
+  margin-bottom: 12px;
+}
+
+.sectionBody p:last-child {
+  margin-bottom: 0;
+}
+
+/* Callout / Key Takeaway Box */
+.takeawayBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  background: rgba(212, 175, 55, 0.06);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-left: 3px solid var(--gold);
+  color: #fce7b2;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.takeawayBox strong {
+  color: #fff;
+}
+
+/* ── Support & Help Banner ── */
+.supportBanner {
+  margin-top: 20px;
+  padding: 32px 36px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(14, 14, 19, 0.85) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.supportText h3 {
+  font-family: var(--serif);
+  font-size: 22px;
+  color: #fff;
+  margin: 0 0 6px;
+}
+
+.supportText p {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.supportActions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.supportBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #f7df9e 0%, #d4af37 100%);
+  color: #0b0903;
+  font-weight: 700;
+  font-size: 12.5px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+}
+
+.supportBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(212, 175, 55, 0.4);
+}
+
+/* ── Responsive Queries ── */
+@media (max-width: 900px) {
+  .legalLayout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .stickySidebar {
+    display: none;
+  }
+  .heroSection {
+    padding: 36px 20px 28px;
+  }
+  .sectionCard {
+    padding: 24px 20px;
+  }
+  .supportBanner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 20px;
+  }
+  .supportActions {
+    width: 100%;
+  }
+  .supportBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .legalPage {
+    padding: 24px 14px 60px;
+  }
+  .tabBtn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  .heroTitle {
+    font-size: 32px;
+  }
+  .sectionHeader {
+    gap: 10px;
+  }
+  .iconBox {
+    width: 38px;
+    height: 38px;
+  }
+  .sectionTitle {
+    font-size: 18px;
+  }
+}

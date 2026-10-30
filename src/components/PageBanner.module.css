@@ -1,0 +1,106 @@
+/* Page banner: obsidian and gold, echoing the home hero, with a sunburst behind the artwork. */
+.banner {
+  --ink: #fbeed8; --muted: #c9b9a3; --accent: #f4d49d; --peach: #efb79a; --line: #f4d49d2e;
+  position: relative; isolation: isolate; overflow: hidden; color: var(--ink);
+  background:
+    radial-gradient(ellipse 50% 70% at 76% 58%, #bd813b42, transparent 62%),
+    radial-gradient(ellipse 40% 60% at 6% 0%, #6e3a1a40, transparent 70%),
+    #14110d;
+}
+/* Fine concentric rings and a gold hairline, as on the home hero */
+.banner::before { content: ''; position: absolute; z-index: -1; left: 76%; top: 58%; width: 1100px; height: 1100px; transform: translate(-50%, -50%); border-radius: 50%; background: repeating-radial-gradient(circle, transparent 0 58px, #f4d49d10 59px, transparent 60px); pointer-events: none; }
+.banner::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, #f4d49d80 30%, #f4d49d80 70%, transparent); }
+/* Sunburst: thin gold rays fanning out from behind the artwork */
+.rays { position: absolute; z-index: -1; inset: 0; background: repeating-conic-gradient(from 0deg at 76% 62%, #f4d49d12 0 .8deg, transparent .8deg 7deg); -webkit-mask-image: radial-gradient(circle at 76% 62%, #000 0, #000 18%, transparent 52%); mask-image: radial-gradient(circle at 76% 62%, #000 0, #000 18%, transparent 52%); pointer-events: none; }
+.dust { position: absolute; z-index: -1; inset: 0; pointer-events: none; opacity: .8;
+  background:
+    radial-gradient(circle at 12% 22%, #ffe3a3 0 1.2px, transparent 2px),
+    radial-gradient(circle at 34% 78%, #ffe3a3 0 1px, transparent 1.8px),
+    radial-gradient(circle at 46% 14%, #ffe3a3 0 1.4px, transparent 2.2px),
+    radial-gradient(circle at 58% 88%, #ffe3a3 0 1px, transparent 1.8px),
+    radial-gradient(circle at 63% 30%, #ffe3a3 0 1.2px, transparent 2px),
+    radial-gradient(circle at 88% 18%, #ffe3a3 0 1px, transparent 1.8px),
+    radial-gradient(circle at 94% 74%, #ffe3a3 0 1.3px, transparent 2px),
+    radial-gradient(circle at 22% 52%, #ffe3a3 0 .9px, transparent 1.6px);
+}
+.inner { max-width: 1440px; margin: auto; padding: 26px clamp(20px, 4vw, 64px) 30px; display: grid; grid-template-columns: 1.12fr 1fr; align-items: center; gap: 36px; }
+.copy { min-width: 0; }
+.crumbs { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; color: var(--muted); font-size: 11px; letter-spacing: .08em; }
+.crumbs a { color: inherit; text-decoration: none; }
+.crumbs a:hover { color: var(--accent); }
+.crumbs a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.eyebrow { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; color: #d9a967; font-size: 10px; font-weight: 700; letter-spacing: .22em; }
+.eyebrow span { width: 32px; height: 1px; background: currentColor; flex-shrink: 0; }
+.copy h1 { margin: 0; color: #f6e3bf; font-family: var(--serif); font-weight: 400; font-size: clamp(35px, 3.6vw, 56px); line-height: 1.08; letter-spacing: -.035em; text-wrap: balance; }
+.copy h1 em { display: block; margin-top: 5px; font-weight: 400; background: linear-gradient(100deg, #f4d49d, #efb79a 55%, #e8a982); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .06em; }
+.description { max-width: 490px; margin: 20px 0 0; color: var(--muted); font-size: 14px; line-height: 1.75; }
+.signature { display: flex; align-items: center; gap: 10px; margin-top: 24px; color: var(--muted); font-size: 10px; letter-spacing: .05em; }
+.signature span { color: var(--accent); font-size: 22px; }
+.visual { position: relative; height: 335px; min-width: 0; display: grid; place-items: center; }
+.arch { position: absolute; width: 76%; height: 94%; bottom: 0; border-radius: 160px 160px 8px 8px; background: linear-gradient(160deg, #3a2a1a, #1b140d 70%); border: 1px solid #f4d49d38; box-shadow: inset 0 1px 0 #f4d49d26, 0 30px 60px #0008; }
+.orbit { position: absolute; width: 92%; height: 75%; border: 1px solid var(--line); border-radius: 50%; transform: rotate(-28deg); }
+.gallery { position: relative; width: 100%; height: 275px; }
+.card { position: absolute; top: 15px; left: 50%; width: 145px; height: 245px; padding: 6px; background: #fbf3e4; border: 1px solid #d9a96760; box-shadow: 0 18px 30px #000a; }
+.card img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.card[data-index='0'] { z-index: 2; transform: translateX(-50%) rotate(-4deg); }
+.card[data-index='1'] { transform: translateX(-133%) translateY(14px) rotate(-15deg); }
+.card[data-index='2'] { transform: translateX(33%) translateY(6px) rotate(13deg); }
+.seal { position: absolute; z-index: 3; bottom: 0; left: 60%; width: 55px; height: 55px; display: grid; place-items: center; border-radius: 50%; border: 4px double #ba8c4e; background: linear-gradient(125deg, #f2d9a8, #c49350); color: #61441e; box-shadow: 0 6px 14px #0008; font: italic 27px var(--serif); transform: rotate(-12deg); }
+.spark { position: absolute; top: 0; right: 7%; font: 56px var(--serif); color: var(--accent); text-shadow: 0 0 18px #f4d49d80; }
+.caption { position: absolute; bottom: -10px; width: 100%; text-align: center; color: var(--muted); font-family: var(--serif); font-size: 17px; font-style: italic; }
+
+/* Contact: a hand-written note */
+.banner[data-variant='contact'] .arch { border-radius: 50%; width: 310px; height: 310px; bottom: auto; }
+.letter { position: relative; z-index: 1; width: 290px; padding: 30px; background: #fff9ee; border: 1px solid #c5a171; outline: 1px solid #c5a17170; outline-offset: -10px; box-shadow: 12px 15px 0 #bd813b40, 0 24px 40px #000a; transform: rotate(-6deg); }
+.noteLabel { display: block; font-size: 8px; letter-spacing: .15em; color: #8c693f; }
+.hello { display: block; margin-top: 20px; font: 42px/1.05 var(--serif); color: #392a1d; }
+.hello em { color: #a16b36; }
+.noteRule { display: block; width: 40px; height: 1px; margin: 20px 0 12px; background: #b18651; }
+.noteSign { font: italic 15px var(--serif); color: #76614b; }
+.letter .seal { bottom: -15px; left: auto; right: -12px; }
+
+/* About: a turning gold studio medallion with promises floating around it */
+.medallionStage { position: relative; z-index: 1; width: 100%; height: 100%; display: grid; place-items: center; }
+.medallion { position: relative; width: 230px; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center;
+  background: radial-gradient(circle at 35% 28%, #fff1c9, #e3b86a 32%, #b07a35 62%, #7a4f1f 100%);
+  box-shadow: 0 0 0 6px #14110d, 0 0 0 7px #f4d49d66, 0 24px 50px #000c, 0 0 60px #d9a95a40, inset 0 2px 3px #fff8, inset 0 -6px 12px #0005; }
+.medallionRing { position: absolute; inset: 6px; width: calc(100% - 12px); height: calc(100% - 12px); animation: pbTurn 40s linear infinite; }
+.medallionRing text { font: 700 11px var(--sans); fill: #4a2f12; }
+.medallionCore { position: relative; display: grid; place-items: center; gap: 2px; width: 62%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 40% 30%, #2b2014, #14110d 75%);
+  box-shadow: inset 0 0 0 1px #f4d49d80, inset 0 0 0 5px #14110d, inset 0 0 0 6px #f4d49d40, 0 2px 4px #0006; }
+.medallionMark { font: italic 64px/1 var(--serif); background: linear-gradient(160deg, #fff1c9, #d9a95a 55%, #f4d49d); -webkit-background-clip: text; background-clip: text; color: transparent; margin-top: 8px; }
+.medallionSub { margin-top: -6px; font-size: 8.5px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: #c9b28c; }
+.promise { position: absolute; display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 999px; background: #fff9ee; border: 1px solid #d9bd8c; color: #392a1d; font-size: 12.5px; font-weight: 600; white-space: nowrap; box-shadow: 0 12px 24px #0009; animation: pbFloat 6s ease-in-out infinite; }
+.promise span { color: #b07a35; }
+.promise[data-index='0'] { top: 10%; left: 2%; transform: rotate(-4deg); }
+.promise[data-index='1'] { top: 44%; right: 0; transform: rotate(3deg); animation-delay: -2s; }
+.promise[data-index='2'] { bottom: 9%; left: 6%; transform: rotate(-2deg); animation-delay: -4s; }
+@keyframes pbTurn { to { transform: rotate(360deg); } }
+@keyframes pbFloat { 50% { translate: 0 -6px; } }
+@media (prefers-reduced-motion: reduce) { .medallionRing, .promise { animation: none; } }
+
+@media (min-width: 1450px) { .card { width: 165px; height: 265px; top: 0; } }
+@media (max-width: 900px) { .inner { gap: 16px; } .card { width: 120px; height: 220px; top: 30px; } .visual { height: 320px; } .letter { width: 250px; } }
+@media (max-width: 650px) {
+  .inner { grid-template-columns: 1fr; gap: 10px; padding: 16px 20px 26px; }
+  .rays, .banner::before { left: 50%; }
+  .rays { background: repeating-conic-gradient(from 0deg at 50% 74%, #f4d49d12 0 .8deg, transparent .8deg 7deg); -webkit-mask-image: radial-gradient(circle at 50% 74%, #000 0, #000 16%, transparent 50%); mask-image: radial-gradient(circle at 50% 74%, #000 0, #000 16%, transparent 50%); }
+  .banner::before { top: 74%; }
+  .crumbs { margin-bottom: 18px; } .copy h1 { font-size: clamp(34px, 8vw, 45px); } .description { margin-top: 14px; font-size: 13px; } .signature { margin-top: 12px; }
+  .visual { height: 235px; max-width: 400px; width: 100%; margin: auto; } .gallery { height: 205px; } .card { width: 105px; height: 185px; top: 2px; }
+  .seal { width: 43px; height: 43px; font-size: 22px; } .caption { font-size: 15px; bottom: -12px; } .spark { font-size: 40px; right: 5%; }
+  .letter { width: 245px; padding: 22px 28px; } .hello { font-size: 32px; margin-top: 14px; } .noteRule { margin: 14px 0 10px; }
+  .banner[data-variant='contact'] .arch { width: 225px; height: 225px; }
+  .banner[data-variant='story'] .visual { height: 300px; }
+  .medallion { width: 170px; }
+  .medallionMark { font-size: 46px; }
+  .medallionSub { font-size: 7px; }
+  .promise { padding: 7px 11px; font-size: 11px; }
+  .promise[data-index='0'] { top: 4%; left: 0; }
+  .promise[data-index='1'] { top: 46%; right: -2%; }
+  .promise[data-index='2'] { bottom: 4%; left: 2%; }
+  .banner[data-variant='story'] .arch { display: none; }
+  .banner[data-variant='story'] .caption, .banner[data-variant='contact'] .caption { display: none; }
+  .banner[data-variant='contact'] .visual { height: 250px; }
+}

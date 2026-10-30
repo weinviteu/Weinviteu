@@ -1,0 +1,305 @@
+/* Ivory and peach below the dark banner, matching the home page; the banner sets its own colours. */
+.aboutPage {
+  --ink: #241a12;
+  --muted: #6f5b47;
+  --line: #e3d3bc;
+  --gold: #a56b36;
+  overflow: hidden;
+  min-height: 0;
+  padding-bottom: 0;
+  background: #fbf6ee;
+  color: var(--ink);
+}
+
+/* ── Hero Banner with Royal Botanical Artwork ── */
+.heroBanner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f7efe4;
+  background-image: 
+    linear-gradient(180deg, rgba(5, 5, 5, 0.45) 0%, rgba(5, 5, 5, 0.04) 70px, transparent 120px, transparent calc(100% - 100px), rgba(5, 5, 5, 0.6) calc(100% - 30px), #050505 100%),
+    url('/images/about-banner-bg.webp');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+}
+
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 36px 6% 28px;
+  max-width: 960px;
+  margin: auto;
+  z-index: 2;
+}
+
+.eyebrow {
+  font: 700 10px monospace;
+  letter-spacing: 2px;
+  color: #7a5416;
+  margin-bottom: 22px;
+  text-transform: uppercase;
+  display: block;
+}
+
+.hero h1 {
+  font-family: var(--sans);
+  font-size: clamp(48px, 7vw, 92px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.96;
+  margin: 0 0 24px;
+  color: #120e09;
+}
+.hero h1 em {
+  font-family: var(--serif);
+  font-weight: 400;
+  color: #a7732a;
+}
+.hero > p {
+  color: #382d20;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.8;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ── Manifesto Grid ── */
+.manifestoSection {
+  background: #f4ebdd;
+  border-bottom: 1px solid var(--line);
+  padding: 32px 6%;
+}
+.manifestoContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.manifestoHeader {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.manifestoHeader h2 {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-style: italic;
+  color: var(--ink);
+}
+
+.manifestoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.manifestoCard {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px #3b29190d, 0 14px 30px #3b291912;
+  transition: transform 0.4s ease;
+}
+.manifestoCard:hover {
+  transform: translateY(-4px);
+}
+.manifestoNumber {
+  font: italic 24px Georgia, serif;
+  color: var(--gold);
+  margin-bottom: 12px;
+  display: block;
+}
+.manifestoCard h3 {
+  font-family: var(--sans);
+  font-size: 18px;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+.manifestoCard p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* ── Founder / Story Section ── */
+.storySection {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 6% 20px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+.specsSection {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 6% 20px;
+}
+.storyImage {
+  flex: 1;
+  position: relative;
+}
+.imageFrame {
+  aspect-ratio: 4/5;
+  background: transparent;
+  border-radius: 200px 200px 0 0;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--line);
+}
+.imagePlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 24px;
+}
+.imageBadge {
+  position: absolute;
+  bottom: 30px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, #f4d49d, #efb79a);
+  color: #5a3519;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 10px monospace;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+  animation: spin 15s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.storyContent {
+  flex: 1.2;
+}
+.storyContent h2 {
+  font-family: var(--sans);
+  font-size: 40px;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  color: var(--ink);
+}
+.storyContent h2 em {
+  font-family: var(--serif);
+  font-weight: 400;
+  color: var(--gold);
+}
+.storyContent p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* ── CTA ── */
+.ctaSection {
+  margin: 24px auto 28px;
+  max-width: 800px;
+  text-align: center;
+  padding: 0 6%;
+}
+.ctaSection h2 {
+  font-family: var(--sans);
+  font-size: 32px;
+  letter-spacing: -1px;
+  margin-bottom: 18px;
+}
+.buttonRow {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.buttonPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  background: var(--ink);
+  color: #f8e6c4;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.buttonPrimary:hover {
+  background: #3a2a1c;
+}
+.buttonSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.buttonSecondary:hover {
+  background: #a56b3614;
+  border-color: var(--gold);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .manifestoGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .storySection {
+    flex-direction: column;
+    text-align: center;
+  }
+  .imageBadge {
+    right: 20px;
+  }
+  .imageFrame {
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 600px) {
+  .hero {
+    padding: 24px 6%;
+  }
+  .hero h1 {
+    font-size: 48px;
+  }
+  .storyContent h2 {
+    font-size: 32px;
+  }
+  .buttonRow {
+    flex-direction: column;
+  }
+}
+
+/* "How it works" uses the site-wide step styles, which were written for dark sections */
+.aboutPage :global(.how-it-works-section) { background: #f4ebdd; border-block: 1px solid var(--line); }
+.aboutPage :global(.how-it-works-section h2) { color: var(--ink); }
+.aboutPage :global(.how-it-works-section h2 em) { color: var(--gold); }
+.aboutPage :global(.how-it-works-section .eyebrow) { color: var(--gold); }
+.aboutPage :global(.how-image-wrap) { border-color: var(--line); box-shadow: 0 18px 40px #3b291920; }
+.aboutPage :global(.step h3) { color: var(--ink); }
+.aboutPage :global(.step > span) { color: var(--gold); }
+.ctaSection { padding-top: 8px; }
+.ctaSection h2 { color: var(--ink); }

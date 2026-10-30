@@ -1,0 +1,598 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><script>const CFG = { company: "The 18 Label" };
+function brandMarkup(value){return String(value).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+</script></head><body>
+<title>Grand Opening Invitation</title>
+<meta name="theme-color" content="#400d19">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=DM+Sans:wght@400;500&display=swap">
+<style>
+/* Layout: one 9:16 "film" frame. A painted palace garden stays alive behind an arched parchment panel; the panel holds one page of text at a time over a turning chakra. Pages change as a peacock feather flies across the frame. A red curtain covers everything until tapped. Single committed look, no dark variant. */
+:root{
+  --ground:#2c0911; --paper:#fbf4e2; --ink:#6a2a2a; --maroon:#7a1b33;
+  --gold:#a8842f; --gold-hi:#f3dc9a; --gold-deep:#8c5e21; --cream:#f8e6bb;
+  --ck:#7b1fa2;
+  --script:"Great Vibes","Snell Roundhand","Apple Chancery",cursive;
+  --serif:"Cormorant Garamond","Iowan Old Style",Georgia,serif;
+  --sans:"DM Sans",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%;background:var(--ground);overflow:hidden}
+body{color:var(--ink);font-family:var(--serif)}
+button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible{outline:2px solid var(--gold-hi);outline-offset:4px}
+.theatre{height:100%;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 45%,#813141 0,#431421 45%,#1e080e 100%);padding:18px}
+.film{height:min(900px,calc(100svh - 36px));aspect-ratio:9/16;max-width:100%;position:relative;overflow:clip;background:#f6efd9;box-shadow:0 20px 100px #0a000bc0,0 0 0 1px #d9ba7340;isolation:isolate;container-type:size;touch-action:none;user-select:none}
+@media(max-width:600px){.theatre{padding:0}.film{height:100svh;width:100vw;aspect-ratio:auto;max-width:calc(100svh*.64)}}
+
+/* living garden */
+.world,.cover,.vignette{position:absolute;inset:0}
+.world{overflow:hidden}
+.palace{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;max-width:none;animation:living-palace 19s ease-in-out infinite alternate;transform-origin:50% 60%}
+.sunlight{position:absolute;inset:-40%;background:conic-gradient(from 110deg at 48% 0%,transparent,#fffbd45c 20deg,transparent 39deg,#fffbe731 45deg,transparent 60deg);mix-blend-mode:screen;animation:rays 15s ease-in-out infinite alternate;pointer-events:none}
+.flora{position:absolute;bottom:-3%;width:34%;height:34%;z-index:4;transform-origin:20% 100%;pointer-events:none;animation:sway 6s ease-in-out infinite alternate}
+.flora img{width:100%;height:100%;object-fit:contain;object-position:bottom;max-width:none}
+.flora-l{left:-14%}.flora-r{right:-14%;transform:scaleX(-1);animation-name:sway-r;animation-delay:-3s}
+.garlands{position:absolute;inset:0;pointer-events:none;z-index:4}
+.pendant{position:absolute;top:6.5%;height:12%;width:7%;transform-origin:50% 0;animation:pendulum 5.4s ease-in-out infinite alternate}
+.pendant svg{width:100%;height:100%;overflow:visible}
+.pendant:nth-child(2),.pendant:nth-child(4){height:9%;animation-delay:-1s}.pendant:nth-child(3){height:7%;animation-delay:-3s}.pendant:nth-child(5){animation-delay:-4s}
+.birds{position:absolute;inset:0;z-index:3;pointer-events:none}
+.bird{position:absolute;width:17%;height:12%;left:-30%;top:35%;will-change:transform;animation:flight-a 17s linear infinite}
+.bird img{width:100%;height:100%;object-fit:contain;animation:hover-bird .23s ease-in-out infinite alternate}
+.bird-b{animation:flight-b 21s linear infinite;animation-delay:3s;width:14%;top:49%}
+.bird-b img{animation-name:hover-bird-r}
+.petals,.fireflies{position:absolute;inset:0;pointer-events:none;z-index:8;overflow:hidden}
+.petal{position:absolute;top:-8%;width:9px;height:15px;background:radial-gradient(at 25% 30%,#ffe0d2,#d4698b 75%);border-radius:80% 0 80% 30%;opacity:0;animation:fall linear infinite;box-shadow:inset 1px 0 3px #fff8}
+.spark{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff6cd;box-shadow:0 0 7px 2px #e7bc58;animation:sparkle 5s ease-in-out infinite}
+.film:not(.opened) .world *{animation-play-state:paused!important}
+
+/* text sits directly on the painting's own cream centre: no added panel */
+.panel{position:absolute;left:17%;right:17%;top:20.5%;bottom:34%;z-index:5}
+.aura{position:absolute;left:50%;top:50%;width:70cqw;height:70cqw;margin:-35cqw 0 0 -35cqw;border-radius:50%;background:radial-gradient(circle,var(--ck) 0,transparent 62%);opacity:.14;animation:aura 5s ease-in-out infinite alternate;transition:background 1s}
+.chakra{position:absolute;left:50%;top:50%;width:58cqw;height:58cqw;margin:-29cqw 0 0 -29cqw;opacity:.2;pointer-events:none}
+.chakra svg{width:100%;height:100%;overflow:visible;display:block}
+.chakra .spin{transform-box:fill-box;transform-origin:50% 50%;animation:spin 46s linear infinite}
+.chakra .spin.rev{animation-duration:30s;animation-direction:reverse}
+.panel.plain .chakra,.panel.plain .aura,.panel.plain .rise{display:none}
+.chakra.bloom{animation:bloom 1.6s cubic-bezier(.2,.9,.2,1) both}
+.rise{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.rise i{position:absolute;bottom:-6%;width:1.6cqh;height:1.6cqh;border-radius:50%;background:var(--c);opacity:0;box-shadow:0 0 1.2cqh var(--c);animation:orb linear infinite}
+.scene{position:absolute;inset:0;padding:0;text-shadow:0 0 6px #fff8ea,0 0 14px #fff8ea;display:flex;align-items:center;justify-content:center;text-align:center}
+.fit{display:flex;flex-direction:column;align-items:center;width:100%;transform-origin:50% 50%}
+.fit>*{flex-shrink:0;animation:word-in 1s both;animation-delay:calc(var(--n,0)*.13s + .15s)}
+
+.seven{display:flex;gap:1.3cqh;align-items:center;margin:.6cqh 0 1cqh}
+.seven i{width:1.25cqh;height:1.25cqh;border-radius:50%;background:var(--c);box-shadow:0 0 0 1px #fff8,0 0 0 1.5px #b8975080;animation:dot 2.8s ease-in-out infinite;animation-delay:calc(var(--k)*.3s)}
+.kicker{font-family:var(--sans);font-size:1.15cqh;letter-spacing:.24em;line-height:1.6;text-transform:uppercase;color:var(--gold);margin:.5cqh 0}
+.blessing{font-size:2cqh;font-style:italic;line-height:1.25;color:#7b6a35;margin:.4cqh 0}
+.scene h1,.scene h2{font-family:var(--script);font-weight:400;line-height:1.18;margin:.2cqh 0 .5cqh;text-wrap:balance;padding:0 .2em;overflow:visible;color:var(--maroon);animation:word-in 1s both,glint 4s ease-in-out infinite alternate;animation-delay:calc(var(--n,0)*.13s + .15s),0s}
+@keyframes glint{from{text-shadow:0 0 6px #fff8ea,0 0 0 #e7b95200}to{text-shadow:0 0 6px #fff8ea,0 0 16px #e7b952aa}}
+.fit>*{max-width:100%;overflow-wrap:anywhere}
+.scene h1{font-size:6.2cqh}.scene h2{font-size:5.6cqh}
+.shop{font-size:2.9cqh;font-weight:600;letter-spacing:.14em;line-height:1.15;margin:.8cqh 0;color:var(--maroon)}
+.copy{font-size:2.15cqh;line-height:1.32;margin:.8cqh 0;max-width:27ch}
+.note{font-size:1.75cqh;font-style:italic;color:#7b6a35;line-height:1.3;margin:.2cqh 0}
+.logow{max-width:none!important;margin:.6cqh 0 .2cqh}
+.logo{display:block;width:68cqw;height:auto;filter:brightness(1.08) saturate(1.15) drop-shadow(0 0 1px #fff) drop-shadow(0 2px 8px #c8962f66);animation:logoglow 3.2s ease-in-out infinite alternate}
+@keyframes logoglow{from{filter:brightness(1.05) saturate(1.15) drop-shadow(0 0 1px #fff) drop-shadow(0 2px 6px #c8962f55)}to{filter:brightness(1.18) saturate(1.25) drop-shadow(0 0 1px #fff) drop-shadow(0 0 18px #f3d27acc)}}
+.detail{margin:.55cqh 0}
+.detail span{display:block;font:500 1.02cqh var(--sans);letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:.25cqh}
+.detail strong{font-size:2.35cqh;font-weight:600;line-height:1.15;display:block;user-select:text}
+.detail small{font-size:1.75cqh;display:block;line-height:1.25;font-weight:500}
+.qr{padding:.8cqh;background:#fffaf0;border:1px solid #c9a55a;line-height:0;margin:.8cqh 0 .5cqh}
+.qr img,.qr canvas{width:11cqh;height:11cqh;display:block}
+.btn{font:500 1.25cqh var(--sans);letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--cream);background:linear-gradient(#8f2140,#5c0f26);padding:1.3cqh 2.6cqh;border-radius:99px;border:1px solid #e3c577;margin:.9cqh 0;pointer-events:auto}
+
+/* peacock feather transition: a large feather flies tip-first across the frame; the old page blurs away under it and the new one rises in its wake */
+.plume{position:absolute;inset:0;z-index:9;pointer-events:none;visibility:hidden;overflow:hidden}
+.plume.run{visibility:visible}
+.plume .wash{position:absolute;inset:-20%;background:radial-gradient(circle at 50% 50%,#fffaeaee 0,#f6e2a8aa 28%,#7fc8b433 48%,transparent 66%);opacity:0}
+.plume.run .wash{animation:wash 1.5s ease-in-out both}
+.plume .feather{position:absolute;left:50%;top:50%;width:46cqh;height:129cqh;margin:-64.5cqh 0 0 -23cqh;will-change:transform;opacity:0}
+.plume .feather img{display:block;width:100%;height:100%;max-width:none;will-change:transform;transform-origin:50% 92%;filter:drop-shadow(0 0 1.4cqh #fff2c6aa) drop-shadow(0 1.5cqh 2.5cqh #2c091155);animation:flutter .38s ease-in-out infinite alternate}
+.plume.run .feather{animation:fly 1.5s cubic-bezier(.42,.08,.58,.92) both}
+.plume.run.back .feather{animation-name:fly-back}
+.plume .trail i{position:absolute;width:.7cqh;height:.7cqh;margin:-.35cqh;border-radius:50%;background:var(--c);box-shadow:0 0 1.2cqh .35cqh var(--c);opacity:0}
+.plume.run .trail i{animation:glitter .9s ease-out both;animation-delay:var(--a)}
+.plume.run.back .trail i{animation-delay:var(--b)}
+.plume:not(.run) *{animation-play-state:paused}
+.panel.leaving .scene{opacity:0;filter:blur(8px);transform:scale(.97);transition:opacity .55s,filter .55s,transform .55s}
+
+.vignette{z-index:10;pointer-events:none;box-shadow:inset 0 0 45px #a1762225}
+
+/* showroom walk page: scrolling plays the shop video frame by frame, with its own lines of text over it */
+.walk{position:absolute;inset:0;z-index:6;background:#2c0911;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .6s,visibility 0s .6s}
+.walking .walk{opacity:1;visibility:visible;transition:opacity .6s}
+.walking .panel{visibility:hidden}
+.walk canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.w-scrim{position:absolute;left:0;right:0;opacity:0}
+.w-scrim.top{top:0;height:46%;background:linear-gradient(#2c0911f2 0,#2c0911c4 38%,#2c091166 70%,transparent)}
+.w-scrim.bottom{bottom:0;height:60%;background:linear-gradient(transparent,#2c091166 30%,#2c0911c9 58%,#2c0911f5)}
+.w-ch{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 9cqw;visibility:hidden}
+.w-ch.top{top:7.5cqh}.w-ch.bottom{bottom:17cqh}
+.w-ch>*{margin:0;will-change:opacity,transform,filter}
+.w-kicker{font:500 1.2cqh var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--gold-hi);text-shadow:0 1px 6px #1a0208}
+.w-rule{display:block;width:22cqh;height:2.2cqh;margin:.8cqh 0 .2cqh!important;color:#c9a24e}
+.w-rule svg{width:100%;height:100%;display:block;overflow:visible}
+.w-title{font-family:var(--script);font-weight:400;font-size:min(5.6cqh,11.5cqw);line-height:1.12;padding:.1em .25em .15em;text-wrap:balance;
+  background:linear-gradient(100deg,#d4a547 0%,#fff3c8 30%,#e6bb5c 50%,#fff0bd 70%,#c99636 100%);background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 .25cqh .5cqh #1a0208cc) drop-shadow(0 0 1.6cqh #e7b95255);animation:w-shine 6s ease-in-out infinite alternate}
+.w-copy{font-size:2.15cqh;line-height:1.38;font-style:italic;color:#fbf1dcd0;max-width:30ch;margin-top:.6cqh!important;text-shadow:0 1px 8px #1a0208}
+.w-words{font:500 1.15cqh var(--sans);letter-spacing:.3em;text-transform:uppercase;color:#f6e3b4;margin-top:1.2cqh!important}
+.timeline button.on.part::before{transform:scaleX(var(--w,0));transition:none}
+@keyframes w-shine{from{background-position:0% 0}to{background-position:100% 0}}
+
+/* curtain cover: velvet drapes drawn in CSS so they stay crisp at any size. They breathe and ripple, a sheen passes over them,
+   and gold dust drifts in a pool of stage light around a gold-rimmed wax seal. Tapping the seal flashes it open in a burst of
+   gold and petals; the drapes gather to the sides, the valance lifts away and the garden settles into view. */
+.cover{z-index:20;pointer-events:none;overflow:hidden}
+.drape{position:absolute;top:0;bottom:0;width:50.6%;will-change:transform;
+  background:
+    linear-gradient(#1a0206aa,transparent 24%,transparent 68%,#1a0206d9),
+    repeating-linear-gradient(90deg,#0000 0,#ff7a7a12 1.7cqh,#0000 3.4cqh,#1a020640 5.6cqh,#0000 7.6cqh),
+    repeating-linear-gradient(90deg,#310c19 0,#59162e 1.8cqh,#792c45 3cqh,#99506a 3.5cqh,#681e36 4.4cqh,#410e21 5.8cqh,#310c19 6.4cqh);
+  transition:transform 1.5s cubic-bezier(.6,0,.3,1)}
+.drape-l{left:0;transform-origin:0 0;animation:drape-l 6s ease-in-out infinite alternate}
+.drape-r{right:0;transform-origin:100% 0;animation:drape-r 6s ease-in-out infinite alternate;animation-delay:-3s}
+.drape::after{content:"";position:absolute;top:0;bottom:0;width:1.6cqh;background:linear-gradient(90deg,#1a020600,#1a0206aa)}
+.drape-r::after{transform:scaleX(-1)}
+.opened .drape::after{background:linear-gradient(90deg,#6e4710,#f6dc8c 45%,#b98a2e);width:1cqh;transition:background 0s .5s}
+.drape-l::after{right:0}.drape-r::after{left:0}
+.sheen{position:absolute;inset:0;background:linear-gradient(100deg,transparent 38%,#ffd7b01c 46%,#fff2e03d 50%,#ffd7b01c 54%,transparent 62%) 0 0/300% 100% no-repeat;mix-blend-mode:screen;animation:sheen 9s ease-in-out infinite;transition:opacity .6s}
+.stage-light{position:absolute;inset:0;background:radial-gradient(ellipse 72% 36% at 50% 46%,#ffc77a3d,transparent 70%),radial-gradient(ellipse 70% 14% at 50% 100%,#ffb06633,transparent 70%),linear-gradient(transparent 70%,#1a020699);mix-blend-mode:screen;animation:spot 4.5s ease-in-out infinite alternate;transition:opacity 1.2s}
+.valance{position:absolute;left:-3%;right:-3%;top:0;height:15cqh;transform-origin:50% 0;animation:valance 5s ease-in-out infinite alternate;transition:transform .9s cubic-bezier(.5,0,.3,1)}
+.valance svg{width:100%;height:100%;display:block;overflow:visible;filter:drop-shadow(0 1cqh 1.2cqh #1a0206bb)}
+.dust{position:absolute;inset:0;transition:opacity .8s}
+.dust i{position:absolute;bottom:-2%;width:.45cqh;height:.45cqh;border-radius:50%;background:#ffe9b0;box-shadow:0 0 .9cqh .2cqh #f3c55a;opacity:0;animation:dust linear infinite}
+.flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 46%,#fff8e0 0,#f6d88aaa 16%,#f6d88a33 36%,transparent 58%);opacity:0;pointer-events:none}
+.cover-copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--cream);padding:20px}
+.cover-copy .eyebrow{font:500 1.15cqh var(--sans);letter-spacing:.3em;margin:0 0 3cqh;color:var(--gold-hi);text-shadow:0 1px 6px #1a0206}
+#open{position:relative;border:0;background:none;color:inherit;display:flex;flex-direction:column;align-items:center;gap:1.6cqh;pointer-events:auto;padding:0}
+.seal{position:relative;display:grid;place-items:center;width:19cqh;height:19cqh;animation:seal-in 1.1s cubic-bezier(.3,1.5,.5,1) .3s both}
+.seal-in{display:grid;place-items:center;width:100%;height:100%;transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
+#open:hover .seal-in{transform:scale(1.06)}
+.seal .ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:spin 36s linear infinite}
+.seal .ring text{font:600 10px var(--sans);letter-spacing:.18em;fill:#f3dc9a}
+.seal .ripple{position:absolute;inset:19.5%;border-radius:50%;border:1px solid #f3dc9acc;animation:ripple 2.8s ease-out infinite;pointer-events:none}
+.seal .ripple+.ripple{animation-delay:1.4s}
+.wax{position:relative;display:grid;place-items:center;width:11.5cqh;height:11.5cqh;border-radius:50%;
+  background:radial-gradient(circle at 34% 28%,#d6505f 0,#a11f33 36%,#6c0d1d 74%,#4a0613 100%);animation:wax-glow 3s ease-in-out infinite}
+.wax svg{width:64%;height:64%;filter:drop-shadow(0 .15cqh .15cqh #2c0410)}
+.open-label{font-family:var(--script);font-size:5.4cqh;line-height:1.15;padding:0 .25em;
+  background:linear-gradient(100deg,#d4a547,#fff3c8 35%,#e6bb5c 55%,#fff0bd 75%,#c99636);background-size:220% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 .2cqh .4cqh #1a0206);animation:w-shine 5s ease-in-out infinite alternate}
+.open-sub{font:500 1.15cqh var(--sans);letter-spacing:.26em;text-transform:uppercase;color:#fbe9c4;text-shadow:0 1px 6px #1a0206;margin-top:-.6cqh}
+.cover-foot{position:absolute;bottom:8%;font:500 .95cqh var(--sans);letter-spacing:.22em;line-height:1.7;padding:0 20px;margin:0;color:#f6e3b4;text-shadow:0 1px 6px #1a0206}
+.cover-copy .eyebrow,.open-label,.open-sub,.cover-foot{transition:opacity .8s 1.2s,transform .8s 1.2s}
+.burst{position:absolute;left:50%;top:9.5cqh;width:0;height:0;pointer-events:none}
+.burst i{position:absolute;left:0;top:0;width:var(--s);height:var(--s);margin:calc(var(--s)/-2);border-radius:50%;background:var(--c);box-shadow:0 0 .8cqh var(--c);opacity:0}
+.burst i.pt{height:calc(var(--s)*1.6);border-radius:80% 0 80% 30%;box-shadow:none}
+.opened .drape{animation-play-state:paused}
+.opened .drape-l{transform:translateX(-17%) scaleX(.16) skewY(-2deg);transition:transform 2.8s cubic-bezier(.55,0,.25,1) .4s}
+.opened .drape-r{transform:translateX(17%) scaleX(.16) skewY(2deg);transition:transform 2.8s cubic-bezier(.55,0,.25,1) .4s}
+.opened .valance{transform:translateY(-135%);transition:transform 1.3s cubic-bezier(.6,0,.3,1) 2.2s}
+.opened .sheen,.opened .stage-light,.opened .dust{opacity:0}
+.opened .flash{animation:flash 1.4s ease-out .2s both}
+.opened .seal{animation:seal-open .9s cubic-bezier(.3,0,.2,1) both}
+.opened .burst i{animation:burst 1.5s cubic-bezier(.15,.7,.3,1) .28s both}
+.opened .cover-copy .eyebrow,.opened .open-label,.opened .open-sub,.opened .cover-foot{opacity:0;transform:translateY(1.2cqh);transition:opacity .45s,transform .45s}
+.opened .cover-copy{visibility:hidden;transition:visibility 0s 2s}
+.opened .cover-copy button{pointer-events:none}
+.opened .world{animation:reveal 3.8s cubic-bezier(.25,.6,.2,1) .5s both}
+
+/* controls */
+.controls{position:absolute;bottom:0;left:0;right:0;z-index:12;background:linear-gradient(transparent,#2c0911a6 45%,#2c0911e0);padding:20px 14px max(8px,env(safe-area-inset-bottom,0px));opacity:0;transition:opacity 1s;pointer-events:none}
+.opened .controls{opacity:1;transition-delay:2.6s}
+.controls button{pointer-events:auto}
+.hint{display:flex;flex-direction:column;align-items:center;gap:.5cqh;margin:0 auto 1.2cqh;border:0;background:none;padding:0;color:#fff6db}
+.hint b{font:600 1.35cqh var(--sans);letter-spacing:.22em;padding:.75cqh 1.9cqh;border-radius:99px;background:#3b0f1ad9;border:1px solid #e3c57799;box-shadow:0 .4cqh 1.6cqh #1a020866;text-shadow:0 1px 3px #000a;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.hint i{display:grid;place-items:center;width:3.6cqh;height:3.6cqh;border-radius:50%;background:#3b0f1ad9;border:1px solid #e3c57799;box-shadow:0 .4cqh 1.4cqh #1a020866;animation:cue 1.6s ease-in-out infinite}
+.hint svg{width:2.3cqh;height:2.3cqh;color:var(--gold-hi)}
+.hint.up svg{transform:rotate(180deg)}
+.timeline{display:flex;gap:5px;margin-bottom:4px}
+.timeline button{border:0;background:#fff8;height:3px;flex:1;padding:0;position:relative;overflow:hidden}
+.timeline button::before{content:"";position:absolute;inset:0;background:#fff5b5;transform:scaleX(0);transform-origin:left;transition:transform .6s}
+.timeline button.on::before{transform:scaleX(1)}
+.control-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.control-row button{color:#fff2d3;background:none;border:none;width:30px;height:30px;font-size:17px;padding:0}
+.control-row button:disabled{opacity:.25;cursor:default}
+#scene-label{font:400 .95cqh var(--sans);letter-spacing:.14em;color:#fff4d7;flex:1;text-align:center}
+
+@keyframes living-palace{from{transform:scale(1.01)}to{transform:scale(1.055) translateY(-.5%)}}
+@keyframes rays{from{transform:rotate(-6deg);opacity:.3}to{transform:rotate(9deg);opacity:.75}}
+@keyframes sway{from{transform:rotate(-3deg)}to{transform:rotate(3deg) translateY(-1%)}}
+@keyframes sway-r{from{transform:scaleX(-1) rotate(-3deg)}to{transform:scaleX(-1) rotate(3deg) translateY(-1%)}}
+@keyframes pendulum{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+@keyframes hover-bird{from{transform:translateY(-2px) scaleY(.95) rotate(-3deg)}to{transform:translateY(2px) scaleY(1.06) rotate(3deg)}}
+@keyframes hover-bird-r{from{transform:scaleX(-1) translateY(-2px) scaleY(.95)}to{transform:scaleX(-1) translateY(2px) scaleY(1.05)}}
+@keyframes flight-a{0%{transform:translate(-30%,110%) rotate(-10deg);opacity:0}5%{opacity:1}18%{transform:translate(135%,-70%) rotate(-8deg)}32%{transform:translate(155%,-88%) rotate(2deg)}48%{transform:translate(220%,-50%) rotate(-5deg)}65%{transform:translate(390%,-170%) rotate(-15deg);opacity:1}74%,100%{transform:translate(650%,-220%);opacity:0}}
+@keyframes flight-b{0%,15%{transform:translate(750%,-100%);opacity:0}20%{opacity:1}37%{transform:translate(470%,-160%)}55%{transform:translate(445%,-150%)}78%{transform:translate(170%,20%);opacity:1}88%,100%{transform:translate(-100%,150%);opacity:0}}
+@keyframes fall{0%{transform:translate3d(0,-15px,0) rotate(0);opacity:0}10%{opacity:.75}80%{opacity:.7}100%{transform:translate3d(var(--drift),110cqh,0) rotate(580deg);opacity:0}}
+@keyframes sparkle{0%,100%{opacity:0;transform:translateY(8px) scale(.5)}50%{opacity:.85;transform:translateY(-18px) scale(1)}}
+@keyframes word-in{from{opacity:0;filter:blur(7px);transform:translateY(24px)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes shimmer{from{background-position:130% 0}to{background-position:-130% 0}}
+@keyframes breathe{to{scale:1.035}}
+@keyframes seal-glow{50%{box-shadow:0 0 38px #f9c86066}}
+@keyframes wax-glow{
+  0%,100%{box-shadow:0 0 0 .5cqh #c99a3e,0 0 0 .64cqh #6e4710,0 0 0 1.15cqh #f3dc9a22,0 1cqh 2.6cqh #1a0206cc,0 0 3cqh #f9c86000,inset 0 -.8cqh 1.4cqh #2c0410aa,inset 0 .5cqh .9cqh #ff9aa855}
+  50%{box-shadow:0 0 0 .5cqh #e0b456,0 0 0 .64cqh #6e4710,0 0 0 1.15cqh #f3dc9a44,0 1cqh 2.6cqh #1a0206cc,0 0 5cqh #f9c860aa,inset 0 -.8cqh 1.4cqh #2c0410aa,inset 0 .5cqh .9cqh #ff9aa877}}
+@keyframes drape-l{from{scale:1 1;background-position:0 0,0 0,0 0}to{scale:1.02 1;background-position:0 0,1.6cqh 0,.8cqh 0}}
+@keyframes drape-r{from{scale:1 1;background-position:0 0,0 0,0 0}to{scale:1.02 1;background-position:0 0,-1.6cqh 0,-.8cqh 0}}
+@keyframes sheen{0%{background-position:100% 0}65%,100%{background-position:0% 0}}
+@keyframes spot{from{opacity:.75}to{opacity:1}}
+@keyframes valance{from{rotate:-.35deg}to{rotate:.35deg}}
+@keyframes dust{0%{transform:translate(0,0);opacity:0}15%{opacity:.9}85%{opacity:.5}100%{transform:translate(var(--dx),-85cqh);opacity:0}}
+@keyframes ripple{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.85);opacity:0}}
+@keyframes seal-in{from{transform:scale(.55);opacity:0}}
+@keyframes seal-open{0%{transform:scale(1)}22%{transform:scale(.86)}100%{transform:scale(1.75);opacity:0;filter:blur(4px) brightness(1.8)}}
+@keyframes flash{0%{opacity:0}28%{opacity:1}100%{opacity:0}}
+@keyframes burst{0%{transform:translate(0,0) scale(.4);opacity:0}8%{opacity:1}100%{transform:translate(var(--x),var(--y)) rotate(var(--r)) scale(1);opacity:0}}
+@keyframes reveal{from{transform:scale(1.12)}to{transform:none}}
+@keyframes cue{50%{transform:translateY(.5cqh)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bloom{from{transform:scale(.25) rotate(-120deg);opacity:0}to{transform:none;opacity:.2}}
+@keyframes aura{from{transform:scale(.8);opacity:.08}to{transform:scale(1.1);opacity:.2}}
+@keyframes dot{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.5);filter:brightness(1.35);box-shadow:0 0 1.4cqh var(--c)}}
+@keyframes orb{0%{transform:translateY(0) scale(.5);opacity:0}15%{opacity:.5}85%{opacity:.4}100%{transform:translateY(-46cqh) scale(1.1);opacity:0}}
+@keyframes fly{0%{transform:translate(-150cqw,118cqh) rotate(34deg) scale(.85);opacity:1}50%{transform:translate(0,0) rotate(40deg) scale(1.04);opacity:1}100%{transform:translate(150cqw,-118cqh) rotate(46deg) scale(.85);opacity:1}}
+@keyframes fly-back{0%{transform:translate(150cqw,-118cqh) rotate(226deg) scale(.85);opacity:1}50%{transform:translate(0,0) rotate(220deg) scale(1.04);opacity:1}100%{transform:translate(-150cqw,118cqh) rotate(214deg) scale(.85);opacity:1}}
+@keyframes flutter{from{transform:rotate(-1.6deg) skewX(1.4deg)}to{transform:rotate(1.6deg) skewX(-1.4deg) scaleX(.97)}}
+@keyframes wash{0%,22%{opacity:0}50%{opacity:1}80%,100%{opacity:0}}
+@keyframes glitter{0%{opacity:0;transform:scale(.2)}25%{opacity:1;transform:scale(1.3)}100%{opacity:0;transform:translateY(-3cqh) scale(.3)}}
+@media(prefers-reduced-motion:reduce){
+  .world *,.chakra *,.aura,.rise i,.seven i,.logo,.wax,.hint i,.plume .feather img{animation:none!important}
+  .drape,.valance,.sheen,.stage-light,.dust i,.seal,.seal .ring,.seal .ripple,.open-label,.opened .world{animation:none!important}
+  .opened .drape-l,.opened .drape-r,.opened .valance{transition-duration:.6s;transition-delay:0s}
+  .burst{display:none}
+  .fit>*,.scene h1,.scene h2{animation-duration:.1s!important;animation-delay:0s!important}
+  .plume.run .feather,.plume.run .wash{animation-duration:.6s}
+  .plume .trail{display:none}
+  .w-title{animation:none}
+}
+
+/* A unified wine-maroon and champagne-gold palette. */
+:root{--ground:#310c19;--maroon:#59162e;--gold:#b7934b;--gold-hi:#f3dc9a}
+.theatre{background:radial-gradient(ellipse at 50% 45%,#632139 0,#310c19 60%,#1e080f 100%)}
+.film{background:var(--ground)}
+.brand-page .panel{left:17%;right:17%;top:20.5%;bottom:34%}
+.brand-page .scene{text-shadow:none;color:var(--cream)}
+.brand-page .scene h1{font-size:5.5cqh;color:var(--gold-hi);animation:word-in 1s both;text-shadow:0 2px 15px #220710}
+.brand-page .blessing,.brand-page .note{color:#ead8b8}
+.brand-page .kicker{color:var(--gold-hi)}
+.brand-page .logo{width:64cqw;max-height:29cqh;object-fit:contain;animation:none;filter:drop-shadow(0 3px 12px #18030b55)}
+.brand-page .logow{margin:1cqh 0}
+.brand-page .seven{display:none}
+.brand-page .controls,.brand-page #hint{color:var(--gold-hi);text-shadow:none}
+.drape{background:linear-gradient(#210711aa,transparent 24%,transparent 68%,#210711d9),repeating-linear-gradient(90deg,#0000 0,#ffb8cc12 1.7cqh,#0000 3.4cqh,#21071140 5.6cqh,#0000 7.6cqh),repeating-linear-gradient(90deg,#310c19 0,#59162e 1.8cqh,#792c45 3cqh,#99506a 3.5cqh,#681e36 4.4cqh,#410e21 5.8cqh,#310c19 6.4cqh)}
+.wax{background:radial-gradient(circle at 34% 28%,#99506a,#70263f 36%,#501329 74%,#310c19)}
+.video-status{position:absolute;top:42%;padding:2rem;text-align:center;color:var(--cream)}
+
+/* Gold and ivory lettering over the recolored original palace artwork. */
+.scene{color:#f8e6bb;text-shadow:0 1px 5px #26071180}
+.scene h1,.scene h2{color:#f3dc9a;animation:word-in 1s both;text-shadow:0 2px 9px #26071180}
+.scene .kicker,.scene .shop,.scene .detail span{color:#f3dc9a}
+.scene .blessing,.scene .note{color:#f5e4c5}
+
+/* Reveal the page as one unit after the curtains and valance have cleared. */
+.film:not(.content-ready) .panel,.film:not(.content-ready) .controls{visibility:hidden;opacity:0;pointer-events:none}
+.film:not(.content-ready) .fit>*{animation-play-state:paused!important}
+.content-ready .panel{opacity:1;transition:opacity .45s}
+.content-ready .controls{visibility:visible;opacity:1;transition:opacity .45s;transition-delay:0s}
+.brand-page .logo{filter:none;animation:none;width:64cqw;height:auto;object-fit:contain}
+.plume .feather{width:44cqh;height:112cqh;margin:-56cqh 0 0 -22cqh}
+.plume .feather img{object-fit:contain;animation:none;filter:drop-shadow(0 .4cqh .8cqh #16060c44)}
+
+/* Display the supplied logo intact, with its original proportions and no effects. */
+.brand-page .logow{width:100%;max-width:100%!important;margin:1.2cqh 0;line-height:0;overflow:visible}
+.brand-page .logo{display:block;width:100%;height:auto;max-width:100%;max-height:none;object-fit:contain;filter:none!important;animation:none!important;opacity:1;mix-blend-mode:normal;transform:none;border:0;padding:0}
+
+/* The complete supplied square JPG, including its ivory background and captions. */
+.brand-page .logow{width:100%;max-width:100%!important;margin:1cqh 0;overflow:visible}
+.brand-page .logo{width:100%;height:auto;max-height:none;aspect-ratio:1;object-fit:contain;border-radius:0;background:none;filter:none!important;animation:none!important}
+
+/* No chakra behind the page text; logo shown with a transparent background. */
+.panel .chakra,.panel .aura,.panel .rise{display:none!important}
+.brand-page .logo{background:transparent!important}
+</style>
+
+<main class="theatre" aria-label="Animated shop opening invitation for The 18 Label">
+<div class="film" id="film">
+  <div class="world">
+    <img class="palace" src="/template-assets/premium/57b87c968ce14070df77.png" alt="An ornate golden palace arch above a pink lotus garden with ceremonial elephants">
+    <div class="sunlight"></div>
+    <div class="flora flora-l"><img src="/template-assets/premium/93ffb121ecb1fa8f5686.webp" alt=""></div>
+    <div class="flora flora-r"><img src="/template-assets/premium/93ffb121ecb1fa8f5686.webp" alt=""></div>
+    <div class="garlands" aria-hidden="true"></div>
+    <div class="birds" aria-hidden="true"><div class="bird bird-a"><img src="/template-assets/premium/4d07e4bc132008b66c5f.webp" alt=""></div><div class="bird bird-b"><img src="/template-assets/premium/4d07e4bc132008b66c5f.webp" alt=""></div></div>
+    <div class="petals" aria-hidden="true"></div><div class="fireflies" aria-hidden="true"></div>
+  </div>
+
+  <div class="panel">
+    <div class="aura" aria-hidden="true"></div>
+    <div class="rise" aria-hidden="true"></div>
+    <div class="chakra" aria-hidden="true"><svg viewBox="-112 -112 224 224"></svg></div>
+    <section class="scene" aria-live="polite"><div class="fit"></div></section>
+  </div>
+
+  <div class="walk"><canvas aria-label="Scroll through the showroom; descriptions appear as you explore"></canvas><p class="video-status" hidden>A showroom frame could not load. Please reload the invitation.</p><div class="w-scrim top"></div><div class="w-scrim bottom"></div><div class="w-chapters"></div></div>
+
+  <div class="plume" aria-hidden="true"><div class="wash"></div><div class="trail"></div><div class="feather"><img alt=""></div></div>
+  <div class="vignette"></div>
+
+  <div class="cover">
+    <div class="drape drape-l"></div><div class="drape drape-r"></div>
+    <div class="sheen"></div><div class="stage-light"></div>
+    <div class="valance" aria-hidden="true"></div>
+    <div class="dust" aria-hidden="true"></div>
+    <div class="flash"></div>
+    <div class="cover-copy">
+      <p class="eyebrow">THE 18 LABEL · A BEAUTIFUL NEW BEGINNING</p>
+      <button id="open" type="button"><span class="seal"><span class="seal-in"><svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="seal-path" d="M100 100m-84 0a84 84 0 1 1 168 0a84 84 0 1 1-168 0"/></defs><circle cx="100" cy="100" r="97" fill="none" stroke="#f3dc9a" stroke-opacity=".55" stroke-width=".8" stroke-dasharray="1.5 4"/><circle cx="100" cy="100" r="71" fill="none" stroke="#f3dc9a" stroke-opacity=".4" stroke-width=".6"/><text><textPath href="#seal-path" textLength="526" lengthAdjust="spacing">THE 18 LABEL ✦ GRAND OPENING ✦ SAREES · JEWELLERY ✦</textPath></text></svg><span class="wax"><svg viewBox="-50 -50 100 100" aria-hidden="true"><defs><linearGradient id="seal-gold" gradientUnits="userSpaceOnUse" x1="0" y1="-30" x2="0" y2="32"><stop offset="0" stop-color="#fff3c8"/><stop offset=".55" stop-color="#e2b65a"/><stop offset="1" stop-color="#a87a28"/></linearGradient></defs><g fill="none" stroke="url(#seal-gold)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"><path d="M0 20C-9 8-9-10 0-28C9-10 9 8 0 20Z"/><path d="M-3 21C-17 15-25 1-23-15C-11-9-5 3-3 21Z"/><path d="M3 21C17 15 25 1 23-15C11-9 5 3 3 21Z"/><path d="M-6 23C-23 23-35 13-39 1C-25 1-13 9-6 23Z"/><path d="M6 23C23 23 35 13 39 1C25 1 13 9 6 23Z"/><path d="M-26 30H26"/><path d="M-14 35H14" stroke-opacity=".7"/></g><circle cx="0" cy="-34" r="2.4" fill="url(#seal-gold)"/></svg></span><i class="ripple"></i><i class="ripple"></i></span></span><span class="burst" aria-hidden="true"></span><span class="open-label">Click to open</span><span class="open-sub">You are cordially invited</span></button>
+      <p class="cover-foot">SAREES · JEWELLERY · GRAND OPENING</p>
+    </div>
+  </div>
+
+  <div class="controls" inert>
+    <button class="hint" id="hint" type="button"></button>
+    <div class="timeline" aria-label="Invitation pages"></div>
+    <div class="control-row">
+      <button id="prev" type="button" aria-label="Previous page">←</button>
+      <span id="scene-label"></span>
+      <button id="sound" type="button" aria-label="Mute music">♫</button>
+      <button id="next" type="button" aria-label="Next page">→</button>
+      <button id="replay" type="button" aria-label="Replay invitation">↺</button>
+    </div>
+  </div>
+</div>
+<audio id="music" src="/template-assets/premium/372585acfb3721f2b42d.mp4" loop preload="none"></audio>
+</main>
+
+
+
+<script>
+/* ====== EDIT HERE: paste the shop's Google Maps link ====== */
+
+
+(function(){
+var brandWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);var brandNode;
+while(brandNode=brandWalker.nextNode()){if(!brandNode.parentElement.closest('script,style'))brandNode.nodeValue=brandNode.nodeValue.replace(/The 18 Label|THE 18 LABEL/g,CFG.company)}
+
+var $=function(s){return document.querySelector(s)},film=$('#film'),music=$('#music'),fit=$('.fit'),panel=$('.panel');
+var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* garden details */
+var ornament='<svg viewBox="0 0 40 180"><defs><linearGradient id="g"><stop stop-color="#91621e"/><stop offset=".45" stop-color="#fce5a6"/><stop offset="1" stop-color="#ae7b2c"/></linearGradient></defs><path d="M20 0V132" stroke="#b28c48" stroke-width="1" stroke-dasharray="2 2"/><g fill="url(#g)" stroke="#a17a33" stroke-width=".6"><circle cx="20" cy="113" r="3"/><circle cx="20" cy="124" r="4"/><path d="M20 130Q4 140 5 155H35Q36 140 20 130Z"/><path d="M2 155H38V159H2Z"/><circle cx="8" cy="164" r="2"/><circle cx="20" cy="165" r="3"/><circle cx="32" cy="164" r="2"/></g><path d="M20 168Q11 176 20 180Q29 176 20 168" fill="#c76b84"/></svg>';
+[16,31,46.500,62,77].forEach(function(x){var el=document.createElement('div');el.className='pendant';el.style.left=x+'%';el.innerHTML=ornament;$('.garlands').append(el)});
+var i,p;
+/* curtain cover: valance with swags, fringe and tassels; drifting gold dust; the burst the seal opens with */
+var V='<svg viewBox="0 0 360 70" preserveAspectRatio="none"><defs><linearGradient id="vv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#310c19"/><stop offset=".4" stop-color="#9a1724"/><stop offset=".72" stop-color="#d23a48"/><stop offset="1" stop-color="#7a0e1b"/></linearGradient><linearGradient id="vg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8a5e1a"/><stop offset=".5" stop-color="#f6dc8c"/><stop offset="1" stop-color="#8a5e1a"/></linearGradient></defs><rect width="360" height="22" fill="#2c0309"/>';
+var sw='M0 22Q60 62 120 22Q180 62 240 22Q300 62 360 22';
+V+='<path d="M0 0H360V22Q300 62 240 22Q180 62 120 22Q60 62 0 22Z" fill="url(#vv)"/>';
+[0,120,240].forEach(function(x){for(var k=0;k<4;k++){var y=8+k*6.5,c=40+k*5.5;V+='<path d="M'+x+' '+y+'Q'+(x+60)+' '+c+' '+(x+120)+' '+y+'" fill="none" stroke="#2c0408" stroke-opacity=".38" stroke-width="1.6"/><path d="M'+x+' '+(y+2.4)+'Q'+(x+60)+' '+(c+2.4)+' '+(x+120)+' '+(y+2.4)+'" fill="none" stroke="#ff8a92" stroke-opacity=".22" stroke-width="1.1"/>'}});
+V+='<path d="'+sw+'" transform="translate(0 3.6)" fill="none" stroke="#e9c46a" stroke-width="6" stroke-dasharray="1 1.3"/><path d="'+sw+'" fill="none" stroke="url(#vg)" stroke-width="2.2"/><rect y="0" width="360" height="3" fill="url(#vg)"/>';
+[0,120,240,360].forEach(function(x){V+='<g transform="translate('+x+' 22)"><circle r="3.2" fill="#f3dc9a" stroke="#8a5e1a" stroke-width=".6"/><path d="M-2.6 3H2.6L4.6 17H-4.6Z" fill="url(#vg)"/><path d="M-3 17V20M-1 17V21M1 17V21M3 17V20" stroke="#e9c46a" stroke-width=".9"/></g>'});
+$('.valance').innerHTML=V+'</svg>';
+for(i=0;i<26;i++){p=document.createElement('i');p.style.cssText='left:'+((i*37)%100)+'%;--dx:'+((i%2?1:-1)*(4+i%7*3))+'cqw;animation-duration:'+(7+i%6)+'s;animation-delay:'+(-i*.55)+'s';$('.dust').append(p)}
+var BC=['#f3dc9a','#fff4cc','#e9c46a','#ffb3c1','#d4698b'];
+for(i=0;i<34;i++){var ang=i/34*Math.PI*2+(i%3)*.2,dist=14+(i*7)%16;p=document.createElement('i');p.className=i%3===2?'pt':'';
+  p.style.cssText='--c:'+BC[i%5]+';--s:'+(.5+(i%4)*.25)+'cqh;--x:'+(Math.cos(ang)*dist).toFixed(1)+'cqh;--y:'+(Math.sin(ang)*dist+8).toFixed(1)+'cqh;--r:'+(i*47%360)+'deg';$('.burst').append(p)}
+if(matchMedia('(hover: none)').matches)$('.open-label').textContent='Tap to open';
+for(i=0;i<24;i++){p=document.createElement('i');p.className='petal';p.style.cssText='left:'+((i*43)%100)+'%;animation-duration:'+(12+i%8)+'s;animation-delay:'+(-i*1.3)+'s;--drift:'+((i%2?1:-1)*(30+i*4))+'px;width:'+(5+i%5)+'px;height:'+(8+i%8)+'px';$('.petals').append(p)}
+for(i=0;i<22;i++){p=document.createElement('i');p.className='spark';p.style.cssText='left:'+((i*31)%100)+'%;top:'+(20+(i*17)%75)+'%;animation-delay:'+(-i*.7)+'s;animation-duration:'+(4+i%5)+'s';$('.fireflies').append(p)}
+
+/* the seven chakras: colour and petal count, root to crown */
+var CH=[['#c62828',4],['#ef6c00',6],['#e6a800',10],['#2e9d4f',12],['#1e88e5',16],['#3949ab',2],['#7b1fa2',24]];
+var seven='<div class="seven" aria-hidden="true">'+CH.map(function(c,k){return '<i style="--c:'+c[0]+';--k:'+k+'"></i>'}).join('')+'</div>';
+for(i=0;i<14;i++){p=document.createElement('i');p.style.cssText='--c:'+CH[i%7][0]+';left:'+(6+(i*37)%88)+'%;animation-duration:'+(9+i%6)+'s;animation-delay:'+(-i*1.1)+'s';$('.rise').append(p)}
+function chakra(c){
+  var col=c[0],n=c[1],a=60,b=n<=2?104:98,w=Math.min(40,Math.PI*(a+b)/2/n*1.12),s='<g class="spin">',k,t;
+  for(k=0;k<n;k++)s+='<path d="M0 '+(-a)+'C'+w+' '+(-(a+(b-a)*.3))+' '+w*.9+' '+(-(b-(b-a)*.35))+' 0 '+(-b)+'C'+(-w*.9)+' '+(-(b-(b-a)*.35))+' '+(-w)+' '+(-(a+(b-a)*.3))+' 0 '+(-a)+'Z" transform="rotate('+(360/n*k+(n===2?90:0))+')" fill="'+col+'" fill-opacity=".45" stroke="'+col+'" stroke-width="1.6"/>';
+  s+='<circle r="'+(b+8)+'" fill="none" stroke="'+col+'" stroke-width="1" stroke-dasharray="2 5"/></g>';
+  s+='<circle r="60" fill="none" stroke="'+col+'" stroke-width="2.2"/><circle r="54" fill="none" stroke="'+col+'" stroke-width=".8"/>';
+  s+='<g class="spin rev"><path d="M0 -46L39.8 23L-39.8 23Z" fill="none" stroke="'+col+'" stroke-width="1.8"/><path d="M0 46L39.8 -23L-39.8 -23Z" fill="none" stroke="'+col+'" stroke-width="1.8"/>';
+  for(k=0;k<6;k++){t=k*Math.PI/3;s+='<circle cx="'+(Math.sin(t)*50).toFixed(1)+'" cy="'+(-Math.cos(t)*50).toFixed(1)+'" r="2.600" fill="'+col+'"/>'}
+  return s+'</g><circle r="15" fill="'+col+'" fill-opacity=".55"/><circle r="22" fill="none" stroke="'+col+'" stroke-width="1"/>';
+}
+
+/* peacock feather, drawn as SVG: wispy golden barbs at the quill turning olive, green and teal toward a bronze-ringed blue eye */
+var plume=$('.plume');
+plume.querySelector('img').src="/template-assets/premium/f603a51485159ae48e09.png";
+/* glitter left in the feather's wake, timed to its pass in either direction */
+var GL=['#f3dc9a','#3fb8a0','#2fb4d6','#e9c46a','#6fbf4a','#fff4cc'],tr='',fl,jt;
+for(i=0;i<26;i++){fl=-.55+1.1*i/25;jt=(((i*37)%11)/10-.5)*.5;
+  tr+='<i style="--c:'+GL[i%6]+';left:'+(50+103*fl+81*jt).toFixed(1)+'%;top:'+(50-81*fl+32.6*jt).toFixed(1)+'%;--a:'+(1.5*(fl/1.45+1)/2).toFixed(2)+'s;--b:'+(1.5*(-fl/1.45+1)/2).toFixed(2)+'s"></i>'}
+plume.querySelector('.trail').innerHTML=tr;
+
+/* pages */
+function detail(l,t){return '<div class="detail"><span>'+l+'</span><strong>'+t+'</strong></div>'}
+var scenes=[
+ {label:'GRAND OPENING',ck:6,html:seven+'<p class="blessing">With the blessings of the Almighty</p><p class="kicker">Grand Opening</p><h1>A Grand Beginning</h1><div class="logow"><img class="logo" src="/template-assets/premium/0d18543382b3918d7f2a.png" alt="The 18 Label logo"></div><p class="note">You’re invited to our grand opening</p><p class="kicker">Sarees · Jewellery</p>'},
+ {label:'A WARM ENTRANCE',ck:3,walk:true,clip:'clothing',html:''},
+ {label:'STEP INSIDE',ck:3,walk:true,clip:'original',html:''},
+ {label:'OUR INVITATION',ck:3,html:'<p class="kicker">Invitation</p><h2>You’re Invited</h2>'+seven+'<p class="copy">With immense pleasure, we invite you to join us as we celebrate the grand opening of our new establishment.</p><p class="shop">THE 18 LABEL</p><p class="blessing">Your presence and blessings will make this occasion even more special.</p>'},
+ {label:'THE COLLECTION',ck:4,html:'<p class="kicker">The 18 Label</p><h2>A Celebration of Style</h2>'+seven+'<p class="copy">Discover sarees and jewellery for festive gatherings, treasured occasions and everyday elegance.</p><p class="blessing">Find the colours that feel like you.</p>'},
+ {label:'JEWELLERY SHOWROOM',ck:1,walk:true,clip:'jewellery',html:''},
+ {label:'THE FINISHING TOUCH',ck:1,html:'<p class="kicker">Sarees &amp; Jewellery</p><h2>Beautiful Together</h2>'+seven+'<p class="copy">A graceful drape. A touch of gold. Bring your look together with pieces that express your personal style.</p><p class="blessing">Make every detail your own.</p>'},
+ {label:'A WARM WELCOME',ck:2,html:'<p class="kicker">With warm regards</p><h2>From All of Us</h2><p class="shop">THE 18 LABEL</p>'+seven+'<p class="copy">Thank you for being part of our new beginning. We look forward to sharing this celebration with you.</p><p class="blessing">Wear your energy.<br>Express your essence.</p>'},
+ {label:'CELEBRATE WITH US',ck:0,html:'<p class="kicker">A new beginning</p><h2>Come, Be Inspired</h2>'+seven+'<p class="copy">Step into The 18 Label and explore a world of colour, texture and timeless style.</p><p class="shop">SAREES · JEWELLERY</p><p class="blessing">We look forward to welcoming you.</p>'}
+];
+var qrNode=null;
+
+/* showroom walk: on the STEP INSIDE page, scrolling draws independently decoded frames from the 4K source video.
+   The video runs over the first 88% of the page's scroll and its last frame holds to the end; scrolling past either end turns the page. */
+var WF=["/template-assets/premium/8d57417b6dd4a7efa2f7.webp", "/template-assets/premium/1353084d9799a3d1d4ef.webp", "/template-assets/premium/f1043619fe3e49212bab.webp", "/template-assets/premium/603193f6d786404d21af.webp", "/template-assets/premium/4c5a53f3dba6d342d3d9.webp", "/template-assets/premium/5089b21d103d6e5c1a34.webp", "/template-assets/premium/8b83fcb84013241ea100.webp", "/template-assets/premium/eb480e6837610bbfacce.webp", "/template-assets/premium/23e96ee4c11afe49e0db.webp", "/template-assets/premium/899fa53bb0c9a161e1b3.webp", "/template-assets/premium/36771cf05ce593ae9501.webp", "/template-assets/premium/68ca9c3ef12467a2a375.webp", "/template-assets/premium/9d9ed27e86a1a578e8bf.webp", "/template-assets/premium/7b8ac0f40aaa2c9d89d6.webp", "/template-assets/premium/8e2b17542b9a2190c5bd.webp", "/template-assets/premium/707895e8d0d2b147aa07.webp", "/template-assets/premium/ae1fc8e6f42e20dc405f.webp", "/template-assets/premium/3d00288db936428f07b9.webp", "/template-assets/premium/289f1af81e44e38ed6b7.webp", "/template-assets/premium/b15003438b29afe87487.webp", "/template-assets/premium/a337cc39beed10a64ce1.webp", "/template-assets/premium/f44049e6e96125e22ecc.webp", "/template-assets/premium/d0113adf8a25eef75046.webp", "/template-assets/premium/0d73e0b1aec0301b6190.webp", "/template-assets/premium/c3941440eeea31851028.webp", "/template-assets/premium/43af2e75ed2f52f45207.webp", "/template-assets/premium/c9934ae455d28cebf93d.webp", "/template-assets/premium/5ef3a35f6558ab7186d6.webp", "/template-assets/premium/53d00ec1d1d0c4984077.webp", "/template-assets/premium/3deb126d642c4c0750e8.webp", "/template-assets/premium/48e59910df8850c40b13.webp", "/template-assets/premium/15e4ee1ee7c510368469.webp", "/template-assets/premium/9a69999e6852adb232b7.webp", "/template-assets/premium/f780fa73c84233a50215.webp", "/template-assets/premium/e92c18acf00d3398149f.webp", "/template-assets/premium/c6731644c963799cf879.webp", "/template-assets/premium/4a23a65da1af920eeeb1.webp", "/template-assets/premium/0c5584e2a51656824a53.webp", "/template-assets/premium/8e76ecfd7d47a69915db.webp", "/template-assets/premium/a0bccdd08fda181c4df8.webp", "/template-assets/premium/63699f7f103198e250c2.webp", "/template-assets/premium/d0c79f5cedc56ec22d33.webp", "/template-assets/premium/61cc9fa01eed5a27e65c.webp", "/template-assets/premium/5800200470efe4344a4b.webp", "/template-assets/premium/1a4eafb49a3752860cd7.webp", "/template-assets/premium/c70a27586b3b2bb53441.webp", "/template-assets/premium/11286a052b6d81ce3dc0.webp", "/template-assets/premium/974ab07083bd45b35706.webp", "/template-assets/premium/c5c44c1714b333b7ad98.webp", "/template-assets/premium/08df48534a54a0f94e21.webp", "/template-assets/premium/20c277809400ffcbb7de.webp", "/template-assets/premium/670fbce4e25802d05e23.webp", "/template-assets/premium/b141b61f925865f6d9d8.webp", "/template-assets/premium/a176edc3112678a6ad36.webp", "/template-assets/premium/435e810d9b7a58e5edf6.webp", "/template-assets/premium/2ad7b99479d398916969.webp", "/template-assets/premium/1ee6119aa96d53a5ded4.webp", "/template-assets/premium/301af4c99aec04bb0c1d.webp", "/template-assets/premium/07bfc6ddecf8bce5a403.webp", "/template-assets/premium/6b372ac95d82adb71f61.webp", "/template-assets/premium/fb4fdf6af2eb03dbfded.webp", "/template-assets/premium/b2196bf2ea15c67841a3.webp", "/template-assets/premium/d9558b2ae0f00217fdbd.webp", "/template-assets/premium/716c5c66fe61407d8e15.webp", "/template-assets/premium/4425880c93db60c29667.webp", "/template-assets/premium/9965720ee89b080c8c10.webp", "/template-assets/premium/723a55f3b0a7ff99b4bd.webp", "/template-assets/premium/2b085826028e8e8a3f9d.webp", "/template-assets/premium/68e75f68e7b9ebe995dd.webp", "/template-assets/premium/8f6c3403a2319bb564ec.webp", "/template-assets/premium/5bc4a2ab06d3ec0025cd.webp", "/template-assets/premium/257cf5332a46410feec6.webp", "/template-assets/premium/1fa0b91b64d93299177a.webp", "/template-assets/premium/6a9ed14cdd2a3e36a028.webp", "/template-assets/premium/beef6c4008511628a094.webp", "/template-assets/premium/d56ac8d66b2d0bca68c7.webp", "/template-assets/premium/0c3398892482815e4468.webp", "/template-assets/premium/19d2f330d3a27aac82db.webp", "/template-assets/premium/3e769ab517a6c625461d.webp", "/template-assets/premium/1a0ee9057bd4ce00cb6d.webp", "/template-assets/premium/c6df954f2b8320b2a213.webp", "/template-assets/premium/1fd432a7d289cebd3a7c.webp", "/template-assets/premium/eb1dc6f4a4042aeeebec.webp", "/template-assets/premium/7491f052abf0c1f8fd4c.webp", "/template-assets/premium/3906d89d58c39146cdff.webp", "/template-assets/premium/cd87a40eae41a23b1b54.webp", "/template-assets/premium/5d05effc592e04030829.webp", "/template-assets/premium/446ec662b4655751b2ab.webp", "/template-assets/premium/1ffc2f882ff7c70ac8fe.webp", "/template-assets/premium/8ae2471ae3c3dd3b6b37.webp", "/template-assets/premium/7a014b6c0b2a685b0b28.webp", "/template-assets/premium/e6673fb1df8f60e13e9a.webp", "/template-assets/premium/fc6efb9d6188f0f809a2.webp", "/template-assets/premium/e8089543ad53adb57ae4.webp", "/template-assets/premium/003680861f8b73b414db.webp", "/template-assets/premium/d9905f75e791f4ae38bb.webp", "/template-assets/premium/d24df954cddb4c7c5ab2.webp", "/template-assets/premium/5916c0c728c5a37a67b7.webp", "/template-assets/premium/ca3f89c6c830938306c0.webp", "/template-assets/premium/01877204a21d6aae631d.webp", "/template-assets/premium/ad9b58189d528d705eaa.webp", "/template-assets/premium/ea547773c979f0894326.webp", "/template-assets/premium/255effdfba21fa4e0397.webp", "/template-assets/premium/2c93a2bcc800ed19f72d.webp", "/template-assets/premium/ae36a6ac352757db735d.webp", "/template-assets/premium/b47a956c381167ed378f.webp", "/template-assets/premium/0f647861bb6a6e86b6b3.webp", "/template-assets/premium/c5af62eca983bc754826.webp", "/template-assets/premium/c60ae9e3d138587d013b.webp", "/template-assets/premium/9d8b0d98c6ac89dd71e1.webp", "/template-assets/premium/531d6971033b014fa7e5.webp", "/template-assets/premium/ed316f0a0ebeb47bda20.webp", "/template-assets/premium/b9d1141396316931a60b.webp", "/template-assets/premium/d25b73720feb1fcf1480.webp", "/template-assets/premium/755db267f49ef3d7ffd0.webp", "/template-assets/premium/e61d24a5318de5236a15.webp", "/template-assets/premium/4017a35051fc463ab320.webp", "/template-assets/premium/88e44e0b3864f1999133.webp", "/template-assets/premium/8861b6d381e8f2b928d1.webp", "/template-assets/premium/6fcd6ae4d362c69521b8.webp", "/template-assets/premium/51bd7feaf416762c56dd.webp", "/template-assets/premium/16e85f1680486a6af0f9.webp", "/template-assets/premium/64d146ee1f3b28a8c667.webp", "/template-assets/premium/7f65a22aea26b49a3b18.webp", "/template-assets/premium/f4088c2ff3f6db6d53ee.webp", "/template-assets/premium/d4f930735f451a86b842.webp", "/template-assets/premium/2edeb5556a2504557012.webp", "/template-assets/premium/523eab38f06c496c6d00.webp", "/template-assets/premium/a99c427c6d96d2e897e2.webp", "/template-assets/premium/69fd2736fd66a047beb4.webp", "/template-assets/premium/e45ab277ea85bf094417.webp", "/template-assets/premium/970caee3aac2b19eff38.webp", "/template-assets/premium/a83c8652aa8e0b0fb12f.webp", "/template-assets/premium/fae71a04715b768724f4.webp", "/template-assets/premium/749647d6a6cc7d840691.webp", "/template-assets/premium/4226abdf4adb4d23845b.webp", "/template-assets/premium/8034ac8a845493e187fc.webp", "/template-assets/premium/f4460605f844ed0967ad.webp", "/template-assets/premium/09d85a075ba112f0433e.webp", "/template-assets/premium/8ac44701341f34f27bb8.webp", "/template-assets/premium/1035e663360d3a3b5c11.webp", "/template-assets/premium/f2371beff84e9e8a480a.webp", "/template-assets/premium/15d36ae73abfe4848b08.webp", "/template-assets/premium/44025564b6b4ae1bc6b8.webp", "/template-assets/premium/9c5e9d3252018f36aa57.webp", "/template-assets/premium/a2ba15afacb6e0dcc064.webp", "/template-assets/premium/8f781756283ade7705c9.webp", "/template-assets/premium/5aefe2055324788f5462.webp", "/template-assets/premium/485fb9cedb0a13f0c64b.webp", "/template-assets/premium/8e047e9d7239de8b7a24.webp", "/template-assets/premium/e588f5903dd14798cedb.webp", "/template-assets/premium/7d3d9ea9fb4fea8ddf32.webp", "/template-assets/premium/b30f9820c941326d5925.webp", "/template-assets/premium/d956950152b1b63a78ca.webp", "/template-assets/premium/d7c48433e3ac99e72db6.webp", "/template-assets/premium/3462b2f00c43dfe41bff.webp", "/template-assets/premium/7316996a41e60d498790.webp", "/template-assets/premium/9b0b319ab29564967f4a.webp", "/template-assets/premium/6aa2a11cbd4d289f1199.webp", "/template-assets/premium/7fe0fc85cc1c640a6fd2.webp", "/template-assets/premium/d90cd979882c5e9b2b38.webp", "/template-assets/premium/93756c88587f9ac6863d.webp", "/template-assets/premium/736e750628a4a3f26597.webp", "/template-assets/premium/bf7d2580493ec767f93d.webp", "/template-assets/premium/e27ff0a1b687ae12fb76.webp", "/template-assets/premium/07bb01985a0d553a3747.webp", "/template-assets/premium/24ecb6091b285ed2ea07.webp", "/template-assets/premium/79f3e3800ed331d1b1de.webp", "/template-assets/premium/f4d992396e4ffd51e16b.webp", "/template-assets/premium/29aa01dea5749ac55869.webp", "/template-assets/premium/46eb9e34b24692747185.webp", "/template-assets/premium/4c91403231a4fb10c96b.webp", "/template-assets/premium/ae40d3980b983076522e.webp", "/template-assets/premium/c0cde2dfbf4e29a7b423.webp", "/template-assets/premium/070f58d7c8940121d068.webp", "/template-assets/premium/5123a61b3c2836427211.webp", "/template-assets/premium/bf7eb740e50646c47c1b.webp", "/template-assets/premium/270754f6288ee8b8dc8e.webp", "/template-assets/premium/eb40032d1c46789d4bd3.webp", "/template-assets/premium/2f4c0b64e971a4ed136e.webp", "/template-assets/premium/7df0ee1b8864feb1e2bf.webp", "/template-assets/premium/a602a4fe3d7292c89c6d.webp", "/template-assets/premium/38b7975ef84311ff06cc.webp", "/template-assets/premium/a0185c1c13be4724092a.webp", "/template-assets/premium/b8de666b76a911028b54.webp", "/template-assets/premium/5a4df55c19eec4ae9c33.webp", "/template-assets/premium/674b7f9ab360ecd939b1.webp", "/template-assets/premium/ce98c4d6941ab994fe9d.webp", "/template-assets/premium/d1af5d09f1b7f2cc15c6.webp", "/template-assets/premium/5f785f7bcf51f08ac848.webp", "/template-assets/premium/e301ae8530295ff71007.webp", "/template-assets/premium/013e8ba09bbc9770a1c8.webp", "/template-assets/premium/4c72e1285b7bcc6b9482.webp", "/template-assets/premium/e52285c7f23651fe0211.webp", "/template-assets/premium/619fcb874b5b201915f8.webp", "/template-assets/premium/f6c96821f7d96944e8af.webp", "/template-assets/premium/252d9852d16fb78398ee.webp", "/template-assets/premium/9b10432f64a7f6ae4f72.webp", "/template-assets/premium/43881317642004595a2d.webp", "/template-assets/premium/d62b50e0c9498ca2d7ae.webp", "/template-assets/premium/b449e6f3d9214bbb60da.webp", "/template-assets/premium/7c865ebc6d4b97ea0ed1.webp", "/template-assets/premium/093cd91c7031fed8cdaf.webp", "/template-assets/premium/3ecc39182aedd03d7fa6.webp", "/template-assets/premium/030c2e55bb682d5dd2b5.webp", "/template-assets/premium/946410fa2b3b2b4b3e1b.webp", "/template-assets/premium/c2fe4c2b202e7d963d31.webp", "/template-assets/premium/3f1a670a2ea0cdb0e8ec.webp", "/template-assets/premium/0018ad53c7b9b321dcd7.webp", "/template-assets/premium/1d7629061e7ac83b992d.webp", "/template-assets/premium/7cc1c8e8dd352ee3cd32.webp", "/template-assets/premium/54525f714d2bfa22c677.webp", "/template-assets/premium/26e88d1a2cbacef6f683.webp", "/template-assets/premium/9ef7684911ee739b4c6c.webp", "/template-assets/premium/04f3a99bf54747102326.webp", "/template-assets/premium/81694be2f12e2fa1f138.webp", "/template-assets/premium/0c52758dac3cfa94a4ce.webp", "/template-assets/premium/dc97aa7182721e59aece.webp", "/template-assets/premium/9f918cb1cab8404e5eb5.webp", "/template-assets/premium/f794562150566c20069b.webp", "/template-assets/premium/3e28a10e84665fc81ff2.webp", "/template-assets/premium/0bd8d41f7c0dc9a1fb32.webp", "/template-assets/premium/61102de5db270c249771.webp", "/template-assets/premium/1f0202a425f6308ff473.webp", "/template-assets/premium/d7f70823f4a71bad605c.webp", "/template-assets/premium/1c4d36c621db803ab7b9.webp", "/template-assets/premium/c40987024f1e467cab58.webp", "/template-assets/premium/adcadcadda96069d350d.webp", "/template-assets/premium/b5fd617efa17664287d7.webp", "/template-assets/premium/1c7bc8ab9a7f53412faa.webp", "/template-assets/premium/00c902d5e6c484516b80.webp", "/template-assets/premium/b2f3738633d6cb735ad5.webp", "/template-assets/premium/b53ff5b25482bcbdbed2.webp", "/template-assets/premium/d87c2b5a3d862aad1243.webp", "/template-assets/premium/62c9d92c8870c1909e56.webp", "/template-assets/premium/268737daea0c15ac9160.webp", "/template-assets/premium/c57c6454f60f767e0807.webp", "/template-assets/premium/e97c2074944e8de5d923.webp", "/template-assets/premium/f9508b926acc5cfe3cba.webp", "/template-assets/premium/c408165797cb7136426c.webp", "/template-assets/premium/4a0351738886b6ac7bb9.jpg", "/template-assets/premium/a66c18408b80cb2ed9d7.jpg", "/template-assets/premium/37afcd476dfceeee677f.jpg", "/template-assets/premium/3b0ffa38aecc6a6b80f5.jpg", "/template-assets/premium/24530728359fd0cd3508.jpg", "/template-assets/premium/d64916c5919254510795.jpg", "/template-assets/premium/51c6ec5a340d261856f3.jpg", "/template-assets/premium/b941e04792efd8c79e9b.jpg", "/template-assets/premium/4a0d152118b4094f4104.jpg", "/template-assets/premium/b2d6ebe844b9a7512523.jpg", "/template-assets/premium/b8718c2ea822d2948d57.jpg", "/template-assets/premium/fb76593410cb4731318e.jpg", "/template-assets/premium/347c4d2c0f885c2ceb03.jpg", "/template-assets/premium/fa068edaf415da84f488.jpg", "/template-assets/premium/ae488ec6f128c9d13efd.jpg", "/template-assets/premium/f021bdd3acc11106ddd5.jpg", "/template-assets/premium/f143531acc651afe02d7.jpg", "/template-assets/premium/49a644613d2cd32d242f.jpg", "/template-assets/premium/8ac3628a00e4fb0070c0.jpg", "/template-assets/premium/3789292455d36df382b9.jpg", "/template-assets/premium/477c2ad57149d1901fc8.jpg", "/template-assets/premium/5d37b42909301dd33337.jpg", "/template-assets/premium/37353395cfe79bb3c388.jpg", "/template-assets/premium/d7bab304d94d0bfefaf3.jpg", "/template-assets/premium/3a4451c4469b237ae836.jpg", "/template-assets/premium/ed6d57d938d6e519b36f.jpg", "/template-assets/premium/7c450f1e18397a61b1d6.jpg", "/template-assets/premium/8cf91e82f83ee724a7de.jpg", "/template-assets/premium/81bca3824708cf5afb09.jpg", "/template-assets/premium/f420a5480752367f6521.jpg", "/template-assets/premium/e9def7f409beb0526a08.jpg", "/template-assets/premium/e2c5c0f0af416f1099bc.jpg", "/template-assets/premium/ed4f933f83179c09f4b9.jpg", "/template-assets/premium/7890b0d14fa38b538c64.jpg", "/template-assets/premium/590a784d1c074bcc4946.jpg", "/template-assets/premium/7cd7db929060393170db.jpg", "/template-assets/premium/e0481d2123bfc7b89045.jpg", "/template-assets/premium/b238ef23ef4abfee6635.jpg", "/template-assets/premium/27ff08510c8552014c8c.jpg", "/template-assets/premium/34b5968b0b8fcb6d69f5.jpg", "/template-assets/premium/7011a4c553545d594335.jpg", "/template-assets/premium/eee4504b9cd482af41c7.jpg", "/template-assets/premium/5ca5eb881b6150a87ad1.jpg", "/template-assets/premium/4d98468fc2eab84231e4.jpg", "/template-assets/premium/920042fa1694de615032.jpg", "/template-assets/premium/9a543ace16b0f83e48b2.jpg", "/template-assets/premium/2499647bcf05820caa34.jpg", "/template-assets/premium/4a3c0b2039d7dfbb80d8.jpg", "/template-assets/premium/783e54f94253d4fc8739.jpg", "/template-assets/premium/da8d6412fce9b07f47cb.jpg", "/template-assets/premium/e0b2db21e1b25e0deba7.jpg", "/template-assets/premium/78737e81fb95602b5279.jpg", "/template-assets/premium/9c83e4b683dca7185431.jpg", "/template-assets/premium/1d37025d470fb46213a7.jpg", "/template-assets/premium/d8d841f633fc8d85430e.jpg", "/template-assets/premium/caeadeb8f53edbddfc9d.jpg", "/template-assets/premium/6fce310a4705dac72140.jpg", "/template-assets/premium/1e7961bef69619a14994.jpg", "/template-assets/premium/c016ee06d67473290a33.jpg", "/template-assets/premium/b0c074764a6ecaf4e8a3.jpg", "/template-assets/premium/573a0a21a9e18dbd079c.jpg", "/template-assets/premium/dab8097c5241b3b0ceba.jpg", "/template-assets/premium/d0eefbcfd1539833f8b8.jpg", "/template-assets/premium/dcb005dbd54d6d24a982.jpg", "/template-assets/premium/131c73991ec4694edcde.jpg", "/template-assets/premium/620c8aa50e0862a45844.jpg", "/template-assets/premium/710c9b218c2abed1e0a4.jpg", "/template-assets/premium/9b14b5fa20bf6eb2cbdb.jpg", "/template-assets/premium/93a03b6a0513d375a30c.jpg", "/template-assets/premium/c67d61cdc3a171ed4417.jpg", "/template-assets/premium/cccf51601ed7b23a8140.jpg", "/template-assets/premium/19f10e852d04ee4bb1b3.jpg", "/template-assets/premium/4c8e7967abf6e5d241d7.jpg", "/template-assets/premium/02e8200e0eec11642378.jpg", "/template-assets/premium/9c318ef71332fb97425d.jpg", "/template-assets/premium/9be8320ab60a97b6181f.jpg", "/template-assets/premium/2d8f111b64d9e2951836.jpg", "/template-assets/premium/52fa1a7bd5aa7355a440.jpg", "/template-assets/premium/4438c6672e46550ca2a8.jpg", "/template-assets/premium/be7498063f7fdc1deb6f.jpg", "/template-assets/premium/cf8a3857090ce4076fc9.jpg", "/template-assets/premium/c724d4cdd348fc43d435.jpg", "/template-assets/premium/9dd166c7353977604b99.jpg", "/template-assets/premium/bc732f796e8d3fc51d18.jpg", "/template-assets/premium/bb53492cfbdf2f00caba.jpg", "/template-assets/premium/5d50acda73f18d59418c.jpg", "/template-assets/premium/28c09e1ade97f8eca93f.jpg", "/template-assets/premium/eaa943d3c10e0e9eb19b.jpg", "/template-assets/premium/8e7f3ee4d161c02ba097.jpg", "/template-assets/premium/3ca9adfe521d338b530e.jpg", "/template-assets/premium/14f774ffa4f94594fe22.jpg", "/template-assets/premium/502d5f2051eb6aa41316.jpg", "/template-assets/premium/458e123e9d33e4adbc1d.jpg", "/template-assets/premium/bb3506d4eadec9705b4a.jpg", "/template-assets/premium/7aecfa6b5ed3b2ca3083.jpg", "/template-assets/premium/123991b3af9241cecb43.jpg", "/template-assets/premium/b08422f5a4a7323f6d02.jpg", "/template-assets/premium/b1c4fa10c02ec9458429.jpg", "/template-assets/premium/f20ec2b8787d0986fd0f.jpg", "/template-assets/premium/7c6cc4fe3fa936881b97.jpg", "/template-assets/premium/9fe320bb22525493c433.jpg", "/template-assets/premium/919ff5d9bc4296366160.jpg", "/template-assets/premium/11234a715b65411bedea.jpg", "/template-assets/premium/7628ddc61f5bce1b6ac9.jpg", "/template-assets/premium/4d0bfce2bc7048d9e035.jpg", "/template-assets/premium/3711a45a215d5b9ad0f5.jpg", "/template-assets/premium/a46996d3f785a4ae3379.jpg", "/template-assets/premium/2adc4f3a8fb142714ad8.jpg", "/template-assets/premium/9a5810bfddeebc9cdca8.jpg", "/template-assets/premium/7cfa1d278e6901a00976.jpg", "/template-assets/premium/be529da4bc166cf0624b.jpg", "/template-assets/premium/3a7c8aab0e1a82d5791b.jpg", "/template-assets/premium/692655bd69d356587176.jpg", "/template-assets/premium/e34a65991223102aaaab.jpg", "/template-assets/premium/98fdaa9b58bac4b7fe08.jpg", "/template-assets/premium/f33da5d8cfcfc9e27d28.jpg", "/template-assets/premium/199461c151f27e3ad01e.jpg", "/template-assets/premium/36a31efc86f45dbd6010.jpg", "/template-assets/premium/0cdde4f1c6e1de8af137.jpg", "/template-assets/premium/3c82a883c036265a222d.jpg", "/template-assets/premium/720651d4cd6a08072a89.jpg", "/template-assets/premium/a6fb7a5f89cc7a1ca0bc.jpg", "/template-assets/premium/4abb11d9c86ce3b0199d.jpg", "/template-assets/premium/79ffa364f9fe7314e0f5.jpg", "/template-assets/premium/cfe16ca958c9260c2ff5.jpg", "/template-assets/premium/8490aebf58fc0db2a3ec.jpg", "/template-assets/premium/90faa239d2d5c8cb4680.jpg", "/template-assets/premium/a1ecbb9547f7de65e2ac.jpg", "/template-assets/premium/e2e7b5d2a32cc2ec6b26.jpg", "/template-assets/premium/ef85b7d2efa2cbacaecb.jpg", "/template-assets/premium/e031cfe86432600558a8.jpg", "/template-assets/premium/dbaaa0e65436041a9754.jpg", "/template-assets/premium/28204612415969f933b0.jpg", "/template-assets/premium/03566bbe000230295d97.jpg", "/template-assets/premium/37d9f0246997f12fa0d1.jpg", "/template-assets/premium/4ab78301701b885662cb.jpg", "/template-assets/premium/5595290606a4e2d0f84e.jpg", "/template-assets/premium/4317aa67720fd0af7679.jpg", "/template-assets/premium/7ae3d0e99a14244f0ff5.jpg", "/template-assets/premium/aca7a5c744ab862f067e.jpg", "/template-assets/premium/65101e4497758c075ed7.jpg", "/template-assets/premium/40e7e2c75edfe60db3d3.jpg", "/template-assets/premium/b7ed545c32da9db439e4.jpg", "/template-assets/premium/5d2a3de1370a0f074028.jpg", "/template-assets/premium/2506015638d84e40f721.jpg", "/template-assets/premium/c8d2de85e7463605ba1e.jpg", "/template-assets/premium/9e168c23c4ed0a5e918f.jpg", "/template-assets/premium/736d74c587fe2733eeb2.jpg", "/template-assets/premium/1e3ab686cd2af8da84c5.jpg", "/template-assets/premium/788d1b17b92334deaa76.jpg", "/template-assets/premium/6f5ebdc5d823435d2218.jpg", "/template-assets/premium/00883ae5a9da1cb8982f.jpg", "/template-assets/premium/7dbf61d3f9061e8f263b.jpg", "/template-assets/premium/53e84da319cfbb74c716.jpg", "/template-assets/premium/df6188992cf1c9f2a247.jpg", "/template-assets/premium/4d6a186bedf6d997f183.jpg", "/template-assets/premium/020dd09ca6296e661d5e.jpg", "/template-assets/premium/821dce949f12ff5d2762.jpg", "/template-assets/premium/0a8cacfab82fc0c9b16f.jpg", "/template-assets/premium/ddbf49f8e88a8e9c0b2f.jpg", "/template-assets/premium/7c6ef54f150ec1809e39.jpg", "/template-assets/premium/9984c90bf9772313b734.jpg", "/template-assets/premium/c0e09ef6d3103cefe05b.jpg", "/template-assets/premium/14290731ef06675a0b09.jpg", "/template-assets/premium/5606018e0274a3464cfd.jpg", "/template-assets/premium/bafa7c32c984808c3043.jpg", "/template-assets/premium/244d916d747e2dd31ec8.jpg", "/template-assets/premium/23da964793131e9c2c38.jpg", "/template-assets/premium/409e10e33c3af27325a3.jpg", "/template-assets/premium/c0ed90dcbeb896fd80fc.jpg", "/template-assets/premium/f8f2e89f7381d36737e1.jpg", "/template-assets/premium/c50af64133d04022766d.jpg", "/template-assets/premium/4d7a80a4bd14e7463cde.jpg", "/template-assets/premium/5e4af31b6c1a712c5f63.jpg", "/template-assets/premium/a9be024d705d401b63fa.jpg", "/template-assets/premium/160df30330d7e2574458.jpg", "/template-assets/premium/23ca7e34810bfd7767dc.jpg", "/template-assets/premium/4d36942871e6d19fc7b6.jpg", "/template-assets/premium/e4ab8db2e8976ff88a59.jpg", "/template-assets/premium/582687228263f42e1f75.jpg", "/template-assets/premium/e6e4b4b6cc54dc4aefec.jpg", "/template-assets/premium/7cf40523ead33c516adc.jpg", "/template-assets/premium/e1fb87f489a9395fb2f2.jpg", "/template-assets/premium/2efbe8f03076ba89ce8f.jpg", "/template-assets/premium/56ec5d9305cde81cb8b3.jpg", "/template-assets/premium/1ca5d0b352762072ae1d.jpg", "/template-assets/premium/8d26a8f5955713848a8f.jpg", "/template-assets/premium/b42e14c2e3f6cc372c31.jpg", "/template-assets/premium/1f4be6eb9b2f8f83556d.jpg", "/template-assets/premium/cce6f43e5d94a9599ea3.jpg", "/template-assets/premium/7de443a80d09f84a4524.jpg", "/template-assets/premium/38106944a5d66c9858f0.jpg", "/template-assets/premium/09c55053045f571e5a3f.jpg", "/template-assets/premium/82929f36935bd193ecd5.jpg", "/template-assets/premium/0bcb85dd368fe6916138.jpg", "/template-assets/premium/ad72bda54a714eb325ee.jpg", "/template-assets/premium/005c0e2200188c13f8a1.jpg", "/template-assets/premium/db02963d1dce211055f1.jpg", "/template-assets/premium/94b5d8fd152baef26402.jpg", "/template-assets/premium/fa205a884baf33cee306.jpg", "/template-assets/premium/e7b44d40e1a5e9956bd2.jpg", "/template-assets/premium/63d09b71c350a17bbc74.jpg", "/template-assets/premium/6c965baa348fd5eabc89.jpg", "/template-assets/premium/77d91e6144df045563b2.jpg", "/template-assets/premium/b0061be4a8f7160ad403.jpg", "/template-assets/premium/956c61e454bf09b211da.jpg", "/template-assets/premium/5dcabd765c9ab95a8bb3.jpg", "/template-assets/premium/70bc53bd658adc73c444.jpg", "/template-assets/premium/1e1efef90fd254c33fdf.jpg", "/template-assets/premium/86ff4b364e278a4d06ee.jpg", "/template-assets/premium/841d1ad6f88ef4cea938.jpg", "/template-assets/premium/fabbff2ef8bbabace878.jpg", "/template-assets/premium/f40408c2fb2da9d885fa.jpg", "/template-assets/premium/3b94a5e155fde3ed3b29.jpg", "/template-assets/premium/452e360e773bf0db20e1.jpg", "/template-assets/premium/d0516357f217d81702af.jpg", "/template-assets/premium/2162cc9b62a0935b7001.jpg", "/template-assets/premium/2a01581d9695d8130473.jpg", "/template-assets/premium/98cbf2056ab100d98988.jpg", "/template-assets/premium/9754eb7f654ad3e1bff6.jpg", "/template-assets/premium/876ab031366a81191974.jpg", "/template-assets/premium/6fd59ef38599fcf94aa9.jpg", "/template-assets/premium/1fd633227a54a6ce5e7a.jpg", "/template-assets/premium/170cd960a8f30cc6b1a1.jpg", "/template-assets/premium/50513812a02175a3f707.jpg", "/template-assets/premium/7027605804a5f846b68a.jpg", "/template-assets/premium/be267f032dbbbc40c38c.jpg", "/template-assets/premium/d11f2a3ec793a4e868a3.jpg", "/template-assets/premium/a11be053fb8e8b6b2e74.jpg", "/template-assets/premium/e2d5e9f4c516c44fcbcf.jpg", "/template-assets/premium/c5a7834f3dcc00b19e9c.jpg", "/template-assets/premium/124fa82fe4ce3a3d9116.jpg", "/template-assets/premium/8c83e9344bdfc42c38e5.jpg", "/template-assets/premium/4af4e9accfc8a01b2b9c.jpg", "/template-assets/premium/9b3e144010347ae484bf.jpg", "/template-assets/premium/481c689380ea2f52e124.jpg", "/template-assets/premium/c23e026289890cecc5fe.jpg", "/template-assets/premium/c05929ae2c3950f096c6.jpg", "/template-assets/premium/776882b016d02e35356a.jpg", "/template-assets/premium/afc852a61f97ef40067d.jpg", "/template-assets/premium/3dc73ad18c0e5db649c9.jpg", "/template-assets/premium/f499bbc8ac80ccd8fb16.jpg", "/template-assets/premium/9a46fe74e6036c8254c9.jpg", "/template-assets/premium/a6d2d5ef1a63e556bfa4.jpg", "/template-assets/premium/e29b0a067c63e6848058.jpg", "/template-assets/premium/058074a2011a6f850cb6.jpg", "/template-assets/premium/ab630629b71bff01ffcb.jpg", "/template-assets/premium/3fdff4b25c9d52b2a611.jpg", "/template-assets/premium/c5b933a284cde3c54c21.jpg", "/template-assets/premium/029c491733de3b6b7525.jpg", "/template-assets/premium/fb44c2758bb26487301d.jpg", "/template-assets/premium/e4d17357702bc71e2602.jpg", "/template-assets/premium/4d632d8bbbe06321e0e4.jpg", "/template-assets/premium/89e140b388fb4ca90d1e.jpg", "/template-assets/premium/746bd6d2596d30e3259f.jpg", "/template-assets/premium/455d0967b66720ee5a92.jpg", "/template-assets/premium/e1b97874c58ef20681c1.jpg", "/template-assets/premium/d56ee885dbded84ba02c.jpg", "/template-assets/premium/afb7a909820d2e4c12cf.jpg", "/template-assets/premium/743cad2ec1bfe52b09e9.jpg", "/template-assets/premium/c583914521cbeb6c88f4.jpg", "/template-assets/premium/2a25fb293319638bd752.jpg", "/template-assets/premium/b4a4f231e4886a738b83.jpg", "/template-assets/premium/ced91103ed3413884aab.jpg", "/template-assets/premium/d6160e3b6a88930f2050.jpg", "/template-assets/premium/37c67891cd188cd75279.jpg", "/template-assets/premium/e864bd60071d41662589.jpg", "/template-assets/premium/54ca08a7451bebb0541c.jpg", "/template-assets/premium/652e117e3ac1e557eea4.jpg", "/template-assets/premium/136adb0c44d232cd60da.jpg", "/template-assets/premium/df5b758d3e60cf3b1eed.jpg", "/template-assets/premium/054412056d3a31e05377.jpg", "/template-assets/premium/274a2f3ff2fbad7b3dfa.jpg", "/template-assets/premium/320ce6030afbbb23b250.jpg", "/template-assets/premium/499dd9b8f675b2012951.jpg", "/template-assets/premium/38b27e0a7053d7fd7925.jpg", "/template-assets/premium/66cbf841d4aae54e0a36.jpg", "/template-assets/premium/ac6a6d7186ae3f8608c9.jpg", "/template-assets/premium/95ab1fd46df65498a7de.jpg", "/template-assets/premium/02d464f868bbe3b3c3d7.jpg", "/template-assets/premium/7e14b6841514efbf347c.jpg", "/template-assets/premium/290e3bc923c4e301452e.jpg", "/template-assets/premium/5faab7d4b918abcf1bfa.jpg", "/template-assets/premium/65907b4c3572c108e348.jpg", "/template-assets/premium/ed27034f6b3ab003d294.jpg", "/template-assets/premium/fd67f21969a0d1dcd522.jpg", "/template-assets/premium/a86eac1688a7d6d60065.jpg", "/template-assets/premium/127c043f7e0bb6e72143.jpg", "/template-assets/premium/10ee2ba855ab64605c86.jpg", "/template-assets/premium/5d84741b1c79c80598e6.jpg", "/template-assets/premium/8045bebc082c028a70a4.jpg", "/template-assets/premium/2fa1021b11af9263a53f.jpg", "/template-assets/premium/f908c5c8c059f5c1e1b5.jpg", "/template-assets/premium/a66928599a03236fc711.jpg", "/template-assets/premium/f7a0ac06d22bd2f8fbc1.jpg", "/template-assets/premium/6d395ea778dae32c5b61.jpg", "/template-assets/premium/f83ce88007d04de1e09b.jpg", "/template-assets/premium/84da2160d7377dc60458.jpg", "/template-assets/premium/4483bf5857ae20352b95.jpg"];
+var clipRanges={"original": {"start": 0, "count": 240}, "clothing": {"start": 240, "count": 149}, "jewellery": {"start": 389, "count": 150}};
+var frameStart=0;
+var walk=$('.walk'),wc=walk.querySelector('canvas'),wx=wc.getContext('2d',{alpha:false}),WI=-1,WN=WF.length;
+var wq=0,wt=0,wraf=0,wlast=-1,wover=0,wendAt=0,walkFrom=0,WV=.88;
+scenes.some(function(s,n){if(s.clip==='original'){WI=n;return true}});WN=clipRanges.original.count;
+var wrule='<span class="w-rule" aria-hidden="true"><svg viewBox="0 0 220 22"><path d="M4 11H86M134 11H216" stroke="currentColor" stroke-width="1"/><path d="M110 2L119 11L110 20L101 11Z" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="110" cy="11" r="2.6" fill="currentColor"/><circle cx="92" cy="11" r="1.6" fill="currentColor"/><circle cx="128" cy="11" r="1.6" fill="currentColor"/></svg></span>';
+var WCH=[
+ {a:.04,b:.19,at:'top',html:'<p class="w-kicker">Welcome</p>'+wrule+'<h2 class="w-title">Step Into Elegance</h2><p class="w-copy">Through these doors waits a world of silk, zari and colour.</p>'},
+ {a:.23,b:.39,at:'bottom',html:'<p class="w-kicker">The Collection</p>'+wrule+'<h2 class="w-title">Colour, Texture &amp; Elegance</h2><p class="w-copy">Explore beautiful drapes, rich colours and details that catch the light.</p>'},
+ {a:.42,b:.54,at:'top',html:'<p class="w-kicker">Timeless Drapes</p>'+wrule+'<h2 class="w-title">Draped in Heritage</h2><p class="w-copy">Discover the beauty of a saree, from its flowing drape to its intricate details.</p>'},
+ {a:.58,b:.75,at:'bottom',html:'<p class="w-kicker">For every celebration</p>'+wrule+'<h2 class="w-title">Made for Your Moments</h2><p class="w-copy">Weddings, festivals and the days you’ll remember forever.</p><p class="w-words">Sarees · Jewellery · Bridal</p>'},
+ {a:.86,b:2,at:'top',html:'<p class="w-kicker">The 18 Label</p>'+wrule+'<h2 class="w-title">A Grand Beginning</h2><p class="w-copy">Keep scrolling for your invitation.</p>'}
+];
+var WSTOPS=[0,.12,.31,.48,.67,1];
+var originalChapters=WCH;
+function chapter(a,b,at,kicker,title,copy){return {a:a,b:b,at:at,html:'<p class="w-kicker">'+kicker+'</p>'+wrule+'<h2 class="w-title">'+title+'</h2><p class="w-copy">'+copy+'</p>'}}
+var chapterSets={original:originalChapters,
+clothing:[
+ chapter(.04,.26,'top','Welcome','The Doors Are Open','Step into a new beginning at The 18 Label.'),
+ chapter(.32,.56,'bottom','Step Inside','A World of Colour','Explore beautiful drapes, rich textures and timeless style.'),
+ chapter(.62,.82,'top','Made for Your Moments','Find Your Inspiration','For celebrations, treasured occasions and everyday elegance.'),
+ chapter(.86,2,'top','Discover More','Your Journey Begins','Keep scrolling to explore our collection.')],
+jewellery:[
+ chapter(.04,.26,'top','The Jewellery Showroom','A Touch of Radiance','Discover details that bring your look together.'),
+ chapter(.32,.56,'bottom','Beautiful Details','Made to Be Treasured','A little shimmer for the moments that matter.'),
+ chapter(.62,.82,'top','Beautiful Together','Your Finishing Touch','Pair a graceful drape with jewellery that feels like you.'),
+ chapter(.86,2,'top','The 18 Label','Make It Your Own','Keep scrolling to continue your invitation.')]
+};
+function setChapters(clip){
+ WCH=chapterSets[clip];$('.w-chapters').innerHTML='';
+ WCH.forEach(function(c){var el=document.createElement('section');el.className='w-ch '+c.at;el.innerHTML=c.html.replace(/The 18 Label|THE 18 LABEL/g,brandMarkup(CFG.company));$('.w-chapters').append(el);c.el=el;c.lines=[].slice.call(el.children)});
+ WSTOPS=clip==='original'?[0,.12,.31,.48,.67,1]:[0,.16,.44,.72,1];
+}
+setChapters('original');
+var wsTop=$('.w-scrim.top'),wsBot=$('.w-scrim.bottom');
+function wclamp(x){return x<0?0:x>1?1:x}
+function wease(x){return x*x*(3-2*x)}
+function wframe(q){return frameStart+Math.round(wclamp(q/WV)*(WN-1))}
+var frameCache=new Map(),framePending=new Set(),frameQueue=[],frameActive=0,frameTarget=0,frameDirection=1,frameEpoch=0,frameFailures=new Set();
+function wsize(){
+  var r=film.getBoundingClientRect(),d=devicePixelRatio||1;
+  var width=Math.min(1080,Math.round(r.width*d)),height=Math.round(width*r.height/r.width);
+  if(wc.width!==width||wc.height!==height){wc.width=width;wc.height=height;frameEpoch++;frameCache.forEach(function(im){if(im.close)im.close()});frameCache.clear()}
+  wlast=-1;
+}
+async function decodeFrame(k){
+  return await new Promise(function(resolve,reject){var im=new Image();im.onload=function(){resolve(im)};im.onerror=function(){reject(new Error('Frame unavailable'))};im.src=WF[k]});
+}
+function evictFrames(){
+  if(frameCache.size<=60)return;
+  Array.from(frameCache.keys()).sort(function(a,b){return Math.abs(b-frameTarget)-Math.abs(a-frameTarget)}).forEach(function(k){if(frameCache.size>60){var im=frameCache.get(k);if(im.close)im.close();frameCache.delete(k)}});
+}
+function pumpFrames(){
+  while(frameActive<4&&frameQueue.length){
+    let k=frameQueue.shift(),epoch=frameEpoch;
+    if(frameCache.has(k)||framePending.has(k)||frameFailures.has(k))continue;
+    framePending.add(k);frameActive++;
+    decodeFrame(k).then(function(im){
+      if(epoch!==frameEpoch){if(im.close)im.close();return}
+      frameCache.set(k,im);evictFrames();
+      if(index===WI&&k===wframe(wq))wdraw(k);
+    }).catch(function(){frameFailures.add(k);walk.querySelector('.video-status').hidden=false}).finally(function(){frameActive--;framePending.delete(k);pumpFrames()});
+  }
+}
+function requestFrames(k){
+  frameDirection=k===frameTarget?frameDirection:(k>frameTarget?1:-1);frameTarget=k;
+  var order=[k];for(var d=1;d<=36;d++){order.push(k+d*frameDirection);if(d<=10)order.push(k-d*frameDirection)}
+  frameQueue=order.filter(function(n){return n>=frameStart&&n<frameStart+WN&&!frameCache.has(n)&&!framePending.has(n)&&!frameFailures.has(n)});pumpFrames();
+}
+function wdraw(k){
+  requestFrames(k);var im=frameCache.get(k);
+  if(!im){for(var o=1;o<12&&!im;o++){var a=k-o*frameDirection,b=k+o*frameDirection;im=(a>=frameStart&&a<frameStart+WN?frameCache.get(a):null)||(b>=frameStart&&b<frameStart+WN?frameCache.get(b):null)}if(!im)return;wx.drawImage(im,0,0,wc.width,wc.height);wlast=-1;return}
+  wx.drawImage(im,0,0,wc.width,wc.height);wlast=k;
+}
+function wrender(force){
+  var q=wq,k=wframe(q);if(WN&&(force||k!==wlast))wdraw(k);
+  var st=0,sb=0;
+  WCH.forEach(function(c){
+    var vout=wclamp((c.b-q)/.03),v=Math.min(wclamp((q-c.a)/.03),vout);
+    c.el.style.visibility=v>0?'visible':'hidden';
+    if(c.at==='top')st=Math.max(st,v);else sb=Math.max(sb,v);
+    if(v<=0)return;
+    c.lines.forEach(function(el,n){
+      var li=wease(wclamp((q-c.a-n*.007)/.032)),lo=wease(vout),o=Math.min(li,lo);
+      el.style.opacity=o.toFixed(3);
+      el.style.transform='translateY('+((1-li)*2.6-(1-lo)*1.8).toFixed(2)+'cqh)';
+    });
+  });
+  wsTop.style.opacity=st.toFixed(3);wsBot.style.opacity=sb.toFixed(3);
+  var tb=$('.timeline').children[WI];if(tb)tb.style.setProperty('--w',q.toFixed(3));
+  var hb=$('#hint b');if(hb&&index===WI){var t=q<.02?'SCROLL TO STEP INSIDE':'KEEP SCROLLING';if(hb.textContent!==t)hb.textContent=t}
+}
+function wtick(){
+  var d=wt-wq,next=Math.abs(d)<.0004?wt:wq+d*(reduced?.35:.14),k=wframe(next);
+  wq=next;
+  wrender();wraf=wq!==wt?requestAnimationFrame(wtick):0;
+}
+function walking(){return opened&&!!scenes[index].walk}
+function walkBy(d){
+  if(busy)return;
+  var t=wt+d,now=Date.now();
+  if(t>=1||t<=0){
+    var edge=t>=1?1:0;
+    if(wt!==edge){wendAt=now;wover=0}
+    else{wover+=d;if(Math.abs(wover)>.1&&now-wendAt>700){wover=0;go(index+(edge?1:-1));return}}
+    t=edge;
+  }else wover=0;
+  wt=t;if(!wraf)wraf=requestAnimationFrame(wtick);
+}
+function walkStep(dir){
+  var k,t=null;
+  if(dir>0){for(k=0;k<WSTOPS.length;k++)if(WSTOPS[k]>wt+.01){t=WSTOPS[k];break}}
+  else{for(k=WSTOPS.length-1;k>=0;k--)if(WSTOPS[k]<wt-.01){t=WSTOPS[k];break}}
+  if(t===null)return false;
+  wt=t;wover=0;if(!wraf)wraf=requestAnimationFrame(wtick);return true;
+}
+function step(dir){if(walking()&&!busy&&walkStep(dir))return;go(index+dir)}
+/* Prewarm full-resolution source frames; retain at most 32 display-sized decoded frames. */
+function loadWalk(){if(loadWalk.on)return;loadWalk.on=1;wsize();requestFrames(frameStart)}
+if(document.readyState==='complete')loadWalk();else addEventListener('load',loadWalk);
+
+var index=0,opened=false,busy=false,ck=$('.chakra'),lockUntil=0,wheelArmed=true,lastWheel=0;
+scenes.forEach(function(s,n){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Page '+(n+1)+': '+s.label);b.onclick=function(){go(n)};$('.timeline').append(b)});
+function fitText(){fit.style.transform='';var box=fit.parentNode,cs=getComputedStyle(box),h=box.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom),r=Math.min(h/fit.offsetHeight,box.clientWidth/Math.max(fit.scrollWidth,1));if(r<1)fit.style.transform='scale('+Math.max(.6,r).toFixed(3)+')'}
+function show(n){
+  index=n;var s=scenes[n];
+  fit.innerHTML=s.html.replace(/The 18 Label|THE 18 LABEL/g,brandMarkup(CFG.company));[].forEach.call(fit.children,function(el,k){el.style.setProperty('--n',k)});
+  var nk=fit.children.length;lockUntil=Date.now()+(reduced?250:(nk?(nk-1)*130+150+1000+250:400));
+  var q=fit.querySelector('#qr');if(q){if(qrNode){var im=qrNode.querySelector('canvas')||qrNode.querySelector('img');if(im){q.append(im.cloneNode(true));q.lastChild.removeAttribute('style')}if(im&&im.tagName==='CANVAS')q.lastChild.getContext('2d').drawImage(im,0,0)}else q.hidden=true}
+  panel.classList.toggle('plain',n===0);panel.style.setProperty('--ck',CH[s.ck][0]);ck.firstElementChild.innerHTML=chakra(CH[s.ck]);
+  ck.classList.remove('bloom');void ck.offsetWidth;if(!reduced)ck.classList.add('bloom');
+  fitText();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitText);
+  $('#scene-label').textContent=(n+1)+' / '+scenes.length+' · '+s.label;
+  [].forEach.call($('.timeline').children,function(el,k){el.className=(k<=n?'on':'')+(k===n&&s.walk?' part':'');el.setAttribute('aria-current',k===n?'step':'false')});
+  $('#prev').disabled=n===0;$('#next').disabled=n===scenes.length-1;
+  var last=n===scenes.length-1,h=$('#hint');h.classList.toggle('up',last);h.setAttribute('aria-label',last?'Back to the first page':'Next page');
+  h.innerHTML='<b>'+(last?'SCROLL UP TO REVISIT':'SCROLL DOWN')+'</b><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l6 6 6-6"/><path d="M6 12l6 6 6-6" opacity=".55"/></svg></i>';
+  film.classList.toggle('walking',!!s.walk);film.classList.toggle('brand-page',n===0);
+  if(wraf){cancelAnimationFrame(wraf);wraf=0}if(s.walk){WI=n;var range=clipRanges[s.clip];frameStart=range.start;WN=range.count;setChapters(s.clip);wx.fillStyle='#310c19';wx.fillRect(0,0,wc.width,wc.height);wt=wq=walkFrom;wover=0;wendAt=Date.now();wsize();wrender(true)}
+  walkFrom=0;
+}
+function go(n){
+  if(!opened||busy||n===index||n<0||n>=scenes.length||Date.now()<lockUntil)return;
+  busy=true;walkFrom=n<index?1:0;var T=reduced?600:1500;
+  plume.classList.toggle('back',n<index);plume.classList.remove('run');void plume.offsetWidth;plume.classList.add('run');panel.classList.add('leaving');
+  setTimeout(function(){panel.classList.remove('leaving');show(n)},T*.5);
+  setTimeout(function(){plume.classList.remove('run');busy=false},T+60);
+}
+show(0);
+addEventListener('resize',fitText);
+addEventListener('resize',function(){if(scenes[index].walk){wsize();wrender(true)}});
+
+/* input: wheel, swipe, keys, buttons */
+film.addEventListener('wheel',function(e){e.preventDefault();if(walking()){walkBy(e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?400:1)/2400);return}var now=Date.now(),gap=now-lastWheel;lastWheel=now;if(gap>220)wheelArmed=true;if(busy||now<lockUntil){wheelArmed=false;return}if(wheelArmed&&Math.abs(e.deltaY)>12){wheelArmed=false;go(index+(e.deltaY>0?1:-1))}},{passive:false});
+/* on the walk page a swipe scrubs the video and a flick carries on a little, like a native scroll */
+var ty=null,tl=null,tt=0,tv=0;
+film.addEventListener('touchstart',function(e){ty=tl=e.touches[0].clientY;tt=Date.now();tv=0},{passive:true});
+film.addEventListener('touchmove',function(e){if(!walking()||tl===null)return;var y=e.touches[0].clientY,now=Date.now(),d=(tl-y)/(film.clientHeight*1.9);
+  tv=tv*.6+d/Math.max(now-tt,8)*.4;tl=y;tt=now;walkBy(d)},{passive:true});
+film.addEventListener('touchend',function(e){if(walking()){ty=null;if(Date.now()-tt<90&&Math.abs(tv)>.0002)walkBy(Math.max(-.08,Math.min(.08,tv*120)))}if(ty===null)return;var d=ty-e.changedTouches[0].clientY;ty=null;if(Math.abs(d)>45)go(index+(d>0?1:-1))},{passive:true});
+document.addEventListener('keydown',function(e){if(!opened||e.altKey||e.ctrlKey||e.metaKey)return;if((e.key===' '||e.key==='Enter')&&e.target.closest('button,a'))return;
+  var t;if(['ArrowDown','ArrowRight','PageDown',' '].indexOf(e.key)>-1)t=index+1;if(['ArrowUp','ArrowLeft','PageUp'].indexOf(e.key)>-1)t=index-1;if(e.key==='Home')t=0;if(e.key==='End')t=scenes.length-1;if(t!==undefined){e.preventDefault();if(walking()&&Math.abs(t-index)===1)step(t-index);else go(t)}});
+$('#prev').onclick=function(){step(-1)};$('#hint').onclick=function(){if(index===scenes.length-1)go(0);else step(1)};$('#next').onclick=function(){step(1)};
+
+var openingTimer=0;
+$('#open').onclick=function(){if(opened)return;opened=true;busy=true;loadWalk();film.classList.add('opened');
+  openingTimer=setTimeout(function(){if(!opened)return;show(0);film.classList.add('content-ready');$('.controls').inert=false;busy=false},reduced?650:3550);
+  music.volume=.45;var pr=music.play();if(pr&&pr.catch)pr.catch(function(){$('#sound').textContent='♪';$('#sound').setAttribute('aria-label','Play music')})};
+$('#sound').onclick=function(){if(music.paused){music.muted=false;var pr=music.play();if(pr&&pr.catch)pr.catch(function(){})}else music.muted=!music.muted;$('#sound').textContent=music.muted?'♩':'♫';$('#sound').setAttribute('aria-label',music.muted?'Unmute music':'Mute music')};
+$('#replay').onclick=function(){if(busy)return;opened=false;clearTimeout(openingTimer);film.classList.remove('opened','content-ready');$('.controls').inert=true;music.pause();music.currentTime=0;show(0);$('#open').focus({preventScroll:true})};
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,62 @@
+.specsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.specCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 18px 14px 16px;
+  text-align: center;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.specCard:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  background: rgba(212, 175, 55, 0.04);
+  transform: translateY(-2px);
+}
+
+.specIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  color: #e9cf8a;
+  background: radial-gradient(circle at 30% 30%, rgba(233, 207, 138, 0.22), rgba(212, 175, 55, 0.06));
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.12);
+}
+
+.specLabel {
+  font: 700 9px monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #9c8e7c;
+}
+
+.specValue {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #f7ecd5;
+}
+
+@media (max-width: 768px) {
+  .specsRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .specCard { transition: none; }
+  .specCard:hover { transform: none; }
+}
