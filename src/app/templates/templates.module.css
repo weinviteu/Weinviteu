@@ -381,3 +381,18 @@
 .templatesPage :global(.home-tmpl-price) { color: #a56b36; }
 .templatesPage :global(.home-tmpl-price-from) { color: var(--muted); }
 .templatesPage :global(.round-link) { color: var(--ink); border-color: var(--line); background: #fbf6ee; }
+
+/* Categories stay on one line: they fit on desktop and swipe sideways on smaller screens. */
+.categoryBar {
+  position: relative;
+  flex-wrap: nowrap;
+  justify-content: safe center;
+  gap: 8px;
+  max-width: none;
+  padding-inline: clamp(16px, 3vw, 40px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.categoryBar::-webkit-scrollbar { display: none; }
+.categoryBar .categoryPill { flex-shrink: 0; padding: 9px clamp(14px, 1.4vw, 22px); font-size: clamp(12px, 0.95vw, 13px); }

@@ -8,7 +8,7 @@ it('uses the requested reference even when a bundled design comes first', () => 
   expect(selectHeroTemplate([row('wedding-golden-vows.html'), reference], 'Wedding')).toBe(reference);
 });
 it('handles encoded reference filenames and excludes disabled or other-category rows', () => {
-  const reference = row('grand-opening-maroon-curtains-fixed%202.html', 'Opening ceremony');
+  const reference = row('grand-opening%2Dpremium.html', 'Opening ceremony');
   expect(selectHeroTemplate([row('new.html', 'Opening ceremony'), reference], 'Opening ceremony')).toBe(reference);
   expect(selectHeroTemplate([row('new.html'), row('birthday-red-gold.html', 'Birthday', { enabled: false })], 'Birthday')).toBeUndefined();
 });

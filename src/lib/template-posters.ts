@@ -28,7 +28,6 @@ const posters = new Set([
   "pooja-invitation.html",
   "summit-invitation.html",
   "temple-invitation.html",
-  "grand-opening-maroon-curtains-fixed 2.html",
   "housewarming-invitation-bundled.html"
 ]);
 

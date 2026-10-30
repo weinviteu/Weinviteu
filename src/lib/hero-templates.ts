@@ -8,7 +8,7 @@ const featuredFiles: Record<string, string> = {
   traditional: 'housewarming-invitation-bundled.html',
   'house warming': 'housewarming-invitation-bundled.html',
   housewarming: 'housewarming-invitation-bundled.html',
-  'opening ceremony': 'grand-opening-maroon-curtains-fixed 2.html',
+  'opening ceremony': 'grand-opening-premium.html',
   'baby naming': 'ff132fd0-358a-4d33-a4b1-a36a97296ec1.html',
 };
 function basename(filename: string) {

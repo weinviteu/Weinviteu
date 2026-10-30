@@ -1,6 +1,6 @@
 "use client";
 import PageBanner from "@/components/PageBanner";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Check, X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import TemplateCard from "@/components/TemplateCard";
@@ -22,6 +22,13 @@ export default function TemplatesCatalogue({ templates, activeCategories, error 
   const [selection, setSelection] = useState<{ urlCategory: string; value: string } | null>(null);
   const activeCategory = selection?.urlCategory === urlCategory ? selection.value : urlCategory;
   const setActiveCategory = (value: string) => setSelection({ urlCategory, value });
+  const categoryBar = useRef<HTMLDivElement>(null);
+  // On phones the row scrolls sideways, so bring the chosen category into view (the row only, not the page).
+  useEffect(() => {
+    const bar = categoryBar.current;
+    const pill = bar?.querySelector<HTMLElement>('[aria-pressed="true"]');
+    if (bar && pill) bar.scrollTo({ left: pill.offsetLeft - (bar.clientWidth - pill.offsetWidth) / 2 });
+  }, [activeCategory]);
   const categories = [
     { label: "All Templates", key: "all" },
     ...activeCategories.map(category => ({ label: category.name, key: category.name })),
@@ -50,10 +57,11 @@ export default function TemplatesCatalogue({ templates, activeCategories, error 
       <PageBanner crumb="Templates" eyebrow="THE INVITATION COLLECTION" title="Find the one that" accent="feels like you." description="Romantic, playful, or rooted in tradition. Explore the collection and open a live preview to find your celebration’s perfect beginning." posters={["/template-posters/wedding-golden-vows.webp", "/template-posters/birthday-golden-wish.webp", "/template-posters/baby-naming-little-star.webp", "/template-posters/traditional-sacred-beginnings.webp", "/template-posters/anniversary-still-us.webp"]} />
 
       {/* Category pills */}
-      <div className={styles.categoryBar}>
+      <div ref={categoryBar} className={styles.categoryBar}>
         {categories.map((cat) => (
           <button
             key={cat.key}
+            aria-pressed={activeCategory === cat.key}
             className={`${styles.categoryPill} ${activeCategory === cat.key ? styles.active : ""}`}
             onClick={() => setActiveCategory(cat.key)}
           >
