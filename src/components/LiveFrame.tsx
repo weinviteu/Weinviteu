@@ -53,7 +53,9 @@ export default function LiveFrame({ label, title, poster, hero = false, ...ifram
       clearTimeout(timer);
       // Brief scrolls should not start or restart a multi-megabyte animated page.
       timer = setTimeout(() => {
-        if (visible && !document.hidden) request(me);
+        // On phones the hero keeps its cover image: a running template costs over 10 MB and can crash iPhones.
+        const coverOnly = hero && !!poster && window.matchMedia(MOBILE_QUERY).matches;
+        if (visible && !document.hidden && !coverOnly) request(me);
         else release(me);
       }, visible && !document.hidden ? 180 : 600);
     };
@@ -71,7 +73,7 @@ export default function LiveFrame({ label, title, poster, hero = false, ...ifram
       slots.heroes.delete(me);
       release(me);
     };
-  }, [hero]);
+  }, [hero, poster]);
 
   return (
     <div ref={box} className="live-frame">

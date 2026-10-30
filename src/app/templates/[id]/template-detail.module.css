@@ -90,13 +90,6 @@
 .simulatorStage {
   width: 100%;
   max-width: 440px;
-  background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.15), rgba(18, 14, 9, 0.95) 75%);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 40px;
-  padding: 30px 20px 24px;
-  box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.7),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1010,7 +1003,6 @@
   .actionsTop { display: flex; justify-content: flex-end; gap: 10px; margin-inline: auto; padding: 8px 0; }
   .actionsTop .actionPreview, .actionsTop .actionShare { width: 42px; height: 42px; min-height: 0; padding: 0; border-radius: 50%; }
   .actionsTop .actionLabel { display: none; }
-  .simulatorStage { padding: 0; border: 0; background: none; box-shadow: none; border-radius: 0; }
   /* Fits any phone: the whole device stays on screen under the header (72px) and buttons (58px), plus 34px of bezel and gap. */
   .phoneDevice,
   .actionsTop {
@@ -1022,3 +1014,17 @@
 
 .phoneTapLayer { position: absolute; inset: 0; z-index: 15; padding: 0; border: 0; background: transparent; cursor: pointer; touch-action: pan-y; }
 .phoneTapLayer:focus-visible { outline: 3px solid #fae29c; outline-offset: -4px; border-radius: 36px; }
+
+.phoneLoading {
+  position: absolute; left: 50%; top: 50%; z-index: 16;
+  width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%;
+  background: rgba(20, 14, 8, .55);
+  box-shadow: 0 0 0 6px rgba(20, 14, 8, .25);
+}
+.phoneLoading::after {
+  content: ''; position: absolute; inset: 9px; border-radius: 50%;
+  border: 3px solid rgba(250, 226, 156, .3); border-top-color: #fae29c;
+  animation: phoneSpin .8s linear infinite;
+}
+@keyframes phoneSpin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .phoneLoading::after { animation-duration: 2.4s; } }

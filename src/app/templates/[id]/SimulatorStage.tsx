@@ -12,8 +12,9 @@ interface Props {
 }
 
 export default function SimulatorStage({ previewUrl, embedUrl, templateTitle }: Props) {
-  // No autoscroll: the invitation rests on its opening screen and plays only when the visitor taps it.
+  // The cover shows immediately; the invitation itself downloads only when the visitor taps it.
   const [loaded, setLoaded] = useState(false);
+  const [started, setStarted] = useState(false);
   const [engaged, setEngaged] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const openWhenLoaded = useRef(false);
@@ -35,6 +36,7 @@ export default function SimulatorStage({ previewUrl, embedUrl, templateTitle }: 
   const askToOpen = () => iframeRef.current?.contentWindow?.postMessage("invitation:open", "*");
   const handleTap = () => {
     setEngaged(true);
+    setStarted(true);
     if (loaded) askToOpen();
     else openWhenLoaded.current = true;
   };
@@ -50,7 +52,7 @@ export default function SimulatorStage({ previewUrl, embedUrl, templateTitle }: 
         <div className={styles.phoneDevice}>
           <div ref={screenRef} className={styles.phoneScreen}>
             <div className={styles.phoneNotch} />
-            <iframe
+            {(started || !poster) && <iframe
               ref={iframeRef}
               onLoad={handleLoad}
               src={embedUrl}
@@ -59,8 +61,9 @@ export default function SimulatorStage({ previewUrl, embedUrl, templateTitle }: 
               sandbox="allow-scripts allow-forms allow-popups allow-modals"
               allow="autoplay; fullscreen"
               loading="eager"
-            />
+            />}
             {!loaded && poster && <img src={poster} alt={`${templateTitle} invitation preview`} className={styles.simulatorPoster} width={390} height={844} fetchPriority="high" onError={() => setPosterFailed(true)} />}
+            {started && !loaded && <span className={styles.phoneLoading} role="status" aria-label="Opening the invitation" />}
             {/* Until the first tap the page owns touches, so a swipe scrolls instead of getting stuck inside the invitation. */}
             {!engaged && <button type="button" className={styles.phoneTapLayer} onClick={handleTap} aria-label={`Open the ${templateTitle} invitation`} />}
           </div>

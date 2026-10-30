@@ -6,7 +6,8 @@ const config: NextConfig = {
     return [{
       source: '/template-assets/:path*',
       // Invitation previews have an opaque sandbox origin; fonts and canvas media need CORS.
-      headers: [{ key: 'Access-Control-Allow-Origin', value: '*' }],
+      // Files are named after their content, so a browser can keep them for good and repeat visits are instant.
+      headers: [{ key: 'Access-Control-Allow-Origin', value: '*' }, { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
     }, {
       // Raw template files still load inside previews but are never the address shown in search.
       source: '/templates/:file(.*\\.html)',

@@ -462,7 +462,7 @@ p{margin:0}
    <div class="fine"><a download="housewarming-film.mp4" href="/template-assets/premium/7bf50615654340a4ddc0.mp4">Save our film ↓</a><button id="replay">Watch again ↺</button><button id="edit">Host · Personalize</button></div>
   </div></div>
 
-  <div id="film"><img class="vposter on" src="/template-assets/premium/4abefe834e213783e714.jpg" alt=""><img class="vposter" src="/template-assets/premium/7f1355285bc17dcab75b.jpg" alt=""><img class="vposter" src="/template-assets/premium/8d4683cb8b29c1a32684.jpg" alt=""><video muted playsinline preload="auto" poster="/template-assets/premium/4abefe834e213783e714.jpg" src="/template-assets/premium/ff78db7cfd5cb5689d80.mp4" class="on"></video><video muted playsinline preload="auto" poster="/template-assets/premium/7f1355285bc17dcab75b.jpg" src="/template-assets/premium/e58cf169ddb4409e247d.mp4"></video><video muted playsinline preload="auto" poster="/template-assets/premium/8d4683cb8b29c1a32684.jpg" src="/template-assets/premium/7d7778b90850327db609.mp4"></video></div>
+  <div id="film"><img class="vposter on" src="/template-assets/premium/4abefe834e213783e714.jpg" alt=""><img class="vposter" src="/template-assets/premium/7f1355285bc17dcab75b.jpg" alt=""><img class="vposter" src="/template-assets/premium/8d4683cb8b29c1a32684.jpg" alt=""><video muted playsinline preload="metadata" poster="/template-assets/premium/4abefe834e213783e714.jpg" src="/template-assets/premium/ff78db7cfd5cb5689d80.mp4" class="on"></video><video muted playsinline preload="metadata" poster="/template-assets/premium/7f1355285bc17dcab75b.jpg" src="/template-assets/premium/e58cf169ddb4409e247d.mp4"></video><video muted playsinline preload="metadata" poster="/template-assets/premium/8d4683cb8b29c1a32684.jpg" src="/template-assets/premium/7d7778b90850327db609.mp4"></video></div>
 
   <div class="film-ui"><div class="shade"></div>
    <div class="gilt"><svg><use href="#corner"/></svg><svg><use href="#corner"/></svg><svg><use href="#corner"/></svg><svg><use href="#corner"/></svg></div>
@@ -708,14 +708,14 @@ films.forEach((v,j)=>{const ui=filmUI[j],cues=[...ui.querySelectorAll('.cue')],b
  // a muted play/pause makes mobile browsers paint frames when seeking
  v.addEventListener('loadeddata',()=>{if(!v._primed){v._primed=true;v.play().then(()=>v.pause()).catch(()=>{})}});
  ['seeked','playing'].forEach(ev=>v.addEventListener(ev,()=>{v._painted=true}));
- // when served over http, hold the whole clip in memory so seeking is instant
- if(location.protocol.startsWith('http')&&!v.getAttribute('src').startsWith('data:'))fetch(v.getAttribute('src')).then(r=>r.ok?r.blob():null).then(b=>{if(b){v._primed=false;v._painted=false;v.src=URL.createObjectURL(b)}}).catch(()=>{})});
+ // once the door opens, hold each clip in memory in turn so seeking is instant
+  v._hold=()=>location.protocol.startsWith('http')&&!v.getAttribute('src').startsWith('data:')?fetch(v.getAttribute('src')).then(r=>r.ok?r.blob():null).then(b=>{if(b){v._primed=false;v._painted=false;v.src=URL.createObjectURL(b)}}).catch(()=>{}):Promise.resolve()});
 // the scroller sits on top to catch swipes; a tap is handed to whatever is underneath it
 story.addEventListener('click',e=>{story.style.pointerEvents='none';const el=document.elementFromPoint(e.clientX,e.clientY);story.style.pointerEvents='';el?.closest('button,a')?.click()});
 
 /* ——— the door ——— */
 const cover=$('#cover'),invite=$('#invite');
-function openDoors(){if(opened)return;opened=true;sound.unlock();sound.bell(660,.36);sound.bell(990,.2,.22);doorScene.excite=1;
+function openDoors(){if(opened)return;opened=true;films.reduce((chain,v)=>chain.then(()=>v._hold()),Promise.resolve());sound.unlock();sound.bell(660,.36);sound.bell(990,.2,.22);doorScene.excite=1;
  // films are scrubbed by scrolling; a play/pause inside this tap lets mobile browsers paint them
  films.forEach(v=>{const p=v.play();v.pause();p?.catch(()=>{})});
  if(motion.matches){cover.classList.add('gone');finish();return}
