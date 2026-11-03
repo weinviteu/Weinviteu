@@ -23,6 +23,15 @@ export default function HeroFireworks({ className }: { className?: string }) {
     const sparks: Spark[] = [];
     const flashes: { x: number; y: number; life: number }[] = [];
     const rockets: { x: number; y: number; ty: number; vy: number; trail: [number, number][] }[] = [];
+    // Spark heads stamp this pre-drawn glow; a canvas shadowBlur on every spark kept a whole CPU core busy.
+    const glow = document.createElement("canvas");
+    glow.width = glow.height = 32;
+    const gctx = glow.getContext("2d");
+    if (gctx) {
+      const g = gctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+      g.addColorStop(0, "#fff6dc"); g.addColorStop(0.14, "#fff6dc"); g.addColorStop(0.32, "#ffcf73aa"); g.addColorStop(1, "#ffcf7300");
+      gctx.fillStyle = g; gctx.fillRect(0, 0, 32, 32);
+    }
 
     const size = () => {
       const r = canvas.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -77,8 +86,8 @@ export default function HeroFireworks({ className }: { className?: string }) {
         s.trail.forEach(([x, y], k) => (k ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.stroke();
         // Glittering head: flickers as it fades.
         const glitter = s.life < 0.35 ? (Math.random() < 0.5 ? 0 : 1) : 0.6 + Math.random() * 0.4;
-        ctx.globalAlpha = s.life * glitter; ctx.fillStyle = "#fff6dc"; ctx.shadowColor = "#ffcf73"; ctx.shadowBlur = 8;
-        ctx.beginPath(); ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
+        const d = s.size * 2 + 14;
+        ctx.globalAlpha = s.life * glitter; ctx.drawImage(glow, s.x - d / 2, s.y - d / 2, d, d);
       }
       ctx.globalAlpha = 1; ctx.globalCompositeOperation = "source-over";
     };
