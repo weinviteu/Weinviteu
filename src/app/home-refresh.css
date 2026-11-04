@@ -87,7 +87,6 @@ main.studio-home.home-redesign .occasion-ticker-sep { fill: var(--hx-peach); }
 .home-redesign .hx-occasion:first-child h3 { font-size: clamp(32px, 3.2vw, 44px); }
 .home-redesign .hx-occasion:first-child p { display: block; }
 .home-redesign .hx-occasion:first-child .hx-occasion-body { padding: 30px; }
-.home-redesign .hx-occasion-count { display: inline-block; margin-top: 12px; padding: 5px 12px; border-radius: 999px; background: #f4d49d26; border: 1px solid #f4d49d4d; color: var(--hx-gold); font-size: 12px; font-weight: 600; }
 .home-redesign .hx-occasion-more { justify-content: center; padding: 26px; background: radial-gradient(ellipse at 100% 0%, #bd813b40, transparent 60%), var(--hx-dark); }
 .home-redesign .hx-occasion-more .hx-eyebrow { color: #d9a967; }
 .home-redesign .hx-occasion-more ul { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin: 0; padding: 0; list-style: none; }
@@ -97,7 +96,7 @@ main.studio-home.home-redesign .occasion-ticker-sep { fill: var(--hx-peach); }
 
 /* ── Featured designs (TemplateCard markup lives in studio.css) ── */
 main.studio-home.home-redesign .home-templates-section { color: var(--hx-ink); }
-main.studio-home.home-redesign .home-templates-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+main.studio-home.home-redesign .home-templates-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
 @media (max-width: 1000px) {
   main.studio-home.home-redesign .home-templates-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

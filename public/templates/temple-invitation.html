@@ -980,7 +980,7 @@ const PAGES = [
   { id: "pg5", h: .78, view: () => camFocus("gate", 368, 552, 1, .78), label: "Events" },
   { id: "pg6", h: .72, view: () => camFocus("stage", 368, 420, 1, .72), label: "Moments" },
   { id: "pg7", h: .78, view: () => camFocus("stage", 368, 420, 1, .78), label: "Our story" },
-  { id: "pg8", h: .84, view: () => camFocus("stage", 368, 420, 1, .84), label: "RSVP" },
+  { id: "pg8", h: .84, view: () => camFocus("stage", 368, 420, 1, .84), label: "Will you join us?" },
   { id: "pg9", h: .78, view: () => camFocus("stage", 368, 420, 1, .78), label: "Good to know" },
   { id: "pg10", h: .86, view: () => camFocus("stage", 368, 420, 1, .86), label: "Thank you" }
 ];
@@ -1279,7 +1279,7 @@ function buildPages() {
   ${d(7, "Our story")}<div class="ph1 fade">${L("Our Story", "हमारी कहानी")}</div><div class="ph2 fade" style="--d:.2s">${L("How two paths became one", "दो राहें कैसे एक हुईं")}</div>
     <div class="tl2 scroll"><div class="spine"></div>${story}
       <div class="fin" style="--d:${(.6 + STORY.length * .45).toFixed(2)}s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.3 3.2 5 6.6 5c2.1 0 3.6 1.2 5.4 3.2C13.8 6.2 15.3 5 17.4 5 20.8 5 23 8.3 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg><span>${L("and the story continues…", "और कहानी चलती रहेगी…")}</span></div></div></section>
-  ${d(8, "RSVP")}<div class="ph1 fade">${L("Kindly Reply", "कृपया उत्तर दें")}</div><div class="ribbon fade" style="--d:.25s">${L("by " + RSVP.by, RSVP.by + " तक")}</div>
+  ${d(8, "Will you join us?")}<div class="ph1 fade">${L("Kindly Reply", "कृपया उत्तर दें")}</div><div class="ribbon fade" style="--d:.25s">${L("by " + RSVP.by, RSVP.by + " तक")}</div>
     <div class="glass rs scroll fade" style="--d:.45s">
       <div class="sec"><div class="fl2"><input type="text" id="rName" autocomplete="name" placeholder=" "><label for="rName">${L("Your full name", "आपका पूरा नाम")}</label></div></div>
       <div class="sec"><span class="l">${L("Will you be with us?", "क्या आप पधारेंगे?")}</span><div class="tiles" id="rAtt">
@@ -1347,13 +1347,13 @@ function buildPages() {
   $("#gMinus").onclick = () => { rsvp.guests = Math.max(1, rsvp.guests - 1); ppl(); };
   $("#gPlus").onclick = () => { rsvp.guests = Math.min(12, rsvp.guests + 1); ppl(); }; ppl();
   const msg = () => { const n = $("#rName").value.trim() || "A guest";
-    if (rsvp.attend === "no") return `RSVP for ${INVITE.bride} & ${INVITE.groom}'s wedding\n${n} regretfully cannot attend.${$("#rMsg").value ? "\nNote: " + $("#rMsg").value : ""}`;
-    return `RSVP for ${INVITE.bride} & ${INVITE.groom}'s wedding\nName: ${n}\nAttending: Yes\nGuests: ${rsvp.guests}\nEvents: ${[...rsvp.events].join(", ") || "All"}\nMeal: ${rsvp.meal || "No preference"}${$("#rMsg").value ? "\nNote: " + $("#rMsg").value : ""}`; };
+    if (rsvp.attend === "no") return `Invitation reply for ${INVITE.bride} & ${INVITE.groom}'s wedding\n${n} regretfully cannot attend.${$("#rMsg").value ? "\nNote: " + $("#rMsg").value : ""}`;
+    return `Invitation reply for ${INVITE.bride} & ${INVITE.groom}'s wedding\nName: ${n}\nAttending: Yes\nGuests: ${rsvp.guests}\nEvents: ${[...rsvp.events].join(", ") || "All"}\nMeal: ${rsvp.meal || "No preference"}${$("#rMsg").value ? "\nNote: " + $("#rMsg").value : ""}`; };
   const done = () => { $("#thanksT").textContent = rsvp.attend === "no" ? "We'll miss you, and we're grateful for your blessings." : "We can't wait to celebrate with you.";
     $("#thanks").classList.add("show"); const r = $("#thanks").getBoundingClientRect(); FXT.burst(r.left + r.width / 2, r.top + r.height / 3, 50); NOTES.slice(2).forEach((n, i) => Sound.bell(n, i * .08, .05, 1.6)); };
   const check = () => { if (!rsvp.attend) { $("#rAtt").animate([{ transform: "translateX(0)" }, { transform: "translateX(-6px)" }, { transform: "translateX(6px)" }, { transform: "translateX(0)" }], { duration: 300 }); return false; } return true; };
   $("#rWa").onclick = () => { if (!check()) return; window.open(`https://wa.me/${RSVP.whatsapp}?text=${encodeURIComponent(msg())}`, "_blank", "noopener"); done(); };
-  $("#rMail").onclick = () => { if (!check()) return; window.open(`mailto:${RSVP.email}?subject=${encodeURIComponent("RSVP: " + INVITE.bride + " & " + INVITE.groom)}&body=${encodeURIComponent(msg())}`, "_blank"); done(); };
+  $("#rMail").onclick = () => { if (!check()) return; window.open(`mailto:${RSVP.email}?subject=${encodeURIComponent("Invitation reply: " + INVITE.bride + " & " + INVITE.groom)}&body=${encodeURIComponent(msg())}`, "_blank"); done(); };
   $("#rEdit").onclick = () => $("#thanks").classList.remove("show");
   // accordion
   $$(".acc .it").forEach(it => it.querySelector(".hd").onclick = () => { const open = !it.classList.contains("open");

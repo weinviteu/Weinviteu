@@ -95,7 +95,7 @@ export default function TemplatesCatalogue({ templates, activeCategories, error 
               <span className={styles.tierCardText}>
                 <span className={styles.tierCardName}>{TIER_DETAILS[tier].label}</span>
                 <span className={styles.tierCardMeta}>
-                  {tierCount(tier)} design{tierCount(tier) === 1 ? "" : "s"}<span className={styles.tierCardPrice}> · from <strong>{startingPrice(tier)}</strong></span>
+                  from <strong>{startingPrice(tier)}</strong>
                 </span>
               </span>
               <span className={styles.tierCardCheck} aria-hidden="true"><Check size={13} strokeWidth={3} /></span>
@@ -106,19 +106,18 @@ export default function TemplatesCatalogue({ templates, activeCategories, error 
 
       <p className={styles.templatesCount}>
         {activeTier
-          ? `SHOWING ${filtered.length} ${TIER_DETAILS[activeTier].label.toUpperCase()} DESIGN${filtered.length === 1 ? "" : "S"}`
-          : `SHOWING ALL ${filtered.length} DESIGNS`}
+          ? `SHOWING ${TIER_DETAILS[activeTier].label.toUpperCase()} DESIGNS`
+          : "SHOWING ALL DESIGNS"}
       </p>
 
       {tierGroups.map(({ tier, items }) => (
         <section key={tier} className={styles.tierSection} aria-labelledby={`tier-${tier}`}>
           <header className={styles.tierHeader}>
             <div>
-              <p className={`${styles.tierEyebrow} ${styles[`tier_${tier}`]}`}>{TIER_DETAILS[tier].label} collection · {items.length} design{items.length === 1 ? "" : "s"}</p>
+              <p className={`${styles.tierEyebrow} ${styles[`tier_${tier}`]}`}>{TIER_DETAILS[tier].label} collection</p>
               <h2 id={`tier-${tier}`}>{TIER_DETAILS[tier].tagline}</h2>
               <p className={styles.tierDescription}>{TIER_DETAILS[tier].description}</p>
             </div>
-            <p className={styles.tierHeaderPrice}>Starts from <strong>{startingPrice(tier)}</strong></p>
           </header>
           <div key={`${tier}-${activeCategory}`} className={`${styles.templatesGrid} ${styles.tierGridIn}`}>
             {items.map((t) => (
@@ -135,7 +134,7 @@ export default function TemplatesCatalogue({ templates, activeCategories, error 
           <div className={styles.emptyActions}>
             {otherTiers.map(tier => (
               <button key={tier} className={styles.categoryPill} onClick={() => setTierChoice(tier)}>
-                See {TIER_DETAILS[tier].label} ({tierCount(tier)})
+                See {TIER_DETAILS[tier].label}
               </button>
             ))}
             {otherTiers.length === 0 && activeCategory !== "all" && (

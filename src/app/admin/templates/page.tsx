@@ -1,6 +1,6 @@
 "use client";
 
-import { DEFAULT_TEMPLATE_PRICE, DEFAULT_TEMPLATE_ORIGINAL_PRICE } from '@/lib/template-pricing';
+import { DEFAULT_TEMPLATE_ORIGINAL_PRICE } from '@/lib/template-pricing';
 
 import { useState, useEffect } from "react";
 import styles from "../admin.module.css";
@@ -8,7 +8,7 @@ import { Plus, Edit2, Trash2, Eye, Upload, X, Check, Activity, AlertTriangle, Ch
 import { api, jsonBody, errorMessage } from "@/lib/client-api";
 import { templateUrl, type Template, type Category } from "@/lib/models";
 import { analyzeTemplate, type CompatibilityReport } from "@/lib/template-analyzer";
-import { getTemplatePricing } from "@/lib/template-pricing";
+import { getTemplatePricing, GST_NOTE, TIER_PRICES, rupees } from "@/lib/template-pricing";
 import { DEFAULT_TEMPLATE_TIER, getTemplateTier, TEMPLATE_TIERS, TIER_DETAILS, type TemplateTier } from "@/lib/template-tiers";
 
 const tierChipStyle = (tier: TemplateTier): React.CSSProperties => ({
@@ -28,7 +28,7 @@ export default function TemplatesPage() {
   const [templates, setTemplates] = useState<Template[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [editingId, setEditingId] = useState<number | null>(null);
-  const [editForm, setEditForm] = useState({ title: "", category: "Wedding", badge: "", filename: "", price: DEFAULT_TEMPLATE_PRICE, original_price: DEFAULT_TEMPLATE_ORIGINAL_PRICE, tier: DEFAULT_TEMPLATE_TIER as TemplateTier });
+  const [editForm, setEditForm] = useState({ title: "", category: "Wedding", badge: "", filename: "", original_price: DEFAULT_TEMPLATE_ORIGINAL_PRICE, tier: DEFAULT_TEMPLATE_TIER as TemplateTier });
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [uploadFile, setUploadFile] = useState<File | null>(null);
   const [coverFile, setCoverFile] = useState<File | null>(null);
@@ -101,7 +101,6 @@ export default function TemplatesPage() {
       category: t.category,
       badge: t.badge,
       filename: t.filename,
-      price: t.price || DEFAULT_TEMPLATE_PRICE,
       original_price: t.original_price || "",
       tier: getTemplateTier(t),
     });
@@ -129,7 +128,7 @@ export default function TemplatesPage() {
       form.set('file', uploadFile);
       if (coverFile) form.set('poster', coverFile);
       if (forceConfirm) form.set('force', 'true');
-      for (const key of ['title', 'category', 'badge', 'price', 'original_price', 'tier'] as const) {
+      for (const key of ['title', 'category', 'badge', 'original_price', 'tier'] as const) {
         if (editForm[key]) form.set(key, editForm[key]);
       }
       await api('/api/admin/templates', { method: 'POST', body: form });
@@ -164,7 +163,7 @@ export default function TemplatesPage() {
         <button
           className={styles.btnPrimary}
           onClick={() => {
-            setEditForm({ title: "", category: "Wedding", badge: "EXCLUSIVE", filename: "", price: DEFAULT_TEMPLATE_PRICE, original_price: DEFAULT_TEMPLATE_ORIGINAL_PRICE, tier: DEFAULT_TEMPLATE_TIER });
+            setEditForm({ title: "", category: "Wedding", badge: "EXCLUSIVE", filename: "", original_price: DEFAULT_TEMPLATE_ORIGINAL_PRICE, tier: DEFAULT_TEMPLATE_TIER });
             setShowUploadModal(true);
           }}
         >
@@ -353,22 +352,9 @@ export default function TemplatesPage() {
                     <td>
                       {editingId === t.id ? (
                         <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                          <input
-                            value={editForm.price}
-                            placeholder="Price e.g. ₹1,999"
-                            onChange={(e) => setEditForm({ ...editForm, price: e.target.value })}
-                            style={{
-                              padding: "6px 10px",
-                              background: "rgba(0, 0, 0, 0.4)",
-                              border: "1px solid var(--gold)",
-                              borderRadius: "6px",
-                              color: "#fae29c",
-                              fontWeight: 700,
-                              fontSize: "12.5px",
-                              width: "125px",
-                            }}
-                            title="Selling Price"
-                          />
+                          <span style={{ fontWeight: 700, color: "#fae29c", fontSize: "12.5px" }} title="Set by the collection tier">
+                            {rupees(TIER_PRICES[editForm.tier])} <small style={{ fontWeight: 400, color: "var(--muted)" }}>{GST_NOTE}</small>
+                          </span>
                           <input
                             value={editForm.original_price}
                             placeholder="MRP e.g. ₹3,999"
@@ -922,12 +908,9 @@ export default function TemplatesPage() {
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
                   <div>
                     <label style={{ display: "block", fontSize: "11px", textTransform: "uppercase", letterSpacing: "1px", fontWeight: 600, color: "var(--muted)", marginBottom: "6px" }}>
-                      Selling Price (Optional)
+                      Selling Price (Set by Tier)
                     </label>
-                    <input
-                      placeholder="e.g. ₹1,999"
-                      value={editForm.price}
-                      onChange={(e) => setEditForm({ ...editForm, price: e.target.value })}
+                    <div
                       style={{
                         width: "100%",
                         padding: "12px 14px",
@@ -937,9 +920,10 @@ export default function TemplatesPage() {
                         color: "#fae29c",
                         fontSize: "13.5px",
                         fontWeight: 700,
-                        outline: "none",
                       }}
-                    />
+                    >
+                      {rupees(TIER_PRICES[editForm.tier])} <small style={{ fontWeight: 400, color: "var(--muted)" }}>{GST_NOTE}</small>
+                    </div>
                   </div>
 
                   <div>

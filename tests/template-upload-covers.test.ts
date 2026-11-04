@@ -36,7 +36,7 @@ it('captures and stores a front image before publishing an upload without a cove
   expect(name).toMatch(/^posters\//);
   expect(await cover.text()).toBe('generated-cover');
   expect(options.contentType).toBe('image/webp');
-  expect(mocks.insert).toHaveBeenCalledWith(expect.objectContaining({ price: '1999', original_price: '', slug: 'new-wedding-invitation' }));
+  expect(mocks.insert).toHaveBeenCalledWith(expect.objectContaining({ price: '2999', original_price: '', slug: 'new-wedding-invitation' }));
 });
 
 it('preserves an explicitly uploaded cover', async () => {

@@ -6,17 +6,13 @@ import {
   CheckCircle2,
   Sparkles,
   ArrowUpRight,
-  Eye,
-  Music,
-  Camera,
-  MapPin,
 } from "lucide-react";
 
 import { supabase } from "@/lib/supabase";
 import type { Template } from "@/lib/models";
 import { getTemplateUrl, templatePath, templatePreviewPath } from "@/lib/template-url";
 import { findTemplate, loadVisibleTemplates } from "@/lib/template-catalogue";
-import { getTemplatePricing } from "@/lib/template-pricing";
+import { getTemplatePricing, GST_NOTE } from "@/lib/template-pricing";
 import { SITE_NAME, SITE_URL, absoluteUrl, jsonLdHtml, pageOpenGraph, templateSeo } from "@/lib/seo";
 import { getTemplateTier, TIER_DETAILS } from "@/lib/template-tiers";
 import { getTemplateWalkthrough } from "@/lib/template-content";
@@ -94,7 +90,7 @@ export default async function TemplateDetailPage({ params }: PageProps) {
   const whatsappOrderUrl = `/api/whatsapp?template=${encodeURIComponent(
     template.title
   )}&text=${encodeURIComponent(
-    `Hi WeInviteU! I would like to order the "${template.title}" template (${tier.label} collection, starting from ${pricing.price}). Please guide me through customizing it for my celebration.`
+    `Hi WeInviteU! I would like to order the "${template.title}" template (${tier.label} collection, starting from ${pricing.price} ${GST_NOTE} = ${pricing.total}). Please guide me through customizing it for my celebration.`
   )}`;
 
   const seo = templateSeo(template);
@@ -120,6 +116,7 @@ export default async function TemplateDetailPage({ params }: PageProps) {
           url: pageUrl,
           price: pricing.numericPrice,
           priceCurrency: "INR",
+          priceSpecification: { "@type": "UnitPriceSpecification", price: pricing.numericPrice, priceCurrency: "INR", valueAddedTaxIncluded: false },
           availability: "https://schema.org/InStock",
           seller: { "@id": `${SITE_URL}/#organization` },
         },
@@ -181,6 +178,9 @@ export default async function TemplateDetailPage({ params }: PageProps) {
                 </div>
                 <TemplateActions previewUrl={previewPath} templateTitle={template.title} className={styles.actionsInline} />
               </div>
+              <p className={styles.priceTax}>
+                {GST_NOTE} ({pricing.gst}) · <strong>Total {pricing.total}</strong>
+              </p>
               <p className={styles.priceSubtitle}>
                 One-time payment · Unlimited guest shares · No monthly subscriptions
               </p>
@@ -208,41 +208,6 @@ export default async function TemplateDetailPage({ params }: PageProps) {
             </div>
 
             <QuickSpecs />
-          </div>
-        </section>
-
-        {/* ── Technical Specifications & Features ── */}
-        <section className={styles.techSpecsSection}>
-          <div className={styles.techSpecsHeader}>
-            <p className={styles.sectionEyebrow}>DETECTED TEMPLATE FEATURES</p>
-            <h2 className={styles.sectionHeading} style={{ fontSize: "32px", margin: 0 }}>
-              Template <em>Features</em>
-            </h2>
-          </div>
-
-          <div className={styles.techGrid}>
-            {walkthrough.techSpecs.map((spec, idx) => {
-              const labelLower = spec.label.toLowerCase();
-              const SpecIcon = labelLower.includes("preview")
-                ? Eye
-                : labelLower.includes("audio")
-                ? Music
-                : labelLower.includes("photo")
-                ? Camera
-                : labelLower.includes("direction") || labelLower.includes("map")
-                ? MapPin
-                : Sparkles;
-
-              return (
-                <div key={idx} className={styles.techItem}>
-                  <div className={styles.techItemIcon}>
-                    <SpecIcon size={20} />
-                  </div>
-                  <div className={styles.techItemLabel}>{spec.label}</div>
-                  <div className={styles.techItemValue}>{spec.value}</div>
-                </div>
-              );
-            })}
           </div>
         </section>
 
@@ -313,7 +278,7 @@ export default async function TemplateDetailPage({ params }: PageProps) {
 
           <TemplateInquiryForm
             templateTitle={template.title}
-            templatePrice={`from ${pricing.price}`}
+            templatePrice={`from ${pricing.price} ${GST_NOTE}`}
             templateCategory={template.category}
           />
         </section>

@@ -617,7 +617,7 @@ function buildPages() { const d = new Date(CFG.date), tz = { timeZone: "Asia/Kol
   <section class="pg" id="p3" aria-label="Programme">
     <div class="lbl rv" style="--d:.1s">${Lx("The Programme")}</div>${orn(.25)}
     <div class="prog">${CFG.programme.map((p, i) => `<div class="it rv${p.guest ? " g" : ""}" style="--d:${(.4 + i * .22).toFixed(2)}s"><div class="tm">${p.time}</div><div class="nm">${Lx(p.name)}<small>${p.note}</small></div></div>`).join("")}</div></section>
-  <section class="pg" id="p4" aria-label="RSVP">
+  <section class="pg" id="p4" aria-label="Will you join us?">
     <div class="ct-big rv wt" style="--d:.1s">${Lx("Kindly reply")}</div><div class="small rv" style="--d:.3s">by ${CFG.rsvp.by}</div>${orn(.4)}
     <div class="form">
       <input id="rName" class="rv" style="--d:.55s" type="text" autocomplete="name" placeholder="Your full name" aria-label="Your full name">
@@ -647,7 +647,7 @@ function buildPages() { const d = new Date(CFG.date), tz = { timeZone: "Asia/Kol
   $("#gm").onclick = () => { guests = Math.max(1, guests - 1); gl(); }; $("#gp").onclick = () => { guests = Math.min(15, guests + 1); gl(); }; gl();
   $$("#att button").forEach(b => b.onclick = () => { attend = b.dataset.v; $$("#att button").forEach(x => x.setAttribute("aria-pressed", x === b)); });
   $("#send").onclick = () => { if (!attend) { $("#att").animate([{ transform: "translateX(0)" }, { transform: "translateX(-6px)" }, { transform: "translateX(6px)" }, { transform: "translateX(0)" }], { duration: 300 }); return; }
-    const n = $("#rName").value.trim() || "A guest", msg = attend === "yes" ? `RSVP for ${CFG.occasion} (${CFG.hosts})\nName: ${n}\nAttending: Yes\nGuests: ${guests}` : `RSVP for ${CFG.occasion} (${CFG.hosts})\n${n} regretfully cannot attend.`;
+    const n = $("#rName").value.trim() || "A guest", msg = attend === "yes" ? `Invitation reply for ${CFG.occasion} (${CFG.hosts})\nName: ${n}\nAttending: Yes\nGuests: ${guests}` : `Invitation reply for ${CFG.occasion} (${CFG.hosts})\n${n} regretfully cannot attend.`;
     window.open(`https://wa.me/${CFG.rsvp.whatsapp}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
     $("#done").textContent = attend === "yes" ? "Thank you! We look forward to welcoming you." : "Thank you for letting us know."; const r = $("#send").getBoundingClientRect(); FX.burst(r.left + r.width / 2, r.top, 40); Sound.temple(0, .05); };
 }
@@ -683,7 +683,7 @@ function flyFeather(t) { const u = clamp((t - tr.t0) / tr.dur), e = eio(u), f = 
   if (u >= 1) { showPage(tr.a, false); clearWipe(oldEl); clearWipe(newEl); f.style.opacity = 0; tr = null; updateNav(); } }
 function updateNav() { const ok = state === "s2" && S2ready; $("#cue").classList.toggle("show", ok && !tr && page < PAGES.length - 1); $("#dots").classList.toggle("show", ok);
   $$("#dots button").forEach(b => b.setAttribute("aria-current", +b.dataset.p === page)); $("#replay").classList.toggle("show", state === "s2"); }
-$("#dots").innerHTML = ["Invitation", "When & where", "Programme", "RSVP", "Contacts", "Thank you"].map((n, i) => `<button aria-label="${n}" data-p="${i}"></button>`).join("");
+$("#dots").innerHTML = ["Invitation", "When & where", "Programme", "Will you join us?", "Contacts", "Thank you"].map((n, i) => `<button aria-label="${n}" data-p="${i}"></button>`).join("");
 $$("#dots button").forEach(b => b.addEventListener("click", () => goPage(+b.dataset.p)));
 $("#cue").addEventListener("click", () => goPage(page + 1));
 let S2ready = false, wheelAcc = 0, wheelT = 0;

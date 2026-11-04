@@ -108,7 +108,7 @@ export const bundledTemplates: Template[] = [
     "badge": "CINEMATIC WEDDING",
     "enabled": true,
     "created_at": "2026-10-29T14:30:00.000Z",
-    "price": "1999",
+    "price": "3999",
     "original_price": "",
     "tier": "luxury"
   },
@@ -120,7 +120,7 @@ export const bundledTemplates: Template[] = [
     "badge": "TRADITIONAL LUXURY",
     "enabled": true,
     "created_at": "2026-10-29T14:30:00.000Z",
-    "price": "1999",
+    "price": "3999",
     "original_price": "",
     "tier": "luxury"
   },
@@ -132,7 +132,7 @@ export const bundledTemplates: Template[] = [
     "badge": "SHOWROOM JOURNEY",
     "enabled": true,
     "created_at": "2026-10-29T14:30:00.000Z",
-    "price": "1999",
+    "price": "3999",
     "original_price": "",
     "tier": "luxury"
   },
@@ -144,7 +144,7 @@ export const bundledTemplates: Template[] = [
     "badge": "HOUSEWARMING",
     "enabled": true,
     "created_at": "2026-10-29T14:30:00.000Z",
-    "price": "1999",
+    "price": "3999",
     "original_price": "",
     "tier": "luxury"
   }

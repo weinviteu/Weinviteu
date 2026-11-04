@@ -316,8 +316,6 @@
 .tierHeader h2 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 3vw, 36px); line-height: 1.1; color: #fbf3e3; }
 .tierEyebrow { margin: 0 0 6px; font: 700 10.5px/1.4 var(--sans); letter-spacing: 2.4px; text-transform: uppercase; }
 .tierDescription { margin: 8px 0 0; max-width: 560px; font-size: 14px; line-height: 1.6; color: #b9a98f; }
-.tierHeaderPrice { margin: 0; font-size: 13px; color: #b9a98f; white-space: nowrap; }
-.tierHeaderPrice strong { margin-left: 6px; font-size: 22px; color: #fae29c; }
 
 @media (max-width: 760px) {
   .tierPanelHead { justify-content: space-between; margin-bottom: 10px; }
@@ -331,7 +329,6 @@
   .tierCardText { justify-items: center; }
   .tierCardName { font-size: 16px; }
   .tierCardMeta { font-size: 10.5px; }
-  .tierCardPrice { display: none; }
   .tierCardCheck { top: 6px; right: 6px; margin-top: 0; width: 16px; height: 16px; }
   .tierCardCheck svg { width: 9px; height: 9px; }
   .tierHeader { padding-top: 14px; }
@@ -361,9 +358,7 @@
 .templatesPage .templatesCount { color: #8a7560; }
 .templatesPage .tierHeader { border-top-color: var(--line); }
 .templatesPage .tierHeader h2 { color: var(--ink); }
-.templatesPage .tierDescription,
-.templatesPage .tierHeaderPrice { color: var(--muted); }
-.templatesPage .tierHeaderPrice strong { color: #a56b36; }
+.templatesPage .tierDescription { color: var(--muted); }
 .templatesPage .tierEyebrow.tier_simple { color: #8a6a45; }
 .templatesPage .tierEyebrow.tier_premium { color: #a56b36; }
 .templatesPage .tierEyebrow.tier_luxury { color: #6e3f1c; }

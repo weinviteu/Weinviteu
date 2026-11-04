@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS public.templates (
   badge TEXT NOT NULL DEFAULT '',
   bg TEXT,
   enabled BOOLEAN NOT NULL DEFAULT true,
-  price TEXT DEFAULT '1999',
+  price TEXT DEFAULT '2999',
   original_price TEXT DEFAULT '',
   tier TEXT NOT NULL DEFAULT 'premium',
   slug TEXT,
@@ -231,6 +231,8 @@ INSERT INTO public.templates (id, title, filename, category, category_id, badge,
   (31, 'The Grand Reveal', 'opening-ceremony-the-grand-reveal.html', 'Opening ceremony', 39, 'RIBBON REVEAL', NULL, true, '1999', '', 'simple', 'the-grand-reveal-opening-ceremony-invitation', '2026-10-29T09:00:00+00:00'),
   (32, 'A Little Star', 'baby-naming-little-star.html', 'Baby Naming', 40, '3D KEEPSAKE', NULL, true, '1999', '', 'simple', 'a-little-star-baby-naming-invitation', '2026-10-29T09:00:00+00:00')
 ON CONFLICT DO NOTHING;
+-- The collection tier sets the price: Simple ₹1,999, Premium ₹2,999, Luxury ₹3,999 (GST is added on the site).
+UPDATE public.templates SET price = CASE tier WHEN 'simple' THEN '1999' WHEN 'luxury' THEN '3999' ELSE '2999' END;
 
 INSERT INTO public.settings (id, studio_name, contact_email, whatsapp_number, location) VALUES
   (1, 'WeInviteU', 'office@rakvih.in', '+91 82963 92047', 'Attur Layout, Yelahanka, Bengaluru, Karnataka 560064')

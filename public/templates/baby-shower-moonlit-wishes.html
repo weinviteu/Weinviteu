@@ -257,13 +257,13 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent-hi);outline-
     </div>
   </section>
 
-  <section class="scene bs-close" aria-label="RSVP">
+  <section class="scene bs-close" aria-label="Will you join us?">
     <div class="bs-balloons" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <svg class="bs-moon rv" aria-hidden="true"><use href="#i-moon"/></svg>
     <p class="caps rv" style="--d:.1">We saved a place for you</p>
     <h2 class="rv" style="--d:.2">A little joy is coming.<em>Let’s celebrate together.</em></h2>
     <p class="note rv" style="--d:.35">We can’t wait to share this little moment of joy with you.</p>
-    <a class="btn gold rv" style="--d:.5" id="rsvp" href="mailto:family@example.com">Send your RSVP ↗</a>
+    <a class="btn gold rv" style="--d:.5" id="rsvp" href="mailto:family@example.com">Will You Join Us? ↗</a>
     <button class="replay rv" style="--d:.6" id="replay" type="button">↻ Watch again</button>
     <p class="sample rv" style="--d:.8">SAMPLE INVITATION · ALL EVENT DETAILS CAN BE PERSONALISED</p>
   </section>
@@ -289,7 +289,7 @@ const CFG = {
 };
 document.querySelectorAll('[data-bind]').forEach(el=>{const value=CFG[el.dataset.bind];if(typeof value==='string')el.textContent=value});
 const mapUrl=new URL(CFG.mapUrl,location.href);if(['https:','http:'].includes(mapUrl.protocol))document.getElementById('map').href=mapUrl.href;
-document.getElementById('rsvp').href='mailto:'+encodeURIComponent(CFG.rsvpEmail)+'?subject='+encodeURIComponent(CFG.babyName+' — RSVP');
+document.getElementById('rsvp').href='mailto:'+encodeURIComponent(CFG.rsvpEmail)+'?subject='+encodeURIComponent(CFG.babyName+' — Invitation reply');
 
 // "Sunday, 21 February 2027" + "6:30 PM onwards" → parts and a Date; null when the text is free-form.
 function parseWhen(dateText,timeText){

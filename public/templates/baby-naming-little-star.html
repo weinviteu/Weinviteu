@@ -248,13 +248,13 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--gold-hi);outline-of
     </div>
   </section>
 
-  <section class="scene s-close" aria-label="RSVP">
+  <section class="scene s-close" aria-label="Will you join us?">
     <svg class="moon rv" aria-hidden="true"><use href="#i-moon"/></svg>
     <p class="caps rv" style="--d:.1">We saved a place for you</p>
     <h2 class="rv" style="--d:.2">Come for the name.<em>Stay for the memories.</em></h2>
     <p class="note rv" style="--d:.35">We can’t wait to share this little moment of joy with you.</p>
     <div class="actions rv" style="--d:.5">
-      <a class="btn gold" id="rsvp" href="mailto:family@example.com?subject=Baby%20naming%20RSVP">Send your RSVP ↗</a>
+      <a class="btn gold" id="rsvp" href="mailto:family@example.com?subject=Baby%20naming%20reply">Will You Join Us? ↗</a>
     </div>
     <button class="replay rv" style="--d:.6" id="replay" type="button">↻ Watch again</button>
     <p class="monogram rv" style="--d:.7" data-bind="babyName">Aarav</p>
@@ -282,7 +282,7 @@ const CFG = {
 };
 document.querySelectorAll('[data-bind]').forEach(el=>{const value=CFG[el.dataset.bind];if(typeof value==='string')el.textContent=value});
 const mapUrl=new URL(CFG.mapUrl,location.href);if(['https:','http:'].includes(mapUrl.protocol))document.getElementById('map').href=mapUrl.href;
-document.getElementById('rsvp').href='mailto:'+encodeURIComponent(CFG.rsvpEmail)+'?subject='+encodeURIComponent(CFG.babyName+' — naming ceremony RSVP');
+document.getElementById('rsvp').href='mailto:'+encodeURIComponent(CFG.rsvpEmail)+'?subject='+encodeURIComponent(CFG.babyName+' — naming ceremony reply');
 
 // Scene navigation. `state`, `page`, `LAST`, unlock(), goPage() and reset() are globals on purpose:
 // the site's preview tour (autoscroll.js) drives invitations through them.

@@ -1,305 +1,180 @@
-/* Ivory and peach below the dark banner, matching the home page; the banner sets its own colours. */
+/* About page: built on the home page's stationery system (home-refresh.css), with one shared content width. */
 .aboutPage {
-  --ink: #241a12;
-  --muted: #6f5b47;
-  --line: #e3d3bc;
-  --gold: #a56b36;
   overflow: hidden;
   min-height: 0;
   padding-bottom: 0;
-  background: #fbf6ee;
-  color: var(--ink);
 }
+/* Every section, including the shared Why digital and FAQ blocks, lines up with the banner's edges.
+   `main` raises these above home-refresh.css, which loads later with the same selector weight. */
+main.aboutPage :global(.hx-wrap) { max-width: 1440px; padding-inline: clamp(20px, 4vw, 64px); }
+main.aboutPage :global(.hx-section) { padding-block: clamp(44px, 5vw, 76px); }
+main.aboutPage :global(.hx-cta) { padding-block: clamp(52px, 6vw, 84px); }
+/* The secondary CTA has no icon, so it gets even padding. */
+main.aboutPage :global(.hx-cta .hx-wa-btn) { padding-left: 24px; }
 
-/* ── Hero Banner with Royal Botanical Artwork ── */
-.heroBanner {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background-color: #f7efe4;
-  background-image: 
-    linear-gradient(180deg, rgba(5, 5, 5, 0.45) 0%, rgba(5, 5, 5, 0.04) 70px, transparent 120px, transparent calc(100% - 100px), rgba(5, 5, 5, 0.6) calc(100% - 30px), #050505 100%),
-    url('/images/about-banner-bg.webp');
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.22);
-}
-
-.hero {
-  position: relative;
-  text-align: center;
-  padding: 36px 6% 28px;
-  max-width: 960px;
-  margin: auto;
-  z-index: 2;
-}
-
-.eyebrow {
-  font: 700 10px monospace;
-  letter-spacing: 2px;
-  color: #7a5416;
-  margin-bottom: 22px;
-  text-transform: uppercase;
-  display: block;
-}
-
-.hero h1 {
-  font-family: var(--sans);
-  font-size: clamp(48px, 7vw, 92px);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  line-height: 0.96;
-  margin: 0 0 24px;
-  color: #120e09;
-}
-.hero h1 em {
-  font-family: var(--serif);
-  font-weight: 400;
-  color: #a7732a;
-}
-.hero > p {
-  color: #382d20;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.8;
-  max-width: 620px;
-  margin: 0 auto;
-}
-
-/* ── Manifesto Grid ── */
-.manifestoSection {
-  background: #f4ebdd;
-  border-bottom: 1px solid var(--line);
-  padding: 32px 6%;
-}
-.manifestoContainer {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.manifestoHeader {
-  text-align: center;
-  margin-bottom: 24px;
-}
-.manifestoHeader h2 {
-  font-family: var(--serif);
-  font-size: 32px;
-  font-style: italic;
-  color: var(--ink);
-}
-
-.manifestoGrid {
+/* ── 1. Who we are: arched photograph beside the introduction ── */
+.intro {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.manifestoCard {
-  background: #fff;
-  padding: 24px;
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  box-shadow: 0 1px 2px #3b29190d, 0 14px 30px #3b291912;
-  transition: transform 0.4s ease;
-}
-.manifestoCard:hover {
-  transform: translateY(-4px);
-}
-.manifestoNumber {
-  font: italic 24px Georgia, serif;
-  color: var(--gold);
-  margin-bottom: 12px;
-  display: block;
-}
-.manifestoCard h3 {
-  font-family: var(--sans);
-  font-size: 18px;
-  letter-spacing: -0.5px;
-  margin-bottom: 12px;
-  color: var(--ink);
-}
-.manifestoCard p {
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--muted);
-}
-
-/* ── Founder / Story Section ── */
-.storySection {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 28px 6% 20px;
-  display: flex;
-  gap: 28px;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(32px, 6vw, 80px);
   align-items: center;
 }
-.specsSection {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 6% 20px;
-}
-.storyImage {
-  flex: 1;
-  position: relative;
-}
+.introArt { position: relative; max-width: 420px; width: 100%; justify-self: center; }
 .imageFrame {
-  aspect-ratio: 4/5;
-  background: transparent;
-  border-radius: 200px 200px 0 0;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  position: relative;
-  border: 1px solid var(--line);
+  border: 1px solid var(--hx-line);
+  border-radius: 999px 999px 22px 22px;
+  box-shadow: 0 24px 50px #3b29191f;
 }
-.imagePlaceholder {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 24px;
-}
+.imageFrame img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .imageBadge {
   position: absolute;
-  bottom: 30px;
-  right: -20px;
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(135deg, #f4d49d, #efb79a);
-  color: #5a3519;
+  right: -18px;
+  bottom: 36px;
+  display: grid;
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  padding: 14px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font: 10px monospace;
-  letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--hx-gold), var(--hx-peach));
+  box-shadow: 0 10px 24px #3b291926;
+  color: #5a3519;
+  font: 600 9.5px/1.5 var(--sans);
+  letter-spacing: .18em;
   text-align: center;
   text-transform: uppercase;
-  animation: spin 15s linear infinite;
+  animation: badgeSpin 18s linear infinite;
 }
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+@keyframes badgeSpin { to { transform: rotate(360deg); } }
+main .introText :global(.hx-head) { margin-bottom: 18px; }
+.introText > p { margin: 0 0 14px; max-width: 560px; font-size: 16px; line-height: 1.75; color: var(--hx-muted); }
 
-.storyContent {
-  flex: 1.2;
-}
-.storyContent h2 {
-  font-family: var(--sans);
-  font-size: 40px;
-  letter-spacing: -1px;
-  line-height: 1.1;
-  margin-bottom: 24px;
-  color: var(--ink);
-}
-.storyContent h2 em {
+/* ── 2. Our story ── */
+main.aboutPage :global(.hx-head-center .hx-lede) { max-width: 720px; }
+.pullQuote {
+  max-width: 640px;
+  margin: 0 auto clamp(28px, 3vw, 40px);
+  padding-top: 22px;
+  border-top: 1px solid var(--hx-line);
   font-family: var(--serif);
-  font-weight: 400;
-  color: var(--gold);
+  font-size: clamp(20px, 2.2vw, 24px);
+  font-style: italic;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--hx-copper);
 }
-.storyContent p {
-  font-size: 15px;
-  line-height: 1.8;
-  color: var(--muted);
-  margin-bottom: 12px;
+.purposeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 920px;
+  margin: 0 auto;
 }
 
-/* ── CTA ── */
-.ctaSection {
-  margin: 24px auto 28px;
-  max-width: 800px;
-  text-align: center;
-  padding: 0 6%;
+/* ── 3. Philosophy ── */
+.philosophyGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.number {
+  display: block;
+  margin-bottom: 14px;
+  font-family: var(--serif);
+  font-size: 28px;
+  font-style: italic;
+  line-height: 1;
+  color: var(--hx-copper);
 }
-.ctaSection h2 {
-  font-family: var(--sans);
-  font-size: 32px;
-  letter-spacing: -1px;
-  margin-bottom: 18px;
+
+/* ── 5. FAQ: the heading sits level with the questions instead of leaving a blank column below it ── */
+@media (min-width: 801px) {
+  main.aboutPage :global(.hx-faq-layout) { grid-template-columns: minmax(0, 400px) minmax(0, 1fr); gap: clamp(32px, 4vw, 64px); align-items: center; }
+  main.aboutPage :global(.hx-faq-head) { position: static; }
 }
-.buttonRow {
+
+/* ── 6. Powered by RAKVIH ── */
+.powered {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+}
+.poweredText > p { margin: 0 0 14px; max-width: 520px; font-size: 15.5px; line-height: 1.75; color: var(--hx-muted); }
+.poweredText .tagline {
+  margin: 14px 0 18px;
+  font-family: var(--serif);
+  font-size: 19px;
+  font-style: italic;
+  color: var(--hx-copper);
+}
+.poweredText :global(.hx-text-link) { margin-top: 6px; }
+.capabilitiesCard {
+  padding: clamp(22px, 3vw, 32px);
+  border: 1px solid var(--hx-line);
+  border-radius: var(--hx-radius);
+  background: #fff;
+  box-shadow: 0 1px 2px #3b29190d, 0 18px 40px #3b291912;
+}
+.capabilitiesLabel {
+  margin: 0 0 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--hx-copper);
+}
+.capabilities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.capabilities li {
   display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-.buttonPrimary {
-  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 16px 24px;
-  background: var(--ink);
-  color: #f8e6c4;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  transition: all 0.2s;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--hx-line);
+  border-radius: 14px;
+  background: var(--hx-ivory);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--hx-ink);
 }
-.buttonPrimary:hover {
-  background: #3a2a1c;
+.capabilities li > span {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--hx-gold), var(--hx-peach));
+  color: #5a3519;
 }
-.buttonSecondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 16px 24px;
-  background: transparent;
-  color: var(--ink);
-  border: 1px solid var(--line);
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-.buttonSecondary:hover {
-  background: #a56b3614;
-  border-color: var(--gold);
+/* Seven capabilities: the last spans the row instead of sitting alone in half of it. */
+.capabilities li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.poweredFoot {
+  margin: 20px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--hx-line);
+  font-family: var(--serif);
+  font-size: 16.5px;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--hx-muted);
 }
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
-  .manifestoGrid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .storySection {
-    flex-direction: column;
-    text-align: center;
-  }
-  .imageBadge {
-    right: 20px;
-  }
-  .imageFrame {
-    width: 300px;
-    margin: 0 auto;
-  }
+  .intro,
+  .powered { grid-template-columns: 1fr; }
+  .introArt { max-width: 320px; }
+  .imageBadge { right: -8px; width: 92px; height: 92px; }
+  .introText { text-align: center; }
+  main .introText :global(.hx-head) { justify-content: center; }
+  main .introText :global(.hx-eyebrow) { justify-content: center; }
+  .introText > p { margin-inline: auto; }
+  .philosophyGrid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
 }
 @media (max-width: 600px) {
-  .hero {
-    padding: 24px 6%;
-  }
-  .hero h1 {
-    font-size: 48px;
-  }
-  .storyContent h2 {
-    font-size: 32px;
-  }
-  .buttonRow {
-    flex-direction: column;
-  }
+  .purposeGrid,
+  .capabilities { grid-template-columns: 1fr; }
 }
-
-/* "How it works" uses the site-wide step styles, which were written for dark sections */
-.aboutPage :global(.how-it-works-section) { background: #f4ebdd; border-block: 1px solid var(--line); }
-.aboutPage :global(.how-it-works-section h2) { color: var(--ink); }
-.aboutPage :global(.how-it-works-section h2 em) { color: var(--gold); }
-.aboutPage :global(.how-it-works-section .eyebrow) { color: var(--gold); }
-.aboutPage :global(.how-image-wrap) { border-color: var(--line); box-shadow: 0 18px 40px #3b291920; }
-.aboutPage :global(.step h3) { color: var(--ink); }
-.aboutPage :global(.step > span) { color: var(--gold); }
-.ctaSection { padding-top: 8px; }
-.ctaSection h2 { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) {
+  .imageBadge { animation: none; }
+}

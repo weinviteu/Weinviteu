@@ -14,7 +14,7 @@ import RevealEnvelope from "@/components/home/RevealEnvelope";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { getTemplatePoster } from "@/lib/template-posters";
 import { categoryPath, getTemplateUrl } from "@/lib/template-url";
-import { getTemplatePricing, DEFAULT_TEMPLATE_PRICE } from "@/lib/template-pricing";
+import { getTemplatePricing, DEFAULT_TEMPLATE_PRICE, GST_NOTE } from "@/lib/template-pricing";
 import { templateIsVisible } from "@/lib/template-visibility";
 import { supabase } from "@/lib/supabase";
 
@@ -56,7 +56,7 @@ const rawOccasions = [
 // The first feature gets the large showcase tile; the rest fill the bento grid beside it.
 const insideFeatures = [
   { icon: MapPin, title: 'Directions to the venue', text: 'A one-tap map link, so nobody has to call you on the day asking where to turn.' },
-  { icon: CalendarCheck, title: 'RSVP in a tap', text: 'Guests confirm straight from the invitation, without a separate form.' },
+  { icon: CalendarCheck, title: 'Replies in a tap', text: 'Guests tap “Will you join us?” and let you know they’re coming, right from the invitation.' },
   { icon: Timer, title: 'A live countdown', text: 'Days, hours and minutes to the big moment, building the excitement.' },
   { icon: Music2, title: 'Music and motion', text: 'Gentle animation and, on selected designs, music that sets the mood.' },
 ];
@@ -96,12 +96,6 @@ export default async function Home() {
 
   // Only keep templates that belong to an active category
   const allTemplates = withBundledTemplates(rawTemplates || [], activeCats).filter(t => templateIsVisible(t, activeCats));
-
-  // Compute per-category counts dynamically from templates
-  const countByCategory = (cat: string) => {
-    const n = (allTemplates || []).filter((t) => t.category?.toLowerCase() === cat.toLowerCase()).length;
-    return n === 1 ? '1 design' : `${n} designs`;
-  };
 
   const occasionsList = rawOccasions.filter(o =>
     activeCatNames.has(o.category.toLowerCase())
@@ -173,7 +167,6 @@ export default async function Home() {
                 <div className="hx-occasion-body">
                   <h3>{o.title}</h3>
                   <p>{o.description}</p>
-                  <span className="hx-occasion-count">{countByCategory(o.category)}</span>
                 </div>
               </Link>
             ))}
@@ -204,7 +197,7 @@ export default async function Home() {
           </SectionHead>
 
           <div className="home-templates-grid">
-            {templatesList.slice(0, 8).map((t) => (
+            {templatesList.slice(0, 6).map((t) => (
               <TemplateCard key={t.filename} template={t} />
             ))}
           </div>
@@ -290,8 +283,8 @@ export default async function Home() {
             <div className="hx-price-main">
               <p className="hx-eyebrow"><span aria-hidden="true" />Simple pricing</p>
               <h2>One price. <em>Every guest.</em></h2>
-              <p className="hx-lede">No per-card costs, no printing, no postage. Choose a design and the price you see is the price you pay.</p>
-              <p className="hx-price-figure"><span>Designs from</span> <strong>{startingPrice}</strong></p>
+              <p className="hx-lede">No per-card costs, no printing, no postage. Choose a design, pay one clear price plus GST, and share it with everyone.</p>
+              <p className="hx-price-figure"><span>Designs from</span> <strong>{startingPrice}</strong> <span>{GST_NOTE}</span></p>
             </div>
             <div className="hx-price-list">
               <p>Every invitation includes</p>

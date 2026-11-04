@@ -1350,7 +1350,7 @@ html.no-motion .dock { transform: translate(-50%, 0); }
       <svg class="corner corner--tl gold"><use href="#orn-corner"/></svg>
       <svg class="corner corner--tr gold"><use href="#orn-corner"/></svg>
       <header class="rsvp__head">
-        <p class="eyebrow gold">RSVP</p>
+        <p class="eyebrow gold">Kindly Respond</p>
         <h2 class="title" data-t="ui.rsvpTitle"></h2>
         <p class="sub" data-t="rsvp.deadline"></p>
         <p class="rsvp__seats" id="seatsNote" hidden></p>
@@ -1711,7 +1711,7 @@ const INVITE = {
     { icon: "car", title: "By Road",
       text: "About 7 hrs from Delhi via NH-9. Valet parking at the venue." }
   ],
-  shuttle: "Complimentary shuttles from Kathgodam station & Pantnagar airport on 9 & 10 December. Tell us your arrival time in the RSVP.",
+  shuttle: "Complimentary shuttles from Kathgodam station & Pantnagar airport on 9 & 10 December. Tell us your arrival time in your reply.",
   hotels: [
     { name: "The Pinewood Lake Retreat", tag: "Venue · Family block",
       text: "Rooms reserved for family & outstation guests, 9–14 Dec. Your room details will reach you on WhatsApp." },
@@ -1850,7 +1850,7 @@ const INVITE = {
     shuttleLabel: "Shuttle service",
     stayLabel: "Where to stay",
 
-    rsvpTitle: "Kindly Respond",
+    rsvpTitle: "Will You Join Us?",
     yourName: "Your name",
     phone: "Phone number",
     joining: "Will you be joining us?",
@@ -1867,7 +1867,7 @@ const INVITE = {
     yes: "Yes, please", no: "No, thanks",
     arrival: "Arrival date & time",
     message: "A blessing or message for the couple",
-    send: "Send RSVP on WhatsApp",
+    send: "Send My Reply on WhatsApp",
     thanks: "Thank you",
     thanksYes: "Your response is on its way. We can't wait to celebrate with you!",
     thanksNo: "We'll miss you dearly. Thank you for your blessings.",
@@ -1902,7 +1902,7 @@ const INVITE = {
     navCouple: "Couple",
     navEvents: "Events",
     navVenue: "Venue",
-    navRsvp: "RSVP"
+    navRsvp: "Join Us"
   }
 };
 
@@ -2931,7 +2931,7 @@ Dress code: ${en(e.dress)}`;
         submittedAt: new Date().toISOString()
       };
       const lines = [
-        `💌 RSVP — ${namesEn} (${C.wedding.dateShort})`,
+        `💌 Invitation reply — ${namesEn} (${C.wedding.dateShort})`,
         ``,
         `Name: ${data.name}`,
         data.phone && `Phone: ${data.phone}`,

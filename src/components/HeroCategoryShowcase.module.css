@@ -98,6 +98,10 @@
   .lede { max-width: 650px; margin-top: 12px; }
   .actions { margin-top: 18px; }
   .fan { height: clamp(310px, 29vw, 470px); margin-top: 24px; }
+  /* As on phones, the banner fills the screen below the header and the phones grow into the height. */
+  .hero { min-height: calc(100vh - 82px); min-height: calc(100svh - 82px); }
+  .fan { flex: 1 0 300px; height: auto; container-type: size; }
+  .card { --card-w: clamp(210px, 50cqh, 22vw); }
 }
 
 @media (max-width: 860px) {
@@ -114,8 +118,16 @@
   .pause { bottom: 14px; right: 14px; }
   .fan { height: 280px; margin-top: 26px; }
   .card { padding: 5px; border-radius: 26px; }
+  /* The banner fills the screen below the header; the phones grow into the extra height, still cropped by the bottom edge. */
+  .hero { min-height: calc(100vh - 72px); min-height: calc(100svh - 72px); }
+  .fan { flex: 1 0 280px; height: auto; container-type: size; }
+  .card { --card-w: clamp(150px, 50cqh, 56vw); --spread: calc(var(--card-w) * .69); }
   .screen { border-radius: 21px; }
   .card[data-distance="2"] { opacity: 0; pointer-events: none; }
+}
+/* Matches the shorter header on small phones. */
+@media (max-width: 420px) {
+  .hero { min-height: calc(100vh - 68px); min-height: calc(100svh - 68px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .copy, .card, .dust i { animation: none; }

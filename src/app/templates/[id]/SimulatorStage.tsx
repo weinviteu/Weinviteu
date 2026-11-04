@@ -6,18 +6,13 @@ import styles from "./template-detail.module.css";
 
 interface Props {
   previewUrl: string;
-  /** Address the phone loads, which carries the tap-to-open script. */
+  /** Address the phone loads when a design has no cover image. */
   embedUrl: string;
   templateTitle: string;
 }
 
+/** A still phone mock-up of the design. The invitation itself opens only from the Preview button. */
 export default function SimulatorStage({ previewUrl, embedUrl, templateTitle }: Props) {
-  // The cover shows immediately; the invitation itself downloads only when the visitor taps it.
-  const [loaded, setLoaded] = useState(false);
-  const [started, setStarted] = useState(false);
-  const [engaged, setEngaged] = useState(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const openWhenLoaded = useRef(false);
   const [posterFailed, setPosterFailed] = useState(false);
   const poster = posterFailed ? null : getTemplatePoster(previewUrl);
   const screenRef = useRef<HTMLDivElement>(null);
@@ -33,18 +28,6 @@ export default function SimulatorStage({ previewUrl, embedUrl, templateTitle }: 
     return () => observer.disconnect();
   }, []);
 
-  const askToOpen = () => iframeRef.current?.contentWindow?.postMessage("invitation:open", "*");
-  const handleTap = () => {
-    setEngaged(true);
-    setStarted(true);
-    if (loaded) askToOpen();
-    else openWhenLoaded.current = true;
-  };
-  const handleLoad = () => {
-    setLoaded(true);
-    if (openWhenLoaded.current) askToOpen();
-  };
-
   return (
     <div className={styles.simulatorWrap}>
       <div className={styles.simulatorStage}>
@@ -52,25 +35,25 @@ export default function SimulatorStage({ previewUrl, embedUrl, templateTitle }: 
         <div className={styles.phoneDevice}>
           <div ref={screenRef} className={styles.phoneScreen}>
             <div className={styles.phoneNotch} />
-            {(started || !poster) && <iframe
-              ref={iframeRef}
-              onLoad={handleLoad}
-              src={embedUrl}
-              title={`Interactive preview of ${templateTitle}`}
-              className={styles.phoneIframe}
-              sandbox="allow-scripts allow-forms allow-popups allow-modals"
-              allow="autoplay; fullscreen"
-              loading="eager"
-            />}
-            {!loaded && poster && <img src={poster} alt={`${templateTitle} invitation preview`} className={styles.simulatorPoster} width={390} height={844} fetchPriority="high" onError={() => setPosterFailed(true)} />}
-            {started && !loaded && <span className={styles.phoneLoading} role="status" aria-label="Opening the invitation" />}
-            {/* Until the first tap the page owns touches, so a swipe scrolls instead of getting stuck inside the invitation. */}
-            {!engaged && <button type="button" className={styles.phoneTapLayer} onClick={handleTap} aria-label={`Open the ${templateTitle} invitation`} />}
+            {poster ? (
+              <img src={poster} alt={`${templateTitle} invitation preview`} className={styles.simulatorPoster} width={390} height={844} fetchPriority="high" onError={() => setPosterFailed(true)} />
+            ) : (
+              // Without a cover the design is shown live, but it cannot be tapped or scrolled here.
+              <iframe
+                src={embedUrl}
+                title={`${templateTitle} invitation preview`}
+                className={styles.phoneIframe}
+                sandbox="allow-scripts"
+                loading="eager"
+                tabIndex={-1}
+                style={{ pointerEvents: "none" }}
+              />
+            )}
           </div>
         </div>
 
         <p className={styles.simulatorTip}>
-          Tap the invitation to open it here, or use <span>Preview</span> for full screen.
+          Tap <span>Preview</span> to open the full invitation.
         </p>
       </div>
     </div>

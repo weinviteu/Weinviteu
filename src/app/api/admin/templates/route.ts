@@ -1,7 +1,8 @@
 import { bundledTemplates, withBundledTemplates } from '@/lib/bundled-templates';
 import { nextFreeSlug, templateSlug } from '@/lib/slug';
 import { z } from 'zod';
-import { DEFAULT_TEMPLATE_PRICE, DEFAULT_TEMPLATE_ORIGINAL_PRICE } from '@/lib/template-pricing';
+import { DEFAULT_TEMPLATE_ORIGINAL_PRICE, TIER_PRICES } from '@/lib/template-pricing';
+import { DEFAULT_TEMPLATE_TIER } from '@/lib/template-tiers';
 import { requireAdmin, apiError, HttpError } from '@/lib/admin';
 import { templateSchema } from '@/lib/schemas';
 import { analyzeTemplate } from '@/lib/template-analyzer';
@@ -71,7 +72,7 @@ export async function POST(request: Request) {
       ...bundledTemplates.map(item => templateSlug(item.title, item.category)),
       ...(existing || []).flatMap(row => row.slug ? [row.slug] : []),
     ]);
-    const payload = { ...input.data, ...(slug ? { slug } : {}), price: input.data.price || DEFAULT_TEMPLATE_PRICE, original_price: input.data.original_price ?? DEFAULT_TEMPLATE_ORIGINAL_PRICE, filename: publicUrl, category_id: catData?.id || null };
+    const payload = { ...input.data, ...(slug ? { slug } : {}), price: String(TIER_PRICES[input.data.tier ?? DEFAULT_TEMPLATE_TIER]), original_price: input.data.original_price ?? DEFAULT_TEMPLATE_ORIGINAL_PRICE, filename: publicUrl, category_id: catData?.id || null };
     const { error } = await db.from('templates').insert(payload);
     if (error) { await db.storage.from('base-templates').remove(stored); throw error; }
     return Response.json({ success: true, report });
@@ -83,7 +84,9 @@ export async function PATCH(request: Request) {
     const input = templateSchema.partial().extend({ id: z.number().int().positive() }).safeParse(await request.json());
     if (!input.success) throw new HttpError(400, 'Invalid template details.');
     const { id, ...changes } = input.data;
-    const updatePayload: Record<string, unknown> = { ...changes };
+    delete changes.price;
+    // The tier sets the price, so the stored price always matches what the site shows.
+    const updatePayload: Record<string, unknown> = { ...changes, ...(changes.tier ? { price: String(TIER_PRICES[changes.tier]) } : {}) };
     if (changes.category) {
       const { data: catData } = await db.from('categories').select('id').ilike('name', changes.category).maybeSingle();
       if (catData?.id) updatePayload.category_id = catData.id;

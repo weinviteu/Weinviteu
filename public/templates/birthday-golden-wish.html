@@ -260,11 +260,11 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent-hi);outline-
     </div>
   </section>
 
-  <section class="scene b-close" aria-label="RSVP">
+  <section class="scene b-close" aria-label="Will you join us?">
     <p class="caps rv">We saved a place for you</p>
     <h2 class="rv" style="--d:.15">Bring your smiles.<em>We’ll bring the sparkle.</em></h2>
     <p class="note rv" style="--d:.3">We can’t wait to celebrate with you.</p>
-    <a class="btn gold rv" style="--d:.45" id="rsvp" href="mailto:family@example.com">Send your RSVP ↗</a>
+    <a class="btn gold rv" style="--d:.45" id="rsvp" href="mailto:family@example.com">Will You Join Us? ↗</a>
     <button class="replay rv" style="--d:.55" id="replay" type="button">↻ Party again</button>
     <p class="sample rv" style="--d:.7">SAMPLE INVITATION · ALL EVENT DETAILS CAN BE PERSONALISED</p>
   </section>
@@ -290,7 +290,7 @@ const CFG = {
 };
 document.querySelectorAll('[data-bind]').forEach(el=>{const value=CFG[el.dataset.bind];if(typeof value==='string')el.textContent=value});
 const mapUrl=new URL(CFG.mapUrl,location.href);if(['https:','http:'].includes(mapUrl.protocol))document.getElementById('map').href=mapUrl.href;
-document.getElementById('rsvp').href='mailto:'+encodeURIComponent(CFG.rsvpEmail)+'?subject='+encodeURIComponent(CFG.babyName+' — RSVP');
+document.getElementById('rsvp').href='mailto:'+encodeURIComponent(CFG.rsvpEmail)+'?subject='+encodeURIComponent(CFG.babyName+' — Invitation reply');
 
 // "Sunday, 21 February 2027" + "6:30 PM onwards" → parts and a Date; null when the text is free-form.
 function parseWhen(dateText,timeText){

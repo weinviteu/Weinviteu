@@ -280,7 +280,7 @@ const CFG = {
 };
 document.querySelectorAll('[data-bind]').forEach(el=>{const value=CFG[el.dataset.bind];if(typeof value==='string')el.textContent=value});
 const mapUrl=new URL(CFG.mapUrl,location.href);if(['https:','http:'].includes(mapUrl.protocol))document.getElementById('map').href=mapUrl.href;
-document.getElementById('rsvp').href='mailto:'+encodeURIComponent(CFG.rsvpEmail)+'?subject='+encodeURIComponent(CFG.babyName+' — RSVP');
+document.getElementById('rsvp').href='mailto:'+encodeURIComponent(CFG.rsvpEmail)+'?subject='+encodeURIComponent(CFG.babyName+' — Invitation reply');
 
 // "Sunday, 21 February 2027" + "6:30 PM onwards" → parts and a Date; null when the text is free-form.
 function parseWhen(dateText,timeText){

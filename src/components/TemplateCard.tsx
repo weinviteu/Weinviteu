@@ -2,9 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { Eye, ArrowUpRight } from "lucide-react";
 import { templatePath, templatePreviewPath } from "@/lib/template-url";
-import { getTemplatePricing } from "@/lib/template-pricing";
+import { getTemplatePricing, GST_NOTE } from "@/lib/template-pricing";
 import { getTemplateTier, TIER_DETAILS } from "@/lib/template-tiers";
-import WhatsAppIcon from "@/components/WhatsAppIcon";
 import TemplateCover from "@/components/TemplateCover";
 
 export interface TemplateData {
@@ -29,7 +28,6 @@ export default function TemplateCard({ template }: { template: TemplateData }) {
   return (
     <article className="home-tmpl-card">
       <div className="home-tmpl-stage">
-        <span className="home-tmpl-badge">{template.badge}</span>
         <span className={`home-tmpl-tier home-tmpl-tier-${tier}`}>{TIER_DETAILS[tier].label}</span>
 
         {/* Clickable stage overlay taking the user to the template's [id] page */}
@@ -56,12 +54,13 @@ export default function TemplateCard({ template }: { template: TemplateData }) {
           <Link href={detailUrl} className="home-tmpl-info-link">
             <h3>{template.title}</h3>
           </Link>
-          <p>{template.category} · {TIER_DETAILS[tier].label} collection</p>
+          <p>{template.category}</p>
 
           {/* Price displayed prominently inside the template card */}
           <div className="home-tmpl-price-row">
             <span className="home-tmpl-price-from">Starts from</span>
             <span className="home-tmpl-price">{pricing.price}</span>
+            <span className="home-tmpl-price-from">{GST_NOTE}</span>
             {pricing.originalPrice && (
               <span className="home-tmpl-price-orig">{pricing.originalPrice}</span>
             )}
@@ -70,33 +69,15 @@ export default function TemplateCard({ template }: { template: TemplateData }) {
         </div>
 
         <div className="home-tmpl-btns">
-          <Link
-            href={detailUrl}
-            className="round-link"
-            aria-label={`View ${template.title} starting-to-end contents`}
-            title="View Details & Contents"
-          >
-            <ArrowUpRight size={15} />
-          </Link>
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="round-link"
+            className="round-link home-tmpl-preview"
             aria-label={`Preview ${template.title} in new tab`}
             title="Preview in new tab"
           >
-            <Eye size={14} />
-          </a>
-          <a
-            href={`/api/whatsapp?template=${encodeURIComponent(template.title)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="home-wa-icon"
-            aria-label="Order or inquire on WhatsApp"
-            title="Inquire on WhatsApp"
-          >
-            <WhatsAppIcon size={24} />
+            <Eye size={15} /> Preview
           </a>
         </div>
       </div>

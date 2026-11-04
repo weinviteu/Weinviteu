@@ -5,7 +5,7 @@ export interface TemplateField {
 }
 const roots = ['CFG', 'INVITE', 'EVENTS', 'PHOTOS', 'STORY', 'RSVP', 'INFO', 'THANKS'];
 const names: Record<string, string> = {
-  CFG: '', INVITE: '', EVENTS: 'Event', PHOTOS: 'Gallery photo', STORY: 'Story', RSVP: 'RSVP', INFO: 'Guest information', THANKS: 'Thank you',
+  CFG: '', INVITE: '', EVENTS: 'Event', PHOTOS: 'Gallery photo', STORY: 'Story', RSVP: 'Guest replies', INFO: 'Guest information', THANKS: 'Thank you',
   name: 'Name', full: 'Full name', first: 'First name', nick: 'Nickname', hosts: 'Hosts', host: 'Host',
   bride: 'Bride', groom: 'Groom', brideFamily: 'Bride’s family', groomFamily: 'Groom’s family',
   parents: 'Parents', names: 'Names', age: 'Age', years: 'Years together', married: 'Wedding date label',
@@ -13,7 +13,7 @@ const names: Record<string, string> = {
   WEDDING_ISO: 'Wedding date & time (with timezone)', EVENT_ISO: 'Event date & time (with timezone)',
   PHOTO_BRIDE: 'Bride portrait', PHOTO_GROOM: 'Groom portrait',
   time: 'Time', venue: 'Venue', address: 'Address', map: 'Map link', line1: 'Address line 1', line2: 'Address line 2',
-  rsvp: 'RSVP', by: 'Reply deadline', whatsapp: 'WhatsApp number', contacts: 'Contact', phone: 'Phone number',
+  rsvp: 'Guest replies', by: 'Reply deadline', whatsapp: 'WhatsApp number', contacts: 'Contact', phone: 'Phone number',
   photo: 'Portrait', couplePhoto: 'Couple portrait', then: 'Then portrait', now: 'Now portrait', logo: 'Company logo',
   src: 'Photo', cap: 'Caption', speakers: 'Speaker', company: 'Company', event: 'Event name', title: 'Title',
   hi: 'Hindi text', lineAbove: 'Line above names', lineBelow: 'Line below names', thanks: 'Thank-you message',
@@ -25,7 +25,7 @@ function describe(id: string, value: string | number): Pick<TemplateField, 'labe
   const kind = typeof value === 'number' ? 'number' : /^(photo|couplePhoto|then|now|logo)$/i.test(leaf) || /^PHOTO_/i.test(leaf) || (parts[0] === 'PHOTOS' && leaf === 'src') ? 'image' : /^(map|feedback)$/i.test(leaf) ? 'url' : /^(date|weddingAt)$/i.test(leaf) || /_ISO$/i.test(leaf) || (/^\d{4}-/.test(String(value))) ? 'date' : 'text';
   let group = 'Opening & event details';
   if (/venue|address|place|map/i.test(id)) group = 'Venue & directions';
-  else if (/rsvp|contacts|phone|email|deadline/i.test(id)) group = 'RSVP & contacts';
+  else if (/rsvp|contacts|phone|email|deadline/i.test(id)) group = 'Guest replies & contacts';
   else if (/THANKS|thanks/i.test(id)) group = 'Closing & thank you';
   else if (/EVENTS|programme|schedule|agenda/i.test(id)) group = 'Events & programme';
   else if (/PHOTOS|STORY|speakers|photos|^PHOTO_/i.test(id)) group = 'Photos, story & speakers';

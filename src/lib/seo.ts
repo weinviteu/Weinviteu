@@ -11,10 +11,10 @@ export const SITE_URL = (
 ).replace(/\/+$/, "");
 
 export const SITE_NAME = "WeInviteU";
-export const SITE_TAGLINE = "A little more personal";
+export const SITE_TAGLINE = "Making Every Invitation Special";
 
 export const SITE_DESCRIPTION =
-  "WeInviteU designs premium 3D digital invitations for weddings, engagements, birthdays, baby showers, naming ceremonies, griha pravesh, poojas, anniversaries and grand openings. Preview every design live, get it personalised with your names, photos, music, venue map and RSVP, and share one link on WhatsApp with unlimited guests — designs start from ₹1,999.";
+  "WeInviteU designs premium 3D digital invitations for weddings, engagements, birthdays, baby showers, naming ceremonies, griha pravesh, poojas, anniversaries and grand openings. Preview every design live, get it personalised with your names, photos, music, venue map and RSVP, and share one link on WhatsApp with unlimited guests — designs start from ₹1,999 + GST.";
 
 export const SITE_KEYWORDS = [
   "digital invitation", "3D digital invitation", "e-invite", "online invitation card", "WhatsApp invitation",
@@ -50,7 +50,7 @@ export function templateSeo(template: Template) {
   const title = `${template.title} – ${template.category} 3D Digital Invitation`;
   const description =
     `${template.title} is a ${tier.label.toLowerCase()} 3D digital ${noun} invitation by ${SITE_NAME}. ${tier.description} ` +
-    `Preview it live, then we personalise the names, date, venue, photos and music and send you one link to share on WhatsApp with unlimited guests. Starts from ${pricing.price}, delivered in 24–48 hours.`;
+    `Preview it live, then we personalise the names, date, venue, photos and music and send you one link to share on WhatsApp with unlimited guests. Starts from ${pricing.price} + 18% GST, delivered in 24–48 hours.`;
   const poster = getTemplatePoster(template.filename);
   return {
     title, description, tier, pricing,
@@ -74,6 +74,7 @@ export const organizationJsonLd = {
       slogan: SITE_TAGLINE,
       description: SITE_DESCRIPTION,
       areaServed: "IN",
+      parentOrganization: { "@type": "Organization", name: "RAKVIH Solutions Private Limited", url: "https://rakvih.in/" },
     },
     {
       "@type": "WebSite",

@@ -17,7 +17,7 @@ export default async function OpengraphImage() {
           <img src={logo} width={96} height={96} alt="" style={{ borderRadius: 18 }} />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span style={{ fontSize: 46, fontWeight: 700 }}>WeInviteU</span>
-            <span style={{ fontSize: 18, letterSpacing: 6, color: "#e8c277" }}>A LITTLE MORE PERSONAL</span>
+            <span style={{ fontSize: 18, letterSpacing: 6, color: "#e8c277" }}>MAKING EVERY INVITATION SPECIAL</span>
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
@@ -25,12 +25,12 @@ export default async function OpengraphImage() {
           <span style={{ fontSize: 30, color: "#d9c3a0" }}>Preview live · Personalised for you · One link for unlimited guests</span>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", maxWidth: 820 }}>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", maxWidth: 760 }}>
             {occasions.map(o => (
               <span key={o} style={{ fontSize: 20, padding: "8px 18px", borderRadius: 999, border: "1px solid #d9a96788", color: "#f4d49d" }}>{o}</span>
             ))}
           </div>
-          <span style={{ fontSize: 30, fontWeight: 700, padding: "14px 28px", borderRadius: 999, background: "linear-gradient(110deg, #dfad65, #f3d4a3)", color: "#241a12" }}>From ₹1,999</span>
+          <span style={{ fontSize: 30, fontWeight: 700, padding: "14px 28px", borderRadius: 999, background: "linear-gradient(110deg, #dfad65, #f3d4a3)", color: "#241a12", whiteSpace: "nowrap", flexShrink: 0 }}>From ₹1,999 + GST</span>
         </div>
       </div>
     ),

@@ -8,6 +8,7 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
+import { SITE_TAGLINE } from "@/lib/seo";
 
 
 import { useState, useEffect } from "react";
@@ -50,7 +51,10 @@ export default function Footer() {
               alt="WeInviteU"
               style={{ width: "46px", height: "auto", borderRadius: "9px", filter: "drop-shadow(0 2px 8px rgba(0,0,0,0.5))" }}
             />
-            WeInviteU
+            <div className="footer-wordmark-name">
+              WeInviteU
+              <small>{SITE_TAGLINE}</small>
+            </div>
           </Link>
           <p>
             A beautiful beginning for every celebration. Personal invitations,
@@ -106,7 +110,7 @@ export default function Footer() {
           © {new Date().getFullYear()} WeInviteU. All rights reserved.
         </small>
         <span className="developer-credit">
-          Designed and Powered by by{" "}
+          Designed and Powered by{" "}
           <a
             href="https://rakvih.in/"
             target="_blank"

@@ -81,7 +81,7 @@ export default function Header() {
             className="logo-img"
           />
           <span className="brand-name">
-            WeInviteU<small>A LITTLE MORE PERSONAL</small>
+            WeInviteU<small>Making Every Invitation Special</small>
           </span>
         </Link>
 

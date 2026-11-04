@@ -3,7 +3,8 @@ import Link from "next/link";
 import { ArrowUpRight, Check, Plus, X } from "lucide-react";
 import { withBundledTemplates } from "@/lib/bundled-templates";
 import { getTemplatePoster } from "@/lib/template-posters";
-import { getTemplatePricing, DEFAULT_TEMPLATE_PRICE } from "@/lib/template-pricing";
+import { getTemplatePricing, DEFAULT_TEMPLATE_PRICE, GST_NOTE, TIER_PRICES, rupees } from "@/lib/template-pricing";
+import { TEMPLATE_TIERS, TIER_DETAILS } from "@/lib/template-tiers";
 import { templateIsVisible } from "@/lib/template-visibility";
 import { supabase } from "@/lib/supabase";
 import { jsonLdHtml } from "@/lib/seo";
@@ -27,7 +28,7 @@ const comparison = [
   { paper: "Weeks of printing and delivery", digital: "Ready in 24 to 48 hours" },
   { paper: "Couriers, postage and hand delivery", digital: "One link, sent anywhere in seconds" },
   { paper: "Every extra card costs more", digital: "Unlimited guests, same price" },
-  { paper: "Separate calls for directions & RSVP", digital: "Map and RSVP built in" },
+  { paper: "Separate calls for directions & replies", digital: "Map and guest replies built in" },
   { paper: "A card that is read once", digital: "An interactive 3D story" },
 ];
 
@@ -62,7 +63,7 @@ export function faqItems(startingPrice: string) {
   return [
     { q: "How do I order an invitation?", a: "Pick a design you love, then tap the WhatsApp button on it or message us from the Contact page. Share your names, date, venue and any photos, and we take care of the rest." },
     { q: "How long does it take?", a: "Most invitations are personalised and delivered within 24 to 48 hours of receiving your details." },
-    { q: "How much does it cost?", a: `Designs start from ${startingPrice}. The price shown on each design is the price you pay — there are no extra charges for sharing with more guests.` },
+    { q: "How much does it cost?", a: `Designs start from ${startingPrice} ${GST_NOTE}. Each collection has one price: ${TEMPLATE_TIERS.map(tier => `${TIER_DETAILS[tier].label} ${rupees(TIER_PRICES[tier])}`).join(", ")}, all plus GST. There are no extra charges for sharing with more guests.` },
     { q: "Can I see a design before I order?", a: "Yes. Every design in our collection can be previewed live in your browser, exactly as your guests will experience it." },
     { q: "Will it work for guests who are not tech-savvy?", a: "It is just a link. Guests tap it in WhatsApp, Instagram, SMS or email and it opens in their browser — nothing to download or install." },
     { q: "Can I add our photos and personal details?", a: "Of course. We personalise your names, dates, venue, timings and photos so the invitation tells your story, not a template’s." },

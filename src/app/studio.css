@@ -1694,14 +1694,28 @@ em {
 .brand-name {
   line-height: 1.15;
 }
-.brand-name small {
+/* The one-liner under the name, in the header and the footer: gold italic serif, clear at small sizes. */
+.brand-name small,
+.footer-wordmark-name small {
   display: block;
-  font:
-    7px/1.5 Arial,
-    sans-serif;
-  letter-spacing: 1.9px;
-  color: #7a8275;
-  margin-top: 6px;
+  margin-top: 4px;
+  font: italic 500 12.5px/1.25 Georgia, "Times New Roman", serif;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  white-space: nowrap;
+  color: #f1cf8e;
+  background: linear-gradient(100deg, #f7e3b5, #e2ac62 55%, #f3d49b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 1;
+  text-shadow: none;
+}
+@media (max-width: 1100px) {
+  .brand-name small { font-size: 11px; }
+}
+@media (max-width: 520px) {
+  .brand-name small { margin-top: 2px; font-size: 10px; letter-spacing: 0.1px; }
 }
 
 .studio-hero {
@@ -5750,6 +5764,12 @@ em {
   font: 10px Arial;
   color: var(--gold);
 }
+/* The one-liner sits under the name (styled with the header's, above). */
+.footer-wordmark-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
 .footer-brand > p {
   font-size: 13px;
   line-height: 1.8;
@@ -7553,19 +7573,6 @@ em {
   background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.15), rgba(0, 0, 0, 0.5));
   overflow: hidden;
 }
-.home-tmpl-badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  font: 600 7px monospace;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  background: rgba(20, 20, 20, 0.8);
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  padding: 5px 9px;
-  z-index: 3;
-}
 .home-tmpl-phone {
   width: 180px;
   height: 360px;
@@ -7692,9 +7699,8 @@ em {
   font-weight: 600;
   letter-spacing: -0.4px;
   margin: 0 0 3px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
   transition: color 0.2s ease;
 }
 .home-tmpl-info p {
@@ -7761,6 +7767,29 @@ em {
   gap: 8px;
   flex-shrink: 0;
   margin-top: 2px;
+}
+/* The card's one action: the eye and the word "Preview" in a single pill. */
+.round-link.home-tmpl-preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: auto;
+  height: 40px;
+  padding: 0 17px 0 15px;
+  border-radius: 999px;
+  font: 600 13px/1 var(--sans);
+  letter-spacing: 0.1px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+/* Small phones: the button sits beside the name and the price runs full width beneath, on one line. */
+@media (max-width: 400px) {
+  .home-tmpl-info { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 12px; }
+  .home-tmpl-meta { display: contents; }
+  .home-tmpl-info-link { grid-column: 1; align-self: end; }
+  .home-tmpl-meta > p { grid-column: 1; align-self: start; }
+  .home-tmpl-btns { grid-column: 2; grid-row: 1 / span 2; align-self: center; margin-top: 0; }
+  .home-tmpl-price-row { grid-column: 1 / -1; }
 }
 .home-wa-icon {
   border: 1px solid rgba(37, 211, 102, 0.35);
@@ -8131,12 +8160,6 @@ em {
 .home-band-peach .home-tmpl-stage {
   background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.2), rgba(246, 238, 227, 0.95)), #f6ede1;
   border: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.home-band-peach .home-tmpl-badge {
-  background: #18120a;
-  color: #fae29c;
-  border: 1px solid #d4af37;
 }
 
 .home-band-peach .home-tmpl-info h3 {
