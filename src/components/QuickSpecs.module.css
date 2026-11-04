@@ -52,7 +52,11 @@
 
 @media (max-width: 768px) {
   .specsRow {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .specCard:last-child {
+    grid-column: 1 / -1;
   }
 }
 

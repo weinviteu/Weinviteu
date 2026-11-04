@@ -103,4 +103,12 @@
   .banner[data-variant='story'] .arch { display: none; }
   .banner[data-variant='story'] .caption, .banner[data-variant='contact'] .caption { display: none; }
   .banner[data-variant='contact'] .visual { height: 250px; }
+  .banner[data-variant='collection'] .visual, .banner[data-variant='story'] .visual { display: none; }
+  .banner[data-variant='collection'] .inner { padding-bottom: 22px; }
+  .banner[data-variant='story'] .inner { padding-bottom: 16px; }
+  .banner[data-variant='story'] .crumbs { margin-bottom: 14px; }
+  .banner[data-variant='story'] .eyebrow { margin-bottom: 12px; }
+  .banner[data-variant='story'] .copy h1 { font-size: clamp(28px, 7vw, 36px); }
+  .banner[data-variant='story'] .description { margin-top: 10px; font-size: 12.5px; line-height: 1.65; }
+  .banner[data-variant='story'] .signature { margin-top: 10px; }
 }
