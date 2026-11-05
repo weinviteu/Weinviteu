@@ -133,6 +133,7 @@
   let previousScrollTime = 0;
   const pausedScrollers = new WeakSet();
   let scrollPaused = false;
+  let scrollCarry = 0;
   function stepScroll(time) {
     const elapsed = previousScrollTime ? Math.min(time - previousScrollTime, 50) : 16.67;
     previousScrollTime = time;
@@ -143,12 +144,25 @@
     // Only vertical scroll if the document is genuinely scrollable (traditional web page)
     if (maxScroll > 120 && !document.body.style.overflow?.includes("hidden")) {
       if (!scrollPaused) {
-        window.scrollBy({ top: elapsed * 0.09, behavior: "auto" });
+        // Whole, even steps (one pixel per screen frame, about 60px a second): fractional amounts were
+        // rounded to 1px, 2px, 1px, 2px…, which made scroll-linked motion (sideways galleries) judder.
+        scrollCarry += Math.max(1, Math.round(elapsed / 16.67)) * (60 / 60);
+        const stepPx = Math.floor(scrollCarry);
+        scrollCarry -= stepPx;
+        if (stepPx) window.scrollBy({ top: stepPx, behavior: "auto" });
         if (window.scrollY >= maxScroll - 6) {
           scrollPaused = true;
+          // Loop back like a film: fade out, return to the start in one step, fade in. Smoothly scrolling
+          // back up would replay every scroll animation in reverse at speed.
           setTimeout(() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            setTimeout(() => { scrollPaused = false; }, 2200);
+            const root = document.documentElement;
+            root.style.transition = "opacity .6s ease";
+            root.style.opacity = "0";
+            setTimeout(() => {
+              window.scrollTo({ top: 0, behavior: "auto" });
+              setTimeout(() => { root.style.opacity = "1"; }, 120);
+              setTimeout(() => { root.style.transition = ""; scrollPaused = false; }, 1400);
+            }, 650);
           }, 2500);
         }
       }

@@ -6084,9 +6084,18 @@ em {
   .footer-brand > p {
     max-width: 330px;
   }
+  /* phones: "Let's connect" sits beside "Legal" instead of leaving that half empty */
   .footer-contact {
-    grid-column: 1/-1;
+    grid-column: auto;
+    min-width: 0;
   }
+  .footer-contact > a,
+  .footer-contact > span:not(.demo-contact-label) {
+    align-items: flex-start;
+    overflow-wrap: anywhere;
+    line-height: 1.45;
+  }
+  .footer-contact svg { margin-top: 2px; }
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;

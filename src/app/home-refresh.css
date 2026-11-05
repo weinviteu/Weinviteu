@@ -601,8 +601,8 @@ main.studio-home.home-redesign .home-templates-section .round-link { color: var(
 /* Bring the occasion heading closer to the promise strip above it. */
 .home-redesign .hx-section.hx-occasion-section { padding-top: 14px; }
 
-/* The collection link: a gold button in the right-hand corner just below the designs. */
-.home-redesign .home-templates-more { display: flex; justify-content: flex-end; margin-top: clamp(18px, 2.4vw, 28px); }
+/* The collection link: a gold button centred just below the designs. */
+.home-redesign .home-templates-more { display: flex; justify-content: center; margin-top: clamp(18px, 2.4vw, 28px); }
 .home-redesign .home-templates-more-btn {
   display: inline-flex;
   align-items: center;

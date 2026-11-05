@@ -289,7 +289,9 @@ export default async function Home() {
                     {/* Served with the preview tour, already opened (?open) so it plays from the first inside page, silent and looping. */}
                     <LiveFrame title={`${cinematicTemplate.title} — live preview`}
                       src={`/api/serve-template/${encodeURIComponent(cinematicTemplate.filename.split("/").pop()!)}?autoscroll=1&muted=1&open=1`}
-                      poster={getTemplatePoster(cinematicTemplate.filename)} loading="lazy" scrolling="no" tabIndex={-1}
+                      // While it loads, show the opened first page (not the closed envelope), and start just before the tile scrolls into view.
+                      poster={cinematicTemplate.filename === "wedding-premium-cinematic.html" ? "/images/cinematic-live-poster.webp" : getTemplatePoster(cinematicTemplate.filename)}
+                      preloadMargin="600px 0px" loading="eager" scrolling="no" tabIndex={-1}
                       sandbox="allow-scripts allow-forms allow-popups allow-modals" allow="autoplay" />
                     <span className="hx-cinematic-chip" aria-hidden="true"><i />Live preview</span>
                   </Link>

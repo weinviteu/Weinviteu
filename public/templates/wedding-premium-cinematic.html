@@ -3246,7 +3246,8 @@ Dress code: ${en(e.dress)}`;
     window.addEventListener('load', () => ScrollTrigger.refresh());
 
     const skipGate = params.has('open');
-    runLoader().then(() => {
+    // ?open starts on the first inside page, so there is no loading screen to wait for
+    (skipGate ? Promise.resolve() : runLoader()).then(() => {
       if (skipGate) {
         $('#loader').remove();
         gateOpened = true;

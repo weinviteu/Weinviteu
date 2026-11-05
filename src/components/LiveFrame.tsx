@@ -27,9 +27,10 @@ function release(id: number) {
   fill();
 }
 
-type Props = IframeHTMLAttributes<HTMLIFrameElement> & { title: string; label?: string; poster?: string | null; hero?: boolean };
+type Props = IframeHTMLAttributes<HTMLIFrameElement> & { title: string; label?: string; poster?: string | null; hero?: boolean;
+  /** Start loading this far before the frame scrolls into view (CSS margin, e.g. "600px 0px"). */ preloadMargin?: string };
 
-export default function LiveFrame({ label, title, poster, hero = false, ...iframeProps }: Props) {
+export default function LiveFrame({ label, title, poster, hero = false, preloadMargin = "0px", ...iframeProps }: Props) {
   const box = useRef<HTMLDivElement>(null);
   const id = useRef(-1);
   const [live, setLive] = useState(false);
@@ -62,7 +63,7 @@ export default function LiveFrame({ label, title, poster, hero = false, ...ifram
     const observer = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
       sync();
-    }, { rootMargin: "0px", threshold: 0.1 });
+    }, { rootMargin: preloadMargin, threshold: preloadMargin === "0px" ? 0.1 : 0 });
     document.addEventListener("visibilitychange", sync);
     if (box.current) observer.observe(box.current);
     return () => {
@@ -73,7 +74,7 @@ export default function LiveFrame({ label, title, poster, hero = false, ...ifram
       slots.heroes.delete(me);
       release(me);
     };
-  }, [hero, poster]);
+  }, [hero, poster, preloadMargin]);
 
   return (
     <div ref={box} className="live-frame">

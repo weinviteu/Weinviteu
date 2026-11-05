@@ -110,9 +110,6 @@ export default function Footer() {
               <span>
                 <MapPin size={14} /> {settings.location}
               </span>
-              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-                <Instagram size={14} /> {INSTAGRAM_HANDLE}
-              </a>
             </>
           ) : (
             <span style={{ fontSize: "13px", opacity: 0.5 }}>Loading contact details…</span>
