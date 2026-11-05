@@ -67,7 +67,7 @@ export default function Footer() {
           <span className="footer-signoff">
             <Heart size={13} /> Made for moments that matter.
           </span>
-          <a className="footer-instagram" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label={`Follow WeInviteU on Instagram, ${INSTAGRAM_HANDLE}`}>
+          <a className="footer-instagram footer-instagram-brand" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label={`Follow WeInviteU on Instagram, ${INSTAGRAM_HANDLE}`}>
             <span className="footer-instagram-icon" aria-hidden="true"><Instagram size={18} strokeWidth={1.9} /></span>
             <span className="footer-instagram-text">
               <small>Follow us on Instagram</small>
@@ -95,6 +95,14 @@ export default function Footer() {
           <Link href="/privacy">Privacy Policy</Link>
           <Link href="/terms">Terms & Conditions</Link>
           <Link href="/contact">Support</Link>
+          {/* Phones: Instagram sits here, filling the column beside "Let's connect" */}
+          <a className="footer-instagram footer-instagram-legal" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label={`Follow WeInviteU on Instagram, ${INSTAGRAM_HANDLE}`}>
+            <span className="footer-instagram-icon" aria-hidden="true"><Instagram size={16} strokeWidth={1.9} /></span>
+            <span className="footer-instagram-text">
+              <small>Follow us</small>
+              {INSTAGRAM_HANDLE}
+            </span>
+          </a>
         </nav>
         <div className="footer-column footer-contact">
           <h2>Let&apos;s connect</h2>

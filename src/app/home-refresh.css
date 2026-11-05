@@ -581,10 +581,15 @@ main.studio-home.home-redesign .home-templates-section .round-link { color: var(
   .home-redesign .hx-more-chips { grid-template-columns: 1fr; }
   .home-redesign .hx-more-chip { padding: 8px 0; font-size: 14px; }
   .home-redesign .hx-more-art { top: -12%; right: -38%; width: 120%; }
-  .home-redesign .hx-bento { grid-template-columns: 1fr; }
-  .home-redesign .hx-bento-hero { grid-column: auto; grid-template-columns: 1fr; padding: 26px 26px 0; }
+  /* phones: the cinematic tile on top, then the four features as a 2 × 2 set of cards */
+  .home-redesign .hx-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .home-redesign .hx-bento-hero { grid-column: 1 / -1; grid-template-columns: 1fr; padding: 26px 26px 0; }
   .home-redesign .hx-bento-phone { width: 170px; margin-bottom: -40px; }
-  .home-redesign .hx-feature { padding: 22px; }
+  .home-redesign .hx-feature { padding: 16px 14px; border-radius: 18px; }
+  .home-redesign .hx-feature-icon { width: 38px; height: 38px; margin-bottom: 12px; border-radius: 12px; }
+  .home-redesign .hx-feature-icon svg { width: 17px; height: 17px; }
+  .home-redesign .hx-feature h3 { margin-bottom: 6px; font-size: 16.5px; line-height: 1.25; }
+  .home-redesign .hx-feature p { font-size: 12.5px; line-height: 1.5; }
   .home-redesign .hx-versus-card { padding: 24px; }
   .home-redesign .hx-faq { padding: 4px 18px; }
   .home-redesign .hx-faq summary { font-size: 17px; }
@@ -672,8 +677,9 @@ main.studio-home.home-redesign .home-templates-section .round-link { color: var(
   .home-redesign .hx-bento-live .hx-bento-copy { padding-left: clamp(28px, 5vw, 64px); }
 }
 @media (max-width: 560px) {
-  .home-redesign .hx-bento { grid-template-columns: 1fr; }
-  .home-redesign .hx-bento-hero { grid-column: auto; }
+  /* the cinematic tile spans the row; the four features below form a 2 × 2 set of cards */
+  .home-redesign .hx-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .home-redesign .hx-bento-hero { grid-column: 1 / -1; }
   .home-redesign .hx-bento-live { grid-template-columns: 1fr; padding: 0; }
   .home-redesign .hx-bento-live .hx-bento-copy { max-width: none; padding: 28px 24px 26px; }
   .home-redesign .hx-bento-live .hx-cinematic-art { margin: 0; }

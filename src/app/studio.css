@@ -5830,6 +5830,21 @@ em {
 .site-footer a.footer-instagram:hover,
 .site-footer a.footer-instagram:focus-visible { border-color: var(--gold); background: rgba(244, 212, 157, 0.08); color: #fff; }
 .footer-instagram:hover .footer-instagram-arrow { transform: translate(2px, -2px); }
+.site-footer .footer-column > a.footer-instagram-legal { display: none; }
+@media (max-width: 760px) {
+  /* phones: the follow card moves from under the brand to under "Legal" */
+  .footer-instagram-brand { display: none; }
+  .site-footer .footer-column > a.footer-instagram-legal {
+    display: inline-flex;
+    margin-top: 6px;
+    gap: 9px;
+    padding: 6px 12px 6px 6px;
+    font-size: 12.5px;
+    color: #fff4e3;
+  }
+  .footer-instagram-legal .footer-instagram-icon { width: 30px; height: 30px; }
+  .footer-instagram-legal .footer-instagram-text small { font-size: 9px; }
+}
 .footer-column {
   display: flex;
   flex-direction: column;
