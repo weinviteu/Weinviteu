@@ -7,9 +7,10 @@ type Spark = { x: number; y: number; vx: number; vy: number; life: number; decay
 const GOLDS = ["#ffe7ae", "#f4d49d", "#efb79a", "#ffd27a", "#fff4d6"];
 
 /**
- * Slow golden firework bursts and sparkler trails that bloom only in the upper-left and upper-right
- * of the banner, leaving the centre (headline and phones) clear. Narrow screens have no free sides, so none launch there. Pauses off-screen and when hidden;
- * renders nothing for reduced-motion users.
+ * Slow golden firework bursts and sparkler trails.
+ * On wide screens (≥700px) they bloom in the upper-left and upper-right bands.
+ * On mobile (<700px) they burst directly on top of the left and right template cards.
+ * Pauses off-screen and when hidden; renders nothing for reduced-motion users.
  */
 export default function HeroFireworks({ className }: { className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -37,16 +38,52 @@ export default function HeroFireworks({ className }: { className?: string }) {
       const r = canvas.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
       W = r.width; H = r.height; canvas.width = W * dpr; canvas.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
-    // Bursts sit in the outer band on each side; narrow screens get a thinner band and smaller bursts.
+    // On wide screens bursts sit in the outer band on each side.
+    // On mobile (<700px) they burst right on top of the left and right template cards.
+    const isMobile = () => W < 700;
     const band = () => Math.max(70, Math.min(W * 0.2, 300));
+
+    const getMobileCardTarget = (isLeft: boolean) => {
+      const heroEl = canvas.parentElement;
+      if (heroEl) {
+        // Query the left card (--offset: -1) or right card (--offset: 1)
+        const selector = isLeft
+          ? '[data-distance="1"][style*="--offset: -1"], [data-distance="1"][style*="--offset:-1"]'
+          : '[data-distance="1"][style*="--offset: 1"], [data-distance="1"][style*="--offset:1"]';
+        const cardEl = heroEl.querySelector<HTMLElement>(selector);
+        if (cardEl) {
+          const cardRect = cardEl.getBoundingClientRect();
+          const heroRect = heroEl.getBoundingClientRect();
+          const x = cardRect.left + cardRect.width / 2 - heroRect.left;
+          // Burst directly on top of the card (16-30px above card top)
+          const ty = Math.max(H * 0.14, (cardRect.top - heroRect.top) - (16 + Math.random() * 18));
+          return { x, ty };
+        }
+      }
+      // Calculated fallback matching mobile fan geometry:
+      const x = isLeft ? W * 0.19 + (Math.random() - 0.5) * 16 : W * 0.81 + (Math.random() - 0.5) * 16;
+      const ty = H * 0.34 + (Math.random() - 0.5) * 20;
+      return { x, ty };
+    };
+
     const launch = () => {
-      const b = band(), left = side++ % 2 === 0;
-      const x = left ? b * (0.25 + Math.random() * 0.6) : W - b * (0.25 + Math.random() * 0.6);
-      const ty = H * (0.12 + Math.random() * 0.28);
-      rockets.push({ x, y: H * 0.75, ty, vy: -(H * 0.012 + 3), trail: [] });
+      const left = side++ % 2 === 0;
+      let x: number, ty: number;
+      if (isMobile()) {
+        const target = getMobileCardTarget(left);
+        x = target.x;
+        ty = target.ty;
+      } else {
+        const b = band();
+        x = left ? b * (0.25 + Math.random() * 0.6) : W - b * (0.25 + Math.random() * 0.6);
+        ty = H * (0.12 + Math.random() * 0.28);
+      }
+      const startY = Math.min(H * 0.85, Math.max(ty + 170, H * 0.65));
+      rockets.push({ x, y: startY, ty, vy: -(H * 0.012 + 3), trail: [] });
     };
     const explode = (x: number, y: number) => {
-      const scale = Math.min(1, band() / 260), n = 90 + Math.floor(Math.random() * 40);
+      const burstScale = isMobile() ? 0.75 : 1;
+      const scale = Math.min(1, band() / 260) * burstScale, n = (isMobile() ? 65 : 90) + Math.floor(Math.random() * 35);
       // A soft flash where the shell bursts.
       flashes.push({ x, y, life: 1 });
       for (let i = 0; i < n; i++) {
@@ -60,7 +97,10 @@ export default function HeroFireworks({ className }: { className?: string }) {
     const tick = (t: number) => {
       raf = requestAnimationFrame(tick);
       if (!visible || document.hidden) return;
-      if (t > nextBurst && W >= 700) { launch(); nextBurst = t + 1100 + Math.random() * 1100; }
+      if (t > nextBurst) {
+        launch();
+        nextBurst = t + (isMobile() ? 1300 + Math.random() * 1000 : 1100 + Math.random() * 1100);
+      }
       ctx.clearRect(0, 0, W, H);
       ctx.globalCompositeOperation = "lighter";
       for (let i = rockets.length - 1; i >= 0; i--) {

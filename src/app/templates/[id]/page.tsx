@@ -147,11 +147,9 @@ export default async function TemplateDetailPage({ params }: PageProps) {
           {/* Right: Overview, Price Box, and Direct Actions */}
           <div className={styles.overviewCol}>
             <div className={styles.badgeRow}>
-              <span className={`${styles.badgePill} ${styles.desktopOnly}`}>{template.badge || "EXCLUSIVE"}</span>
               <span className={styles.tierPill}>{tier.label} collection</span>
               <span className={styles.categoryPill}>{template.category}</span>
-              <span className={`${styles.categoryPill} ${styles.desktopOnly}`}>✦ 3D Interactive</span>
-              {walkthrough.hasAudio && <span className={styles.categoryPill}>🎵 Audio<span className={styles.desktopOnly}> supported</span></span>}
+              {walkthrough.hasAudio && <span className={styles.categoryPill}>🎵 Audio</span>}
             </div>
 
             <h1 className={styles.templateTitle}>

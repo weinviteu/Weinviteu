@@ -6,15 +6,18 @@ import Link from "next/link";
 import {
   ArrowUpRight, Sparkles, MapPin, CalendarCheck, Timer, Music2, Smartphone,
   Clock, Users, LayoutGrid, Check, Search, MessageCircle, Send,
+  Code2, Cpu, ShoppingCart, Briefcase, Building2, Megaphone, GraduationCap,
 } from "lucide-react";
 import TemplateCard from "@/components/TemplateCard";
+import LiveFrame from "@/components/LiveFrame";
 import HeroCategoryShowcase from "@/components/HeroCategoryShowcase";
 import { Faq, WhyDigital } from "@/components/home/SharedSections";
 import RevealEnvelope from "@/components/home/RevealEnvelope";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { getTemplatePoster } from "@/lib/template-posters";
-import { categoryPath, getTemplateUrl } from "@/lib/template-url";
+import { categoryPath, getTemplateUrl, templatePath } from "@/lib/template-url";
 import { getTemplatePricing, DEFAULT_TEMPLATE_PRICE, GST_NOTE } from "@/lib/template-pricing";
+import { getTemplateTier } from "@/lib/template-tiers";
 import { templateIsVisible } from "@/lib/template-visibility";
 import { supabase } from "@/lib/supabase";
 
@@ -28,28 +31,32 @@ const rawOccasions = [
     title: 'Weddings',
     category: 'Wedding',
     description: 'Grand palace mandaps, floral romance, and breathtaking ceremony reveals.',
-    bg: '/images/occasion-wedding.webp',
+    bg: '/images/occasion-wedding-hands.webp',
+    pos: '46% 50%',
   },
   {
     badge: 'Milestone & Fun',
     title: 'Birthdays',
     category: 'Birthday',
     description: 'Champagne flutes, sparkling fairy lights, and unforgettable party moments.',
-    bg: '/images/occasion-birthday.webp',
+    bg: '/images/occasion-birthday-cake.webp',
+    pos: '68% 55%',
   },
   {
     badge: 'Sweet Beginnings',
     title: 'Baby Showers',
     category: 'Baby Shower',
     description: 'Pastel floral cradles, golden stars, and heartfelt welcomes for your little one.',
-    bg: '/images/occasion-babyshower.webp',
+    bg: '/images/occasion-babyshower-cradle.webp',
+    pos: '50% 88%',
   },
   {
     badge: 'Sacred Rituals',
     title: 'Traditional',
     category: 'Traditional',
     description: 'Temple courtyard pooja, Griha Pravesh, marigold rangolis, and brass diya rituals.',
-    bg: '/images/occasion-traditional.webp',
+    bg: '/images/occasion-traditional-pooja.webp',
+    pos: '42% 60%',
   },
 ];
 
@@ -65,6 +72,16 @@ const steps = [
   { icon: Search, title: 'Browse & choose', text: 'Explore the collection and preview any design live in your browser — fully interactive, nothing hidden.' },
   { icon: MessageCircle, title: 'Send us your details', text: 'Share your names, dates, venue and photos on WhatsApp. We personalise every detail for you.' },
   { icon: Send, title: 'Share & celebrate', text: 'Receive your own invitation link within 24 to 48 hours and send it to every guest, wherever they are.' },
+];
+
+const rakvihCapabilities = [
+  { icon: Code2, label: "Web & Software Development" },
+  { icon: Cpu, label: "Digital Solutions & Technology" },
+  { icon: ShoppingCart, label: "E-commerce & Online Platforms" },
+  { icon: Briefcase, label: "Business Consulting & Solutions" },
+  { icon: Building2, label: "Construction & Development" },
+  { icon: Megaphone, label: "Digital Marketing & Branding" },
+  { icon: GraduationCap, label: "Training & Development" },
 ];
 
 function SectionHead({ eyebrow, title, accent, lede, center = false, children }: {
@@ -116,6 +133,10 @@ export default async function Home() {
     : Number(DEFAULT_TEMPLATE_PRICE);
   const startingPrice = `₹${lowestPrice.toLocaleString('en-IN')}`;
 
+  // The "cinematic opening" tile plays a luxury wedding invitation on a loop (the cinematic one when available).
+  const luxuryWeddings = templatesList.filter(t => getTemplateTier(t) === 'luxury' && t.category?.trim().toLowerCase() === 'wedding');
+  const cinematicTemplate = luxuryWeddings.find(t => t.filename === 'wedding-premium-cinematic.html') ?? luxuryWeddings[0];
+
   const promises = [
     { icon: LayoutGrid, value: `${templatesList.length}+`, label: 'Live 3D designs' },
     { icon: Clock, value: '24–48 hrs', label: 'Personalised & delivered' },
@@ -133,6 +154,7 @@ export default async function Home() {
           title: template.title,
           src: getTemplateUrl(template.filename),
           poster: getTemplatePoster(template.filename),
+          detailUrl: templatePath(template),
         }))
       )} />
 
@@ -161,7 +183,7 @@ export default async function Home() {
           <div className="hx-occasions">
             {occasionsList.map((o) => (
               <Link key={o.category} href={categoryPath(o.category)} className="hx-occasion">
-                <img src={o.bg} alt="" loading="lazy" />
+                <img src={o.bg} alt="" loading="lazy" style={"pos" in o && o.pos ? { objectPosition: o.pos } : undefined} />
                 <span className="hx-occasion-badge">{o.badge}</span>
                 <span className="hx-occasion-arrow" aria-hidden="true"><ArrowUpRight size={16} /></span>
                 <div className="hx-occasion-body">
@@ -172,14 +194,29 @@ export default async function Home() {
             ))}
             {otherCategories.length > 0 && (
               <div className="hx-occasion hx-occasion-more">
-                <p className="hx-eyebrow">Also designing for</p>
-                <ul>
-                  {otherCategories.map(name => (
-                    <li key={name}>
-                      <Link href={categoryPath(name)}>{name} <ArrowUpRight size={14} /></Link>
-                    </li>
-                  ))}
-                </ul>
+                <img src="/images/occasion-more-collage.webp" alt="" loading="lazy" />
+                <span className="hx-occasion-badge">
+                  <Sparkles size={11} style={{ display: "inline-block", marginRight: 5, verticalAlign: "-1px" }} />
+                  Bespoke & More
+                </span>
+                <Link href="/templates" className="hx-occasion-arrow" aria-label="Explore all occasion templates">
+                  <ArrowUpRight size={16} />
+                </Link>
+
+                <div className="hx-occasion-more-body">
+                  <div className="hx-occasion-more-head">
+                    <p className="hx-eyebrow">Also designing for</p>
+                    <h3>Special Milestones</h3>
+                  </div>
+                  <div className="hx-more-chips">
+                    {otherCategories.map(name => (
+                      <Link key={name} href={categoryPath(name)} className="hx-more-chip">
+                        <span>{name}</span>
+                        <ArrowUpRight size={13} className="hx-more-chip-arrow" />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -211,15 +248,26 @@ export default async function Home() {
             lede="Each design is a small website of its own, with everything your guests need in one beautiful place." />
 
           <div className="hx-bento">
-            <article className="hx-bento-hero">
+            <article className={`hx-bento-hero${cinematicTemplate ? " hx-bento-live" : ""}`}>
               <div className="hx-bento-copy">
                 <span className="hx-feature-icon" aria-hidden="true"><Sparkles size={20} strokeWidth={1.6} /></span>
                 <h3>A cinematic opening</h3>
                 <p>Doors part, curtains rise, seals break. Guests open your invitation rather than just glance at it.</p>
-                <Link href="/templates" className="hx-text-link hx-text-link-light">See it in action <ArrowUpRight size={15} /></Link>
+                <Link href={cinematicTemplate ? templatePath(cinematicTemplate) : "/templates"} className="hx-text-link hx-text-link-light">See it in action <ArrowUpRight size={15} /></Link>
               </div>
-              <div className="hx-cinematic-art">
-                <img src="/images/cinematic-opening.webp" alt="Golden palace doors opening onto a glowing celebration courtyard" width={800} height={1200} loading="lazy" />
+              <div className={`hx-cinematic-art${cinematicTemplate ? " hx-cinematic-live" : ""}`}>
+                {cinematicTemplate ? (
+                  <Link href={templatePath(cinematicTemplate)} className="hx-cinematic-link" aria-label={`Open ${cinematicTemplate.title}`}>
+                    {/* Served with the preview tour, already opened (?open) so it plays from the first inside page, silent and looping. */}
+                    <LiveFrame title={`${cinematicTemplate.title} — live preview`}
+                      src={`/api/serve-template/${encodeURIComponent(cinematicTemplate.filename.split("/").pop()!)}?autoscroll=1&muted=1&open=1`}
+                      poster={getTemplatePoster(cinematicTemplate.filename)} loading="lazy" scrolling="no" tabIndex={-1}
+                      sandbox="allow-scripts allow-forms allow-popups allow-modals" allow="autoplay" />
+                    <span className="hx-cinematic-chip" aria-hidden="true"><i />Live preview</span>
+                  </Link>
+                ) : (
+                  <img src="/images/cinematic-opening.webp" alt="Golden palace doors opening onto a glowing celebration courtyard" width={800} height={1200} loading="lazy" />
+                )}
               </div>
             </article>
             {insideFeatures.map(({ icon: Icon, title, text }) => (
@@ -302,6 +350,65 @@ export default async function Home() {
                 </a>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 9.5 The company behind WeInviteU ── */}
+      <section className="hx-rakvih-section" aria-labelledby="home-rakvih-title">
+        <span className="hx-rakvih-watermark" aria-hidden="true">RAKVIH</span>
+        <span className="hx-rakvih-glow" aria-hidden="true" />
+        <div className="hx-wrap hx-rakvih-wrap">
+          <div className="hx-rakvih-text">
+            <div className="hx-rakvih-brand">
+              <svg className="hx-rakvih-emblem" viewBox="0 0 64 64" aria-hidden="true">
+                <defs>
+                  <linearGradient id="rakvih-gold" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stopColor="#fbe7b0" /><stop offset=".45" stopColor="#d9a54f" /><stop offset=".75" stopColor="#a8742a" /><stop offset="1" stopColor="#f0cf86" />
+                  </linearGradient>
+                </defs>
+                <circle cx="32" cy="32" r="30" fill="none" stroke="url(#rakvih-gold)" strokeWidth="1.6" />
+                <circle cx="32" cy="32" r="25.5" fill="#1a130d" stroke="url(#rakvih-gold)" strokeWidth=".8" strokeDasharray="1.2 2.6" />
+                <text x="32" y="41.5" textAnchor="middle" fontFamily="Georgia, 'Times New Roman', serif" fontSize="27" fill="url(#rakvih-gold)">R</text>
+                <path d="M32 3.6l1.6 2.4-1.6 2.4-1.6-2.4z M32 55.6l1.6 2.4-1.6 2.4-1.6-2.4z" fill="url(#rakvih-gold)" />
+              </svg>
+              <span className="hx-rakvih-badge">Powered by</span>
+            </div>
+            <h2 id="home-rakvih-title">
+              <span className="hx-rakvih-name">RAKVIH Solutions</span>
+              <span className="hx-rakvih-legal">Private Limited</span>
+            </h2>
+            <p className="hx-rakvih-tagline">
+              <span className="hx-rakvih-rule" aria-hidden="true" />
+              <span>Innovation Behind Every Experience. <em>A Future Together.</em></span>
+            </p>
+            <p className="hx-rakvih-p">
+              WeInviteU is a product of RAKVIH Solutions Private Limited, an Indian company driven by innovation, technology and the ambition to create meaningful digital experiences.
+            </p>
+            <p className="hx-rakvih-p">
+              RAKVIH Solutions brings together technology, creativity and business expertise to develop solutions that make everyday activities smarter and businesses more efficient.
+            </p>
+            <div className="hx-rakvih-action">
+              <a href="https://rakvih.in/" target="_blank" rel="noopener noreferrer" className="hx-rakvih-btn">
+                Visit rakvih.in <ArrowUpRight size={15} />
+              </a>
+            </div>
+          </div>
+
+          <div className="hx-rakvih-capabilities-card">
+            <p className="hx-rakvih-capabilities-label"><span aria-hidden="true" />With capabilities across<span aria-hidden="true" /></p>
+            <ol className="hx-rakvih-capabilities-list">
+              {rakvihCapabilities.map(({ icon: Icon, label }, i) => (
+                <li key={label}>
+                  <span className="hx-rakvih-cap-icon" aria-hidden="true"><Icon size={17} strokeWidth={1.6} /></span>
+                  <span className="hx-rakvih-cap-label">{label}</span>
+                  <span className="hx-rakvih-cap-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                </li>
+              ))}
+            </ol>
+            <p className="hx-rakvih-foot">
+              RAKVIH continues to explore new opportunities, build innovative platforms and create value across diverse industries.
+            </p>
           </div>
         </div>
       </section>

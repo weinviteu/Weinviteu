@@ -1,6 +1,8 @@
 /* ── Templates page ── */
 .templatesPage {
   overflow: hidden;
+  min-height: 100vh;
+  min-height: 100svh;
 }
 
 /* Hero banner */
@@ -391,3 +393,74 @@
 }
 .categoryBar::-webkit-scrollbar { display: none; }
 .categoryBar .categoryPill { flex-shrink: 0; padding: 9px clamp(14px, 1.4vw, 22px); font-size: clamp(12px, 0.95vw, 13px); }
+
+/* ── Catalogue Skeletons ── */
+.skeletonContainer {
+  min-height: 75vh;
+  position: relative;
+  width: 100%;
+}
+
+@keyframes skeletonPulse {
+  0% { opacity: 0.35; }
+  50% { opacity: 0.75; }
+  100% { opacity: 0.35; }
+}
+
+.skeletonPill {
+  width: 100px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  pointer-events: none;
+  animation: skeletonPulse 1.6s ease-in-out infinite;
+}
+
+.skeletonTierCard {
+  height: 52px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  pointer-events: none;
+  animation: skeletonPulse 1.6s ease-in-out infinite;
+}
+
+.skeletonCard {
+  border-radius: 20px;
+  background: #110e0c;
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 480px;
+  animation: skeletonPulse 1.6s ease-in-out infinite;
+}
+
+.skeletonPhone {
+  flex: 1;
+  border-radius: 16px;
+  background: rgba(212, 175, 55, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.08);
+  min-height: 380px;
+}
+
+.skeletonTextRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 4px 0;
+}
+
+.skeletonTextTitle {
+  width: 55%;
+  height: 16px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.skeletonTextPrice {
+  width: 25%;
+  height: 16px;
+  border-radius: 6px;
+  background: rgba(212, 175, 55, 0.2);
+}

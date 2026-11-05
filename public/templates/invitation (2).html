@@ -420,27 +420,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 #snd .eqs i{width:2px;height:40%;background:#f3d58c;border-radius:1px}
 #snd.on .eqs i{animation:eq .8s ease-in-out infinite}#snd.on .eqs i:nth-child(2){animation-delay:.2s}#snd.on .eqs i:nth-child(3){animation-delay:.4s}
 #snd:not(.on) .eqs{opacity:0}
-.langw{position:fixed;z-index:7;left:calc(14px + env(safe-area-inset-left,0px));top:calc(14px + env(safe-area-inset-top,0px))}
-#langBtn{font:inherit;display:flex;align-items:center;gap:.5em;height:44px;padding:0 .9em 0 .35em;border-radius:40px;cursor:pointer;color:#fff5de;font-size:15px;
-  background:linear-gradient(135deg,rgba(60,20,30,.55),rgba(28,15,6,.5));border:1px solid rgba(255,228,170,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 4px 14px rgba(0,0,0,.25)}
-#langBtn:focus-visible,.langm button:focus-visible,.ib:focus-visible{outline:2px solid #ffd98a;outline-offset:3px}
-.gly{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:18px;color:#3a1a08;font-family:"Tiro Devanagari Hindi","Noto Serif Tamil","Noto Serif Telugu","Noto Serif Kannada","Noto Serif Malayalam","Noto Serif Bengali",serif;
-  background:radial-gradient(circle at 35% 30%,#fff3cc,#e2b862 55%,#a8792f);box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 0 10px rgba(240,200,110,.5)}
-.gly.flip{animation:gflip .6s cubic-bezier(.3,1.4,.5,1)}
-@keyframes gflip{0%{transform:rotateY(0)}50%{transform:rotateY(90deg)}100%{transform:rotateY(0)}}
-.chev{width:12px;height:12px;fill:none;stroke:#f3d58c;stroke-width:1.6;transition:transform .3s}
-#langBtn[aria-expanded="true"] .chev{transform:rotate(180deg)}
-.langm{position:absolute;left:0;top:52px;width:min(320px,calc(100vw - 28px));display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px;border-radius:18px;
-  background:linear-gradient(160deg,rgba(255,250,240,.97),rgba(250,236,210,.97));border:1px solid rgba(176,130,56,.5);box-shadow:0 18px 40px rgba(40,10,10,.35);
-  opacity:0;transform:translateY(-8px) scale(.97);transform-origin:top left;pointer-events:none;transition:opacity .3s,transform .35s cubic-bezier(.2,.8,.2,1)}
-.langm.open{opacity:1;transform:none;pointer-events:auto}
-.langm button{font:inherit;display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:.5em .75em;border-radius:12px;border:1px solid transparent;background:transparent;cursor:pointer;color:#5b2f25;text-align:left;
-  font-family:"Cormorant Garamond","Tiro Devanagari Hindi","Noto Serif Tamil","Noto Serif Telugu","Noto Serif Kannada","Noto Serif Malayalam","Noto Serif Bengali",serif;transition:background .25s,border-color .25s}
-.langm button b{font-size:17px;font-weight:600}.langm button small{font-size:12px;font-style:italic;color:#9a6a55}
-.langm button:hover{background:rgba(176,130,56,.12)}
-.langm button[aria-checked="true"]{background:linear-gradient(160deg,#fff4dc,#efd29a);border-color:#b08238}
-.langm .ttl{grid-column:1/-1;font-style:italic;font-size:13px;color:#8a5a4a;padding:0 .3em .2em}
-@media (max-width:600px){#langName{display:none}#langBtn{padding:0 .5em 0 .35em}}
+.ib:focus-visible{outline:2px solid #ffd98a;outline-offset:3px}
 /* while flying between scenes, drop the costly frosted-glass blur so every frame stays light */
 .zooming .glass,.zooming .ui3 *{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 .zooming .ui3 .glass{background:rgba(255,251,245,.9)}
@@ -448,8 +428,6 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 </style>
 </head>
 <body>
-<div class="langw" id="langw"><button id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Choose language"><span class="gly" id="glyph">A</span><span id="langName">English</span><svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3"/></svg></button>
-  <div class="langm" id="langMenu" role="menu"></div></div>
 <div class="ctrl"><button id="replay" class="ib" type="button" aria-label="Replay from the beginning"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="arc" d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path class="tip" d="M19.8 3.8v3.6h-3.6"/><circle class="dot" cx="12" cy="12" r="1.6"/></svg></button>
   <button id="snd" class="ib on" type="button" aria-pressed="true" aria-label="Sound on"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/><path class="w1" d="M15 9.2a4 4 0 0 1 0 5.6"/><path class="w2" d="M17.6 6.6a7.6 7.6 0 0 1 0 10.8"/><path class="x" d="M16 9.5l5 5M21 9.5l-5 5"/></svg><span class="eqs"><i></i><i></i><i></i></span></button></div>
 
@@ -482,8 +460,8 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
   <div class="scrim"></div>
   <canvas class="fx" id="fx1"></canvas>
   <div class="welcome" id="welcome">
-    <div class="om">॥ श्री गणेशाय नमः ॥</div>
-    <div class="wt" data-en="Wedding Invitation" data-hi="विवाह निमंत्रण">Wedding Invitation</div>
+    <div class="om">Shri Ganeshaya Namah</div>
+    <div class="wt" data-en="Wedding Invitation">Wedding Invitation</div>
     <svg class="ws2" viewBox="0 0 120 12" aria-hidden="true"><path d="M2 6 H48 M72 6 H118" stroke="#f3d58c" stroke-width="1"/><path d="M60 1 L65 6 L60 11 L55 6 Z" fill="#f3d58c"/></svg>
     <div class="ws" data-en="A warm welcome awaits you inside">A warm welcome awaits you inside</div>
   </div>
@@ -547,7 +525,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
       </div>
       <div class="cvenue">
         <svg class="fade" style="--d:2.8s" viewBox="0 0 150 14" aria-hidden="true"><path d="M2 7 H60 M90 7 H148" stroke="#b08238"/><path d="M75 1 L81 7 L75 13 L69 7 Z" fill="none" stroke="#b08238"/></svg>
-        <div class="vl fade soft" style="--d:3s" data-en="request the pleasure of your company at" data-hi="आपकी गरिमामयी उपस्थिति के आकांक्षी">request the pleasure of your company at</div>
+        <div class="vl fade soft" style="--d:3s" data-en="request the pleasure of your company at">request the pleasure of your company at</div>
         <div class="vn fade soft" style="--d:3.2s" id="vName"></div>
         <div class="va fade soft" style="--d:3.4s" id="vAddr"></div>
       </div>
@@ -555,15 +533,15 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
     </div>
     <div class="pg" id="pg4">
       <div class="sd">
-        <div class="t fade soft" style="--d:.2s" data-en="Save the Date" data-hi="शुभ तिथि">Save the Date</div>
+        <div class="t fade soft" style="--d:.2s" data-en="Save the Date">Save the Date</div>
         <div class="day fade soft" style="--d:.6s" id="sdDay"></div>
         <div class="date fade soft" style="--d:.8s" id="sdDate"></div>
         <svg class="fade" style="--d:1s" viewBox="0 0 180 16" aria-hidden="true"><path d="M2 8 H72 M108 8 H178" stroke="#b08238"/><path d="M90 2 L96 8 L90 14 L84 8 Z" fill="none" stroke="#b08238"/></svg>
         <div class="time fade soft" style="--d:1.2s" id="sdTime"></div>
       </div>
       <div class="cd" id="cd"></div>
-      <div class="cdl fade soft" style="--d:2s" id="cdl" data-en="until the pheras begin" data-hi="फेरों में शेष समय">until the pheras begin</div>
-      <div class="mapb fade" style="--d:2.3s"><a id="maplink" target="_blank" rel="noopener" data-en="Open in Maps" data-hi="नक्शे में देखें">Open in Maps</a></div>
+      <div class="cdl fade soft" style="--d:2s" id="cdl" data-en="until the pheras begin">until the pheras begin</div>
+      <div class="mapb fade" style="--d:2.3s"><a id="maplink" target="_blank" rel="noopener" data-en="Open in Maps">Open in Maps</a></div>
     </div>
   </div>
   </div>
@@ -814,7 +792,7 @@ function buildScene2() {
   });
   const split = (id, txt) => { $(id).innerHTML = [...txt].map(c => `<span class="ch">${c === " " ? "&nbsp;" : c}</span>`).join(""); };
   split("#bride", INVITE.bride); split("#groom", INVITE.groom);
-  $("#l1").textContent = INVITE.lineAbove; $("#l2").textContent = INVITE.lineBelow; Object.assign($("#l1").dataset, { en: INVITE.lineAbove, hi: "अपने परिवारों के आशीर्वाद सहित" }); Object.assign($("#l2").dataset, { en: INVITE.lineBelow, hi: "आपको अपने विवाह में सादर आमंत्रित करते हैं" }); $("#dt").textContent = INVITE.date;
+  $("#l1").textContent = INVITE.lineAbove; $("#l2").textContent = INVITE.lineBelow; Object.assign($("#l1").dataset, { en: INVITE.lineAbove }); Object.assign($("#l2").dataset, { en: INVITE.lineBelow }); $("#dt").textContent = INVITE.date;
   $("#names").setAttribute("aria-label", `${INVITE.lineAbove}, ${INVITE.bride} and ${INVITE.groom} ${INVITE.lineBelow}, ${INVITE.date}`);
 }
 
@@ -823,30 +801,30 @@ function buildScene2() {
    MORE DETAILS (events, story, RSVP, guest info) — edit freely
    ============================================================ */
 const EVENTS = [
-  { key: "haldi", name: "Haldi", hi: "हल्दी", tag: "The Rang Leela", date: "Monday, 8 February 2027", time: "10:00 am onwards", venue: "Zenana Mahal Terrace",
-    dress: "Sunshine yellows & marigold", dressHi: "पीले और गेंदा रंग", sw: ["#f6c338", "#f29b1d", "#fff3c4"] },
-  { key: "mehendi", name: "Mehendi", hi: "मेहंदी", tag: "The Mehendi Bazaar", date: "Monday, 8 February 2027", time: "4:00 pm onwards", venue: "Durbar Courtyard",
-    dress: "Greens & jewel tones", dressHi: "हरे और रत्न रंग", sw: ["#2f6b3a", "#7bb661", "#c9a24a"] },
-  { key: "sangeet", name: "Sangeet", hi: "संगीत", tag: "A Starlit Promise", date: "Tuesday, 9 February 2027", time: "7:30 pm onwards", venue: "The Moonlit Lawns",
-    dress: "Shimmer, sequins & metallics", dressHi: "चमक और धातुई रंग", sw: ["#1f2a5c", "#c0c0d8", "#d4af37"] },
-  { key: "wedding", name: "Wedding", hi: "विवाह", tag: "The Anant Milan", date: "Wednesday, 10 February 2027", time: "Baraat 5:00 pm, Pheras 7:00 pm", venue: "Sheesh Mahal Lawns",
-    dress: "Traditional Indian attire", dressHi: "पारंपरिक भारतीय परिधान", sw: ["#a3162a", "#d4a24c", "#f4e1c1"] },
-  { key: "reception", name: "Reception", hi: "रिसेप्शन", tag: "Chandni Raat", date: "Thursday, 11 February 2027", time: "8:00 pm onwards", venue: "The Rooftop Terrace",
-    dress: "Black tie, Indian or Western", dressHi: "ब्लैक टाई, भारतीय या पश्चिमी", sw: ["#1c1c1c", "#e8d9c0", "#b98a35"] }
+  { key: "haldi", name: "Haldi", tag: "The Rang Leela", date: "Monday, 8 February 2027", time: "10:00 am onwards", venue: "Zenana Mahal Terrace",
+    dress: "Sunshine yellows & marigold", sw: ["#f6c338", "#f29b1d", "#fff3c4"] },
+  { key: "mehendi", name: "Mehendi", tag: "The Mehendi Bazaar", date: "Monday, 8 February 2027", time: "4:00 pm onwards", venue: "Durbar Courtyard",
+    dress: "Greens & jewel tones", sw: ["#2f6b3a", "#7bb661", "#c9a24a"] },
+  { key: "sangeet", name: "Sangeet", tag: "A Starlit Promise", date: "Tuesday, 9 February 2027", time: "7:30 pm onwards", venue: "The Moonlit Lawns",
+    dress: "Shimmer, sequins & metallics", sw: ["#1f2a5c", "#c0c0d8", "#d4af37"] },
+  { key: "wedding", name: "Wedding", tag: "The Anant Milan", date: "Wednesday, 10 February 2027", time: "Baraat 5:00 pm, Pheras 7:00 pm", venue: "Sheesh Mahal Lawns",
+    dress: "Traditional Indian attire", sw: ["#a3162a", "#d4a24c", "#f4e1c1"] },
+  { key: "reception", name: "Reception", tag: "Chandni Raat", date: "Thursday, 11 February 2027", time: "8:00 pm onwards", venue: "The Rooftop Terrace",
+    dress: "Black tie, Indian or Western", sw: ["#1c1c1c", "#e8d9c0", "#b98a35"] }
 ];
 // photos: leave empty to use crops of the couple portrait, or list image URLs / data URIs
 const PHOTOS = [
-  { src: "", size: "cover", pos: "50% 30%", cap: "The day we said yes", hi: "जिस दिन हमने हाँ कहा" },
-  { src: "", size: "230%", pos: "52% 16%", cap: "Just us", hi: "बस हम दोनों" },
-  { src: "", size: "200%", pos: "82% 34%", cap: "Her smile", hi: "उसकी मुस्कान" },
-  { src: "", size: "200%", pos: "22% 22%", cap: "His calm", hi: "उसका सुकून" },
-  { src: "", size: "300%", pos: "46% 50%", cap: "Hand in hand", hi: "हाथों में हाथ" }
+  { src: "", size: "cover", pos: "50% 30%", cap: "The day we said yes" },
+  { src: "", size: "230%", pos: "52% 16%", cap: "Just us" },
+  { src: "", size: "200%", pos: "82% 34%", cap: "Her smile" },
+  { src: "", size: "200%", pos: "22% 22%", cap: "His calm" },
+  { src: "", size: "300%", pos: "46% 50%", cap: "Hand in hand" }
 ];
 const STORY = [
-  { year: "2019", title: "First hello", hi: "पहली मुलाक़ात", text: "A chance meeting at a friend's Diwali party in Delhi.", photo: 1 },
-  { year: "2021", title: "Miles apart", hi: "दूरियाँ", text: "Late-night calls between Mumbai and Bengaluru kept us close.", photo: 3 },
-  { year: "2025", title: "The proposal", hi: "प्रस्ताव", text: "A sunset by Lake Pichola and one very nervous question.", photo: 2 },
-  { year: "2027", title: "Forever begins", hi: "हमेशा के लिए", text: "Udaipur, surrounded by everyone we love.", photo: 0 }
+  { year: "2019", title: "First hello", text: "A chance meeting at a friend's Diwali party in Delhi.", photo: 1 },
+  { year: "2021", title: "Miles apart", text: "Late-night calls between Mumbai and Bengaluru kept us close.", photo: 3 },
+  { year: "2025", title: "The proposal", text: "A sunset by Lake Pichola and one very nervous question.", photo: 2 },
+  { year: "2027", title: "Forever begins", text: "Udaipur, surrounded by everyone we love.", photo: 0 }
 ];
 const MUSIC = { src: "", title: "Raag Yaman, a soft evening melody" };   // put an audio data URI in src to use your own song
 const RSVP = { whatsapp: "919000000000", email: "rsvp@aanya-vihaan.in", by: "10 January 2027" };
@@ -865,7 +843,7 @@ const INFO = {
 };
 
 const THANKS = {
-  subtitle: "धन्यवाद · நன்றி · ধন্যবাদ",
+  subtitle: "With heartfelt thanks",
   lead: "Thank you for being part of our story. Every blessing, every smile and every mile travelled has made this celebration whole.",
   notes: [
     ["To our parents,", "for every sacrifice, every prayer and every quiet blessing that brought us to this day. Everything we are began with you."],
@@ -880,66 +858,13 @@ const THANKS = {
 
 /* ---------- language: English + Hindi ---------- */
 /* ---------- languages of India ---------- */
-const LANGS = [["en", "English", "English", "A"], ["hi", "हिन्दी", "Hindi", "अ"], ["ta", "தமிழ்", "Tamil", "அ"], ["te", "తెలుగు", "Telugu", "అ"],
-  ["kn", "ಕನ್ನಡ", "Kannada", "ಅ"], ["ml", "മലയാളം", "Malayalam", "അ"], ["bn", "বাংলা", "Bengali", "অ"], ["mr", "मराठी", "Marathi", "म"]];
-const DICT = (() => { const rows = {
-  "Wedding Invitation": "विवाह निमंत्रण|திருமண அழைப்பிதழ்|వివాహ ఆహ్వానం|ವಿವಾಹ ಆಮಂತ್ರಣ|വിവാഹ ക്ഷണം|বিবাহের আমন্ত্রণ|लग्नपत्रिका",
-  "A warm welcome awaits you inside": "भीतर आपका हार्दिक स्वागत है|உள்ளே உங்களுக்கு அன்பான வரவேற்பு காத்திருக்கிறது|లోపల మీకు హృదయపూర్వక స్వాగతం|ಒಳಗೆ ನಿಮಗೆ ಆತ್ಮೀಯ ಸ್ವಾಗತ|അകത്ത് നിങ്ങൾക്ക് ഹൃദ്യമായ സ്വാഗതം|ভিতরে আপনার জন্য উষ্ণ অভ্যর্থনা|आत आपले हार्दिक स्वागत आहे",
-  "Drag the golden key to the lock": "सुनहरी चाबी को ताले तक ले जाएँ|தங்கச் சாவியை பூட்டுக்கு இழுக்கவும்|బంగారు తాళంచెవిని తాళం వద్దకు లాగండి|ಚಿನ್ನದ ಕೀಲಿಯನ್ನು ಬೀಗದವರೆಗೆ ಎಳೆಯಿರಿ|സ്വർണ്ണ താക്കോൽ പൂട്ടിലേക്ക് വലിക്കുക|সোনালি চাবিটি তালার কাছে টেনে আনুন|सोनेरी किल्ली कुलुपापर्यंत ओढा",
-  "Together with their families": "अपने परिवारों के आशीर्वाद सहित|குடும்பத்தினரின் ஆசியுடன்|కుటుంబ సభ్యుల ఆశీస్సులతో|ಕುಟುಂಬದವರ ಆಶೀರ್ವಾದದೊಂದಿಗೆ|കുടുംബാംഗങ്ങളുടെ അനുഗ്രഹത്തോടെ|পরিবারের আশীর্বাদে|कुटुंबीयांच्या आशीर्वादाने",
-  "invite you to celebrate their wedding": "आपको अपने विवाह में सादर आमंत्रित करते हैं|தங்கள் திருமணத்திற்கு உங்களை அன்புடன் அழைக்கின்றனர்|తమ వివాహానికి మిమ్మల్ని సాదరంగా ఆహ్వానిస్తున్నారు|ತಮ್ಮ ವಿವಾಹಕ್ಕೆ ನಿಮ್ಮನ್ನು ಆದರದಿಂದ ಆಹ್ವಾನಿಸುತ್ತಾರೆ|തങ്ങളുടെ വിവാഹത്തിലേക്ക് നിങ്ങളെ സ്നേഹപൂർവ്വം ക്ഷണിക്കുന്നു|তাঁদের বিবাহে আপনাকে সাদর আমন্ত্রণ জানাচ্ছেন|त्यांच्या विवाहासाठी आपणास सस्नेह निमंत्रण देत आहेत",
-  "Daughter of": "सुपुत्री|மகள்|కుమార్తె|ಪುತ್ರಿ|മകൾ|কন্যা|कन्या",
-  "Son of": "सुपुत्र|மகன்|కుమారుడు|ಪುತ್ರ|മകൻ|পুত্র|सुपुत्र",
-  "request the pleasure of your company at": "आपकी गरिमामयी उपस्थिति के आकांक्षी|தங்கள் வருகையை அன்புடன் எதிர்பார்க்கிறோம்|మీ రాకను సాదరంగా కోరుతున్నాము|ನಿಮ್ಮ ಆಗಮನವನ್ನು ಆದರದಿಂದ ಬಯಸುತ್ತೇವೆ|നിങ്ങളുടെ സാന്നിധ്യം സ്നേഹപൂർവ്വം പ്രതീക്ഷിക്കുന്നു|আপনার উপস্থিতি সাদরে প্রার্থনা করি|आपल्या उपस्थितीची नम्र विनंती",
-  "Save the Date": "शुभ तिथि|நாளைக் குறித்துக்கொள்ளுங்கள்|తేదీ గుర్తుంచుకోండి|ದಿನಾಂಕ ನೆನಪಿಡಿ|തീയതി ഓർത്തുവയ്ക്കൂ|তারিখটি মনে রাখুন|तारीख लक्षात ठेवा",
-  "until the pheras begin": "फेरों में शेष समय|முகூர்த்தத்திற்கு இன்னும்|ముహూర్తానికి ఇంకా|ಮುಹೂರ್ತಕ್ಕೆ ಇನ್ನೂ|മുഹൂർത്തത്തിന് ഇനി|শুভক্ষণ আসতে বাকি|मुहूर्तासाठी उरलेला वेळ",
-  "Days": "दिन|நாட்கள்|రోజులు|ದಿನಗಳು|ദിവസം|দিন|दिवस", "Hours": "घंटे|மணி|గంటలు|ಗಂಟೆ|മണിക്കൂർ|ঘণ্টা|तास",
-  "Minutes": "मिनट|நிமிடம்|నిమిషాలు|ನಿಮಿಷ|മിനിറ്റ്|মিনিট|मिनिटे", "Seconds": "सेकंड|விநாடி|సెకన్లు|ಸೆಕೆಂಡ್|സെക്കൻഡ്|সেকেন্ড|सेकंद",
-  "Open in Maps": "नक्शे में देखें|வரைபடத்தில் காண்க|మ్యాప్‌లో చూడండి|ನಕ್ಷೆಯಲ್ಲಿ ನೋಡಿ|മാപ്പിൽ കാണുക|মানচিত্রে দেখুন|नकाशात पहा",
-  "The Celebrations": "उत्सव|கொண்டாட்டங்கள்|వేడుకలు|ಸಂಭ್ರಮಗಳು|ആഘോഷങ്ങൾ|উৎসব|सोहळे",
-  "Five gatherings, one joyful week": "पाँच उत्सव, एक आनंदमय सप्ताह|ஐந்து விழாக்கள், ஒரு மகிழ்ச்சியான வாரம்|ఐదు వేడుకలు, ఒక ఆనందకరమైన వారం|ಐದು ಸಮಾರಂಭಗಳು, ಒಂದು ಸಂತಸದ ವಾರ|അഞ്ച് ചടങ്ങുകൾ, ഒരു ആനന്ദവാരം|পাঁচটি অনুষ্ঠান, এক আনন্দময় সপ্তাহ|पाच सोहळे, एक आनंदी आठवडा",
-  "Dress code": "परिधान|உடை|వస్త్రధారణ|ಉಡುಗೆ|വസ്ത്രധാരണം|পোশাক|पोशाख",
-  "Haldi": "हल्दी|மஞ்சள் நீராட்டு|పసుపు|ಅರಿಶಿನ ಶಾಸ್ತ್ರ|ഹൽദി|গায়ে হলুদ|हळद", "Mehendi": "मेहंदी|மெஹந்தி|మెహందీ|ಮೆಹಂದಿ|മെഹന്ദി|মেহেন্দি|मेहंदी",
-  "Sangeet": "संगीत|சங்கீத்|సంగీత్|ಸಂಗೀತ್|സംഗീത്|সঙ্গীত|संगीत", "Wedding": "विवाह|திருமணம்|వివాహం|ವಿವಾಹ|വിവാഹം|বিবাহ|विवाह",
-  "Reception": "रिसेप्शन|வரவேற்பு|రిసెప్షన్|ಆರತಕ್ಷತೆ|സ്വീകരണം|বউভাত|स्वागत समारंभ",
-  "Moments": "यादें|நினைவுகள்|జ్ఞాపకాలు|ನೆನಪುಗಳು|ഓർമ്മകൾ|মুহূর্ত|आठवणी",
-  "Before the big day": "बड़े दिन से पहले|பெருநாளுக்கு முன்|పెళ్లి రోజుకు ముందు|ಮಹಾದಿನದ ಮುನ್ನ|വലിയ ദിവസത്തിന് മുമ്പ്|বিশেষ দিনের আগে|मोठ्या दिवसापूर्वी",
-  "Play our song": "हमारा गीत|எங்கள் பாடல்|మా పాట|ನಮ್ಮ ಹಾಡು|ഞങ്ങളുടെ പാട്ട്|আমাদের গান|आमचे गाणे",
-  "Our Story": "हमारी कहानी|எங்கள் கதை|మా కథ|ನಮ್ಮ ಕಥೆ|ഞങ്ങളുടെ കഥ|আমাদের গল্প|आमची कहाणी",
-  "How two paths became one": "दो राहें कैसे एक हुईं|இரு பாதைகள் ஒன்றான கதை|రెండు దారులు ఒక్కటైన కథ|ಎರಡು ದಾರಿಗಳು ಒಂದಾದ ಕಥೆ|രണ്ട് വഴികൾ ഒന്നായ കഥ|দুটি পথ যেভাবে এক হলো|दोन वाटा एक कशा झाल्या",
-  "Kindly Reply": "कृपया उत्तर दें|தயவுசெய்து பதிலளிக்கவும்|దయచేసి స్పందించండి|ದಯವಿಟ್ಟು ಉತ್ತರಿಸಿ|ദയവായി മറുപടി നൽകുക|অনুগ্রহ করে জানান|कृपया कळवा",
-  "Your full name": "आपका पूरा नाम|உங்கள் முழுப் பெயர்|మీ పూర్తి పేరు|ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು|നിങ്ങളുടെ മുഴുവൻ പേര്|আপনার পুরো নাম|आपले पूर्ण नाव",
-  "Will you be with us?": "क्या आप पधारेंगे?|நீங்கள் வருவீர்களா?|మీరు వస్తారా?|ನೀವು ಬರುವಿರಾ?|നിങ്ങൾ വരുമോ?|আপনি কি আসবেন?|आपण याल का?",
-  "Joyfully accept": "सहर्ष स्वीकार|மகிழ்வுடன் வருகிறேன்|సంతోషంగా వస్తాను|ಸಂತೋಷದಿಂದ ಬರುತ್ತೇನೆ|സന്തോഷത്തോടെ വരും|সানন্দে আসব|आनंदाने येईन",
-  "Regretfully decline": "खेद सहित असमर्थ|வருந்துகிறேன், இயலாது|క్షమించండి, రాలేను|ಕ್ಷಮಿಸಿ, ಬರಲಾಗದು|ഖേദപൂർവ്വം വരാനാവില്ല|দুঃখিত, আসতে পারব না|क्षमस्व, येऊ शकत नाही",
-  "Guests including you": "आप सहित अतिथि|உங்களுடன் விருந்தினர்கள்|మీతో సహా అతిథులు|ನಿಮ್ಮನ್ನೂ ಸೇರಿ ಅತಿಥಿಗಳು|നിങ്ങളടക്കം അതിഥികൾ|আপনি সহ অতিথি|आपल्यासह पाहुणे",
-  "Which celebrations?": "कौन से उत्सव?|எந்த விழாக்கள்?|ఏ వేడుకలు?|ಯಾವ ಸಮಾರಂಭಗಳು?|ഏതെല്ലാം ചടങ്ങുകൾ?|কোন অনুষ্ঠানগুলি?|कोणते सोहळे?",
-  "Meal preference": "भोजन|உணவு விருப்பம்|భోజన ప్రాధాన్యత|ಊಟದ ಆದ್ಯತೆ|ഭക്ഷണ മുൻഗണന|খাবারের পছন্দ|जेवणाची पसंती",
-  "Vegetarian": "शाकाहारी|சைவம்|శాకాహారం|ಸಸ್ಯಾಹಾರ|സസ്യാഹാരം|নিরামিষ|शाकाहारी", "Jain": "जैन|ஜைன|జైన|ಜೈನ|ജൈന|জৈন|जैन",
-  "Non-veg": "मांसाहारी|அசைவம்|మాంసాహారం|ಮಾಂಸಾಹಾರ|മാംസാഹാരം|আমিষ|मांसाहारी",
-  "Blessings or a note (optional)": "आशीर्वाद या संदेश (वैकल्पिक)|ஆசிகள் அல்லது குறிப்பு (விருப்பம்)|ఆశీస్సులు లేదా సందేశం (ఐచ్ఛికం)|ಆಶೀರ್ವಾದ ಅಥವಾ ಸಂದೇಶ (ಐಚ್ಛಿಕ)|ആശംസകൾ അല്ലെങ്കിൽ കുറിപ്പ് (ഐച്ഛികം)|আশীর্বাদ বা বার্তা (ঐচ্ছিক)|आशीर्वाद किंवा संदेश (ऐच्छिक)",
-  "Send on WhatsApp": "व्हाट्सऐप पर भेजें|வாட்ஸ்அப்பில் அனுப்பவும்|వాట్సాప్‌లో పంపండి|ವಾಟ್ಸಾಪ್‌ನಲ್ಲಿ ಕಳುಹಿಸಿ|വാട്ട്സ്ആപ്പിൽ അയയ്ക്കുക|হোয়াটসঅ্যাপে পাঠান|व्हॉट्सॲपवर पाठवा",
-  "Email instead": "ईमेल से भेजें|மின்னஞ்சலில் அனுப்பவும்|ఈమెయిల్‌లో పంపండి|ಇಮೇಲ್ ಮೂಲಕ ಕಳುಹಿಸಿ|ഇമെയിലിൽ അയയ്ക്കുക|ইমেলে পাঠান|ईमेलने पाठवा",
-  "Good to Know": "आवश्यक जानकारी|தெரிந்துகொள்ள வேண்டியவை|తెలుసుకోవలసినవి|ತಿಳಿದಿರಬೇಕಾದವು|അറിയേണ്ടവ|জেনে রাখুন|महत्त्वाची माहिती",
-  "Travel & stay": "यात्रा और ठहराव|பயணம் & தங்குமிடம்|ప్రయాణం & బస|ಪ್ರಯಾಣ & ವಸತಿ|യാത്രയും താമസവും|যাতায়াত ও থাকা|प्रवास व निवास",
-  "Contact for coordination": "संपर्क सूत्र|தொடர்புக்கு|సంప్రదించండి|ಸಂಪರ್ಕಕ್ಕಾಗಿ|ബന്ധപ്പെടാൻ|যোগাযোগ|संपर्क",
-  "Gifts & blessings": "उपहार और आशीर्वाद|பரிசுகள் & ஆசிகள்|బహుమతులు & ఆశీస్సులు|ಉಡುಗೊರೆ & ಆಶೀರ್ವಾದ|സമ്മാനങ്ങളും ആശീർവാദവും|উপহার ও আশীর্বাদ|भेटवस्तू व आशीर्वाद",
-  "Watch live": "सीधा प्रसारण|நேரலையில் காண்க|ప్రత్యక్ష ప్రసారం|ನೇರ ಪ್ರಸಾರ|തത്സമയം കാണുക|সরাসরি দেখুন|थेट पहा",
-  "Call": "कॉल करें|அழைக்க|కాల్ చేయండి|ಕರೆ ಮಾಡಿ|വിളിക്കുക|কল করুন|कॉल करा",
-  "Thank You": "धन्यवाद|நன்றி|ధన్యవాదాలు|ಧನ್ಯವಾದಗಳು|നന്ദി|ধন্যবাদ|धन्यवाद",
-  "Thank you!": "धन्यवाद!|நன்றி!|ధన్యవాదాలు!|ಧನ್ಯವಾದಗಳು!|നന്ദി!|ধন্যবাদ!|धन्यवाद!",
-  "With love and gratitude,": "प्रेम और आभार सहित,|அன்புடனும் நன்றியுடனும்,|ప్రేమతో, కృతజ్ఞతతో,|ಪ್ರೀತಿ ಮತ್ತು ಕೃತಜ್ಞತೆಯೊಂದಿಗೆ,|സ്നേഹത്തോടെയും നന്ദിയോടെയും,|ভালোবাসা ও কৃতজ্ঞতায়,|प्रेम व कृतज्ञतेसह,",
-  "Share the invitation": "निमंत्रण साझा करें|அழைப்பைப் பகிரவும்|ఆహ్వానాన్ని పంచుకోండి|ಆಮಂತ್ರಣ ಹಂಚಿಕೊಳ್ಳಿ|ക്ഷണം പങ്കിടുക|আমন্ত্রণ শেয়ার করুন|निमंत्रण शेअर करा",
-  "Watch again": "फिर से देखें|மீண்டும் காண்க|మళ్ళీ చూడండి|ಮತ್ತೆ ನೋಡಿ|വീണ്ടും കാണുക|আবার দেখুন|पुन्हा पहा"
-  }; const out = {}; for (const [k, v] of Object.entries(rows)) { const p = v.split("|"); out[k] = { hi: p[0], ta: p[1], te: p[2], kn: p[3], ml: p[4], bn: p[5], mr: p[6] }; } return out; })();
+const LANGS = [["en", "English", "English", "A"]];
+const DICT = {};
 
 let LANG = "en";
-const L = (en, hi) => `<span data-en="${en.replace(/"/g, "&quot;")}" data-hi="${(hi || en).replace(/"/g, "&quot;")}">${en}</span>`;
-const tx = en => LANG === "en" ? en : (DICT[en] && DICT[en][LANG]) || en;
-function setLang(l) { LANG = l; document.documentElement.lang = l;
-  $$("[data-en]").forEach(e => { const en = e.dataset.en; e.textContent = l === "en" ? en : (DICT[en] && DICT[en][l]) || (l === "hi" && e.dataset.hi) || en; });
-  const L0 = LANGS.find(x => x[0] === l); $("#langName").textContent = L0[1]; const g = $("#glyph"); g.textContent = L0[3]; g.classList.remove("flip"); void g.offsetWidth; g.classList.add("flip");
-  $$("#langMenu button").forEach(b => b.setAttribute("aria-checked", b.dataset.l === l)); fitTitles(); }
+const L = en => `<span data-en="${en.replace(/"/g, "&quot;")}">${en}</span>`;
+const tx = en => en;
+function setLang() { LANG = "en"; document.documentElement.lang = "en"; fitTitles(); }
 function fitTitles() { $$(".welcome .wt, .tyh, .ph1").forEach(el => { el.style.fontSize = "";
   for (let i = 0; i < 14 && el.scrollWidth > el.clientWidth + 1; i++) el.style.fontSize = (parseFloat(getComputedStyle(el).fontSize) * .92) + "px"; }); }
 addEventListener("resize", () => setTimeout(fitTitles, 50));
@@ -965,7 +890,7 @@ function buildPages() {
       <svg class="ic" viewBox="0 0 48 48" aria-hidden="true">${ICONS[e.key]}</svg>
       <div class="en">${L(e.name, e.hi)}</div><div class="et">${e.tag}</div><hr>
       <div class="ed">${e.date}</div><div class="eti">${e.time}</div><div class="ev1">${e.venue}</div>
-      <div class="dc"><div class="dl">${L("Dress code", "परिधान")}</div><div class="dt2">${L(e.dress, e.dressHi)}</div>
+      <div class="dc"><div class="dl">${L("Dress code", "")}</div><div class="dt2">${L(e.dress, e.dressHi)}</div>
       <div class="sw">${e.sw.map(c => `<i style="background:${c}"></i>`).join("")}</div></div></div></div>`).join("");
   const deck = PHOTOS.map((p, i) => `<div class="pcard" data-i="${i}"><div class="im" style="${photoStyle(i)}" role="img" aria-label="${p.cap}"></div><div class="cap">${L(p.cap, p.hi)}</div></div>`).join("");
   const story = STORY.map((st, i) => { const side = i % 2 ? "R" : "L", dd = (.6 + i * .45).toFixed(2);
@@ -979,51 +904,51 @@ function buildPages() {
   };
   const acc = (id, icon, en, hi, body, open) => `<div class="it glass${open ? " open" : ""}" id="${id}"><button class="hd" aria-expanded="${!!open}"><svg viewBox="0 0 48 48" aria-hidden="true">${icon}</svg><b>${L(en, hi)}</b><i>+</i></button><div class="bd"><div><div class="bi">${body}</div></div></div></div>`;
   ui.innerHTML = `
-  ${d(5, "The celebrations")}<div class="ph1 fade">${L("The Celebrations", "उत्सव")}</div><div class="ph2 fade" style="--d:.2s">${L("Five gatherings, one joyful week", "पाँच उत्सव, एक आनंदमय सप्ताह")}</div>
+  ${d(5, "The celebrations")}<div class="ph1 fade">${L("The Celebrations", "")}</div><div class="ph2 fade" style="--d:.2s">${L("Five gatherings, one joyful week", "")}</div>
     <div class="car" id="car"><div class="evshadow"></div><div class="ring" id="ring">${evCards}</div></div>
     <div class="carnav fade" style="--d:.8s"><button class="navb" id="evPrev" aria-label="Previous event">‹</button><div class="edots" id="edots">${EVENTS.map((e, i) => `<button aria-label="${e.name}" data-i="${i}"></button>`).join("")}</div><button class="navb" id="evNext" aria-label="Next event">›</button></div></section>
-  ${d(6, "Moments")}<div class="ph1 fade">${L("Moments", "यादें")}</div><div class="ph2 fade" style="--d:.2s">${L("Before the big day", "बड़े दिन से पहले")}</div>
+  ${d(6, "Moments")}<div class="ph1 fade">${L("Moments", "")}</div><div class="ph2 fade" style="--d:.2s">${L("Before the big day", "")}</div>
     <div class="deck" id="deck">${deck}</div>
     <div class="music fade" id="music" style="--d:.7s"><button class="navb" id="dPrev" aria-label="Previous photo">‹</button>
-      <button class="btn alt" id="song" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span> <span id="songL">${L("Play our song", "हमारा गीत")}</span></button>
+      <button class="btn alt" id="song" aria-pressed="false"><span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span> <span id="songL">${L("Play our song", "")}</span></button>
       <button class="navb" id="dNext" aria-label="Next photo">›</button></div></section>
-  ${d(7, "Our story")}<div class="ph1 fade">${L("Our Story", "हमारी कहानी")}</div><div class="ph2 fade" style="--d:.2s">${L("How two paths became one", "दो राहें कैसे एक हुईं")}</div>
+  ${d(7, "Our story")}<div class="ph1 fade">${L("Our Story", "")}</div><div class="ph2 fade" style="--d:.2s">${L("How two paths became one", "")}</div>
     <div class="tl2 scroll"><div class="spine"></div>${story}
-      <div class="fin" style="--d:${(.6 + STORY.length * .45).toFixed(2)}s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.3 3.2 5 6.6 5c2.1 0 3.6 1.2 5.4 3.2C13.8 6.2 15.3 5 17.4 5 20.8 5 23 8.3 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg><span>${L("and the story continues…", "और कहानी चलती रहेगी…")}</span></div></div></section>
-  ${d(8, "Will you join us?")}<div class="ph1 fade">${L("Kindly Reply", "कृपया उत्तर दें")}</div><div class="ribbon fade" style="--d:.25s">${L("by " + RSVP.by, RSVP.by + " तक")}</div>
+      <div class="fin" style="--d:${(.6 + STORY.length * .45).toFixed(2)}s"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.3 3.2 5 6.6 5c2.1 0 3.6 1.2 5.4 3.2C13.8 6.2 15.3 5 17.4 5 20.8 5 23 8.3 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg><span>${L("and the story continues…", "")}</span></div></div></section>
+  ${d(8, "Will you join us?")}<div class="ph1 fade">${L("Kindly Reply", "")}</div><div class="ribbon fade" style="--d:.25s">${L("by " + RSVP.by, RSVP.by + "")}</div>
     <div class="glass rs scroll fade" style="--d:.45s">
-      <div class="sec"><div class="fl2"><input type="text" id="rName" autocomplete="name" placeholder=" "><label for="rName">${L("Your full name", "आपका पूरा नाम")}</label></div></div>
-      <div class="sec"><span class="l">${L("Will you be with us?", "क्या आप पधारेंगे?")}</span><div class="tiles" id="rAtt">
-        <button class="chip tile" data-v="yes" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v11H4z"/><path d="M4 7l8 6 8-6"/><path d="M12 17.5s-2.6-1.6-3.2-3c-.4-1 .3-2 1.3-2 .8 0 1.4.5 1.9 1.1.5-.6 1.1-1.1 1.9-1.1 1 0 1.7 1 1.3 2-.6 1.4-3.2 3-3.2 3z"/></svg>${L("Joyfully accept", "सहर्ष स्वीकार")}</button>
-        <button class="chip tile" data-v="no" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4c-1 2-1 5 0 8M9 6c-2 2-3 6-1 10 1 2 3 3 4 4M15 6c2 2 3 6 1 10-1 2-3 3-4 4"/></svg>${L("Regretfully decline", "खेद सहित असमर्थ")}</button></div></div>
+      <div class="sec"><div class="fl2"><input type="text" id="rName" autocomplete="name" placeholder=" "><label for="rName">${L("Your full name", "")}</label></div></div>
+      <div class="sec"><span class="l">${L("Will you be with us?", "")}</span><div class="tiles" id="rAtt">
+        <button class="chip tile" data-v="yes" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v11H4z"/><path d="M4 7l8 6 8-6"/><path d="M12 17.5s-2.6-1.6-3.2-3c-.4-1 .3-2 1.3-2 .8 0 1.4.5 1.9 1.1.5-.6 1.1-1.1 1.9-1.1 1 0 1.7 1 1.3 2-.6 1.4-3.2 3-3.2 3z"/></svg>${L("Joyfully accept", "")}</button>
+        <button class="chip tile" data-v="no" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4c-1 2-1 5 0 8M9 6c-2 2-3 6-1 10 1 2 3 3 4 4M15 6c2 2 3 6 1 10-1 2-3 3-4 4"/></svg>${L("Regretfully decline", "")}</button></div></div>
       <div id="rMore">
-        <div class="sec gs"><span class="l" style="margin:0">${L("Guests including you", "आप सहित अतिथि")}</span>
+        <div class="sec gs"><span class="l" style="margin:0">${L("Guests including you", "")}</span>
           <div class="step"><button class="navb" id="gMinus" aria-label="Fewer guests">−</button><output id="gCount">2</output><button class="navb" id="gPlus" aria-label="More guests">+</button></div>
           <div class="ppl" id="ppl" aria-hidden="true"></div></div>
-        <div class="sec"><span class="l">${L("Which celebrations?", "कौन से उत्सव?")}</span><div class="chips" id="rEv">${EVENTS.map(e => `<button class="chip ev-chip" style="--c:${e.sw[0]}" data-v="${e.name}" aria-pressed="false">${L(e.name, e.hi)}</button>`).join("")}</div></div>
-        <div class="sec"><span class="l">${L("Meal preference", "भोजन")}</span><div class="tiles three" id="rMeal">
-          <button class="chip tile" data-v="Vegetarian" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 10 11 5 19 5c0 8-5 14-14 14z"/><path d="M5 19L14 10"/></svg>${L("Vegetarian", "शाकाहारी")}</button>
-          <button class="chip tile" data-v="Jain" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20c-4-2-6-5-6-8 3 0 5 2 6 4 1-2 3-4 6-4 0 3-2 6-6 8z"/><path d="M12 16c-2-3-2-7 0-11 2 4 2 8 0 11z"/></svg>${L("Jain", "जैन")}</button>
-          <button class="chip tile" data-v="Non-vegetarian" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="7"/><circle cx="12" cy="13" r="4"/><path d="M12 3v3"/></svg>${L("Non-veg", "मांसाहारी")}</button></div></div></div>
-      <div class="sec" style="border:0"><div class="fl2"><textarea id="rMsg" placeholder=" "></textarea><label for="rMsg">${L("Blessings or a note (optional)", "आशीर्वाद या संदेश (वैकल्पिक)")}</label></div></div>
-      <div class="sendrow"><button class="btn" id="rWa"><svg class="wa" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.888 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> ${L("Send on WhatsApp", "व्हाट्सऐप पर भेजें")}</button><button class="btn alt" id="rMail">${L("Email instead", "ईमेल से भेजें")}</button></div>
-      <div class="thanks" id="thanks"><svg class="tick" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg><div class="ph1">${L("Thank you!", "धन्यवाद!")}</div><p class="ph2" id="thanksT"></p><button class="btn alt" id="rEdit" style="margin-top:.8em">${L("Edit my reply", "उत्तर बदलें")}</button></div>
+        <div class="sec"><span class="l">${L("Which celebrations?", "")}</span><div class="chips" id="rEv">${EVENTS.map(e => `<button class="chip ev-chip" style="--c:${e.sw[0]}" data-v="${e.name}" aria-pressed="false">${L(e.name, e.hi)}</button>`).join("")}</div></div>
+        <div class="sec"><span class="l">${L("Meal preference", "")}</span><div class="tiles three" id="rMeal">
+          <button class="chip tile" data-v="Vegetarian" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 10 11 5 19 5c0 8-5 14-14 14z"/><path d="M5 19L14 10"/></svg>${L("Vegetarian", "")}</button>
+          <button class="chip tile" data-v="Jain" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20c-4-2-6-5-6-8 3 0 5 2 6 4 1-2 3-4 6-4 0 3-2 6-6 8z"/><path d="M12 16c-2-3-2-7 0-11 2 4 2 8 0 11z"/></svg>${L("Jain", "")}</button>
+          <button class="chip tile" data-v="Non-vegetarian" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="7"/><circle cx="12" cy="13" r="4"/><path d="M12 3v3"/></svg>${L("Non-veg", "")}</button></div></div></div>
+      <div class="sec" style="border:0"><div class="fl2"><textarea id="rMsg" placeholder=" "></textarea><label for="rMsg">${L("Blessings or a note (optional)", "")}</label></div></div>
+      <div class="sendrow"><button class="btn" id="rWa"><svg class="wa" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.885-9.888 9.885m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> ${L("Send on WhatsApp", "")}</button><button class="btn alt" id="rMail">${L("Email instead", "")}</button></div>
+      <div class="thanks" id="thanks"><svg class="tick" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg><div class="ph1">${L("Thank you!", "")}</div><p class="ph2" id="thanksT"></p><button class="btn alt" id="rEdit" style="margin-top:.8em">${L("Edit my reply", "")}</button></div>
     </div></section>
-  ${d(9, "Good to know")}<div class="ph1 fade">${L("Good to Know", "आवश्यक जानकारी")}</div>${ORN}
+  ${d(9, "Good to know")}<div class="ph1 fade">${L("Good to Know", "")}</div>${ORN}
     <div class="acc scroll fade" style="--d:.3s">
-      ${acc("aT", ic.travel, "Travel & stay", "यात्रा और ठहराव", INFO.travel.map(x => `<p>${x}</p>`).join(""), true)}
-      ${acc("aC", ic.contact, "Contact for coordination", "संपर्क सूत्र", INFO.contacts.map(c => `<div class="ct"><div><b>${c.name}</b><br><i>${c.role}</i></div><a class="btn" href="tel:${c.phone}">${L("Call", "कॉल करें")}</a></div>`).join(""))}
-      ${acc("aG", ic.gift, "Gifts & blessings", "उपहार और आशीर्वाद", `<p>${INFO.gifts}</p><p style="display:flex;gap:.5em;align-items:center;flex-wrap:wrap"><span>UPI: <b id="upi">${INFO.upi}</b></span><button class="chip" id="copyUpi">${L("Copy", "कॉपी")}</button></p>`)}
-      ${acc("aL", ic.live, "Watch live", "सीधा प्रसारण", `<p>${INFO.live.note}</p><p><a class="btn" href="${INFO.live.url}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">${L("Open live stream", "प्रसारण देखें")}</a></p>`)}
+      ${acc("aT", ic.travel, "Travel & stay", "", INFO.travel.map(x => `<p>${x}</p>`).join(""), true)}
+      ${acc("aC", ic.contact, "Contact for coordination", "", INFO.contacts.map(c => `<div class="ct"><div><b>${c.name}</b><br><i>${c.role}</i></div><a class="btn" href="tel:${c.phone}">${L("Call", "")}</a></div>`).join(""))}
+      ${acc("aG", ic.gift, "Gifts & blessings", "", `<p>${INFO.gifts}</p><p style="display:flex;gap:.5em;align-items:center;flex-wrap:wrap"><span>UPI: <b id="upi">${INFO.upi}</b></span><button class="chip" id="copyUpi">${L("Copy", "")}</button></p>`)}
+      ${acc("aL", ic.live, "Watch live", "", `<p>${INFO.live.note}</p><p><a class="btn" href="${INFO.live.url}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">${L("Open live stream", "")}</a></p>`)}
       <div class="signoff">${INFO.signoff}</div>
     </div></section>
-  ${d(10, "Thank you")}<div class="tyh fade">${L("Thank You", "धन्यवाद")}</div>
+  ${d(10, "Thank you")}<div class="tyh fade">${L("Thank You", "")}</div>
     <div class="tyhi fade" style="--d:.3s">${THANKS.subtitle}</div>
     <svg class="lotus fade" style="--d:.5s" viewBox="0 0 120 30" aria-hidden="true"><path d="M60 4c5 6 5 14 0 20-5-6-5-14 0-20z" fill="#d23a7d"/><path d="M60 24c-8-1-14-6-16-13 7 0 13 5 16 13zM60 24c8-1 14-6 16-13-7 0-13 5-16 13z" fill="#e6679a"/><path d="M60 26c-12 1-20-3-24-9 9-1 17 3 24 9zM60 26c12 1 20-3 24-9-9-1-17 3-24 9z" fill="#f29abb"/><path d="M4 26H34M86 26H116" stroke="#c9953a" stroke-width="1.2"/></svg>
     <div class="tyb scroll"><p class="lead fade" style="--d:.7s">${THANKS.lead}</p>${THANKS.notes.map((n, i) => `<p class="fade n${i % 4}" style="--d:${(1 + i * .35).toFixed(2)}s"><b>${n[0]}</b> ${n[1]}</p>`).join("")}
-      <div class="tysig fade" style="--d:${(1.2 + THANKS.notes.length * .35).toFixed(2)}s"><i>${L("With love and gratitude,", "प्रेम और आभार सहित,")}</i><span>${INVITE.bride} &amp; ${INVITE.groom}</span><em>${THANKS.families}</em></div>
+      <div class="tysig fade" style="--d:${(1.2 + THANKS.notes.length * .35).toFixed(2)}s"><i>${L("With love and gratitude,", "")}</i><span>${INVITE.bride} &amp; ${INVITE.groom}</span><em>${THANKS.families}</em></div>
       <div class="tyhash fade" style="--d:${(1.5 + THANKS.notes.length * .35).toFixed(2)}s">${THANKS.hashtag}</div>
-      <div class="sendrow fade" style="--d:${(1.7 + THANKS.notes.length * .35).toFixed(2)}s;margin:.8em 0 .4em"><button class="btn" id="tyShare">${L("Share the invitation", "निमंत्रण साझा करें")}</button><button class="btn alt" id="tyReplay">${L("Watch again", "फिर से देखें")}</button></div>
+      <div class="sendrow fade" style="--d:${(1.7 + THANKS.notes.length * .35).toFixed(2)}s;margin:.8em 0 .4em"><button class="btn" id="tyShare">${L("Share the invitation", "")}</button><button class="btn alt" id="tyReplay">${L("Watch again", "")}</button></div>
     </div></section>`;
 
   // carousel
@@ -1071,8 +996,8 @@ function buildPages() {
     $$(".acc .it").forEach(x => { x.classList.remove("open"); x.querySelector(".hd").setAttribute("aria-expanded", "false"); });
     if (open) { it.classList.add("open"); it.querySelector(".hd").setAttribute("aria-expanded", "true"); } });
   $("#tyReplay").onclick = () => reset();
-  $("#tyShare").onclick = async e => { const url = location.href; try { if (navigator.share) { await navigator.share({ title: `${INVITE.bride} & ${INVITE.groom}`, url }); return; } await navigator.clipboard.writeText(url); e.currentTarget.textContent = LANG === "hi" ? "लिंक कॉपी हो गया" : "Link copied"; } catch (_) {} };
-  $("#copyUpi").onclick = async e => { try { await navigator.clipboard.writeText(INFO.upi); e.target.textContent = LANG === "hi" ? "कॉपी हो गया" : "Copied"; } catch (_) { const r = document.createRange(); r.selectNodeContents($("#upi")); getSelection().removeAllRanges(); getSelection().addRange(r); } };
+  $("#tyShare").onclick = async e => { const url = location.href; try { if (navigator.share) { await navigator.share({ title: `${INVITE.bride} & ${INVITE.groom}`, url }); return; } await navigator.clipboard.writeText(url); e.currentTarget.textContent = LANG === "hi" ? "" : "Link copied"; } catch (_) {} };
+  $("#copyUpi").onclick = async e => { try { await navigator.clipboard.writeText(INFO.upi); e.target.textContent = LANG === "hi" ? "" : "Copied"; } catch (_) { const r = document.createRange(); r.selectNodeContents($("#upi")); getSelection().removeAllRanges(); getSelection().addRange(r); } };
 }
 const pointerCard = { x: 0, y: 0 }, pcs = { x: 0, y: 0 };
 function layoutDeck() { const n = PHOTOS.length;
@@ -1133,7 +1058,7 @@ function buildScene3() {
     img: el.querySelector(".bgi"), glw: el.querySelector(".glw"), ui: el.querySelector(".ui3"), t3: el.querySelector(".t3"), bg: null, glows: [], L: null }; });
   FR.forEach(F => setBg(F, "arch"));
   $("#c3b").textContent = INVITE.bride; $("#c3g").textContent = INVITE.groom;
-  $("#c3bo").textContent = "Daughter of"; $("#c3go").textContent = "Son of"; $("#c3bo").dataset.en = "Daughter of"; $("#c3bo").dataset.hi = "सुपुत्री"; $("#c3go").dataset.en = "Son of"; $("#c3go").dataset.hi = "सुपुत्र";
+  $("#c3bo").textContent = "Daughter of"; $("#c3go").textContent = "Son of"; $("#c3bo").dataset.en = "Daughter of"; $("#c3go").dataset.en = "Son of";
   $("#vName").textContent = INVITE.venueName; $("#vAddr").innerHTML = INVITE.venueAddress;
   $("#c3bf").textContent = INVITE.brideFather; $("#c3gf").textContent = INVITE.groomFather;
   if (INVITE.couplePhoto) setPhoto(INVITE.couplePhoto);
@@ -1154,7 +1079,7 @@ function buildScene3() {
   [["Days", 999], ["Hours", 24], ["Minutes", 60], ["Seconds", 60]].forEach(([lb], i) => {
     const c = document.createElement("div"); c.className = "card fade"; c.style.setProperty("--d", (1.3 + i * .15) + "s");
     c.innerHTML = `<div class="gem"></div><div class="fl"><div class="h t"><span></span></div><div class="h b"><span></span></div><div class="h ft"><span></span></div><div class="h fb"><span></span></div><div class="mid"></div></div>
-      <svg class="cb" viewBox="-5 -5 126 146"><path d="M0,136 L0,40 C0,16 38,10 58,0 C78,10 116,16 116,40 L116,136 Z" fill="none" stroke="url(#gGold3)" stroke-width="3"/><path d="M-4,140 L-4,39 C-4,13 36,6 58,-5 C80,6 120,13 120,39 L120,140 Z" fill="none" stroke="url(#gGold3)" stroke-width="1"/></svg><div class="lb" data-en="${lb}" data-hi="${{Days:"दिन",Hours:"घंटे",Minutes:"मिनट",Seconds:"सेकंड"}[lb]}">${lb}</div>`;
+      <svg class="cb" viewBox="-5 -5 126 146"><path d="M0,136 L0,40 C0,16 38,10 58,0 C78,10 116,16 116,40 L116,136 Z" fill="none" stroke="url(#gGold3)" stroke-width="3"/><path d="M-4,140 L-4,39 C-4,13 36,6 58,-5 C80,6 120,13 120,39 L120,140 Z" fill="none" stroke="url(#gGold3)" stroke-width="1"/></svg><div class="lb" data-en="${lb}"",Hours:"",Minutes:"",Seconds:""}[lb]}">${lb}</div>`;
     $("#cd").appendChild(c); const fl = c.querySelector(".fl"), sp = [...fl.querySelectorAll("span")];
     units.push({ fl, t: sp[0], b: sp[1], ft: sp[2], fb: sp[3], v: null }); });
 }
@@ -1445,7 +1370,7 @@ function act(sc, h, sx, sy) {
   else if (a === "elephant") { Sound.trumpet(); fx.glint(sx, sy - 10); fx.burst(sx, sy, 20); }
 }
 addEventListener("pointerdown", e => {
-  if (e.target.closest && e.target.closest("button,a,input,textarea,label,.glass,#car,#deck,.acc,.rs,#key,.ctrl,.langw,.cue,.dots,.pcard,.evc")) return;
+  if (e.target.closest && e.target.closest("button,a,input,textarea,label,.glass,#car,#deck,.acc,.rs,#key,.ctrl,.cue,.dots,.pcard,.evc")) return;
   const sc = sceneNow(); if (!sc) return;
   const list = typeof HOT[sc.key] === "function" ? HOT[sc.key]() : HOT[sc.key];
   const ix = (e.clientX - sc.L.x) / sc.L.f, iy = (e.clientY - sc.L.y) / sc.L.f;
@@ -1512,7 +1437,7 @@ function loop() {
 }
 
 /* ---------- input ---------- */
-$("#s1").addEventListener("click", e => { if (hotHit) { hotHit = false; return; } if (e.target.closest(".langw,.ctrl")) return; unlock(); });
+$("#s1").addEventListener("click", e => { if (hotHit) { hotHit = false; return; } if (e.target.closest(".ctrl")) return; unlock(); });
 $("#s1").addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); unlock(); } });
 $("#replay").addEventListener("click", () => { const r = $("#replay"); r.classList.remove("spin"); void r.offsetWidth; r.classList.add("spin"); reset(); });
 $("#snd").addEventListener("click", e => { Sound.init(); const on = Sound.toggle(), b = e.currentTarget; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on); b.setAttribute("aria-label", on ? "Sound on" : "Sound off"); });
@@ -1525,13 +1450,7 @@ document.querySelectorAll("[data-copy]").forEach(i => i.src = $(i.dataset.copy).
 buildScene2(); buildScene3(); buildPages(); layout(); updateNav();
 Object.values(BGS).forEach(b => { const im = new Image(); im.src = b.src; im.decode && im.decode().catch(() => {}); });
 $$("img").forEach(im => im.decode && im.decode().catch(() => {}));
-$("#langMenu").innerHTML = `<div class="ttl">Choose your language</div>` + LANGS.map(([k, n, e]) => `<button role="menuitemradio" data-l="${k}" aria-checked="${k === "en"}"><b>${n}</b><small>${e}</small></button>`).join("");
-const langOpen = o => { $("#langMenu").classList.toggle("open", o); $("#langBtn").setAttribute("aria-expanded", o); };
-$("#langBtn").addEventListener("click", e => { e.stopPropagation(); langOpen(!$("#langMenu").classList.contains("open")); });
-$$("#langMenu button").forEach(b => b.addEventListener("click", e => { e.stopPropagation(); setLang(b.dataset.l); langOpen(false); Sound.init(); Sound.bell(NOTES[4], 0, .04, 1); }));
-addEventListener("click", e => { if (!e.target.closest(".langw")) langOpen(false); });
-addEventListener("keydown", e => { if (e.key === "Escape") langOpen(false); });
-{ let gi = 0; setInterval(() => { if (LANG !== "en" || $("#langMenu").classList.contains("open")) return; gi = (gi + 1) % LANGS.length; const g = $("#glyph"); g.textContent = LANGS[gi][3]; g.classList.remove("flip"); void g.offsetWidth; g.classList.add("flip"); }, 1800); } requestAnimationFrame(loop);
+requestAnimationFrame(loop);
 </script>
 <script src="/templates/autoscroll.js" defer></script>
 </body>

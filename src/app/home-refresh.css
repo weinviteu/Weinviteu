@@ -71,6 +71,245 @@ main.studio-home.home-redesign .occasion-ticker-sep { fill: var(--hx-peach); }
 .home-redesign .hx-promise strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 22px; color: var(--hx-ink); }
 .home-redesign .hx-promise span:not(.hx-promise-icon) { font-size: 13px; color: var(--hx-muted); }
 
+/* ── Powered by RAKVIH: a midnight-and-gold chapter with a monogram seal, foil heading and a numbered capabilities card ── */
+.home-redesign .hx-rakvih-section {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(36px, 4.2vw, 60px);
+  background:
+    radial-gradient(ellipse 70% 60% at 12% 18%, rgba(189, 129, 59, 0.24), transparent 70%),
+    radial-gradient(ellipse 60% 55% at 92% 88%, rgba(239, 183, 154, 0.14), transparent 65%),
+    linear-gradient(165deg, #1f1812 0%, #15110d 55%, #0c0906 100%);
+  border-top: 1px solid rgba(244, 212, 157, 0.18);
+  border-bottom: 1px solid rgba(244, 212, 157, 0.18);
+  color: #fff4e3;
+  isolation: isolate;
+}
+.home-redesign .hx-rakvih-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: radial-gradient(circle at 50% 50%, rgba(244, 212, 157, 0.06) 1.1px, transparent 1.5px) 0 0 / 24px 24px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 100%);
+  pointer-events: none;
+}
+/* oversized outline wordmark and a slow drifting glow give the dark ground some depth */
+.home-redesign .hx-rakvih-watermark {
+  position: absolute;
+  z-index: -1;
+  right: -2vw;
+  bottom: -0.18em;
+  font-family: var(--serif);
+  font-size: clamp(120px, 19vw, 280px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(244, 212, 157, 0.09);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.home-redesign .hx-rakvih-glow {
+  position: absolute;
+  z-index: -1;
+  top: 10%;
+  left: 38%;
+  width: 46vw;
+  max-width: 620px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 182, 95, 0.16), transparent 62%);
+  filter: blur(10px);
+  animation: hxRakvihDrift 16s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes hxRakvihDrift { to { transform: translate(-12%, 14%) scale(1.12); } }
+
+.home-redesign .hx-rakvih-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+}
+.home-redesign .hx-rakvih-text { display: flex; flex-direction: column; }
+.home-redesign .hx-rakvih-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.home-redesign .hx-rakvih-emblem { width: 52px; height: 52px; flex-shrink: 0; filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 14px rgba(232, 182, 95, 0.22)); }
+.home-redesign .hx-rakvih-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #e8c27e;
+}
+.home-redesign .hx-rakvih-badge::after { content: ''; width: 46px; height: 1px; background: linear-gradient(90deg, #e8c27e, transparent); }
+
+.home-redesign .hx-rakvih-text h2 { display: flex; flex-direction: column; gap: 6px; margin: 0 0 14px; font-weight: 400; }
+.home-redesign .hx-rakvih-name {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4.6vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  background: linear-gradient(100deg, #fff1cf 0%, #f4d49d 22%, #c99447 45%, #fbe6b3 55%, #d9a54f 72%, #fff1cf 100%) 0 0 / 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hxRakvihFoil 9s ease-in-out infinite alternate;
+  text-wrap: balance;
+}
+@keyframes hxRakvihFoil { to { background-position: 100% 0; } }
+.home-redesign .hx-rakvih-legal {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: #efb79a;
+}
+.home-redesign .hx-rakvih-tagline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 14px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.7vw, 20px);
+  line-height: 1.45;
+  color: #e3c08a;
+}
+.home-redesign .hx-rakvih-tagline em { color: #fff4e3; }
+.home-redesign .hx-rakvih-rule { position: relative; flex-shrink: 0; width: 34px; height: 1px; background: linear-gradient(90deg, transparent, #e8c27e); }
+.home-redesign .hx-rakvih-rule::after { content: ''; position: absolute; right: -3px; top: -3px; width: 7px; height: 7px; transform: rotate(45deg); background: #e8c27e; }
+.home-redesign .hx-rakvih-p { margin: 0 0 10px; max-width: 540px; font-size: 15.5px; line-height: 1.65; color: #cbbca6; }
+.home-redesign .hx-rakvih-action { margin-top: 12px; }
+.home-redesign .hx-rakvih-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f7dc9d, #d9a54f 55%, #b9822f);
+  color: #2a1a0b;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(201, 148, 71, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.home-redesign .hx-rakvih-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(201, 148, 71, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+.home-redesign .hx-rakvih-btn:focus-visible { outline: 2px solid #f4d49d; outline-offset: 3px; }
+
+/* Capabilities card: gold-gradient border, a soft sheen, and a numbered list */
+.home-redesign .hx-rakvih-capabilities-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(20px, 2.4vw, 28px) clamp(22px, 2.8vw, 32px);
+  border: 1px solid transparent;
+  border-radius: 24px;
+  background:
+    linear-gradient(160deg, rgba(38, 29, 21, 0.92), rgba(20, 15, 11, 0.94)) padding-box,
+    linear-gradient(150deg, rgba(251, 231, 176, 0.55), rgba(201, 148, 71, 0.12) 40%, rgba(201, 148, 71, 0.08) 60%, rgba(239, 183, 154, 0.45)) border-box;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 244, 227, 0.06);
+}
+.home-redesign .hx-rakvih-capabilities-card::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 40%;
+  height: 180%;
+  transform: rotate(18deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 236, 190, 0.06), transparent);
+  animation: hxRakvihSheen 9s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes hxRakvihSheen { 0%, 60% { left: -60%; } 100% { left: 130%; } }
+.home-redesign .hx-rakvih-capabilities-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #e8c27e;
+}
+.home-redesign .hx-rakvih-capabilities-label span { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(232, 194, 126, 0.45)); }
+.home-redesign .hx-rakvih-capabilities-label span:last-child { background: linear-gradient(90deg, rgba(232, 194, 126, 0.45), transparent); }
+.home-redesign .hx-rakvih-capabilities-list { margin: 0; padding: 0; list-style: none; }
+.home-redesign .hx-rakvih-capabilities-list li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 4px;
+  border-bottom: 1px solid rgba(244, 212, 157, 0.1);
+  color: #fbeed8;
+  font-size: 15px;
+  transition: padding 0.3s, color 0.3s;
+}
+.home-redesign .hx-rakvih-capabilities-list li:hover { padding-left: 10px; color: #fff; }
+.home-redesign .hx-rakvih-cap-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 194, 126, 0.55);
+  background: radial-gradient(circle at 30% 25%, rgba(251, 231, 176, 0.22), rgba(201, 148, 71, 0.06));
+  color: #f1cf8a;
+  box-shadow: 0 0 0 4px rgba(232, 194, 126, 0.05);
+  transition: background 0.3s, color 0.3s;
+}
+.home-redesign .hx-rakvih-capabilities-list li:hover .hx-rakvih-cap-icon { background: linear-gradient(135deg, #f7dc9d, #d9a54f); color: #2a1a0b; }
+.home-redesign .hx-rakvih-cap-label { line-height: 1.35; }
+.home-redesign .hx-rakvih-cap-num { font-family: var(--serif); font-style: italic; font-size: 14px; color: rgba(232, 194, 126, 0.55); }
+.home-redesign .hx-rakvih-foot {
+  margin: 12px 0 0;
+  font-family: var(--serif);
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.6;
+  color: #c9b9a3;
+}
+
+@media (max-width: 960px) {
+  .home-redesign .hx-rakvih-wrap { grid-template-columns: 1fr; gap: 26px; }
+  .home-redesign .hx-rakvih-glow { left: 10%; width: 90vw; }
+}
+@media (max-width: 600px) {
+  .home-redesign .hx-rakvih-emblem { width: 44px; height: 44px; }
+  .home-redesign .hx-rakvih-legal { font-size: 11px; letter-spacing: 0.34em; }
+  .home-redesign .hx-rakvih-tagline { align-items: flex-start; }
+  .home-redesign .hx-rakvih-rule { margin-top: 0.75em; width: 22px; }
+  .home-redesign .hx-rakvih-btn { width: 100%; justify-content: center; }
+  /* compact two-column grid on phones: icon above the label */
+  .home-redesign .hx-rakvih-capabilities-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .home-redesign .hx-rakvih-capabilities-list li {
+    position: relative;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    gap: 8px;
+    padding: 11px 11px;
+    border: 1px solid rgba(244, 212, 157, 0.12);
+    border-radius: 14px;
+    background: rgba(244, 212, 157, 0.035);
+    font-size: 13.5px;
+  }
+  .home-redesign .hx-rakvih-capabilities-list li:hover { padding-left: 12px; }
+  .home-redesign .hx-rakvih-capabilities-list li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .home-redesign .hx-rakvih-cap-icon { width: 30px; height: 30px; }
+  .home-redesign .hx-rakvih-cap-num { position: absolute; top: 12px; right: 12px; font-size: 12.5px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-redesign .hx-rakvih-glow, .home-redesign .hx-rakvih-name, .home-redesign .hx-rakvih-capabilities-card::after { animation: none; }
+}
+
 /* ── Occasions: bento gallery, the first occasion takes the tall tile ── */
 .home-redesign .hx-occasions { display: grid; grid-template-columns: 1.35fr 1fr 1fr; grid-auto-rows: 270px; gap: 16px; }
 .home-redesign .hx-occasion { position: relative; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border-radius: var(--hx-radius); color: #fff4e3; text-decoration: none; isolation: isolate; }
@@ -87,12 +326,104 @@ main.studio-home.home-redesign .occasion-ticker-sep { fill: var(--hx-peach); }
 .home-redesign .hx-occasion:first-child h3 { font-size: clamp(32px, 3.2vw, 44px); }
 .home-redesign .hx-occasion:first-child p { display: block; }
 .home-redesign .hx-occasion:first-child .hx-occasion-body { padding: 30px; }
-.home-redesign .hx-occasion-more { justify-content: center; padding: 26px; background: radial-gradient(ellipse at 100% 0%, #bd813b40, transparent 60%), var(--hx-dark); }
-.home-redesign .hx-occasion-more .hx-eyebrow { color: #d9a967; }
-.home-redesign .hx-occasion-more ul { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin: 0; padding: 0; list-style: none; }
-.home-redesign .hx-occasion-more a { display: flex; justify-content: space-between; align-items: center; gap: 6px; padding: 9px 0; border-bottom: 1px solid #f4d49d24; color: #fbeed8; font-family: var(--serif); font-size: 17px; text-decoration: none; transition: color .2s; }
-.home-redesign .hx-occasion-more a:hover { color: var(--hx-gold); }
-.home-redesign .hx-occasion-more a svg { flex-shrink: 0; color: var(--hx-peach); }
+.home-redesign .hx-occasion-more {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  background: var(--hx-dark);
+  border: 1px solid rgba(244, 212, 157, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  isolation: isolate;
+}
+.home-redesign .hx-occasion-more img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s cubic-bezier(.16, 1, .3, 1);
+}
+.home-redesign .hx-occasion-more:hover img {
+  transform: scale(1.06);
+}
+.home-redesign .hx-occasion-more::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(20, 17, 13, 0.52) 0%, rgba(20, 17, 13, 0.78) 45%, rgba(20, 17, 13, 0.95) 100%);
+  transition: background 0.3s;
+}
+.home-redesign .hx-occasion-more:hover::after {
+  background: linear-gradient(180deg, rgba(20, 17, 13, 0.42) 0%, rgba(20, 17, 13, 0.70) 45%, rgba(20, 17, 13, 0.90) 100%);
+}
+.home-redesign .hx-occasion-more:hover .hx-occasion-arrow {
+  transform: rotate(45deg);
+}
+.home-redesign .hx-occasion-more-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.home-redesign .hx-occasion-more-head .hx-eyebrow {
+  margin: 0 0 4px;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: #d9a967;
+}
+.home-redesign .hx-occasion-more-head h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(22px, 2.2vw, 27px);
+  color: #fff4e3;
+  line-height: 1.15;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
+}
+.home-redesign .hx-more-chips {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.home-redesign .hx-more-chip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(244, 212, 157, 0.06);
+  border: 1px solid rgba(244, 212, 157, 0.2);
+  color: #fbeed8;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.25s, border-color 0.25s, transform 0.25s, color 0.25s, box-shadow 0.25s;
+}
+.home-redesign .hx-more-chip:hover {
+  background: rgba(244, 212, 157, 0.16);
+  border-color: #f4d49d;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(217, 169, 103, 0.25);
+}
+.home-redesign .hx-more-chip-arrow {
+  flex-shrink: 0;
+  color: var(--hx-peach);
+  transition: transform 0.25s, color 0.25s;
+}
+.home-redesign .hx-more-chip:hover .hx-more-chip-arrow {
+  color: #ffffff;
+  transform: translate(2px, -2px);
+}
 
 /* ── Featured designs (TemplateCard markup lives in studio.css) ── */
 main.studio-home.home-redesign .home-templates-section { color: var(--hx-ink); }
@@ -227,11 +558,12 @@ main.studio-home.home-redesign .home-templates-section .round-link { color: var(
   .home-redesign .hx-occasion-badge { display: none; }
   .home-redesign .hx-occasion-arrow { width: 32px; height: 32px; }
   .home-redesign .hx-occasions { grid-auto-rows: minmax(200px, auto); }
-  .home-redesign .hx-occasion-more { padding: 16px; }
-  .home-redesign .hx-occasion-more .hx-eyebrow { margin-bottom: 6px; font-size: 9.5px; letter-spacing: .16em; }
-  .home-redesign .hx-occasion-more .hx-eyebrow > span { display: none; }
-  .home-redesign .hx-occasion-more ul { grid-template-columns: 1fr; }
-  .home-redesign .hx-occasion-more a { padding: 7px 0; font-size: 14.5px; }
+  .home-redesign .hx-occasion-more { padding: 16px 14px; }
+  .home-redesign .hx-occasion-more-body { gap: 10px; }
+  .home-redesign .hx-occasion-more-head h3 { font-size: 20px; }
+  .home-redesign .hx-occasion-more-head .hx-eyebrow { margin-bottom: 3px; font-size: 9px; letter-spacing: .16em; }
+  .home-redesign .hx-more-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .home-redesign .hx-more-chip { padding: 6px 9px; font-size: 11px; }
   .home-redesign .hx-bento { grid-template-columns: 1fr; }
   .home-redesign .hx-bento-hero { grid-column: auto; grid-template-columns: 1fr; padding: 26px 26px 0; }
   .home-redesign .hx-bento-phone { width: 170px; margin-bottom: -40px; }
@@ -273,6 +605,40 @@ main.studio-home.home-redesign .home-templates-section .round-link { color: var(
 @media (max-width: 560px) {
   .home-redesign .hx-cinematic-art { margin: 8px -26px 0; border-left: 0; border-top: 1px solid #bd813b55; }
   .home-redesign .hx-cinematic-art img { height: 320px; min-height: 0; object-position: center 43%; }
+}
+/* The luxury wedding invitation plays live in a full-height panel on the right of the tile.
+   The panel stays phone-width (the design switches to its desktop layout above 480px) and runs edge to edge. */
+.home-redesign .hx-bento-live { grid-template-columns: minmax(0, 1fr) clamp(360px, 54%, 420px); align-items: stretch; gap: 0; padding: 0; }
+.home-redesign .hx-bento-live .hx-bento-copy { align-self: center; max-width: 460px; padding: 40px clamp(24px, 3vw, 40px); }
+.home-redesign .hx-bento-live .hx-bento-copy :is(h3, p) { text-wrap: pretty; }
+.home-redesign .hx-cinematic-live { position: relative; min-height: 540px; border-left: 1px solid #bd813b55; background: #0d0a05; }
+.home-redesign .hx-cinematic-link { position: absolute; inset: 0; display: block; overflow: hidden; isolation: isolate; }
+.home-redesign .hx-cinematic-link .live-frame { position: absolute; inset: 0; }
+.home-redesign .hx-cinematic-link iframe { display: block; width: 100%; height: 100%; border: 0; pointer-events: none; }
+.home-redesign .hx-cinematic-art .hx-cinematic-link .template-cover { width: 100%; height: 100%; min-height: 0; object-fit: cover; object-position: top; }
+/* A soft edge where the panel meets the tile, so it reads as part of the card rather than pasted on. */
+.home-redesign .hx-cinematic-link::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; box-shadow: inset 18px 0 28px -18px #000c, inset 0 -60px 50px -40px #000a; }
+.home-redesign .hx-cinematic-chip { position: absolute; z-index: 2; left: 50%; bottom: 18px; display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; transform: translateX(-50%); border: 1px solid #f4d49d55; border-radius: 999px; background: #14110dcc; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fbeed8; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; pointer-events: none; }
+.home-redesign .hx-cinematic-chip i { width: 7px; height: 7px; border-radius: 50%; background: #e8b65f; box-shadow: 0 0 0 0 #e8b65f99; animation: hxLivePulse 2s ease-out infinite; }
+@keyframes hxLivePulse { to { box-shadow: 0 0 0 8px #e8b65f00; } }
+/* Below 1360px the tile gets the full row, so the copy has room beside the phone-width panel. */
+@media (max-width: 1360px) {
+  .home-redesign .hx-bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .home-redesign .hx-bento-hero { grid-row: span 1; }
+  .home-redesign .hx-bento-live .hx-bento-copy { padding-left: clamp(28px, 5vw, 64px); }
+}
+@media (max-width: 560px) {
+  .home-redesign .hx-bento { grid-template-columns: 1fr; }
+  .home-redesign .hx-bento-hero { grid-column: auto; }
+  .home-redesign .hx-bento-live { grid-template-columns: 1fr; padding: 0; }
+  .home-redesign .hx-bento-live .hx-bento-copy { max-width: none; padding: 28px 24px 26px; }
+  .home-redesign .hx-bento-live .hx-cinematic-art { margin: 0; }
+  /* A full portrait phone screen, so the whole invitation shows (capped to fit below the site header). */
+  .home-redesign .hx-cinematic-live { width: 100%; height: auto; min-height: 0; aspect-ratio: 375 / 812; max-height: calc(100svh - 96px); border-left: 0; border-top: 1px solid #bd813b55; }
+  .home-redesign .hx-cinematic-link::after { box-shadow: inset 0 -60px 50px -40px #000a; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-redesign .hx-cinematic-chip i { animation: none; }
 }
 
 /* ── The reveal: a paper envelope whose flap opens, sparks fly and a card rises ── */

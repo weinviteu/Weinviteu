@@ -1,7 +1,8 @@
 /* ── Template [id] Detail Page Styles ── */
 
 .detailPage {
-  min-height: 0;
+  min-height: 100vh;
+  min-height: 100svh;
   background: #080706;
   color: #f5f0e8;
   position: relative;
@@ -198,7 +199,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+}
+
+.badgeRow > span {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .badgePill {
@@ -926,7 +932,7 @@
   .desktopOnly { display: none; }
   .badgeRow { flex-wrap: nowrap; gap: 8px; }
   .badgeRow > span { white-space: nowrap; flex-shrink: 0; }
-  .badgeRow > .categoryPill:nth-child(3) { flex-shrink: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .badgeRow > .categoryPill:nth-child(2) { flex-shrink: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .tierPill { font-size: 9px; letter-spacing: 1.1px; padding: 6px 10px; }
   .categoryPill { font-size: 11.5px; padding: 5px 11px; }
 }

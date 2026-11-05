@@ -3,8 +3,11 @@ import { Suspense } from "react";
 import { supabase } from "@/lib/supabase";
 import { templateIsVisible } from "@/lib/template-visibility";
 import TemplatesCatalogue from "./TemplatesCatalogue";
+import PageBanner from "@/components/PageBanner";
+import TemplatesCatalogueSkeleton from "./TemplatesCatalogueSkeleton";
 import { absoluteUrl, jsonLdHtml } from "@/lib/seo";
 import { templatePath } from "@/lib/template-url";
+import styles from "./templates.module.css";
 
 export const revalidate = 0;
 
@@ -28,12 +31,29 @@ export default async function TemplatesPage() {
     },
   };
   return (
-    <>
-    <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdHtml(listJsonLd)} />
-    <Suspense fallback={<p role="status">Loading collection…</p>}>
-      <TemplatesCatalogue templates={visibleTemplates} activeCategories={activeCategories}
-        error={error ? "Could not load templates. Please refresh to try again." : ""} />
-    </Suspense>
-    </>
+    <main className={styles.templatesPage}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdHtml(listJsonLd)} />
+      <PageBanner
+        crumb="Templates"
+        eyebrow="THE INVITATION COLLECTION"
+        title="Find the one that"
+        accent="feels like you."
+        description="Romantic, playful, or rooted in tradition. Explore the collection and open a live preview to find your celebration’s perfect beginning."
+        posters={[
+          "/template-posters/wedding-golden-vows.webp",
+          "/template-posters/birthday-golden-wish.webp",
+          "/template-posters/baby-naming-little-star.webp",
+          "/template-posters/traditional-sacred-beginnings.webp",
+          "/template-posters/anniversary-still-us.webp",
+        ]}
+      />
+      <Suspense fallback={<TemplatesCatalogueSkeleton />}>
+        <TemplatesCatalogue
+          templates={visibleTemplates}
+          activeCategories={activeCategories}
+          error={error ? "Could not load templates. Please refresh to try again." : ""}
+        />
+      </Suspense>
+    </main>
   );
 }

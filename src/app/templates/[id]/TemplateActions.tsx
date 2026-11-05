@@ -24,7 +24,7 @@ export default function TemplateActions({ previewUrl, templateTitle, className =
 
   return (
     <div className={`${styles.templateActions} ${className}`}>
-      <a href={previewUrl} className={styles.actionPreview} aria-label={`Preview ${templateTitle} full screen`}>
+      <a href={previewUrl} target="_blank" rel="noopener noreferrer" className={styles.actionPreview} aria-label={`Preview ${templateTitle} full screen in a new tab`}>
         <Eye size={17} aria-hidden="true" /> <span className={styles.actionLabel}>Preview</span>
       </a>
       <button type="button" onClick={handleShare} className={styles.actionShare} aria-label={copied ? "Link copied" : `Share ${templateTitle}`}>

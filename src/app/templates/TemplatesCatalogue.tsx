@@ -1,6 +1,5 @@
 "use client";
-import PageBanner from "@/components/PageBanner";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Check, X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import TemplateCard from "@/components/TemplateCard";
@@ -16,13 +15,30 @@ export default function TemplatesCatalogue({ templates, activeCategories, error 
   const categoryParam = slugify(params.get('category') || 'all');
   const urlCategory = activeCategories.find(category => slugify(category.name) === categoryParam)?.name ?? 'all';
   const urlTier = params.get('tier');
-  // undefined = follow the URL; null = cleared (every tier, grouped).
-  const [tierChoice, setTierChoice] = useState<TemplateTier | null | undefined>(undefined);
-  const activeTier: TemplateTier | null = tierChoice === undefined ? (TEMPLATE_TIERS.find(t => t === urlTier) ?? null) : tierChoice;
-  const [selection, setSelection] = useState<{ urlCategory: string; value: string } | null>(null);
-  const activeCategory = selection?.urlCategory === urlCategory ? selection.value : urlCategory;
-  const setActiveCategory = (value: string) => setSelection({ urlCategory, value });
+  // The chosen category and collection live in the URL, so coming back from a template
+  // (browser Back) restores exactly what the visitor had picked.
+  const activeTier: TemplateTier | null = TEMPLATE_TIERS.find(t => t === urlTier) ?? null;
+  const activeCategory = urlCategory;
+  const updateUrl = (changes: { category?: string; tier?: TemplateTier | null }) => {
+    const next = new URLSearchParams(params.toString());
+    if ('category' in changes) {
+      if (!changes.category || changes.category === 'all') next.delete('category');
+      else next.set('category', slugify(changes.category));
+    }
+    if ('tier' in changes) {
+      if (changes.tier) next.set('tier', changes.tier);
+      else next.delete('tier');
+    }
+    const query = next.toString();
+    window.history.replaceState(null, '', `${window.location.pathname}${query ? `?${query}` : ''}`);
+  };
+  const setActiveCategory = (value: string) => updateUrl({ category: value });
+  const setTierChoice = (tier: TemplateTier | null) => updateUrl({ tier });
   const categoryBar = useRef<HTMLDivElement>(null);
+  // Ensure the template catalogue always displays from the top banner down
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
   // On phones the row scrolls sideways, so bring the chosen category into view (the row only, not the page).
   useEffect(() => {
     const bar = categoryBar.current;
@@ -52,9 +68,8 @@ export default function TemplatesCatalogue({ templates, activeCategories, error 
   const otherTiers = TEMPLATE_TIERS.filter(t => t !== activeTier && tierCount(t) > 0);
 
   return (
-    <main className={styles.templatesPage}>
+    <div className={styles.catalogueSection}>
       {error && <p role="alert">{error}</p>}
-      <PageBanner crumb="Templates" eyebrow="THE INVITATION COLLECTION" title="Find the one that" accent="feels like you." description="Romantic, playful, or rooted in tradition. Explore the collection and open a live preview to find your celebration’s perfect beginning." posters={["/template-posters/wedding-golden-vows.webp", "/template-posters/birthday-golden-wish.webp", "/template-posters/baby-naming-little-star.webp", "/template-posters/traditional-sacred-beginnings.webp", "/template-posters/anniversary-still-us.webp"]} />
 
       {/* Category pills */}
       <div ref={categoryBar} className={styles.categoryBar}>
@@ -143,6 +158,6 @@ export default function TemplatesCatalogue({ templates, activeCategories, error 
           </div>
         </div>
       )}
-    </main>
+    </div>
   );
 }

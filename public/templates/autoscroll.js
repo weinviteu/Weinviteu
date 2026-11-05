@@ -116,8 +116,18 @@
 
   let isTourRunning = true;
   let isResetting = false;
+  // ?open: the invitation starts already opened on its first inside page (the home page's cinematic tile).
+  // Its loading screen and envelope are hidden, and the tour never presses an opener.
+  const startsOpen = /[?&]open\b/.test(window.location.search);
+  if (startsOpen) {
+    const style = document.createElement("style");
+    style.textContent = "#loader, #gate { display: none !important; }";
+    (document.head || document.documentElement).appendChild(style);
+  }
 
-  const { currentState, currentPage, lastPage, tryTriggerOpen } = window.__invitationOpener;
+  const opener = window.__invitationOpener;
+  const { currentState, currentPage, lastPage } = opener;
+  const tryTriggerOpen = () => (startsOpen ? false : opener.tryTriggerOpen());
 
   // Smooth continuous scroller for vertical scrolling templates / sections
   let previousScrollTime = 0;

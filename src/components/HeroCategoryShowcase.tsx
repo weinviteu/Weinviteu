@@ -1,15 +1,16 @@
 "use client";
 
-import { categoryPath } from "@/lib/template-url";
+import { categoryPath, templatePath } from "@/lib/template-url";
 import { useEffect, useState, type CSSProperties } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ArrowUpRight, Pause, Play } from "lucide-react";
 import LiveFrame from "./LiveFrame";
 import WhatsAppIcon from "./WhatsAppIcon";
 import HeroFireworks from "./HeroFireworks";
 import styles from "./HeroCategoryShowcase.module.css";
 
-export type HeroCategorySlide = { category: string; title: string; src: string | null; poster: string | null };
+export type HeroCategorySlide = { category: string; title: string; src: string | null; poster: string | null; detailUrl?: string };
 
 const categoryCopy: Record<string, { title: string; accent: string; description: string }> = {
   wedding: { title: "Your forever.", accent: "Beautifully announced.", description: "From the first welcome to the final blessing, invite your favourite people into a wedding story that feels entirely yours." },
@@ -39,6 +40,7 @@ function offsetFrom(i: number, active: number, total: number) {
 }
 
 export default function HeroCategoryShowcase({ slides }: { slides: HeroCategorySlide[] }) {
+  const router = useRouter();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [interacting, setInteracting] = useState(false);
@@ -84,8 +86,10 @@ export default function HeroCategoryShowcase({ slides }: { slides: HeroCategoryS
           const Card = active ? "div" : "button";
           return (
             <Card key={item.src || item.category} className={styles.card} data-active={active || undefined} data-distance={distance}
-              style={{ "--offset": offset, "--distance": distance } as CSSProperties}
-              {...(active ? {} : { type: "button" as const, onClick: () => setIndex(i), "aria-label": `Show ${item.category} invitations: ${item.title}` })}>
+              style={{ "--offset": offset, "--distance": distance, ...(active && item.detailUrl ? { cursor: "pointer" } : {}) } as CSSProperties}
+              {...(active
+                ? { onClick: item.detailUrl ? () => router.push(item.detailUrl!) : undefined }
+                : { type: "button" as const, onClick: () => setIndex(i), "aria-label": `Show ${item.category} invitations: ${item.title}` })}>
               <span className={styles.screen}>
                 {active && item.src ? (
                   <LiveFrame key={item.category} hero title={`${item.title} — live preview`}

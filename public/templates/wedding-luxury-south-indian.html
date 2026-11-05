@@ -395,12 +395,10 @@ Check your Browserslist config to be sure that your targets are set up correctly
     .countdown-card > div { font-variant-numeric: tabular-nums; }
     .heart-container { width: min(280px, 100%); height: auto; aspect-ratio: 280 / 260; }
     #petals-canvas { max-width: 480px; }
-    #open-customizer-btn { left: max(calc((100vw - 480px) / 2 + 14px), calc(env(safe-area-inset-left) + 14px)); top: calc(env(safe-area-inset-top) + 12px); width: 44px; height: 44px; padding: 0; justify-content: center; }
-    #open-customizer-btn > span:last-child { display: none; }
     #music-toggle-btn { width: 48px; height: 48px; right: max(calc((100vw - 480px) / 2 + 16px), calc(env(safe-area-inset-right) + 16px)); bottom: calc(env(safe-area-inset-bottom) + 16px); box-shadow: 0 5px 24px #54162026; }
     div[id$="-modal"] { z-index: 110; padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); overscroll-behavior: contain; }
-    #wish-modal > div, #customizer-modal > div { max-height: calc(100dvh - 48px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); overflow-y: auto; overscroll-behavior: contain; border-radius: 22px; padding: 24px; }
-    #close-wish-modal, #close-customizer-btn { min-width: 44px; flex-shrink: 0; }
+    #wish-modal > div { max-height: calc(100dvh - 48px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); overflow-y: auto; overscroll-behavior: contain; border-radius: 22px; padding: 24px; }
+    #close-wish-modal { min-width: 44px; flex-shrink: 0; }
     #in-motion-carousel { overscroll-behavior-x: contain; scroll-padding-inline: 24px; }
     .motion-video-card { max-width: calc(100vw - 64px); }
     [id^="motion-dot-"] { position: relative; min-width: 24px; min-height: 6px; }
@@ -410,7 +408,6 @@ Check your Browserslist config to be sure that your targets are set up correctly
     footer { padding-bottom: calc(80px + env(safe-area-inset-bottom)) !important; }
     @media (max-width: 360px) {
       section.reveal-section { padding-left: 18px; padding-right: 18px; }
-      #customizer-form .grid { grid-template-columns: 1fr; }
       #leave-note-btn, #organize-notes-btn { padding-left: 12px; padding-right: 12px; letter-spacing: .1em; }
     }
     @media (max-height: 700px) {
@@ -584,11 +581,6 @@ Check your Browserslist config to be sure that your targets are set up correctly
 
     <!-- CONTINUOUS FALLING ROSE PETALS CANVAS -->
     <canvas id="petals-canvas" class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[440px] h-full pointer-events-none z-40"></canvas>
-
-    <!-- FLOATING CUSTOMIZE BUTTON (TOP LEFT) -->
-    <button id="open-customizer-btn" title="Customize Names & Details" class="fixed top-3 left-3 z-50 bg-[#FDF9F3]/90 backdrop-blur-md border border-[#C59B4E]/50 text-[#6B212C] px-3 py-1.5 rounded-full text-xs font-sans-track tracking-wider shadow-md hover:bg-[#6B212C] hover:text-white transition flex items-center gap-1.5">
-      <span>✏️</span> <span class="hidden sm:inline">Customize</span>
-    </button>
 
     <!-- FLOATING MUSIC TOGGLE BUTTON (BOTTOM RIGHT, EXACT MATCH TO VIDEO) -->
     <button id="music-toggle-btn" aria-label="Toggle wedding music" class="fixed bottom-5 right-5 z-50 w-11 h-11 rounded-full bg-[#FDF9F3]/95 border border-[#C59B4E] text-[#6B212C] flex items-center justify-center shadow-lg transition-transform active:scale-90">
@@ -1308,95 +1300,6 @@ Check your Browserslist config to be sure that your targets are set up correctly
       </div>
     </div>
 
-    <!-- Modal 3: Customize Invitation Details & Upload Custom Videos -->
-    <div id="customizer-modal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-xs hidden items-center justify-center p-4">
-      <div class="bg-[#FDF9F3] rounded-2xl max-w-md w-full max-h-[88vh] overflow-y-auto p-6 shadow-2xl border border-[#C59B4E]">
-        <div class="flex justify-between items-center mb-4 pb-2 border-b border-[#E6D5B8]">
-          <h4 class="font-serif-luxury text-2xl text-[#6B212C] font-bold">Customize Invitation</h4>
-          <button id="close-customizer-btn" class="text-[#6B212C] text-2xl leading-none">&times;</button>
-        </div>
-        <p class="text-xs font-sans-track text-[#7D6340] mb-4">Edit any text or upload your own pre-wedding videos (`.mp4` / `.mov`) for the "IN MOTION" carousel.</p>
-        <form id="customizer-form" class="space-y-3 text-sm">
-          <div class="grid grid-cols-2 gap-2.5">
-            <div>
-              <label class="block font-sans-track text-[10px] uppercase text-[#8C6A43]">Bride Name</label>
-              <input type="text" name="brideName" value="Bhoomika" class="w-full px-3 py-2 rounded-lg border border-[#DFCBB2]" />
-            </div>
-            <div>
-              <label class="block font-sans-track text-[10px] uppercase text-[#8C6A43]">Bride Nickname</label>
-              <input type="text" name="brideSub" value="(Gnanavi)" class="w-full px-3 py-2 rounded-lg border border-[#DFCBB2]" />
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-2.5">
-            <div>
-              <label class="block font-sans-track text-[10px] uppercase text-[#8C6A43]">Groom Name</label>
-              <input type="text" name="groomName" value="Sanjay Gowda" class="w-full px-3 py-2 rounded-lg border border-[#DFCBB2]" />
-            </div>
-            <div>
-              <label class="block font-sans-track text-[10px] uppercase text-[#8C6A43]">Groom Nickname</label>
-              <input type="text" name="groomSub" value="(Gowtham)" class="w-full px-3 py-2 rounded-lg border border-[#DFCBB2]" />
-            </div>
-          </div>
-          <div>
-            <label class="block font-sans-track text-[10px] uppercase text-[#8C6A43]">Bride's Parents</label>
-            <input type="text" name="brideParents" value="GOVINDRAJ & ANSUYA" class="w-full px-3 py-2 rounded-lg border border-[#DFCBB2]" />
-          </div>
-          <div>
-            <label class="block font-sans-track text-[10px] uppercase text-[#8C6A43]">Groom's Parents</label>
-            <input type="text" name="groomParents" value="LAKSHMEGOWDA & NAVEENA KUMARI" class="w-full px-3 py-2 rounded-lg border border-[#DFCBB2]" />
-          </div>
-          <div class="grid grid-cols-2 gap-2.5">
-            <div>
-              <label class="block font-sans-track text-[10px] uppercase text-[#8C6A43]">Scratch Heart Dates</label>
-              <input type="text" name="weddingDates" value="October 31 & November 1, 2026" class="w-full px-3 py-2 rounded-lg border border-[#DFCBB2]" />
-            </div>
-            <div>
-              <label class="block font-sans-track text-[10px] uppercase text-[#8C6A43]">City</label>
-              <input type="text" name="weddingCity" value="Hassan" class="w-full px-3 py-2 rounded-lg border border-[#DFCBB2]" />
-            </div>
-          </div>
-          <div>
-            <label class="block font-sans-track text-[10px] uppercase text-[#8C6A43]">Venue Name</label>
-            <input type="text" name="venueName" value="HMT Convention Hall" class="w-full px-3 py-2 rounded-lg border border-[#DFCBB2]" />
-          </div>
-          <div>
-            <label class="block font-sans-track text-[10px] uppercase text-[#8C6A43]">Venue Address</label>
-            <input type="text" name="venueAddress" value="M Hosakoppalu, Channapatna, Hassan, Karnataka 573201" class="w-full px-3 py-2 rounded-lg border border-[#DFCBB2]" />
-          </div>
-
-          <!-- Custom Video Upload Section for "IN MOTION" -->
-          <div class="pt-3 border-t border-[#E6D5B8]">
-            <p class="font-sans-track text-[10px] tracking-wider uppercase text-[#6B212C] font-semibold mb-2">
-              🎥 Replace "IN MOTION" Videos (Optional)
-            </p>
-            <div class="space-y-2 text-xs">
-              <div>
-                <label class="block text-[10px] text-[#8C6A43] uppercase mb-0.5">Clip 1 (Garden Embrace) - Upload MP4</label>
-                <input type="file" accept="video/*" onchange="handleCustomVideoUpload(0, this)" class="w-full text-xs text-[#6B212C] file:mr-2 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-xs file:bg-[#6B212C] file:text-white" />
-              </div>
-              <div>
-                <label class="block text-[10px] text-[#8C6A43] uppercase mb-0.5">Clip 2 (Hand in Hand) - Upload MP4</label>
-                <input type="file" accept="video/*" onchange="handleCustomVideoUpload(1, this)" class="w-full text-xs text-[#6B212C] file:mr-2 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-xs file:bg-[#6B212C] file:text-white" />
-              </div>
-              <div>
-                <label class="block text-[10px] text-[#8C6A43] uppercase mb-0.5">Clip 3 (Quiet Together) - Upload MP4</label>
-                <input type="file" accept="video/*" onchange="handleCustomVideoUpload(2, this)" class="w-full text-xs text-[#6B212C] file:mr-2 file:py-1 file:px-3 file:rounded-full file:border-0 file:text-xs file:bg-[#6B212C] file:text-white" />
-              </div>
-            </div>
-          </div>
-
-          <div class="pt-3 flex gap-2">
-            <button type="submit" class="flex-1 py-2.5 rounded-full bg-[#6B212C] text-white font-sans-track text-xs tracking-widest uppercase">
-              Save Changes
-            </button>
-            <button type="button" id="replay-cover-btn" class="px-4 py-2.5 rounded-full border border-[#C59B4E] text-[#6B212C] font-sans-track text-xs uppercase">
-              Replay Cover
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-
     <!-- Custom Notification Toast -->
     <div id="toast-box" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-[#6B212C] text-white px-5 py-2.5 rounded-full shadow-xl font-sans-track text-xs tracking-wider uppercase opacity-0 pointer-events-none transition-opacity duration-300">
       Saved!
@@ -2030,23 +1933,6 @@ if (venueFrame) venueFrame.src = 'https://www.google.com/maps?q=' + encodeURICom
       openVideoModal(nextIdx);
     }
 
-    // Handle Custom MP4 Upload from User's Phone/PC in Customize Modal
-    function handleCustomVideoUpload(idx, inputEl) {
-      const file = inputEl.files && inputEl.files[0];
-      if (!file) return;
-      const blobUrl = URL.createObjectURL(file);
-      motionClipsConfig[idx].customVideoUrl = blobUrl;
-
-      const vidEl = document.getElementById(`motion-video-${idx}`);
-      if (vidEl) {
-        vidEl.src = blobUrl;
-        vidEl.classList.remove('opacity-0');
-        vidEl.classList.add('opacity-100');
-        vidEl.play().catch(() => {});
-      }
-      showToast(`Clip ${idx + 1} Video Uploaded!`);
-    }
-
     // ==========================================
     // 8. INTERACTIVE WALL OF WISHES (DRAGGABLE STICKY NOTES)
     // ==========================================
@@ -2244,36 +2130,6 @@ if (venueFrame) venueFrame.src = 'https://www.google.com/maps?q=' + encodeURICom
       }
     });
 
-    // Customizer Modal Logic
-    const customizerModal = document.getElementById('customizer-modal');
-    document.getElementById('open-customizer-btn').addEventListener('click', () => {
-      customizerModal.classList.remove('hidden');
-      customizerModal.classList.add('flex');
-    });
-    document.getElementById('close-customizer-btn').addEventListener('click', () => {
-      customizerModal.classList.add('hidden');
-      customizerModal.classList.remove('flex');
-    });
-    document.getElementById('replay-cover-btn').addEventListener('click', () => {
-      customizerModal.classList.add('hidden');
-      customizerModal.classList.remove('flex');
-      clearTimeout(coverOpeningTimer);
-      splashScreen.classList.remove('opened', 'opening');
-    });
-
-    document.getElementById('customizer-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      formData.forEach((val, key) => {
-        document.querySelectorAll(`[data-bind="${key}"]`).forEach(el => {
-          el.textContent = val;
-        });
-      });
-      customizerModal.classList.add('hidden');
-      customizerModal.classList.remove('flex');
-      showToast('Invitation Updated!');
-    });
-
     // ==========================================
     // 11. SCROLL REVEAL OBSERVER
     // ==========================================
@@ -2308,9 +2164,7 @@ if (venueFrame) venueFrame.src = 'https://www.google.com/maps?q=' + encodeURICom
       el.setAttribute('aria-label', el === splashScreen ? 'Wedding invitation cover' : el.id.replaceAll('-', ' '));
       new MutationObserver(syncOverlays).observe(el, {attributes:true, attributeFilter:['class']});
     });
-    document.getElementById('open-customizer-btn').setAttribute('aria-label', 'Customize invitation');
     document.getElementById('close-wish-modal').setAttribute('aria-label', 'Close wishes');
-    document.getElementById('close-customizer-btn').setAttribute('aria-label', 'Close customization');
     const invitationVideos = [...document.querySelectorAll('video')];
     invitationVideos.forEach(video => { video.removeAttribute('autoplay'); video.pause(); });
     function syncVisibleVideo() {
