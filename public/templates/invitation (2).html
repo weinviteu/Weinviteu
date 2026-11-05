@@ -1247,7 +1247,7 @@ function renderPalace(t, T, f, g) {
    so flying 30x into the painting (and back out) never makes the browser repaint giant layers */
 function drawZoom(cv, layers, alpha) {
   const c = cv.getContext("2d"), W = innerWidth, H = innerHeight; c.clearRect(0, 0, W, H); if (!layers || alpha <= .002) return;
-  c.globalAlpha = alpha; c.imageSmoothingEnabled = true; c.imageSmoothingQuality = "high";
+  c.globalAlpha = alpha; c.imageSmoothingEnabled = true; c.imageSmoothingQuality = "medium";
   for (const { img, x, y, k } of layers) { const iw = img.naturalWidth, ih = img.naturalHeight; if (!iw) continue;
     const sx0 = clamp(-x / k, 0, iw), sy0 = clamp(-y / k, 0, ih), sx1 = clamp((W - x) / k, 0, iw), sy1 = clamp((H - y) / k, 0, ih);
     if (sx1 - sx0 < .5 || sy1 - sy0 < .5) continue;

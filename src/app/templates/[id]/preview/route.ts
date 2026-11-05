@@ -67,20 +67,29 @@ function withContactButton(html: string, title: string) {
   const open = window.open.bind(window);
   window.open = (url, ...rest) => open(rewrite(url) || url, ...rest);
   // Links are rewritten in place (and again whenever a design sets them), so they work however a design handles taps.
-  const fixLinks = () => {
-    for (const a of document.querySelectorAll("a[href]")) {
-      const reply = /^mailto:/i.test(a.getAttribute("href")) && (a.id === "rsvp" || /join us/i.test(a.textContent));
-      const to = reply ? toWhatsApp() : rewrite(a.href);
-      if (!to || a.getAttribute("href") === to) continue;
-      a.setAttribute("href", to);
-      a.target = "_blank";
-      a.rel = "noopener";
-    }
+  const fixLink = a => {
+    const href = a.getAttribute("href");
+    if (!href || href.startsWith("/api/whatsapp")) return;
+    const reply = /^mailto:/i.test(href) && (a.id === "rsvp" || /join us/i.test(a.textContent));
+    const to = reply ? toWhatsApp() : rewrite(a.href);
+    if (!to || href === to) return;
+    a.setAttribute("href", to);
+    a.target = "_blank";
+    a.rel = "noopener";
   };
-  let queued = false;
-  new MutationObserver(() => { if (!queued) { queued = true; queueMicrotask(() => { queued = false; fixLinks(); }); } })
-    .observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ["href"] });
-  fixLinks();
+  const fixWithin = node => {
+    if (node.nodeType !== 1) return;
+    if (node.matches("a[href]")) fixLink(node);
+    if (node.firstElementChild) for (const a of node.querySelectorAll("a[href]")) fixLink(a);
+  };
+  // Only links that were added or changed are checked, so busy animated designs stay smooth.
+  new MutationObserver(records => {
+    for (const r of records) {
+      if (r.type === "attributes") { if (r.target.matches && r.target.matches("a[href]")) fixLink(r.target); }
+      else r.addedNodes.forEach(fixWithin);
+    }
+  }).observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ["href"] });
+  fixWithin(document.body);
 })();</script>`;
   return /<\/body>/i.test(html) ? html.replace(/<\/body>(?![\s\S]*<\/body>)/i, `${script}$&`) : html + script;
 }

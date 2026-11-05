@@ -424,9 +424,15 @@ function drawBg(t) { const W = innerWidth, H = innerHeight; G.setTransform(DPR, 
   G.strokeStyle = "rgba(184,145,74,.07)"; G.lineWidth = 1; const step = 64, off = (t * 4) % step;
   for (let x = -step + off; x < W + step; x += step) { G.beginPath(); G.moveTo(x, 0); G.lineTo(x - H * .35, H); G.stroke(); }
   MOTES.forEach(m => { m.y -= m.v * .016 * (.5 + m.z); if (m.y < -.02) { m.y = 1.02; m.x = Math.random(); } const x = (m.x + Math.sin(t * .2 + m.ph) * .01 + pt.x * .01 * m.z) * W, y = m.y * H, a = .25 + .35 * Math.sin(t * 1.2 + m.ph);
-    const rg = G.createRadialGradient(x, y, 0, x, y, m.r * 4); rg.addColorStop(0, `rgba(240,214,150,${a})`); rg.addColorStop(1, "rgba(240,214,150,0)"); G.fillStyle = rg; G.fillRect(x - m.r * 4, y - m.r * 4, m.r * 8, m.r * 8); });
-  G.globalCompositeOperation = "source-over";
-  const vg = G.createRadialGradient(W / 2, H / 2, Math.min(W, H) * .3, W / 2, H / 2, Math.max(W, H) * .75); vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,.55)"); G.fillStyle = vg; G.fillRect(0, 0, W, H); }
+    if (a > 0) { G.globalAlpha = Math.min(1, a); G.drawImage(MOTE, x - m.r * 4, y - m.r * 4, m.r * 8, m.r * 8); } });
+  G.globalAlpha = 1; G.globalCompositeOperation = "source-over";
+  // the vignette depends only on the screen size, so it is built once per size
+  if (!VIG || VIG.w !== W || VIG.h !== H) { const vg = G.createRadialGradient(W / 2, H / 2, Math.min(W, H) * .3, W / 2, H / 2, Math.max(W, H) * .75); vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,.55)"); VIG = { w: W, h: H, g: vg }; }
+  G.fillStyle = VIG.g; G.fillRect(0, 0, W, H); }
+// a single glowing mote, drawn once and stamped for every mote each frame
+const MOTE = (() => { const c = document.createElement("canvas"); c.width = c.height = 64; const x = c.getContext("2d"), rg = x.createRadialGradient(32, 32, 0, 32, 32, 32);
+  rg.addColorStop(0, "rgba(240,214,150,1)"); rg.addColorStop(1, "rgba(240,214,150,0)"); x.fillStyle = rg; x.fillRect(0, 0, 64, 64); return c; })();
+let VIG = null;
 
 /* ---------- the cards ---------- */
 const LOGOMARK = '<svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="18.5" fill="none" stroke="currentColor" stroke-width=".5"/><path d="M15 34 L24 12 L33 34 M18.6 26h10.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="24" cy="12" r="1.8" fill="currentColor"/></svg>';
@@ -511,9 +517,11 @@ function watch() { if (io) io.disconnect(); io = new IntersectionObserver(es => 
   $$(".sec").forEach(s => io.observe(s)); }
 function onSection(i) { updateNav(); $("#pnow").textContent = String(i + 1).padStart(2, "0"); const c = $("#card1"); c.classList.remove("flash"); void c.offsetWidth; c.classList.add("flash");
   }
-let scrollT = 0, lastTop = 0, vel = 0;
-function onScroll() { const b = SB(), max = b.scrollHeight - b.clientHeight, p = max > 0 ? b.scrollTop / max : 0;
-  const c = $("#card1"); c.style.setProperty("--p", p.toFixed(4)); vel = b.scrollTop - lastTop; lastTop = b.scrollTop;
+let scrollT = 0, lastTop = 0, vel = 0, scrollQueued = false;
+// scroll events can fire several times a frame: handle them once per frame, measuring before changing styles
+function onScroll() { if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(applyScroll); } }
+function applyScroll() { scrollQueued = false; const b = SB(), top = b.scrollTop, max = b.scrollHeight - b.clientHeight, p = max > 0 ? top / max : 0;
+  const c = $("#card1"); c.style.setProperty("--p", p.toFixed(4)); vel = top - lastTop; lastTop = top;
   $("#prog").style.strokeDashoffset = (1 - p) * 1000; c.classList.add("scrolling"); clearTimeout(scrollT); scrollT = setTimeout(() => c.classList.remove("scrolling"), 260);
   if (Math.abs(vel) > 2) sparkle(vel); }
 function updateNav() { const ok = state === "cards"; $("#corners").classList.toggle("on", ok); $("#cue").classList.toggle("show", ok && page < N() - 1); $("#rail").classList.toggle("show", ok); $("#count").classList.toggle("show", ok);
