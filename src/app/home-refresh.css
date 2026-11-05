@@ -307,6 +307,7 @@ main.studio-home.home-redesign .occasion-ticker-sep { fill: var(--hx-peach); }
   .home-redesign .hx-rakvih-cap-num { position: absolute; top: 12px; right: 12px; font-size: 12.5px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .home-redesign .hx-more-art, .home-redesign .hx-more-sparkles i { animation: none; }
   .home-redesign .hx-rakvih-glow, .home-redesign .hx-rakvih-name, .home-redesign .hx-rakvih-capabilities-card::after { animation: none; }
 }
 
@@ -332,34 +333,57 @@ main.studio-home.home-redesign .occasion-ticker-sep { fill: var(--hx-peach); }
   flex-direction: column;
   justify-content: flex-end;
   padding: 24px;
-  background: var(--hx-dark);
-  border: 1px solid rgba(244, 212, 157, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  /* plum-to-midnight ground with a warm gold glow, no photo */
+  background:
+    radial-gradient(ellipse 85% 65% at 88% 8%, rgba(217, 165, 79, 0.34), transparent 62%),
+    radial-gradient(ellipse 80% 60% at 0% 100%, rgba(122, 28, 58, 0.55), transparent 70%),
+    linear-gradient(160deg, #2b1620 0%, #1a1014 55%, #0e0909 100%);
+  border: 1px solid rgba(244, 212, 157, 0.24);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 236, 190, 0.08);
   overflow: hidden;
   isolation: isolate;
 }
-.home-redesign .hx-occasion-more img {
+.home-redesign .hx-more-art {
   position: absolute;
-  inset: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .8s cubic-bezier(.16, 1, .3, 1);
+  z-index: -1;
+  top: -22%;
+  right: -20%;
+  width: 82%;
+  aspect-ratio: 1;
+  opacity: 0.5;
+  filter: drop-shadow(0 0 10px rgba(232, 182, 95, 0.25));
+  animation: hxMoreTurn 90s linear infinite;
+  transition: opacity 0.4s;
 }
-.home-redesign .hx-occasion-more:hover img {
-  transform: scale(1.06);
+@keyframes hxMoreTurn { to { transform: rotate(360deg); } }
+.home-redesign .hx-occasion-more:hover .hx-more-art { opacity: 0.7; }
+/* tiny gold sparkles that glint in turn */
+.home-redesign .hx-more-sparkles i {
+  position: absolute;
+  z-index: -1;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fbe7b0;
+  box-shadow: 0 0 8px 2px rgba(251, 231, 176, 0.6);
+  opacity: 0;
+  animation: hxMoreGlint 4.8s ease-in-out infinite;
 }
+.home-redesign .hx-more-sparkles i:nth-child(1) { top: 18%; left: 14%; animation-delay: 0s; }
+.home-redesign .hx-more-sparkles i:nth-child(2) { top: 34%; left: 42%; animation-delay: .8s; width: 3px; height: 3px; }
+.home-redesign .hx-more-sparkles i:nth-child(3) { top: 12%; left: 62%; animation-delay: 1.6s; }
+.home-redesign .hx-more-sparkles i:nth-child(4) { top: 48%; left: 86%; animation-delay: 2.4s; width: 3px; height: 3px; }
+.home-redesign .hx-more-sparkles i:nth-child(5) { top: 56%; left: 22%; animation-delay: 3.2s; width: 3px; height: 3px; }
+.home-redesign .hx-more-sparkles i:nth-child(6) { top: 26%; left: 88%; animation-delay: 4s; }
+@keyframes hxMoreGlint { 0%, 100% { opacity: 0; transform: scale(.4); } 45% { opacity: 1; transform: scale(1); } }
+/* a soft fade at the bottom keeps the title and chips easy to read */
 .home-redesign .hx-occasion-more::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, rgba(20, 17, 13, 0.52) 0%, rgba(20, 17, 13, 0.78) 45%, rgba(20, 17, 13, 0.95) 100%);
-  transition: background 0.3s;
-}
-.home-redesign .hx-occasion-more:hover::after {
-  background: linear-gradient(180deg, rgba(20, 17, 13, 0.42) 0%, rgba(20, 17, 13, 0.70) 45%, rgba(20, 17, 13, 0.90) 100%);
+  background: linear-gradient(180deg, transparent 25%, rgba(14, 9, 9, 0.55) 70%, rgba(14, 9, 9, 0.8) 100%);
+  pointer-events: none;
 }
 .home-redesign .hx-occasion-more:hover .hx-occasion-arrow {
   transform: rotate(45deg);
@@ -389,41 +413,32 @@ main.studio-home.home-redesign .occasion-ticker-sep { fill: var(--hx-peach); }
 .home-redesign .hx-more-chips {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
+  column-gap: 22px;
+  border-top: 1px solid rgba(244, 212, 157, 0.22);
 }
+/* each category is an even row: name on the left, arrow on the right, a fine gold rule beneath */
 .home-redesign .hx-more-chip {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 6px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: rgba(244, 212, 157, 0.06);
-  border: 1px solid rgba(244, 212, 157, 0.2);
+  gap: 10px;
+  padding: 11px 2px;
+  border-bottom: 1px solid rgba(244, 212, 157, 0.18);
   color: #fbeed8;
-  font-size: 13px;
-  font-weight: 500;
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.25;
   text-decoration: none;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: background 0.25s, border-color 0.25s, transform 0.25s, color 0.25s, box-shadow 0.25s;
+  transition: color 0.25s, padding 0.25s;
 }
-.home-redesign .hx-more-chip:hover {
-  background: rgba(244, 212, 157, 0.16);
-  border-color: #f4d49d;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(217, 169, 103, 0.25);
-}
+.home-redesign .hx-more-chip:hover { color: #f4d49d; padding-left: 6px; }
+.home-redesign .hx-more-chip:focus-visible { outline: 2px solid #f4d49d; outline-offset: 2px; border-radius: 4px; }
 .home-redesign .hx-more-chip-arrow {
   flex-shrink: 0;
-  color: var(--hx-peach);
-  transition: transform 0.25s, color 0.25s;
+  color: #e8b980;
+  transition: transform 0.25s;
 }
-.home-redesign .hx-more-chip:hover .hx-more-chip-arrow {
-  color: #ffffff;
-  transform: translate(2px, -2px);
-}
+.home-redesign .hx-more-chip:hover .hx-more-chip-arrow { color: #f4d49d; transform: translate(2px, -2px); }
 
 /* ── Featured designs (TemplateCard markup lives in studio.css) ── */
 main.studio-home.home-redesign .home-templates-section { color: var(--hx-ink); }
@@ -562,8 +577,10 @@ main.studio-home.home-redesign .home-templates-section .round-link { color: var(
   .home-redesign .hx-occasion-more-body { gap: 10px; }
   .home-redesign .hx-occasion-more-head h3 { font-size: 20px; }
   .home-redesign .hx-occasion-more-head .hx-eyebrow { margin-bottom: 3px; font-size: 9px; letter-spacing: .16em; }
-  .home-redesign .hx-more-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-  .home-redesign .hx-more-chip { padding: 6px 9px; font-size: 11px; }
+  /* phones: one clean column of rows */
+  .home-redesign .hx-more-chips { grid-template-columns: 1fr; }
+  .home-redesign .hx-more-chip { padding: 8px 0; font-size: 14px; }
+  .home-redesign .hx-more-art { top: -12%; right: -38%; width: 120%; }
   .home-redesign .hx-bento { grid-template-columns: 1fr; }
   .home-redesign .hx-bento-hero { grid-column: auto; grid-template-columns: 1fr; padding: 26px 26px 0; }
   .home-redesign .hx-bento-phone { width: 170px; margin-bottom: -40px; }
@@ -584,12 +601,39 @@ main.studio-home.home-redesign .home-templates-section .round-link { color: var(
 /* Bring the occasion heading closer to the promise strip above it. */
 .home-redesign .hx-section.hx-occasion-section { padding-top: 14px; }
 
-/* Centre the introduction independently of the collection link at top right. */
-.home-redesign .home-templates-section .hx-head-center { position: relative; flex-direction: column; align-items: center; gap: 18px; }
-.home-redesign .home-templates-section .hx-head-center > .hx-outline-btn { position: absolute; top: 0; right: 0; }
-@media (max-width: 800px) {
-  .home-redesign .home-templates-section .hx-head-center { padding-top: 56px; }
-  .home-redesign .home-templates-section .hx-head-center > .hx-outline-btn { padding: 9px 14px; font-size: 12px; }
+/* The collection link: a gold button in the right-hand corner just below the designs. */
+.home-redesign .home-templates-more { display: flex; justify-content: flex-end; margin-top: clamp(18px, 2.4vw, 28px); }
+.home-redesign .home-templates-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 7px 7px 20px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f7dc9d 0%, #e3b665 45%, #c8913e 100%);
+  color: #2a1a0b;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  text-decoration: none;
+  box-shadow: 0 10px 26px rgba(200, 145, 62, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  transition: transform .25s, box-shadow .25s;
+}
+.home-redesign .home-templates-more-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(200, 145, 62, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.55); }
+.home-redesign .home-templates-more-btn:focus-visible { outline: 2px solid var(--hx-copper); outline-offset: 3px; }
+.home-redesign .home-templates-more-arrow {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #2a1a0b;
+  color: #f7dc9d;
+  transition: transform .25s;
+}
+.home-redesign .home-templates-more-btn:hover .home-templates-more-arrow { transform: rotate(45deg); }
+@media (max-width: 600px) {
+  .home-redesign .home-templates-more-btn { font-size: 14px; padding: 6px 6px 6px 16px; }
+  .home-redesign .home-templates-more-arrow { width: 32px; height: 32px; }
 }
 
 /* Match the occasion introduction to the centred collection introduction. */

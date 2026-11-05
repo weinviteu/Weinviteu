@@ -194,11 +194,35 @@ export default async function Home() {
             ))}
             {otherCategories.length > 0 && (
               <div className="hx-occasion hx-occasion-more">
-                <img src="/images/occasion-more-collage.webp" alt="" loading="lazy" />
-                <span className="hx-occasion-badge">
-                  <Sparkles size={11} style={{ display: "inline-block", marginRight: 5, verticalAlign: "-1px" }} />
-                  Bespoke & More
-                </span>
+                {/* A gold mandala drawn in line-art, slowly turning behind the title */}
+                <svg className="hx-more-art" viewBox="0 0 200 200" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="more-gold" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stopColor="#fbe7b0" /><stop offset=".5" stopColor="#d9a54f" /><stop offset="1" stopColor="#f0cf86" />
+                    </linearGradient>
+                  </defs>
+                  <g fill="none" stroke="url(#more-gold)" strokeLinecap="round">
+                    <circle cx="100" cy="100" r="96" strokeWidth=".6" />
+                    <circle cx="100" cy="100" r="90" strokeWidth=".4" strokeDasharray="1 4" />
+                    {Array.from({ length: 16 }, (_, i) => (
+                      <path key={`o${i}`} transform={`rotate(${i * 22.5} 100 100)`} strokeWidth=".8" d="M100 14 C112 34 112 52 100 66 C88 52 88 34 100 14 Z" />
+                    ))}
+                    {Array.from({ length: 16 }, (_, i) => (
+                      <path key={`m${i}`} transform={`rotate(${i * 22.5 + 11.25} 100 100)`} strokeWidth=".6" d="M100 40 C107 52 107 62 100 70 C93 62 93 52 100 40 Z" />
+                    ))}
+                    <circle cx="100" cy="100" r="32" strokeWidth=".8" />
+                    {Array.from({ length: 8 }, (_, i) => (
+                      <path key={`i${i}`} transform={`rotate(${i * 45} 100 100)`} strokeWidth=".9" d="M100 70 C106 80 106 88 100 94 C94 88 94 80 100 70 Z" />
+                    ))}
+                    <circle cx="100" cy="100" r="6" strokeWidth="1" />
+                  </g>
+                  <g fill="url(#more-gold)">
+                    {Array.from({ length: 16 }, (_, i) => (
+                      <circle key={`d${i}`} cx={100 + 78 * Math.sin((i * Math.PI) / 8)} cy={100 - 78 * Math.cos((i * Math.PI) / 8)} r="1.3" />
+                    ))}
+                  </g>
+                </svg>
+                <span className="hx-more-sparkles" aria-hidden="true"><i /><i /><i /><i /><i /><i /></span>
                 <Link href="/templates" className="hx-occasion-arrow" aria-label="Explore all occasion templates">
                   <ArrowUpRight size={16} />
                 </Link>
@@ -227,16 +251,20 @@ export default async function Home() {
       <section className="hx-section hx-tint home-templates-section">
         <div className="hx-wrap">
           <SectionHead center eyebrow="The design edit" title="Find a design." accent="Fall in love."
-            lede="Tap any design to see every scene, from the opening to the final blessing.">
-            <Link href="/templates" className="hx-outline-btn">
-              See all {templatesList.length} designs <ArrowUpRight size={14} />
-            </Link>
-          </SectionHead>
+            lede="Tap any design to see every scene, from the opening to the final blessing." />
 
           <div className="home-templates-grid">
             {templatesList.slice(0, 6).map((t) => (
               <TemplateCard key={t.filename} template={t} />
             ))}
+          </div>
+
+          {/* After the designs: a clear way into the full collection */}
+          <div className="home-templates-more">
+            <Link href="/templates" className="home-templates-more-btn">
+              <span>See all {templatesList.length} designs</span>
+              <span className="home-templates-more-arrow" aria-hidden="true"><ArrowUpRight size={15} /></span>
+            </Link>
           </div>
         </div>
       </section>

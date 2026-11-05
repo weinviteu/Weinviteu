@@ -5,6 +5,8 @@ import sharp from 'sharp';
 // Uploaded invitations run without application cookies or access to internal services.
 // Embedded images/scripts still work; only these public asset hosts can use the network.
 const assetHosts = new Set(['fonts.googleapis.com', 'fonts.gstatic.com', 'cdnjs.cloudflare.com', 'cdn.jsdelivr.net', 'images.unsplash.com', 'images.pexels.com']);
+// Large invitations keep their photos and videos as separate files in this project's public storage.
+try { if (process.env.NEXT_PUBLIC_SUPABASE_URL) assetHosts.add(new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname); } catch { /* no storage host configured */ }
 const previewUrl = 'https://template-preview.invalid/';
 const previewPolicy = `default-src data: blob: 'unsafe-inline' 'unsafe-eval' ${Array.from(assetHosts, host => `https://${host}`).join(' ')}; sandbox allow-scripts; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'`;
 let capturing = false;

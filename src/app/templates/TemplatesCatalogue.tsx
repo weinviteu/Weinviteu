@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { Check, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Check, ChevronDown, X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import TemplateCard from "@/components/TemplateCard";
 import type { Template, Category } from "@/lib/models";
@@ -49,6 +49,19 @@ export default function TemplatesCatalogue({ templates, activeCategories, error 
     { label: "All Templates", key: "all" },
     ...activeCategories.map(category => ({ label: category.name, key: category.name })),
   ];
+  const categoryCount = (key: string) => key === "all" ? templates.length : templates.filter(t => t.category?.toLowerCase() === key.toLowerCase()).length;
+  const currentCategory = categories.find(cat => cat.key === activeCategory) ?? categories[0];
+  // Phones: every occasion in one dropdown panel instead of a row that hides some off-screen.
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const picker = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!pickerOpen) return;
+    const outside = (e: PointerEvent) => { if (!picker.current?.contains(e.target as Node)) setPickerOpen(false); };
+    const escape = (e: KeyboardEvent) => { if (e.key === "Escape") setPickerOpen(false); };
+    document.addEventListener("pointerdown", outside);
+    document.addEventListener("keydown", escape);
+    return () => { document.removeEventListener("pointerdown", outside); document.removeEventListener("keydown", escape); };
+  }, [pickerOpen]);
 
   const inCategory =
     activeCategory === "all"
@@ -71,7 +84,33 @@ export default function TemplatesCatalogue({ templates, activeCategories, error 
     <div className={styles.catalogueSection}>
       {error && <p role="alert">{error}</p>}
 
-      {/* Category pills */}
+      {/* Occasion picker (phones) */}
+      <div ref={picker} className={styles.categoryPicker}>
+        <button type="button" className={`${styles.pickerButton} ${pickerOpen ? styles.pickerButtonOpen : ""}`}
+          aria-haspopup="true" aria-expanded={pickerOpen} aria-controls="occasion-menu" onClick={() => setPickerOpen(open => !open)}>
+          <span className={styles.pickerText}>
+            <span className={styles.pickerLabel}>Occasion</span>
+            <span className={styles.pickerValue}>{currentCategory.label}<small>{categoryCount(currentCategory.key)} designs</small></span>
+          </span>
+          <ChevronDown size={18} className={styles.pickerChevron} aria-hidden="true" />
+        </button>
+        {pickerOpen && (
+          <div id="occasion-menu" className={styles.pickerMenu} role="group" aria-label="Choose an occasion">
+            {categories.map(cat => {
+              const on = activeCategory === cat.key;
+              return (
+                <button key={cat.key} type="button" aria-pressed={on} className={`${styles.pickerOption} ${on ? styles.pickerOptionOn : ""}`}
+                  onClick={() => { setActiveCategory(cat.key); setPickerOpen(false); }}>
+                  <span>{cat.label}<small>{categoryCount(cat.key)} designs</small></span>
+                  {on && <Check size={15} strokeWidth={2.6} aria-hidden="true" />}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* Category pills (wider screens) */}
       <div ref={categoryBar} className={styles.categoryBar}>
         {categories.map((cat) => (
           <button

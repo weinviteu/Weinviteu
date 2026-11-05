@@ -7,11 +7,15 @@ import {
   Mail,
   Phone,
   MapPin,
+  Instagram,
 } from "lucide-react";
 import { SITE_TAGLINE } from "@/lib/seo";
 
 
 import { useState, useEffect } from "react";
+
+const INSTAGRAM_URL = "https://www.instagram.com/weinvite_u";
+const INSTAGRAM_HANDLE = "@weinvite_u";
 
 export default function Footer() {
   const path = usePathname();
@@ -63,6 +67,14 @@ export default function Footer() {
           <span className="footer-signoff">
             <Heart size={13} /> Made for moments that matter.
           </span>
+          <a className="footer-instagram" href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label={`Follow WeInviteU on Instagram, ${INSTAGRAM_HANDLE}`}>
+            <span className="footer-instagram-icon" aria-hidden="true"><Instagram size={18} strokeWidth={1.9} /></span>
+            <span className="footer-instagram-text">
+              <small>Follow us on Instagram</small>
+              {INSTAGRAM_HANDLE}
+            </span>
+            <ArrowUpRight size={14} className="footer-instagram-arrow" aria-hidden="true" />
+          </a>
         </div>
         <nav className="footer-column" aria-label="Explore WeInviteU">
           <h2>Explore</h2>
@@ -98,6 +110,9 @@ export default function Footer() {
               <span>
                 <MapPin size={14} /> {settings.location}
               </span>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
+                <Instagram size={14} /> {INSTAGRAM_HANDLE}
+              </a>
             </>
           ) : (
             <span style={{ fontSize: "13px", opacity: 0.5 }}>Loading contact details…</span>
