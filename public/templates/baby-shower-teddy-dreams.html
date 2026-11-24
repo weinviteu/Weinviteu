@@ -285,7 +285,9 @@ html, body {
   inset: 0;
   width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
+  /* Flat, not preserve-3d: iOS Safari depth-sorts a shared 3D scene and lets the
+     tilting video slice through the text cards, hiding half of them. Flat keeps z-index order. */
+  transform-style: flat;
   will-change: opacity, transform;
 }
 
@@ -1953,6 +1955,7 @@ html.is-scroll-locked body {
             id="video-opening"
             class="stage-video"
             src="/template-assets/premium/teddy-dreams-opening.mp4"
+            poster="/template-assets/premium/teddy-dreams-opening-poster.jpg"
             muted
             playsinline
             webkit-playsinline
@@ -2724,7 +2727,7 @@ function initScrollChoreography() {
     if (v1Wrap) {
       const scale1 = 1 + act1P * 0.08;
       const rotX1 = Math.sin(act1P * Math.PI) * 3.0;
-      v1Wrap.style.transform = `scale(${scale1.toFixed(4)}) rotateX(${rotX1.toFixed(2)}deg)`;
+      v1Wrap.style.transform = `perspective(1200px) scale(${scale1.toFixed(4)}) rotateX(${rotX1.toFixed(2)}deg)`;
     }
 
     const welcomeIn = introDoneAt ? easeOutCubic(clamp((now - introDoneAt) / 1100, 0, 1)) : 0;
@@ -2779,7 +2782,7 @@ function initScrollChoreography() {
       const act2P = clamp((p - 0.33) / 0.54, 0, 1);
       const breathe = 1.01 + Math.sin(act2P * Math.PI * 2) * 0.016;
       const tiltY = Math.sin(act2P * Math.PI * 2) * 1.2;
-      v2Wrap.style.transform = `scale(${breathe.toFixed(4)}) rotateY(${tiltY.toFixed(2)}deg)`;
+      v2Wrap.style.transform = `perspective(1200px) scale(${breathe.toFixed(4)}) rotateY(${tiltY.toFixed(2)}deg)`;
     }
 
     cards.forEach((c) => {

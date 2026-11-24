@@ -6,7 +6,7 @@ import { renderInvitation } from '@/lib/invitation';
 import { templateFieldError } from '@/lib/template-fields';
 import { readTemplate } from '@/lib/template-source';
 import { nextFreeSlug, slugify } from '@/lib/slug';
-const inputSchema = z.object({ id: z.uuid(), client_name: z.string().trim().min(1).max(200), email: z.email(), template_filename: z.string().min(1).max(2000), editor_state: editorSchema });
+const inputSchema = z.object({ id: z.uuid(), client_name: z.string().trim().min(1).max(200), email: z.email(), template_filename: z.string().min(1).max(2000), editor_state: editorSchema, link_name: z.string().trim().max(120).optional() });
 export async function GET(request: Request) {
   try {
     const db = await requireAdmin(request);
@@ -27,9 +27,16 @@ export async function POST(request: Request) {
     const db = await requireAdmin(request);
     const parsed = inputSchema.safeParse(await request.json());
     if (!parsed.success) throw new HttpError(400, 'Provide client name, valid email, and valid customization.');
-    const input = parsed.data;
+    const { link_name: linkName, ...input } = parsed.data;
     const { data: existing, error: lookupError } = await db.from('orders').select('*').eq('id', input.id).maybeSingle();
     if (lookupError) throw lookupError;
+    // An admin-chosen link name ("Hariprasad & Sushma Baby Shower Invitation" -> /invite/hariprasad-and-sushma-baby-shower-invitation).
+    const chosenSlug = linkName ? slugify(linkName) : null;
+    if (chosenSlug && chosenSlug !== existing?.slug) {
+      const { data: taken, error: takenError } = await db.from('orders').select('id').eq('slug', chosenSlug).neq('id', input.id).limit(1);
+      if (takenError) throw takenError;
+      if (taken?.length) throw new HttpError(409, `The link /invite/${chosenSlug} is already used by another invitation. Choose a different link name.`);
+    }
     const source = existing?.template_filename === input.template_filename && existing.source_html ? existing.source_html : await readTemplate(db, input.template_filename);
     const invalid = templateFieldError(source, input.editor_state.config);
     if (invalid) throw new HttpError(400, invalid);
@@ -43,9 +50,9 @@ export async function POST(request: Request) {
     if (uploadError) throw uploadError;
     // Sent or finished invitations keep their status; the client's link simply shows the new version.
     const status = existing && ['Link Delivered', 'Completed'].includes(existing.status) ? existing.status : 'Customizing';
-    let slug: string = existing?.slug;
+    let slug: string = chosenSlug || existing?.slug;
     for (let attempt = 0; ; attempt++) {
-      if (!existing?.slug) slug = await freeSlug(db, slugify(input.client_name));
+      if (!chosenSlug && !existing?.slug) slug = await freeSlug(db, slugify(input.client_name));
       const payload = { ...input, slug, source_html: source, template_name: templateName, status, published_file: filename, updated_at: new Date().toISOString() };
       // Updating explicitly preserves inquiry messages, price and creation date.
       const { error } = existing
@@ -53,8 +60,9 @@ export async function POST(request: Request) {
         : await db.from('orders').insert(payload);
       if (!error) break;
       // Another save claimed the same name-based link a moment ago; pick the next free one.
-      if (!existing?.slug && error.code === '23505' && /slug/.test(error.message) && attempt < 4) continue;
+      if (!chosenSlug && !existing?.slug && error.code === '23505' && /slug/.test(error.message) && attempt < 4) continue;
       await db.storage.from('custom-templates').remove([filename]);
+      if (chosenSlug && error.code === '23505' && /slug/.test(error.message)) throw new HttpError(409, `The link /invite/${chosenSlug} is already used by another invitation. Choose a different link name.`);
       throw error;
     }
     if (existing?.published_file) await db.storage.from('custom-templates').remove([existing.published_file]);

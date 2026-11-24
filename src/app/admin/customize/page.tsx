@@ -9,7 +9,7 @@ import styles from '../admin.module.css';
 import { templateFields, templateFieldError } from '@/lib/template-fields';
 import { readMediaFile } from '@/lib/editor-media';
 import { analyzeTemplate } from '@/lib/template-analyzer';
-import { inviteUrlPath } from '@/lib/slug';
+import { inviteUrlPath, slugify } from '@/lib/slug';
 
 export default function CustomizeTemplate() {
   const [templates, setTemplates] = useState<Template[]>([]);
@@ -19,6 +19,8 @@ export default function CustomizeTemplate() {
   const [fields, setFields] = useState<TextField[]>([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [linkName, setLinkName] = useState('');
+  const [savedSlug, setSavedSlug] = useState('');
   const [tab, setTab] = useState('details');
   const [busy, setBusy] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -102,6 +104,8 @@ export default function CustomizeTemplate() {
         setTemplate(filename);
         setName(order?.client_name || inquiry?.client_name || '');
         setEmail(order?.email || inquiry?.email || '');
+        setLinkName(order?.slug || '');
+        setSavedSlug(order?.slug || '');
         setState(order?.editor_state || emptyEditor());
         setSource(html);
         if (order?.published_file) { setLastSaved('Previously saved'); }
@@ -237,8 +241,9 @@ export default function CustomizeTemplate() {
     if (invalid) { setMessage(invalid); setTab('details'); return; }
     saveInFlight.current = true; setBusy(true); setMessage('');
     try {
-      const result = await api<{ id: string; inviteUrl: string }>('/api/admin/orders', jsonBody({ id: orderId.current, client_name: name, email, template_filename: template, editor_state: state }));
+      const result = await api<{ id: string; slug: string; inviteUrl: string }>('/api/admin/orders', jsonBody({ id: orderId.current, client_name: name, email, template_filename: template, editor_state: state, link_name: linkName.trim() || undefined }));
       setLink(`${window.location.origin}${result.inviteUrl}`);
+      setLinkName(result.slug); setSavedSlug(result.slug);
       dirty.current = false; setUnsaved(false); setLastSaved(`Saved at ${new Date().toLocaleTimeString()}`);
       const inquiryParam = new URLSearchParams(window.location.search).get('inquiry');
       const conversion = await finishInquiryConversion(result.id, inquiryParam);
@@ -335,6 +340,13 @@ export default function CustomizeTemplate() {
           <label>Client name<input autoComplete="name" value={name} onChange={e => { setName(e.target.value); markDirty(); }} /></label>
           <label>Client email<input type="email" autoComplete="email" value={email} onChange={e => { setEmail(e.target.value); markDirty(); }} /></label>
         </div>
+        <label>Link name
+          <input value={linkName} placeholder="e.g. Hariprasad & Sushma Baby Shower Invitation" onChange={e => { setLinkName(e.target.value); markDirty(); }} />
+          <small className={styles.editorHelp}>
+            {linkName.trim() ? <>Link: <strong>/invite/{slugify(linkName)}</strong></> : <>Leave empty to make the link from the client name.</>}
+            {savedSlug && linkName.trim() && slugify(linkName) !== savedSlug && <> · Changing it stops the old link /invite/{savedSlug} from working.</>}
+          </small>
+        </label>
         <label>Invitation template<select value={template} onChange={e => selectTemplate(e.target.value)}>{templates.map(t => <option key={t.id} value={t.filename}>{t.title}</option>)}</select></label>
         <div className={styles.editorTabs} role="tablist" aria-label="Customization steps">{[['details', 'Event details'], ['text', 'Page text'], ['template-edit', '✏️ Template Edit'], ['media', 'Photos & music'], ['colors', 'Colors']].map(([id, label]) => <button key={id} role="tab" aria-selected={tab === id} aria-controls={`editor-${id}`} id={`tab-${id}`} className={tab === id ? styles.btnPrimary : styles.btnSecondary} onClick={() => { setTab(id); toggleVisualEdit(id === 'template-edit'); }}>{label}</button>)}</div>
         <div id={`editor-${tab}`} role="tabpanel" aria-labelledby={`tab-${tab}`} className={styles.editorFields}>
