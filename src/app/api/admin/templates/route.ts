@@ -7,7 +7,6 @@ import { requireAdmin, apiError, HttpError } from '@/lib/admin';
 import { templateSchema } from '@/lib/schemas';
 import { analyzeTemplate } from '@/lib/template-analyzer';
 import { posterObjectName } from '@/lib/template-posters';
-import { generateTemplatePoster } from '@/lib/generate-template-poster';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
@@ -45,6 +44,9 @@ export async function POST(request: Request) {
     if (hasPoster) cover = poster;
     else {
       try {
+        // Loaded only here: Chromium and sharp are native packages, and a failure loading them
+        // at startup would take down listing templates too (which the Customizer needs).
+        const { generateTemplatePoster } = await import('@/lib/generate-template-poster');
         cover = new Blob([new Uint8Array(await generateTemplatePoster(html))], { type: 'image/webp' });
       } catch (error) {
         console.error('Template cover generation failed', error);
