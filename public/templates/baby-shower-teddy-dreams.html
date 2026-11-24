@@ -2153,7 +2153,7 @@ html.is-scroll-locked body {
                 <span class="moment-dot moment-dot--gold"></span>
                 <div class="moment-info">
                   <strong>Traditional Lunch</strong>
-                  <span data-bind="venue"></span>
+                  <span data-bind="lunchPlace"></span>
                 </div>
               </li>
             </ul>
@@ -2258,14 +2258,15 @@ var state = "door";
    EDITABLE INVITATION DETAILS (WeInviteU Admin → Customize edits these)
    ===================================================================== */
 const CFG = {
-  hosts: "Karthik & Ananya",
-  EVENT_ISO: "2027-03-14T11:00:00+05:30",
-  dateText: "Sunday, 14 March 2027",
-  timeText: "11:00 AM",
-  lunchTime: "12:30 PM",
-  venue: "Lotus Garden Banquet Hall",
-  address: "Jayanagar 4th Block, Bengaluru, Karnataka",
-  map: "https://www.google.com/maps/search/?api=1&query=Jayanagar+4th+Block+Bengaluru",
+  hosts: "Hariprasad & Sushma",
+  EVENT_ISO: "2026-12-03T10:45:00+05:30",
+  dateText: "Thursday, December 3, 2026",
+  timeText: "10:45 AM",
+  lunchTime: "11:30 AM",
+  venue: "Attur Layout, Yelahanka, Bangalore",
+  lunchPlace: "Attur Layout, Yelahanka",
+  address: "#238, 2nd Main, 2nd Cross, Attur Layout, Yelahanka, Bangalore",
+  map: "https://maps.google.com/?q=238+2nd+Main+2nd+Cross+Attur+Layout+Yelahanka+Bangalore",
   thanks: "We sincerely look forward to your gracious presence and blessings."
 };
 
@@ -2310,7 +2311,9 @@ function buildView(c) {
     timeText,
     lunchTime: lunch,
     venue,
-    fullAddress: [venue, address].filter(Boolean).join(", "),
+    lunchPlace: String(c.lunchPlace || "").trim() || venue,
+    fullAddress: address || venue,
+    icsName: (hosts.toLowerCase().replace(/&/g, " ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "invitation") + "-baby-shower.ics",
     thanks: String(c.thanks || "").trim(),
     map: String(c.map || "").trim(),
     eventDayNum: valid ? String(d).padStart(2, "0") : "",
@@ -2320,7 +2323,7 @@ function buildView(c) {
     dateShort: valid ? `${d} ${MONTHS[mo].toUpperCase()} ${y}` : "",
     dateNumeric: valid ? `${String(d).padStart(2, "0")}/${String(mo + 1).padStart(2, "0")}/${y}` : "",
     monthYear: valid ? `${MONTHS[mo].toUpperCase()} ${y}` : "",
-    eventTimeLine: [timeText, lunch ? `LUNCH ${lunch}` : ""].filter(Boolean).join("  •  "),
+    eventTimeLine: [timeText, lunch ? `LUNCH ${lunch}` : ""].filter(Boolean).join(" \u00a0•\u00a0 "),
     saveToast: valid ? `${d} ${MONTHS[mo].slice(0, 3)} ${y} — Save the Date! ✦` : "Save the Date! ✦",
     calendarToast: valid ? `${MONTHS[mo].slice(0, 3)} ${d}, ${y} marked in your calendar ✦` : "Saved to your calendar ✦",
     cal: valid ? { y, mo, d, monthName: MONTHS[mo] } : null,
@@ -3048,7 +3051,7 @@ function initFinaleActions() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "baby-shower-invitation.ics";
+    a.download = VIEW.icsName;
     document.body.appendChild(a);
     a.click();
     a.remove();
