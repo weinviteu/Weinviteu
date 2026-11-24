@@ -147,6 +147,18 @@ export const bundledTemplates: Template[] = [
     "price": "3999",
     "original_price": "",
     "tier": "luxury"
+  },
+  {
+    "id": -8112,
+    "category": "Baby Shower",
+    "title": "Teddy Dreams",
+    "filename": "baby-shower-teddy-dreams.html",
+    "badge": "TEDDY ENVELOPE",
+    "enabled": true,
+    "created_at": "2026-11-24T10:00:00.000Z",
+    "price": "3999",
+    "original_price": "",
+    "tier": "luxury"
   }
 ];
 

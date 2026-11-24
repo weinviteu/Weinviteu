@@ -1,0 +1,3243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#F7DCE4" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>Baby Shower Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" />
+  <style>
+/* =====================================================================
+   LUXURY 3D BABY SHOWER INVITATION — V2
+   Harmonized directly with all 4 visual assets:
+   - Blush Floral Envelope: #F6D8E1 / #E27A96
+   - Watercolor Sky Blue:   #5B9DE0 / #7AB8F5
+   - Champagne Gold Foil:   #C89838 / #F0D48A
+   - Creamy Watercolor Ink: #45374D / #75657F
+   ===================================================================== */
+
+:root {
+  --ivory: #FDFBF9;
+  --cream: #FAF4F0;
+  --pink-deep: #DC6D8C;
+  --pink-soft: #F7B4C4;
+  --pink-tint: rgba(247, 180, 196, 0.22);
+  --blue-deep: #4A8FD1;
+  --blue-soft: #7EBDF7;
+  --blue-tint: rgba(126, 189, 247, 0.22);
+  --gold-deep: #B5862A;
+  --gold-mid: #D8AE48;
+  --gold-light: #F7E1A4;
+  --ink: #45374D;
+  --ink-muted: #75657F;
+
+  --font-script: 'Snell Roundhand', 'Savoye LET', cursive;
+  --font-display: 'Palatino', 'Hoefler Text', 'Baskerville', Georgia, serif;
+  --font-serif: 'Palatino', 'Baskerville', Georgia, serif;
+  --font-sans: 'Avenir Next', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+/* =====================================================================
+   DESKTOP AMBIENT PRESENTATION (> 600px)
+   Never blocks with a QR gate — opens directly onto the teddy bear!
+   Centers the 9:16 mobile stage gracefully on a serene pastel silk canvas.
+   ===================================================================== */
+
+.desktop-ambient {
+  display: none;
+}
+
+@media (min-width: 601px) {
+  body {
+    background: linear-gradient(135deg, #FBF2F5 0%, #F8F5F0 50%, #EEF5FC 100%);
+  }
+
+  .desktop-ambient {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    inset: 0;
+    padding: 0 clamp(24px, 4vw, 64px);
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .ambient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.55;
+  }
+
+  .ambient-orb--pink {
+    width: 480px;
+    height: 480px;
+    background: #F8C4D2;
+    top: -120px;
+    left: -80px;
+  }
+
+  .ambient-orb--blue {
+    width: 520px;
+    height: 520px;
+    background: #B9DCFA;
+    bottom: -140px;
+    right: -80px;
+  }
+
+  .ambient-orb--gold {
+    width: 320px;
+    height: 320px;
+    background: #F6E2A8;
+    top: 38%;
+    left: 20%;
+    opacity: 0.35;
+  }
+
+  /* Left & Right Symmetrical Teddy Bear Wings on Desktop */
+  .desktop-wing {
+    position: relative;
+    z-index: 2;
+    width: calc(50vw - min(230px, 28vh) - clamp(36px, 5vw, 84px));
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  @media (max-width: 980px) {
+    .desktop-wing {
+      display: none;
+    }
+  }
+
+  .teddy-arch-frame {
+    width: clamp(190px, 19vw, 255px);
+    aspect-ratio: 3 / 4;
+    border-radius: 140px 140px 26px 26px;
+    padding: 7px;
+    background: linear-gradient(155deg, #F8E3A8, #FFFDF9 45%, #F6C5D3 75%, #B8DBFA);
+    box-shadow:
+      0 24px 60px rgba(74, 56, 86, 0.16),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    overflow: hidden;
+  }
+
+  .teddy-arch-frame--right {
+    background: linear-gradient(155deg, #B8DBFA, #FFFDF9 45%, #F8E3A8 75%, #F6C5D3);
+  }
+
+  .teddy-portrait-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 134px 134px 20px 20px;
+    display: block;
+  }
+
+  .teddy-portrait-media--left {
+    object-position: center 62%;
+    transform: scale(1.12);
+  }
+
+  .teddy-portrait-media--right {
+    object-position: center 46%;
+    transform: scale(1.18);
+  }
+
+  .wing-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    max-width: 280px;
+  }
+
+  .wing-kicker {
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    color: var(--gold-deep);
+  }
+
+  .wing-script {
+    font-family: var(--font-script);
+    font-size: clamp(40px, 3.6vw, 52px);
+    font-weight: 400;
+    line-height: 1.05;
+    background: linear-gradient(135deg, var(--pink-deep) 0%, var(--gold-deep) 52%, var(--blue-deep) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .wing-script--blue {
+    background: linear-gradient(135deg, var(--blue-deep) 0%, var(--gold-deep) 52%, var(--pink-deep) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .wing-body {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-muted);
+  }
+
+  .wing-body strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .stage-viewport,
+  .progress-rail {
+    width: min(415px, 52vh);
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+  }
+
+  .stage-viewport {
+    box-shadow:
+      0 32px 90px rgba(74, 56, 86, 0.22),
+      0 0 0 1px rgba(216, 174, 72, 0.35);
+  }
+}
+
+/* =====================================================================
+   MOBILE 3D SCROLL STAGE
+   ===================================================================== */
+
+.mobile-experience {
+  position: relative;
+  width: 100%;
+}
+
+.scroll-track {
+  height: 620vh;
+  width: 100%;
+  pointer-events: none;
+}
+
+.stage-viewport {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--cream);
+  perspective: 1200px;
+  z-index: 2;
+}
+
+.mobile-stardust {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.progress-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.24);
+  z-index: 30;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--pink-soft), var(--gold-mid), var(--blue-soft));
+  box-shadow: 0 0 10px rgba(216, 174, 72, 0.65);
+}
+
+/* Act Layers */
+.act-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: opacity, transform;
+}
+
+.act-layer--1 { z-index: 3; opacity: 1; }
+.act-layer--2 { z-index: 4; opacity: 0; pointer-events: none; }
+.act-layer--3 { z-index: 5; opacity: 0; pointer-events: none; }
+
+.video-3d-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.stage-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.transition-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 253, 249, 0.96), rgba(250, 242, 236, 0.98));
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+/* Scroll stays locked until the teddy is tapped & the intro has played */
+html.is-scroll-locked,
+html.is-scroll-locked body {
+  overflow: hidden;
+  height: 100%;
+  touch-action: none;
+}
+
+/* Dreamy pastel cloud bloom covering the 6.75s -> 10.45s skip */
+.cloud-skip-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 253, 250, 0.97) 0%, rgba(226, 240, 252, 0.96) 55%, rgba(248, 234, 242, 0.95) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+
+.cloud-skip-veil.is-blooming {
+  opacity: 1;
+}
+
+/* =====================================================================
+   TEDDY BEAR OPENING GATE (first half .mp4 parked on the sitting teddy)
+   ===================================================================== */
+
+.teddy-gate {
+  position: absolute;
+  inset: 0;
+  z-index: 9;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 0.7s ease, visibility 0.7s ease;
+}
+
+.teddy-gate.is-opened {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Invitation heading at the top of the opening screen */
+.gate-heading {
+  position: absolute;
+  top: max(18px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 14px 12px;
+  border-radius: 26px;
+  background: radial-gradient(ellipse at 50% 45%, rgba(255, 252, 247, 0.9) 0%, rgba(255, 250, 244, 0.72) 55%, rgba(255, 250, 244, 0) 100%);
+  pointer-events: none;
+  text-align: center;
+}
+
+.gate-heading > span {
+  opacity: 0;
+  animation: gateRise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.gate-heading > span:nth-child(1) { animation-delay: 0.15s; }
+.gate-heading > span:nth-child(2) { animation-delay: 0.35s; }
+.gate-heading > span:nth-child(3) { animation-delay: 0.55s; }
+.gate-heading > span:nth-child(4) { animation-delay: 0.8s; }
+.gate-heading > span:nth-child(5) { animation-delay: 0.95s; }
+
+@keyframes gateRise {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.gate-kicker {
+  font-family: var(--font-sans);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  color: var(--pink-deep);
+  margin-bottom: 6px;
+  white-space: nowrap;
+}
+
+.gate-invite-line {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 4.2vw, 17px);
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.gate-script {
+  font-family: var(--font-script);
+  font-size: clamp(46px, 13vw, 56px);
+  line-height: 1.1;
+  padding: 0 10px;
+  background: linear-gradient(100deg, #DC6D8C 0%, #E89AAE 22%, #C89838 48%, #E0B95A 58%, #5B9DE0 82%, #4A8FD1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 6px rgba(255, 255, 255, 0.9)) drop-shadow(0 3px 10px rgba(181, 134, 42, 0.25));
+}
+
+.gate-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 58%;
+  margin: 2px 0 4px;
+}
+
+.gd-line {
+  flex: 1;
+  height: 1.5px;
+  border-radius: 2px;
+}
+
+.gd-line--pink { background: linear-gradient(90deg, transparent, var(--pink-soft), var(--gold-mid)); }
+.gd-line--blue { background: linear-gradient(90deg, var(--gold-mid), var(--blue-soft), transparent); }
+
+.gd-heart {
+  font-size: 13px;
+  color: var(--gold-deep);
+}
+
+.gate-sub {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--blue-deep);
+}
+
+/* Soft golden glow ripples around the teddy seal on the video's envelope */
+.teddy-glow {
+  position: absolute;
+  top: 56.2%;
+  left: 50%;
+  width: min(32vw, 128px);
+  height: min(32vw, 128px);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.teddy-ripple {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 240, 194, 0.9);
+  box-shadow: 0 0 26px rgba(216, 174, 72, 0.55), inset 0 0 22px rgba(255, 236, 180, 0.35);
+  animation: teddyGlow 2.6s ease-out infinite;
+}
+
+.teddy-ripple--2 {
+  animation-delay: 1.3s;
+}
+
+@keyframes teddyGlow {
+  0%   { transform: scale(0.82); opacity: 0.95; }
+  100% { transform: scale(1.32); opacity: 0; }
+}
+
+/* Tap prompt sits just below the envelope's teddy seal,
+   with the gold baby-footprint seal from the medallion artwork */
+.teddy-gate-prompt {
+  position: absolute;
+  top: calc(56.2% + min(18vw, 74px));
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 16px 5px 5px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 252, 246, 0.94), rgba(250, 243, 230, 0.9));
+  border: 1px solid rgba(216, 174, 72, 0.65);
+  box-shadow:
+    0 6px 18px rgba(74, 120, 170, 0.22),
+    0 0 0 3px rgba(255, 250, 238, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform: translateX(-50%);
+  animation: promptBreathe 2.6s ease-in-out infinite;
+}
+
+@keyframes promptBreathe {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50%      { transform: translateX(-50%) scale(1.05); }
+}
+
+.feet-seal {
+  width: 42px;
+  height: 42px;
+  display: block;
+  border-radius: 50%;
+  filter: drop-shadow(0 2px 4px rgba(150, 100, 40, 0.35));
+  animation: feetTap 2.6s ease-in-out infinite;
+}
+
+@keyframes feetTap {
+  0%, 100% { transform: rotate(0deg); }
+  20%      { transform: rotate(-8deg); }
+  40%      { transform: rotate(6deg); }
+  60%      { transform: rotate(0deg); }
+}
+
+.teddy-gate-text {
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: var(--gold-deep);
+  white-space: nowrap;
+}
+
+/* Floating music toggle (appears after "Tap to open") */
+.music-toggle {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  right: 14px;
+  z-index: 40;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(216, 174, 72, 0.6);
+  background: rgba(255, 251, 244, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--gold-deep);
+  box-shadow: 0 6px 16px rgba(42, 68, 108, 0.2);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.music-toggle.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.music-toggle .mt-icon--off { display: none; }
+.music-toggle.is-muted .mt-icon--on { display: none; }
+.music-toggle.is-muted .mt-icon--off { display: block; color: var(--ink-muted); }
+
+/* Soft spinning gold ring while music plays */
+.music-toggle::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(216, 174, 72, 0.55);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.music-toggle.is-playing::before {
+  opacity: 1;
+  animation: musicSpin 9s linear infinite;
+}
+
+@keyframes musicSpin {
+  to { transform: rotate(360deg); }
+}
+
+.mt-bars {
+  position: absolute;
+  bottom: 6px;
+  display: none;
+  gap: 2px;
+  align-items: flex-end;
+  height: 6px;
+}
+
+.music-toggle.is-playing .mt-bars { display: flex; }
+.music-toggle.is-playing .mt-icon--on { transform: translateY(-3px); }
+
+.mt-bars i {
+  width: 2px;
+  height: 100%;
+  border-radius: 1px;
+  background: var(--blue-deep);
+  animation: mtBar 1s ease-in-out infinite;
+}
+
+.mt-bars i:nth-child(2) { animation-delay: 0.2s; background: var(--pink-deep); }
+.mt-bars i:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes mtBar {
+  0%, 100% { transform: scaleY(0.3); }
+  50%      { transform: scaleY(1); }
+}
+
+/* =====================================================================
+   TRUE HANDWRITING / CALLIGRAPHY PEN-WRITING ANIMATION
+   1) .pen-write-script: sweeps smoothly left-to-right like wet gold ink
+      with a glowing golden sparkle pen-tip (.pen-script-wrap::after)
+   2) .ink-write-chars: reveals each letter sequentially like handwriting
+   ===================================================================== */
+
+.pen-script-wrap {
+  position: relative;
+  display: inline-block;
+  overflow: visible;
+}
+
+.pen-write-script {
+  display: inline-block;
+  padding: 0 8px;
+  clip-path: inset(0 100% 0 0);
+  opacity: 0.98;
+}
+
+.is-writing .pen-write-script {
+  animation: handwritingSweep 1.55s cubic-bezier(0.35, 0.05, 0.25, 1) forwards;
+}
+
+.is-writing .pen-script-wrap--delayed .pen-write-script {
+  animation: handwritingSweep 1.55s cubic-bezier(0.35, 0.05, 0.25, 1) 0.55s forwards;
+}
+
+.pen-script-wrap::after {
+  content: "✦";
+  position: absolute;
+  top: 44%;
+  left: 0;
+  font-size: 16px;
+  color: #F7D87C;
+  text-shadow: 0 0 12px rgba(216, 174, 72, 0.95), 0 0 24px rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.is-writing .pen-script-wrap::after {
+  animation: penSparkSweep 1.55s cubic-bezier(0.35, 0.05, 0.25, 1) forwards;
+}
+
+.is-writing .pen-script-wrap--delayed::after {
+  animation: penSparkSweep 1.55s cubic-bezier(0.35, 0.05, 0.25, 1) 0.55s forwards;
+}
+
+@keyframes handwritingSweep {
+  0%   { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0% 0 0); }
+}
+
+@keyframes penSparkSweep {
+  0%   { left: 2%; opacity: 0; transform: translate(-50%, -50%) scale(0.6) rotate(0deg); }
+  10%  { opacity: 1; transform: translate(-50%, -50%) scale(1.15) rotate(25deg); }
+  88%  { opacity: 1; transform: translate(-50%, -50%) scale(1.0) rotate(145deg); }
+  100% { left: 98%; opacity: 0; transform: translate(-50%, -50%) scale(0.4) rotate(180deg); }
+}
+
+.ink-write-line {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.is-writing .ink-write-line {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Individual character handwriting reveal */
+.hw-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(5px) rotate(-2deg);
+  filter: blur(2px);
+  transition:
+    opacity 0.36s ease var(--d, 0ms),
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms),
+    filter 0.36s ease var(--d, 0ms);
+}
+
+.is-writing .hw-char {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+  filter: blur(0);
+}
+
+/* =====================================================================
+   ACT I: OPENING VIDEO + CARDLESS WELCOME & PARENTS' NAME
+   (No fixed top text pill!)
+   ===================================================================== */
+
+.scroll-cue {
+  position: absolute;
+  bottom: max(28px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: rgba(255, 253, 249, 0.74);
+  border: 1px solid rgba(216, 174, 72, 0.42);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity;
+}
+
+.scroll-cue-text {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--ink);
+}
+
+.scroll-mouse {
+  width: 16px;
+  height: 25px;
+  border-radius: 999px;
+  border: 1.5px solid var(--gold-deep);
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+}
+
+.scroll-wheel {
+  width: 3px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--blue-deep);
+  animation: wheelBounce 1.5s ease-in-out infinite;
+}
+
+@keyframes wheelBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  65% { transform: translateY(7px); opacity: 0.2; }
+}
+
+/* Pure Floating Welcome + Parents' Name when Teddy Bear opens */
+.bear-welcome-overlay {
+  container-type: inline-size;
+  position: absolute;
+  top: max(54px, 8vh);
+  left: 3%;
+  right: 3%;
+  z-index: 8;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.welcome-kicker {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: #FFFDF8;
+  text-shadow: 0 2px 12px rgba(42, 68, 108, 0.55);
+  margin-bottom: 4px;
+}
+
+.welcome-script {
+  font-family: var(--font-script);
+  font-size: clamp(54px, 14vw, 68px);
+  font-weight: 400;
+  line-height: 1.05;
+  background: linear-gradient(180deg, #FFFDF5 0%, #F9E3A6 52%, #DFB34E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 16px rgba(40, 62, 102, 0.52));
+  margin-bottom: 6px;
+}
+
+.welcome-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 56%;
+  margin: 0 auto 10px;
+}
+
+.w-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 243, 206, 0.9), transparent);
+}
+
+.w-star {
+  color: #FCE8AE;
+  font-size: 12px;
+  text-shadow: 0 2px 8px rgba(40, 62, 102, 0.5);
+}
+
+.welcome-parents-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: #FFFDF9;
+  text-shadow: 0 2px 10px rgba(24, 42, 78, 0.85), 0 0 18px rgba(24, 42, 78, 0.6);
+  margin-bottom: 5px;
+}
+
+/* Hosts' names: flowing gold calligraphy with a decorative ampersand */
+.welcome-parents-name {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 0;
+  max-width: 100%;
+  padding: 2px 6px 8px;
+  font-family: 'Great Vibes', 'Snell Roundhand', 'Savoye LET', cursive;
+  font-weight: 400;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.pn-name,
+.pn-amp {
+  padding: 0 2px !important;
+  background: linear-gradient(180deg, #FFFEF8 0%, #FCEBB8 38%, #EFC867 70%, #D9A63E 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow(0 2px 3px rgba(22, 36, 68, 0.75))
+    drop-shadow(0 4px 14px rgba(22, 36, 68, 0.5))
+    drop-shadow(0 0 10px rgba(255, 226, 150, 0.35));
+  padding: 0 4px;
+}
+
+.pn-name {
+  font-size: 40px;                       /* fallback */
+  font-size: clamp(30px, 12cqi, 48px); /* sized to the invitation frame, not the window */
+  -webkit-text-stroke: 0.9px #E8BC58;    /* thicker, richer gold strokes */
+}
+
+.pn-amp {
+  font-size: 31px;
+  font-size: clamp(24px, 9.6cqi, 38px);
+  -webkit-text-stroke: 0.8px #F08AA8;
+  margin: 0 7px;
+  background: linear-gradient(180deg, #FFF0F5 0%, #FFB8CC 40%, #F27C9E 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter:
+    drop-shadow(0 2px 3px rgba(22, 36, 68, 0.85))
+    drop-shadow(0 0 8px rgba(255, 255, 255, 0.55));
+  transform: translateY(-2px);
+}
+
+/* =====================================================================
+   ACT II: WATERCOLOR PLACEHOLDER CENTER STAGE (second half.mp4)
+   ===================================================================== */
+
+.watercolor-center-stage {
+  position: absolute;
+  top: 27%;
+  bottom: 16%;
+  left: 12%;
+  right: 12%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  z-index: 8;
+}
+
+.story-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8px 4px;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+  transform-style: preserve-3d;
+}
+
+.story-card.is-interactive {
+  pointer-events: auto;
+}
+
+.card-eyebrow {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  color: var(--gold-deep);
+  margin-bottom: 6px;
+}
+
+.card-script-title {
+  font-family: var(--font-script);
+  font-size: clamp(42px, 11.5vw, 52px);
+  font-weight: 400;
+  line-height: 1.08;
+  background: linear-gradient(135deg, var(--pink-deep) 0%, var(--gold-deep) 52%, var(--blue-deep) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 2px 6px rgba(220, 109, 140, 0.14));
+}
+
+.card-script-title--blue {
+  background: linear-gradient(135deg, var(--blue-deep) 0%, #6FA7E3 55%, var(--pink-deep) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card-script-title--pink {
+  background: linear-gradient(135deg, var(--pink-deep) 0%, #C99043 55%, var(--blue-deep) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 66%;
+  margin-bottom: 12px;
+}
+
+.orn-line {
+  flex: 1;
+  height: 1px;
+}
+
+.orn-line--pink { background: linear-gradient(90deg, transparent, var(--pink-deep)); }
+.orn-line--blue { background: linear-gradient(90deg, var(--blue-deep), transparent); }
+.orn-star { color: var(--gold-mid); font-size: 12px; }
+
+.card-lead {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.44;
+  color: var(--ink);
+  max-width: 245px;
+  margin-bottom: 16px;
+}
+
+.parents-script-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(200, 152, 56, 0.28);
+  width: 78%;
+}
+
+.parents-label {
+  font-size: 9px;
+  letter-spacing: 0.26em;
+  color: var(--gold-deep);
+  font-weight: 600;
+}
+
+.parents-names {
+  font-family: var(--font-display);
+  font-size: 23px;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.015em;
+  background: linear-gradient(135deg, #C85075 0%, #8C583A 50%, #3A7CC2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =====================================================================
+   ELEGANT 3-CIRCLE GOLD-FOIL SCRATCH-TO-REVEAL & POP COUNTDOWN
+   ===================================================================== */
+
+.pop-confetti-layer {
+  position: absolute;
+  inset: -16px;
+  pointer-events: none;
+  z-index: 20;
+  overflow: visible;
+}
+
+.pop-spark {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkFly 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sparkFly {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0.25);
+  }
+}
+
+.scratch-trio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  margin: 8px 0 12px;
+}
+
+.scratch-coin {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(145deg, #F8E4A8, #C89635, #FCEBB6);
+  box-shadow:
+    0 10px 24px rgba(181, 134, 42, 0.22),
+    inset 0 1px 2px rgba(255, 255, 255, 0.85);
+  overflow: hidden;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+}
+
+.scratch-coin.is-popped {
+  animation: coinPop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  box-shadow:
+    0 12px 28px rgba(216, 174, 72, 0.36),
+    0 0 0 3px rgba(248, 228, 168, 0.55);
+}
+
+@keyframes coinPop {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+
+.coin-underlay {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border: 1px dashed rgba(200, 152, 56, 0.45);
+}
+
+.scratch-coin--pink .coin-underlay {
+  background: radial-gradient(circle at 35% 30%, #FFFDFD, #FCE4EC);
+}
+
+.scratch-coin--gold .coin-underlay {
+  background: radial-gradient(circle at 35% 30%, #FFFDF9, #FAF0D7);
+}
+
+.scratch-coin--blue .coin-underlay {
+  background: radial-gradient(circle at 35% 30%, #FDFEFF, #E3F0FC);
+}
+
+.coin-val {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.coin-val--month {
+  font-size: 19px;
+  letter-spacing: 0.06em;
+  color: var(--gold-deep);
+}
+
+.coin-val--year {
+  font-size: 19px;
+  color: var(--blue-deep);
+}
+
+.coin-sub {
+  font-size: 7.5px;
+  letter-spacing: 0.16em;
+  font-weight: 600;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+.coin-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  cursor: pointer;
+  touch-action: none;
+  z-index: 4;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.coin-canvas.is-revealed {
+  opacity: 0;
+  transform: scale(1.16);
+  pointer-events: none;
+}
+
+/* Countdown pops open cleanly once all 3 gold circles are revealed */
+.countdown-reveal-box {
+  width: 100%;
+  max-width: 256px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(14px) scale(0.9);
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    opacity 0.6s ease,
+    transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
+    max-height 0.6s ease;
+}
+
+.countdown-reveal-box.is-popped {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  max-height: 130px;
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
+
+.date-time-pop {
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--gold-deep);
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  width: 100%;
+}
+
+.cd-box {
+  padding: 6px 3px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(200, 152, 56, 0.28);
+}
+
+.cd-box--pink { background: rgba(247, 180, 196, 0.24); }
+.cd-box--blue { background: rgba(126, 189, 247, 0.24); }
+
+.cd-val {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.cd-lbl {
+  font-size: 7px;
+  letter-spacing: 0.15em;
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+
+.scratch-hint-btn {
+  background: transparent;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--gold-deep);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 10px;
+  transition: opacity 0.35s ease;
+}
+
+.scratch-hint-btn.is-done {
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  padding: 0;
+}
+
+/* Subtle "Scroll gently ↓" cue that fades in ONLY after text finishes writing */
+.beat-next-cue {
+  margin-top: 12px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.story-card.is-ready-next .beat-next-cue {
+  opacity: 0.85;
+  transform: translateY(0);
+  animation: gentleCueBob 1.9s ease-in-out infinite;
+}
+
+@keyframes gentleCueBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* Beat 3: Moments List (Clean, minimal, pastel-tinted) */
+.moments-list {
+  list-style: none;
+  width: 100%;
+  max-width: 256px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.moment-item {
+  display: grid;
+  grid-template-columns: 58px 12px 1fr;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(200, 152, 56, 0.2);
+}
+
+.moment-item:last-child {
+  border-bottom: none;
+}
+
+.moment-time {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--gold-deep);
+}
+
+.moment-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.moment-dot--pink { background: var(--pink-deep); box-shadow: 0 0 0 3px var(--pink-tint); }
+.moment-dot--blue { background: var(--blue-deep); box-shadow: 0 0 0 3px var(--blue-tint); }
+.moment-dot--gold { background: var(--gold-mid);  box-shadow: 0 0 0 3px rgba(216, 174, 72, 0.22); }
+
+.moment-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.moment-info strong {
+  font-family: var(--font-serif);
+  font-size: 16.5px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+.moment-info span {
+  font-size: 10.5px;
+  color: var(--ink-muted);
+}
+
+/* Beat 4: Dress Code & RSVP CTA */
+.palette-swatches {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 8px 0 14px;
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.swatch span:last-child {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+.swatch-pearl {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 4px 12px rgba(69, 55, 77, 0.14);
+}
+
+.swatch-pearl--pink  { background: linear-gradient(135deg, #FCD2DD, #E5819C); }
+.swatch-pearl--blue  { background: linear-gradient(135deg, #CCE5FE, #65A4E4); }
+.swatch-pearl--ivory { background: linear-gradient(135deg, #FFFFFF, #F2E7DC); }
+.swatch-pearl--gold  { background: linear-gradient(135deg, #F8E4A8, #C89838); }
+
+.card-note {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--ink-muted);
+  max-width: 225px;
+  line-height: 1.38;
+  margin-bottom: 16px;
+}
+
+/* Animated Mini Calendar with Hand-Drawn Circle around Dec 3 */
+.mini-cal {
+  width: 100%;
+  max-width: 244px;
+  margin: 4px 0 12px;
+  padding: 10px 10px 8px;
+  border-radius: 16px;
+  background: rgba(255, 253, 250, 0.72);
+  border: 1px solid rgba(216, 174, 72, 0.34);
+}
+
+.mini-cal-head,
+.mini-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  align-items: center;
+}
+
+.mini-cal-head {
+  margin-bottom: 5px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(200, 152, 56, 0.2);
+}
+
+.mini-cal-head span {
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold-deep);
+}
+
+.mini-cal-grid span {
+  position: relative;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+.mc-marked strong {
+  position: relative;
+  z-index: 2;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--pink-deep);
+}
+
+.mc-circle-svg {
+  position: absolute;
+  inset: -4px;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  pointer-events: none;
+}
+
+.mc-circle-path {
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
+}
+
+.is-writing .mc-circle-path {
+  animation: drawCalCircle 1.2s cubic-bezier(0.35, 0.05, 0.25, 1) 0.55s forwards;
+}
+
+@keyframes drawCalCircle {
+  to { stroke-dashoffset: 0; }
+}
+
+.card-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, var(--pink-deep) 0%, #C8963E 52%, var(--blue-deep) 100%);
+  color: #FFFDF9;
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(220, 109, 140, 0.3);
+}
+
+/* =====================================================================
+   ACT III: CARDLESS FLOATING THANK YOU, RSVP & LOCATION FINALE
+   (Zero background box — preserves the full beauty of third half.mp4)
+   ===================================================================== */
+
+.finale-feather {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(28, 22, 46, 0) 0%,
+    rgba(28, 22, 46, 0) 56%,
+    rgba(26, 20, 44, 0.42) 78%,
+    rgba(20, 15, 36, 0.78) 100%
+  );
+  pointer-events: none;
+}
+
+.finale-floating {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  bottom: max(26px, env(safe-area-inset-bottom));
+  z-index: 9;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  will-change: transform, opacity;
+}
+
+/* English pastel bunting ("We're waiting for you!") — replaces the
+   Portuguese "Esperamos você!" banner that was removed from the video */
+.english-bunting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 6px;
+}
+
+.bunting-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+  padding-top: 3px;
+  background: linear-gradient(rgba(255, 250, 240, 0.85), rgba(255, 250, 240, 0.85)) top / 100% 1px no-repeat;
+}
+
+.flag {
+  width: 20px;
+  height: 24px;
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 2px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(60, 40, 70, 0.35);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+  box-shadow: 0 2px 6px rgba(20, 14, 38, 0.25);
+  background: #F2A7BD;
+}
+
+.flag:nth-child(4n + 2) { background: #8CC3EE; }
+.flag:nth-child(4n + 3) { background: #F5CF6E; }
+.flag:nth-child(4n + 4) { background: #A6D8B8; }
+.flag:nth-child(odd)    { transform: rotate(-3deg); }
+.flag:nth-child(even)   { transform: rotate(3deg); }
+
+.flag-gap {
+  width: 8px;
+}
+
+.finale-script {
+  font-family: var(--font-script);
+  font-size: clamp(54px, 14vw, 66px);
+  font-weight: 400;
+  line-height: 1.02;
+  background: linear-gradient(180deg, #FFFDF7 0%, #FAE5A7 54%, #E6B958 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 18px rgba(24, 16, 42, 0.68));
+  margin-bottom: 4px;
+}
+
+.finale-warm-line {
+  font-family: var(--font-serif);
+  font-size: 16.5px;
+  font-style: italic;
+  color: #FFFDF9;
+  text-shadow: 0 2px 12px rgba(20, 14, 38, 0.78);
+  max-width: 320px;
+  line-height: 1.32;
+  margin-bottom: 12px;
+}
+
+.finale-venue-line {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FBE9B8;
+  font-weight: 500;
+  text-shadow: 0 2px 10px rgba(18, 12, 34, 0.8);
+  margin-bottom: 16px;
+}
+
+.venue-pin, .venue-sep {
+  color: var(--gold-light);
+}
+
+.finale-pill-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 344px;
+  margin-bottom: 12px;
+}
+
+.float-pill {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 10px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.2s ease;
+}
+
+.float-pill:active {
+  transform: scale(0.95);
+}
+
+.float-pill--gold {
+  background: linear-gradient(135deg, rgba(235, 200, 114, 0.92), rgba(190, 138, 44, 0.94));
+  color: #FFFDF9;
+  border: 1px solid rgba(255, 243, 206, 0.6);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+.float-pill--rose {
+  background: linear-gradient(135deg, rgba(232, 125, 154, 0.88), rgba(104, 158, 224, 0.88));
+  color: #FFFDF9;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.float-pill--glass {
+  background: rgba(255, 253, 249, 0.18);
+  color: #FFFDF9;
+  border: 1px solid rgba(255, 253, 249, 0.45);
+}
+
+.replay-link {
+  background: transparent;
+  border: none;
+  color: rgba(255, 253, 249, 0.82);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 4px 10px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+}
+
+/* =====================================================================
+   LUXURY RSVP BOTTOM SHEET MODAL
+   ===================================================================== */
+
+.rsvp-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.rsvp-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.rsvp-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(24, 19, 36, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+.rsvp-sheet {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 440px;
+  background: linear-gradient(180deg, #FFFDF9 0%, #FAF3EE 100%);
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  padding: 14px 24px max(28px, env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(216, 174, 72, 0.45);
+  box-shadow: 0 -20px 50px rgba(20, 14, 34, 0.3);
+  transform: translateY(100%);
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+  text-align: center;
+}
+
+.rsvp-modal.is-open .rsvp-sheet {
+  transform: translateY(0);
+}
+
+.rsvp-handle {
+  width: 42px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(69, 55, 77, 0.18);
+  margin: 0 auto 14px;
+}
+
+.rsvp-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(69, 55, 77, 0.08);
+  color: var(--ink);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.rsvp-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  color: var(--gold-deep);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.rsvp-script {
+  font-family: var(--font-script);
+  font-size: 40px;
+  font-weight: 400;
+  background: linear-gradient(135deg, var(--pink-deep), var(--blue-deep));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.rsvp-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.rsvp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.rsvp-field span {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.rsvp-field input,
+.rsvp-field select,
+.rsvp-field textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1px solid rgba(200, 152, 56, 0.34);
+  background: #FFFFFF;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  outline: none;
+}
+
+.rsvp-submit-btn {
+  margin-top: 6px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, var(--pink-deep) 0%, #C8963E 50%, var(--blue-deep) 100%);
+  color: #FFFDF9;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.rsvp-success {
+  padding: 14px 6px 6px;
+}
+
+.success-icon {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold-mid));
+  color: #FFFDF9;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rsvp-success p {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 24px);
+  z-index: 90;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(34, 28, 48, 0.92);
+  color: #FFFDF9;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  white-space: nowrap;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* =====================================================================
+   AUTHORITATIVE DESKTOP MOBILE-FRAME OVERRIDE (MUST STAY AT BOTTOM)
+   Locks the invitation strictly to a centered vertical mobile viewport
+   on desktop (> 600px) so the left & right teddy bear wings always show.
+   ===================================================================== */
+@media (min-width: 601px) {
+  .stage-viewport,
+  .progress-rail {
+    width: min(415px, 52vh) !important;
+    max-width: 415px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .stage-viewport {
+    top: 14px !important;
+    bottom: 14px !important;
+    height: calc(100dvh - 28px) !important;
+    border-radius: 34px !important;
+    box-shadow:
+      0 32px 90px rgba(74, 56, 86, 0.24),
+      0 0 0 1.5px rgba(216, 174, 72, 0.45) !important;
+  }
+
+  .progress-rail {
+    top: 14px !important;
+    border-radius: 34px 34px 0 0;
+    overflow: hidden;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       DESKTOP SIDE WINGS (> 600px ONLY)
+       Flanks the centered mobile invitation with real teddy bear
+       portraits & luxury typography. Hidden completely on mobile.
+       ========================================================= -->
+  <div class="desktop-ambient" aria-hidden="true">
+    <div class="ambient-orb ambient-orb--pink"></div>
+    <div class="ambient-orb ambient-orb--blue"></div>
+    <div class="ambient-orb ambient-orb--gold"></div>
+
+    <!-- Left Wing: Real Waving Teddy Bear + Parents & Title -->
+    <aside class="desktop-wing desktop-wing--left">
+      <div class="teddy-arch-frame">
+        <video
+          id="desktop-teddy-left"
+          class="teddy-portrait-media teddy-portrait-media--left"
+          src="/template-assets/premium/teddy-dreams-opening.mp4"
+          muted
+          playsinline
+          preload="auto"
+        ></video>
+      </div>
+      <div class="wing-text">
+        <span class="wing-kicker">✦ &nbsp; YOU ARE CORDIALLY INVITED &nbsp; ✦</span>
+        <h2 class="wing-script">Baby Shower</h2>
+        <p class="wing-body">
+          A new journey begins for <strong data-bind="hosts"></strong>. We would be delighted to share this special moment with you and your family.
+        </p>
+      </div>
+    </aside>
+
+    <!-- Right Wing: Real Pastel Cloud Teddy Bears + Date & Venue -->
+    <aside class="desktop-wing desktop-wing--right">
+      <div class="teddy-arch-frame teddy-arch-frame--right">
+        <video
+          id="desktop-teddy-right"
+          class="teddy-portrait-media teddy-portrait-media--right"
+          src="/template-assets/premium/teddy-dreams-finale.mp4"
+          muted
+          playsinline
+          preload="auto"
+        ></video>
+      </div>
+      <div class="wing-text">
+        <span class="wing-kicker">✦ &nbsp; <span data-bind="dateShort"></span> &nbsp; ✦</span>
+        <h2 class="wing-script wing-script--blue" data-bind="timeText"></h2>
+        <p class="wing-body">
+          <span data-show="lunchTime">Lunch at <strong data-bind="lunchTime"></strong><br /></span>
+          <strong data-bind="venue"></strong><br />
+          Tap the teddy seal in the center &amp; scroll gently.
+        </p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- =========================================================
+       MAIN 3D MOBILE INVITATION EXPERIENCE
+       ========================================================= -->
+  <div id="mobile-experience" class="mobile-experience">
+
+    <!-- FIXED 3D CINEMA VIEWPORT -->
+    <main class="stage-viewport" aria-label="3D Baby Shower Invitation">
+      <canvas id="mobile-stardust" class="mobile-stardust" aria-hidden="true"></canvas>
+
+      <!-- Background music: original soft music-box lullaby -->
+      <audio id="bg-music" src="/template-assets/premium/teddy-dreams-lullaby.mp3" loop preload="auto"></audio>
+      <button type="button" id="music-toggle" class="music-toggle" aria-label="Mute music" aria-pressed="true">
+        <svg class="mt-icon mt-icon--on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <svg class="mt-icon mt-icon--off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
+        <span class="mt-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+
+      <div class="progress-rail" aria-hidden="true">
+        <div class="progress-fill" id="scroll-progress-fill"></div>
+      </div>
+
+      <!-- =====================================================
+           ACT I: VIDEO ENVELOPE OPENING (first half .mp4)
+           Opens on the video's own envelope with the teddy seal.
+           Tap it and the video plays on its own (Portuguese text
+           skipped under a cloud bloom), then "Welcome" + names.
+           ===================================================== -->
+      <div class="act-layer act-layer--1" id="act-1">
+        <div class="video-3d-wrap" id="video-1-wrap">
+          <video
+            id="video-opening"
+            class="stage-video"
+            src="/template-assets/premium/teddy-dreams-opening.mp4"
+            muted
+            playsinline
+            webkit-playsinline
+            preload="auto"
+          ></video>
+        </div>
+
+        <!-- Dreamy cloud bloom covering the 6.75s -> 10.45s skip -->
+        <div class="cloud-skip-veil" id="cloud-skip-veil" aria-hidden="true"></div>
+
+        <!-- OPENING GATE: tap the teddy seal on the video's envelope -->
+        <button type="button" id="teddy-gate" class="teddy-gate" aria-label="Tap the teddy seal to open the invitation">
+          <span class="gate-heading">
+            <span class="gate-kicker">✦ &nbsp;WITH HEARTS FULL OF JOY&nbsp; ✦</span>
+            <span class="gate-invite-line">We warmly invite you to our</span>
+            <span class="gate-script">Baby Shower</span>
+            <span class="gate-divider" aria-hidden="true">
+              <span class="gd-line gd-line--pink"></span>
+              <span class="gd-heart">♡</span>
+              <span class="gd-line gd-line--blue"></span>
+            </span>
+            <span class="gate-sub">to celebrate our little one</span>
+          </span>
+          <span class="teddy-glow" aria-hidden="true">
+            <span class="teddy-ripple teddy-ripple--1"></span>
+            <span class="teddy-ripple teddy-ripple--2"></span>
+          </span>
+          <span class="teddy-gate-prompt">
+            <img src="/template-assets/premium/teddy-dreams-feet-seal.png" alt="" class="feet-seal" />
+            <span class="teddy-gate-text">TAP TO OPEN</span>
+          </span>
+        </button>
+
+        <div class="scroll-cue" id="scroll-cue">
+          <span class="scroll-cue-text">SCROLL GENTLY</span>
+          <div class="scroll-mouse">
+            <span class="scroll-wheel"></span>
+          </div>
+        </div>
+
+        <!-- Cardless Handwritten Welcome + Parents' Names when Teddy Bear opens -->
+        <div class="bear-welcome-overlay" id="bear-welcome-overlay">
+          <p class="welcome-kicker ink-write-line">YOU ARE CORDIALLY INVITED</p>
+          <div class="pen-script-wrap">
+            <h1 class="welcome-script pen-write-script" id="welcome-script">Welcome</h1>
+          </div>
+          <div class="welcome-divider">
+            <span class="w-line"></span>
+            <span class="w-star">✦</span>
+            <span class="w-line"></span>
+          </div>
+          <p class="welcome-parents-label">HOSTED BY</p>
+          <div class="pen-script-wrap pen-script-wrap--delayed">
+            <h2 class="welcome-parents-name pen-write-script" id="welcome-names"></h2>
+          </div>
+        </div>
+      </div>
+
+      <!-- Luminous Pastel-Ivory Dissolve Veil between Acts -->
+      <div class="transition-veil" id="transition-veil" aria-hidden="true"></div>
+
+      <!-- =====================================================
+           ACT II: WATERCOLOR PLACEHOLDER VIDEO (second half.mp4)
+           Real fluid handwriting animation + Scratch-to-Reveal
+           Countdown in video-matched Blush Pink, Sky Blue & Gold
+           ===================================================== -->
+      <div class="act-layer act-layer--2" id="act-2">
+        <div class="video-3d-wrap" id="video-2-wrap">
+          <video
+            id="video-middle"
+            class="stage-video"
+            src="/template-assets/premium/teddy-dreams-middle.mp4"
+            muted
+            loop
+            playsinline
+            webkit-playsinline
+            preload="auto"
+          ></video>
+        </div>
+
+        <div class="watercolor-center-stage">
+
+          <!-- BEAT 1: Invitation & Parents (Handwriting Animation) -->
+          <article class="story-card" id="card-welcome">
+            <div class="card-eyebrow ink-write-line">YOU ARE CORDIALLY INVITED TO OUR</div>
+            <div class="pen-script-wrap">
+              <h2 class="card-script-title pen-write-script">Baby Shower</h2>
+            </div>
+            <div class="card-ornament">
+              <span class="orn-line orn-line--pink"></span>
+              <span class="orn-star">✦</span>
+              <span class="orn-line orn-line--blue"></span>
+            </div>
+            <p class="card-lead ink-write-chars">
+              A new journey begins... and we would be delighted to share this special moment with you and your family!
+            </p>
+            <div class="parents-script-block">
+              <span class="parents-label">HOSTED BY</span>
+              <div class="pen-script-wrap pen-script-wrap--delayed">
+                <div class="parents-names pen-write-script" data-bind="hostsFull"></div>
+              </div>
+            </div>
+            <span class="beat-next-cue" aria-hidden="true">Scroll gently ↓</span>
+          </article>
+
+          <!-- BEAT 2: Elegant 3-Circle Gold-Foil Scratch-to-Reveal + Pop Countdown -->
+          <article class="story-card" id="card-scratch">
+            <div class="card-eyebrow ink-write-line">SCRATCH ALL THREE TO REVEAL</div>
+            <div class="pen-script-wrap">
+              <h2 class="card-script-title card-script-title--blue pen-write-script">Save the Date</h2>
+            </div>
+
+            <div class="pop-confetti-layer" id="pop-confetti-layer" aria-hidden="true"></div>
+
+            <!-- Three Luxury Circular Gold-Foil Scratch Medallions -->
+            <div class="scratch-trio" id="scratch-trio">
+              <div class="scratch-coin scratch-coin--pink" data-coin="0">
+                <div class="coin-underlay">
+                  <span class="coin-val" data-bind="eventDayNum"></span>
+                  <span class="coin-sub" data-bind="weekdayShort"></span>
+                </div>
+                <canvas class="coin-canvas" aria-label="Scratch first circle to reveal day"></canvas>
+              </div>
+
+              <div class="scratch-coin scratch-coin--gold" data-coin="1">
+                <div class="coin-underlay">
+                  <span class="coin-val coin-val--month" data-bind="eventMonth"></span>
+                  <span class="coin-sub">MONTH</span>
+                </div>
+                <canvas class="coin-canvas" aria-label="Scratch second circle to reveal month"></canvas>
+              </div>
+
+              <div class="scratch-coin scratch-coin--blue" data-coin="2">
+                <div class="coin-underlay">
+                  <span class="coin-val coin-val--year" data-bind="eventYear"></span>
+                  <span class="coin-sub">YEAR</span>
+                </div>
+                <canvas class="coin-canvas" aria-label="Scratch third circle to reveal year"></canvas>
+              </div>
+            </div>
+
+            <!-- Pops open smoothly once all 3 circles are scratched -->
+            <div class="countdown-reveal-box" id="countdown-reveal-box">
+              <span class="date-time-pop" data-bind="eventTimeLine"></span>
+              <div class="countdown-grid" aria-label="Countdown to Baby Shower">
+                <div class="cd-box cd-box--pink">
+                  <span class="cd-val" id="cd-days">00</span>
+                  <span class="cd-lbl">DAYS</span>
+                </div>
+                <div class="cd-box cd-box--blue">
+                  <span class="cd-val" id="cd-hours">00</span>
+                  <span class="cd-lbl">HRS</span>
+                </div>
+                <div class="cd-box cd-box--pink">
+                  <span class="cd-val" id="cd-mins">00</span>
+                  <span class="cd-lbl">MIN</span>
+                </div>
+                <div class="cd-box cd-box--blue">
+                  <span class="cd-val" id="cd-secs">00</span>
+                  <span class="cd-lbl">SEC</span>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" id="quick-reveal-btn" class="scratch-hint-btn">
+              ✦ Scratch all 3 gold circles (or tap to pop)
+            </button>
+
+            <span class="beat-next-cue" aria-hidden="true">Scroll gently ↓</span>
+          </article>
+
+          <!-- BEAT 3: Schedule & Venue Details -->
+          <article class="story-card" id="card-moments">
+            <div class="card-eyebrow ink-write-line">CELEBRATION SCHEDULE</div>
+            <div class="pen-script-wrap">
+              <h2 class="card-script-title card-script-title--pink pen-write-script">Sweet Moments</h2>
+            </div>
+
+            <ul class="moments-list">
+              <li class="moment-item">
+                <span class="moment-time" data-bind="dateNumeric"></span>
+                <span class="moment-dot moment-dot--pink"></span>
+                <div class="moment-info">
+                  <strong>Baby Shower Date</strong>
+                  <span data-bind="dateText"></span>
+                </div>
+              </li>
+              <li class="moment-item">
+                <span class="moment-time" data-bind="timeText"></span>
+                <span class="moment-dot moment-dot--blue"></span>
+                <div class="moment-info">
+                  <strong>Ceremony &amp; Blessings</strong>
+                  <span>Warm welcome &amp; celebrations</span>
+                </div>
+              </li>
+              <li class="moment-item" data-show="lunchTime">
+                <span class="moment-time" data-bind="lunchTime"></span>
+                <span class="moment-dot moment-dot--gold"></span>
+                <div class="moment-info">
+                  <strong>Traditional Lunch</strong>
+                  <span data-bind="venue"></span>
+                </div>
+              </li>
+            </ul>
+            <span class="beat-next-cue" aria-hidden="true">Scroll gently ↓</span>
+          </article>
+
+          <!-- BEAT 4: "Mark Your Calendar" (the event day is circled) -->
+          <article class="story-card" id="card-dress">
+            <div class="card-eyebrow ink-write-line" data-bind="monthYear"></div>
+            <div class="pen-script-wrap">
+              <h2 class="card-script-title pen-write-script">Mark Calendar</h2>
+            </div>
+
+            <div class="mini-cal" id="mini-cal">
+              <div class="mini-cal-head">
+                <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+              </div>
+              <div class="mini-cal-grid" id="mini-cal-grid"></div>
+            </div>
+
+            <p class="card-lead ink-write-chars" style="margin-bottom: 10px; font-size: 15px;" data-bind="thanks"></p>
+
+            <button type="button" id="mark-cal-btn-mid" class="card-cta-btn">
+              <span>✦ Mark in My Calendar</span>
+            </button>
+            <span class="beat-next-cue" aria-hidden="true">Scroll gently ↓</span>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- =====================================================
+           ACT III: CARDLESS THANK YOU & LOCATION FINALE
+           (third half.mp4 — bounded 0.0s to 6.75s, ZERO card box!)
+           ===================================================== -->
+      <div class="act-layer act-layer--3" id="act-3">
+        <div class="video-3d-wrap" id="video-3-wrap">
+          <video
+            id="video-finale"
+            class="stage-video"
+            src="/template-assets/premium/teddy-dreams-finale.mp4"
+            muted
+            playsinline
+            webkit-playsinline
+            preload="auto"
+          ></video>
+          <div class="finale-feather" aria-hidden="true"></div>
+        </div>
+
+        <div class="finale-floating" id="finale-floating">
+          <div class="english-bunting" aria-label="We're waiting for you!">
+            <span class="bunting-row">
+              <span class="flag">W</span><span class="flag">e</span><span class="flag">'</span><span class="flag">r</span><span class="flag">e</span>
+              <span class="flag-gap"></span>
+              <span class="flag">w</span><span class="flag">a</span><span class="flag">i</span><span class="flag">t</span><span class="flag">i</span><span class="flag">n</span><span class="flag">g</span>
+            </span>
+            <span class="bunting-row">
+              <span class="flag">f</span><span class="flag">o</span><span class="flag">r</span>
+              <span class="flag-gap"></span>
+              <span class="flag">y</span><span class="flag">o</span><span class="flag">u</span><span class="flag">!</span>
+            </span>
+          </div>
+          <div class="pen-script-wrap">
+            <h2 class="finale-script pen-write-script" id="finale-script">Thank You</h2>
+          </div>
+          <p class="finale-warm-line ink-write-chars" data-bind="warmLine"></p>
+
+          <div class="finale-venue-line">
+            <span class="venue-pin">✦</span>
+            <span data-bind="fullAddress"></span>
+          </div>
+
+          <div class="finale-pill-row">
+            <a id="maps-link-btn" href="#location" target="_blank" rel="noopener noreferrer" class="float-pill float-pill--gold">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Location</span>
+            </a>
+
+            <button type="button" id="save-cal-btn" class="float-pill float-pill--rose">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
+              <span>Mark Calendar</span>
+            </button>
+          </div>
+
+          <button type="button" id="replay-top-btn" class="replay-link">
+            ↑ Replay Invitation
+          </button>
+        </div>
+      </div>
+
+    </main>
+
+    <div class="scroll-track" id="scroll-track" aria-hidden="true"></div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <script>
+/* Global on purpose: WeInviteU's preview tour (autoscroll.js) opens the invitation while state is "door". */
+var state = "door";
+
+/* =====================================================================
+   EDITABLE INVITATION DETAILS (WeInviteU Admin → Customize edits these)
+   ===================================================================== */
+const CFG = {
+  hosts: "Karthik & Ananya",
+  EVENT_ISO: "2027-03-14T11:00:00+05:30",
+  dateText: "Sunday, 14 March 2027",
+  timeText: "11:00 AM",
+  lunchTime: "12:30 PM",
+  venue: "Lotus Garden Banquet Hall",
+  address: "Jayanagar 4th Block, Bengaluru, Karnataka",
+  map: "https://www.google.com/maps/search/?api=1&query=Jayanagar+4th+Block+Bengaluru",
+  thanks: "We sincerely look forward to your gracious presence and blessings."
+};
+
+/* Video timing for this design (not customer content). */
+const TIMING = {
+  // The page opens on the video's own envelope (teddy seal). On tap the video plays:
+  // envelope opens (0 -> 6.75s), a cloud bloom hides the original video's text
+  // (6.75 -> 10.45s is skipped), then the teddy wakes & waves (10.45 -> 14.9s).
+  introStartSec: 0.0,
+  introSkipFrom: 6.75,
+  introSkipTo: 10.45,
+  introEndSec: 14.9,
+  introPlaybackRate: 1,
+  // Act III video loop window
+  finaleStartSec: 0.0,
+  finaleEndSec: 6.75,
+};
+
+/* Everything shown on the page is derived from CFG. */
+const VIEW = buildView(CFG);
+
+function buildView(c) {
+  const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const hosts = String(c.hosts || "").trim();
+  // Read the date straight from the text so it shows the event's own local day, whatever the guest's timezone.
+  const m = /^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?/.exec(String(c.EVENT_ISO || ""));
+  const y = m ? +m[1] : NaN, mo = m ? +m[2] - 1 : NaN, d = m ? +m[3] : NaN;
+  const valid = m && mo >= 0 && mo < 12 && d >= 1 && d <= 31;
+  const wd = valid ? new Date(Date.UTC(y, mo, d)).getUTCDay() : 0;
+  const start = new Date(c.EVENT_ISO);
+  const lunch = String(c.lunchTime || "").trim();
+  const timeText = String(c.timeText || "").trim();
+  const venue = String(c.venue || "").trim();
+  const address = String(c.address || "").trim();
+  return {
+    hosts,
+    hostsFull: hosts.replace(/\s*&\s*/g, " and "),
+    warmLine: hosts ? `With warm regards, ${hosts}` : "With warm regards",
+    eventTitle: hosts ? `Baby Shower — ${hosts}` : "Baby Shower",
+    dateText: String(c.dateText || "").trim(),
+    timeText,
+    lunchTime: lunch,
+    venue,
+    fullAddress: [venue, address].filter(Boolean).join(", "),
+    thanks: String(c.thanks || "").trim(),
+    map: String(c.map || "").trim(),
+    eventDayNum: valid ? String(d).padStart(2, "0") : "",
+    eventMonth: valid ? MONTHS[mo].slice(0, 3).toUpperCase() : "",
+    eventYear: valid ? String(y) : "",
+    weekdayShort: valid ? DAYS[wd].slice(0, 3).toUpperCase() : "",
+    dateShort: valid ? `${d} ${MONTHS[mo].toUpperCase()} ${y}` : "",
+    dateNumeric: valid ? `${String(d).padStart(2, "0")}/${String(mo + 1).padStart(2, "0")}/${y}` : "",
+    monthYear: valid ? `${MONTHS[mo].toUpperCase()} ${y}` : "",
+    eventTimeLine: [timeText, lunch ? `LUNCH ${lunch}` : ""].filter(Boolean).join("  •  "),
+    saveToast: valid ? `${d} ${MONTHS[mo].slice(0, 3)} ${y} — Save the Date! ✦` : "Save the Date! ✦",
+    calendarToast: valid ? `${MONTHS[mo].slice(0, 3)} ${d}, ${y} marked in your calendar ✦` : "Saved to your calendar ✦",
+    cal: valid ? { y, mo, d, monthName: MONTHS[mo] } : null,
+    startMs: isNaN(start.getTime()) ? 0 : start.getTime(),
+  };
+}
+
+/* =====================================================================
+   BOOT
+   ===================================================================== */
+(function initApp() {
+  bindConfigText();
+  prepareHandwritingChars();
+  initCountdown();
+  initStardustCanvas("mobile-stardust", 42);
+  initScratchCard();
+  initScrollChoreography();
+  initFinaleActions();
+  initDesktopTeddyWings();
+  initBackgroundMusic();
+})();
+
+function bindConfigText() {
+  document.title = VIEW.eventTitle;
+
+  document.querySelectorAll("[data-bind]").forEach((el) => {
+    const key = el.getAttribute("data-bind");
+    if (typeof VIEW[key] === "string") el.textContent = VIEW[key];
+  });
+
+  // Optional rows (e.g. lunch) disappear when their detail is left empty.
+  document.querySelectorAll("[data-show]").forEach((el) => {
+    if (!VIEW[el.getAttribute("data-show")]) el.style.display = "none";
+  });
+
+  // Hosts' names under "Welcome": gold calligraphy with a pink ampersand.
+  const names = document.getElementById("welcome-names");
+  if (names) {
+    names.setAttribute("aria-label", VIEW.hostsFull);
+    VIEW.hosts.split(/\s*&\s*/).filter(Boolean).forEach((part, i) => {
+      if (i > 0) {
+        const amp = document.createElement("span");
+        amp.className = "pn-amp";
+        amp.textContent = "&";
+        names.appendChild(amp);
+      }
+      const span = document.createElement("span");
+      span.className = "pn-name";
+      span.textContent = part;
+      names.appendChild(span);
+    });
+    fitWelcomeNames(names);
+  }
+
+  buildMiniCalendar();
+
+  const mapsBtn = document.getElementById("maps-link-btn");
+  if (mapsBtn) {
+    let ok = false;
+    try { ok = /^https?:$/.test(new URL(VIEW.map).protocol); } catch {}
+    if (ok) mapsBtn.href = VIEW.map;
+    else mapsBtn.style.display = "none";
+  }
+}
+
+/* Long names shrink to stay on one line inside the invitation frame. */
+function fitWelcomeNames(el) {
+  const fit = () => {
+    el.style.fontSize = "";
+    el.querySelectorAll(".pn-name, .pn-amp").forEach((s) => { s.style.fontSize = ""; });
+    const box = el.parentElement && el.parentElement.parentElement;
+    const avail = box ? box.clientWidth : 0;
+    if (!avail) return;
+    const need = el.scrollWidth;
+    if (need <= avail) return;
+    const scale = Math.max(0.5, avail / need);
+    el.querySelectorAll(".pn-name, .pn-amp").forEach((s) => {
+      s.style.fontSize = `${parseFloat(getComputedStyle(s).fontSize) * scale}px`;
+    });
+    if (el.scrollWidth > avail) el.style.whiteSpace = "normal";
+  };
+  fit();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  window.addEventListener("resize", fit);
+}
+
+/* Two calendar weeks around the event day, with the day circled. */
+function buildMiniCalendar() {
+  const grid = document.getElementById("mini-cal-grid");
+  const wrap = document.getElementById("mini-cal");
+  if (!grid || !VIEW.cal) { if (wrap) wrap.style.display = "none"; return; }
+  const { y, mo, d, monthName } = VIEW.cal;
+  const firstDow = new Date(Date.UTC(y, mo, 1)).getUTCDay();
+  const daysInMonth = new Date(Date.UTC(y, mo + 1, 0)).getUTCDate();
+  const eventRow = Math.floor((firstDow + d - 1) / 7);
+  const lastRow = Math.floor((firstDow + daysInMonth - 1) / 7);
+  const startRow = eventRow < lastRow ? eventRow : Math.max(0, eventRow - 1);
+  wrap.setAttribute("aria-label", `${monthName} ${y} calendar with the ${d}${["th", "st", "nd", "rd"][(d % 100 > 10 && d % 100 < 14) ? 0 : (d % 10 < 4 ? d % 10 : 0)]} circled`);
+  for (let cell = startRow * 7; cell < (startRow + 2) * 7; cell++) {
+    const day = cell - firstDow + 1;
+    const span = document.createElement("span");
+    if (day < 1 || day > daysInMonth) {
+      span.className = "mc-empty";
+    } else if (day === d) {
+      span.className = "mc-marked";
+      span.innerHTML = '<strong></strong><svg class="mc-circle-svg" viewBox="0 0 44 44" fill="none" aria-hidden="true"><path class="mc-circle-path" d="M22 5 C33 4, 41 12, 39 23 C37 34, 27 40, 16 38 C6 36, 3 25, 6 15 C9 7, 17 5, 25 7" stroke="url(#calMarkGrad)" stroke-width="2.6" stroke-linecap="round" /><defs><linearGradient id="calMarkGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse"><stop stop-color="#DC6D8C" /><stop offset="0.55" stop-color="#D8AE48" /><stop offset="1" stop-color="#4A8FD1" /></linearGradient></defs></svg>';
+      span.querySelector("strong").textContent = String(day);
+    } else {
+      span.textContent = String(day);
+    }
+    grid.appendChild(span);
+  }
+}
+
+/* =====================================================================
+   SPLIT HANDWRITING TEXT INTO SEQUENTIAL FLUID CHARACTERS
+   Creates an authentic pen-writing motion across every sentence!
+   ===================================================================== */
+function prepareHandwritingChars() {
+  document.querySelectorAll(".ink-write-chars").forEach((el) => {
+    const text = el.textContent.trim();
+    el.textContent = "";
+    const baseDelay = 420; // start right as script heading finishes writing
+    const stepMs = Math.min(28, Math.max(14, Math.floor(1400 / Math.max(1, text.length))));
+    const words = text.split(" ");
+    let charIdx = 0;
+
+    words.forEach((word, wIdx) => {
+      const wordSpan = document.createElement("span");
+      wordSpan.style.display = "inline-block";
+      wordSpan.style.whiteSpace = "nowrap";
+
+      for (const ch of word) {
+        const span = document.createElement("span");
+        span.className = "hw-char";
+        span.textContent = ch;
+        span.style.setProperty("--d", `${baseDelay + charIdx * stepMs}ms`);
+        wordSpan.appendChild(span);
+        charIdx++;
+      }
+
+      el.appendChild(wordSpan);
+      if (wIdx < words.length - 1) {
+        el.appendChild(document.createTextNode(" "));
+        charIdx++;
+      }
+    });
+  });
+}
+
+/* =====================================================================
+   DESKTOP SIDE TEDDY BEAR PORTRAITS (> 980px)
+   ===================================================================== */
+function initDesktopTeddyWings() {
+  if (window.innerWidth <= 980) return;
+
+  const leftBear = document.getElementById("desktop-teddy-left");
+  const rightBear = document.getElementById("desktop-teddy-right");
+
+  const bindLoop = (vid, startSec, endSec) => {
+    if (!vid) return;
+    vid.muted = true;
+    const seekStart = () => {
+      try { vid.currentTime = startSec; } catch {}
+      vid.play().catch(() => {});
+    };
+    if (vid.readyState >= 1) {
+      seekStart();
+    } else {
+      vid.addEventListener("loadedmetadata", seekStart, { once: true });
+    }
+    vid.addEventListener("timeupdate", () => {
+      if (vid.currentTime < startSec - 0.2 || vid.currentTime >= endSec) {
+        vid.currentTime = startSec;
+      }
+    });
+  };
+
+  bindLoop(leftBear, 10.8, 14.8);
+  bindLoop(rightBear, 0.5, 6.0);
+}
+
+/* =====================================================================
+   TEDDY BEAR OPENING GATE & 3D SCROLL CHOREOGRAPHY
+   ===================================================================== */
+// Act I now uses only the first 10% of the scroll track (it is a timed,
+// auto-playing intro), so the later acts keep their original 0.30 -> 1.0 map.
+function rawToEff(r) {
+  const ACT1_RAW_SHARE = 0.10;
+  return r <= ACT1_RAW_SHARE
+    ? (r / ACT1_RAW_SHARE) * 0.30
+    : 0.30 + ((r - ACT1_RAW_SHARE) / (1 - ACT1_RAW_SHARE)) * 0.70;
+}
+function effToRaw(e) {
+  const ACT1_RAW_SHARE = 0.10;
+  return e <= 0.30
+    ? (e / 0.30) * ACT1_RAW_SHARE
+    : ACT1_RAW_SHARE + ((e - 0.30) / 0.70) * (1 - ACT1_RAW_SHARE);
+}
+
+function initScrollChoreography() {
+  const teddyGate = document.getElementById("teddy-gate");
+  const vOpening = document.getElementById("video-opening");
+  const vMiddle = document.getElementById("video-middle");
+  const vFinale = document.getElementById("video-finale");
+
+  const act1 = document.getElementById("act-1");
+  const act2 = document.getElementById("act-2");
+  const act3 = document.getElementById("act-3");
+  const v1Wrap = document.getElementById("video-1-wrap");
+  const v2Wrap = document.getElementById("video-2-wrap");
+  const v3Wrap = document.getElementById("video-3-wrap");
+  const scrollCue = document.getElementById("scroll-cue");
+  const cloudSkipVeil = document.getElementById("cloud-skip-veil");
+  const bearWelcome = document.getElementById("bear-welcome-overlay");
+  const veil = document.getElementById("transition-veil");
+  const finaleFloating = document.getElementById("finale-floating");
+  const progressFill = document.getElementById("scroll-progress-fill");
+
+  // Paced Act II Beats — gently holds downward scroll until the full handwriting finishes
+  const cards = [
+    { el: document.getElementById("card-welcome"), start: 0.35, peakIn: 0.39, holdP: 0.43, peakOut: 0.47, end: 0.51, holdMs: 2200, unlocked: false, unlockAt: 0 },
+    { el: document.getElementById("card-scratch"), start: 0.49, peakIn: 0.53, holdP: 0.57, peakOut: 0.62, end: 0.66, holdMs: 1800, unlocked: false, unlockAt: 0 },
+    { el: document.getElementById("card-moments"), start: 0.64, peakIn: 0.68, holdP: 0.71, peakOut: 0.74, end: 0.78, holdMs: 1900, unlocked: false, unlockAt: 0 },
+    { el: document.getElementById("card-dress"),   start: 0.76, peakIn: 0.79, holdP: 0.815, peakOut: 0.84, end: 0.87, holdMs: 2100, unlocked: false, unlockAt: 0 },
+  ];
+
+  const cfg = TIMING;
+  const root = document.documentElement;
+
+  // Lock scrolling until the teddy has been tapped and the intro has played
+  root.classList.add("is-scroll-locked");
+  window.scrollTo(0, 0);
+
+  // Park the opening video on the sitting teddy bear
+  const parkOnTeddy = () => {
+    try { vOpening.currentTime = cfg.introStartSec; } catch {}
+  };
+  if (vOpening) {
+    vOpening.muted = true;
+    if (vOpening.readyState >= 1) parkOnTeddy();
+    else vOpening.addEventListener("loadedmetadata", parkOnTeddy, { once: true });
+  }
+
+  let introStarted = false;
+  let introDoneAt = 0; // performance.now() when welcome starts writing
+  let scrollUnlocked = false;
+
+  const finishIntro = () => {
+    if (!introDoneAt) introDoneAt = performance.now();
+  };
+
+  const unlockScroll = () => {
+    if (scrollUnlocked) return;
+    scrollUnlocked = true;
+    root.classList.remove("is-scroll-locked");
+  };
+
+  // Prime the other two videos inside the user gesture (needed on iOS)
+  const primeOtherVideos = () => {
+    [vMiddle, vFinale].forEach((vid) => {
+      if (!vid) return;
+      vid.muted = true;
+      const pr = vid.play();
+      if (pr && typeof pr.then === "function") {
+        pr.then(() => {
+          vid.pause();
+          if (vid === vFinale) vid.currentTime = cfg.finaleStartSec;
+        }).catch(() => {});
+      }
+    });
+  };
+
+  const startIntro = () => {
+    if (introStarted) return;
+    introStarted = true;
+    window.state = "open";
+    if (window.startInvitationMusic) window.startInvitationMusic();
+    if (teddyGate) teddyGate.classList.add("is-opened");
+    primeOtherVideos();
+
+    if (!vOpening) { finishIntro(); unlockScroll(); return; }
+    if (Math.abs(vOpening.currentTime - cfg.introStartSec) > 0.3) parkOnTeddy();
+    vOpening.playbackRate = cfg.introPlaybackRate || 1;
+    vOpening.play().catch(() => { finishIntro(); unlockScroll(); });
+
+    // Safety net in case timeupdate never reaches the end
+    const playedSec = (cfg.introSkipFrom - cfg.introStartSec) + (cfg.introEndSec - cfg.introSkipTo);
+    const introMs = (playedSec / (cfg.introPlaybackRate || 1)) * 1000 + 1200;
+    setTimeout(() => { finishIntro(); unlockScroll(); }, introMs + 1500);
+  };
+
+  // Cloud bloom that covers the skipped (Portuguese text) part of the video
+  let skipping = false;
+  let skipDone = false;
+  const doSkip = () => {
+    if (skipping || skipDone) return;
+    skipping = true;
+    if (cloudSkipVeil) cloudSkipVeil.classList.add("is-blooming");
+    setTimeout(() => {
+      try { vOpening.currentTime = cfg.introSkipTo; } catch {}
+      skipDone = true;
+      setTimeout(() => {
+        if (cloudSkipVeil) cloudSkipVeil.classList.remove("is-blooming");
+        skipping = false;
+      }, 250);
+    }, 420);
+  };
+
+  if (vOpening) {
+    vOpening.addEventListener("timeupdate", () => {
+      if (!introStarted) return;
+      const t = vOpening.currentTime;
+      if (!skipDone && t >= cfg.introSkipFrom - 0.45 && t < cfg.introSkipTo) doSkip();
+      if (!skipDone) return;
+      // Begin writing "Welcome" just before the teddy finishes waving
+      if (vOpening.currentTime >= cfg.introEndSec - 1.1) finishIntro();
+      if (vOpening.currentTime >= cfg.introEndSec) {
+        vOpening.pause();
+        unlockScroll();
+      }
+    });
+    vOpening.addEventListener("ended", () => { finishIntro(); unlockScroll(); });
+  }
+
+  if (teddyGate) teddyGate.addEventListener("click", startIntro);
+  window.openDoor = startIntro;
+
+  // Keep Act III video strictly within its waving-bears window (0.0s -> 6.75s)
+  if (vFinale) {
+    vFinale.addEventListener("timeupdate", () => {
+      if (vFinale.currentTime >= TIMING.finaleEndSec) {
+        vFinale.currentTime = TIMING.finaleStartSec;
+      }
+    });
+  }
+
+  let targetProgress = 0;
+  let currentProgress = 0;
+  let activeHoldBeat = null;
+
+  const updateTarget = () => {
+    if (!scrollUnlocked) {
+      if (window.scrollY > 0) window.scrollTo(0, 0);
+      targetProgress = 0;
+      return;
+    }
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    let rawP = rawToEff(clamp(window.scrollY / maxScroll, 0, 1));
+
+    // Gently hold downward scroll at the active beat until its full handwriting completes
+    if (activeHoldBeat && !activeHoldBeat.unlocked) {
+      if (performance.now() < activeHoldBeat.unlockAt) {
+        if (rawP > activeHoldBeat.holdP) {
+          rawP = activeHoldBeat.holdP;
+          window.scrollTo({ top: Math.round(effToRaw(activeHoldBeat.holdP) * maxScroll), behavior: "instant" });
+        }
+      } else {
+        activeHoldBeat.unlocked = true;
+        if (activeHoldBeat.el) activeHoldBeat.el.classList.add("is-ready-next");
+        activeHoldBeat = null;
+      }
+    }
+
+    targetProgress = rawP;
+  };
+
+  window.addEventListener("scroll", updateTarget, { passive: true });
+  window.addEventListener("resize", updateTarget, { passive: true });
+  updateTarget();
+
+  function renderFrame() {
+    const now = performance.now();
+
+    if (activeHoldBeat && !activeHoldBeat.unlocked && now >= activeHoldBeat.unlockAt) {
+      activeHoldBeat.unlocked = true;
+      if (activeHoldBeat.el) activeHoldBeat.el.classList.add("is-ready-next");
+      activeHoldBeat = null;
+    }
+
+    currentProgress += (targetProgress - currentProgress) * 0.09;
+    const p = currentProgress;
+
+    if (progressFill) {
+      progressFill.style.width = `${(p * 100).toFixed(2)}%`;
+    }
+
+    // ---------------------------------------------------------------
+    // ACT I (0.00 -> 0.30): Teddy bear intro (time-based, not scrubbed)
+    // ---------------------------------------------------------------
+    const act1P = clamp(p / 0.30, 0, 1);
+    const act1Opacity = p < 0.30 ? 1 : 1 - clamp((p - 0.30) / 0.06, 0, 1);
+    if (act1) {
+      act1.style.opacity = act1Opacity.toFixed(3);
+      act1.style.pointerEvents = act1Opacity > 0.1 ? "auto" : "none";
+    }
+
+    if (v1Wrap) {
+      const scale1 = 1 + act1P * 0.08;
+      const rotX1 = Math.sin(act1P * Math.PI) * 3.0;
+      v1Wrap.style.transform = `scale(${scale1.toFixed(4)}) rotateX(${rotX1.toFixed(2)}deg)`;
+    }
+
+    const welcomeIn = introDoneAt ? easeOutCubic(clamp((now - introDoneAt) / 1100, 0, 1)) : 0;
+
+    if (scrollCue) {
+      const cueIn = scrollUnlocked ? clamp((now - introDoneAt - 1600) / 600, 0, 1) : 0;
+      scrollCue.style.opacity = Math.min(cueIn, 1 - clamp(p / 0.06, 0, 1)).toFixed(3);
+    }
+
+    if (bearWelcome) {
+      const bearOut = 1 - clamp((p - 0.29) / 0.05, 0, 1);
+      const alpha = Math.min(welcomeIn, bearOut);
+      const ty = (1 - welcomeIn) * 20;
+      bearWelcome.style.opacity = alpha.toFixed(3);
+      bearWelcome.style.transform = `translate3d(0, ${ty.toFixed(1)}px, 0)`;
+      if (introDoneAt) bearWelcome.classList.add("is-writing");
+    }
+
+    // ---------------------------------------------------------------
+    // LUMINOUS DISSOLVE VEIL
+    // ---------------------------------------------------------------
+    let veilOpacity = 0;
+    if (p > 0.29 && p < 0.39) {
+      veilOpacity = Math.sin(clamp((p - 0.29) / 0.10, 0, 1) * Math.PI) * 0.85;
+    } else if (p > 0.84 && p < 0.92) {
+      veilOpacity = Math.sin(clamp((p - 0.84) / 0.08, 0, 1) * Math.PI) * 0.78;
+    }
+    if (veil) {
+      veil.style.opacity = veilOpacity.toFixed(3);
+    }
+
+    // ---------------------------------------------------------------
+    // ACT II (0.32 -> 0.89): second half.mp4 + Paced Handwriting Beats
+    // ---------------------------------------------------------------
+    let act2Opacity = 0;
+    if (p >= 0.31 && p <= 0.90) {
+      const fadeIn2 = clamp((p - 0.31) / 0.05, 0, 1);
+      const fadeOut2 = 1 - clamp((p - 0.85) / 0.05, 0, 1);
+      act2Opacity = Math.min(fadeIn2, fadeOut2);
+    }
+
+    if (act2) {
+      act2.style.opacity = act2Opacity.toFixed(3);
+      act2.style.pointerEvents = act2Opacity > 0.25 ? "auto" : "none";
+    }
+
+    if (vMiddle && act2Opacity > 0.05 && vMiddle.paused) {
+      vMiddle.play().catch(() => {});
+    }
+
+    if (v2Wrap && act2Opacity > 0.01) {
+      const act2P = clamp((p - 0.33) / 0.54, 0, 1);
+      const breathe = 1.01 + Math.sin(act2P * Math.PI * 2) * 0.016;
+      const tiltY = Math.sin(act2P * Math.PI * 2) * 1.2;
+      v2Wrap.style.transform = `scale(${breathe.toFixed(4)}) rotateY(${tiltY.toFixed(2)}deg)`;
+    }
+
+    cards.forEach((c) => {
+      if (!c.el) return;
+      if (p < c.start || p > c.end) {
+        c.el.style.opacity = "0";
+        c.el.classList.remove("is-interactive");
+        return;
+      }
+
+      let alpha = 1;
+      let ty = 0;
+      let tz = 0;
+      let rotX = 0;
+      let blur = 0;
+
+      if (p < c.peakIn) {
+        const t = easeOutCubic(clamp((p - c.start) / (c.peakIn - c.start), 0, 1));
+        alpha = t;
+        ty = (1 - t) * 32;
+        tz = (1 - t) * -70;
+        rotX = (1 - t) * 9;
+        blur = (1 - t) * 3.5;
+      } else if (p > c.peakOut) {
+        const t = easeInCubic(clamp((p - c.peakOut) / (c.end - c.peakOut), 0, 1));
+        alpha = 1 - t;
+        ty = -t * 34;
+        tz = t * 55;
+        rotX = -t * 8;
+        blur = t * 3.5;
+      }
+
+      c.el.style.opacity = alpha.toFixed(3);
+      c.el.style.transform = `translate3d(0, ${ty.toFixed(1)}px, ${tz.toFixed(1)}px) rotateX(${rotX.toFixed(2)}deg)`;
+      c.el.style.filter = blur > 0.15 ? `blur(${blur.toFixed(1)}px)` : "none";
+      c.el.classList.toggle("is-interactive", alpha > 0.65);
+
+      if (alpha > 0.38 && !c.el.classList.contains("is-writing")) {
+        c.el.classList.add("is-writing");
+        if (!c.unlocked) {
+          c.unlockAt = now + c.holdMs;
+          activeHoldBeat = c;
+        }
+      }
+    });
+
+    // ---------------------------------------------------------------
+    // ACT III (0.86 -> 1.00): Cardless Handwritten Thank You Finale
+    // ---------------------------------------------------------------
+    const act3Opacity = clamp((p - 0.86) / 0.05, 0, 1);
+    if (act3) {
+      act3.style.opacity = act3Opacity.toFixed(3);
+      act3.style.pointerEvents = act3Opacity > 0.35 ? "auto" : "none";
+    }
+
+    if (vFinale && act3Opacity > 0.05 && vFinale.paused) {
+      if (vFinale.currentTime >= TIMING.finaleEndSec) {
+        vFinale.currentTime = TIMING.finaleStartSec;
+      }
+      vFinale.play().catch(() => {});
+    }
+
+    if (v3Wrap && act3Opacity > 0.01) {
+      const act3P = clamp((p - 0.86) / 0.14, 0, 1);
+      const scale3 = 1.06 - act3P * 0.06;
+      v3Wrap.style.transform = `scale(${scale3.toFixed(4)})`;
+    }
+
+    if (finaleFloating) {
+      const finP = easeOutCubic(clamp((p - 0.88) / 0.08, 0, 1));
+      const ty = (1 - finP) * 28;
+      finaleFloating.style.opacity = finP.toFixed(3);
+      finaleFloating.style.transform = `translate3d(0, ${ty.toFixed(1)}px, 0)`;
+
+      if (finP > 0.3) {
+        finaleFloating.classList.add("is-writing");
+      } else {
+        finaleFloating.classList.remove("is-writing");
+      }
+    }
+
+    requestAnimationFrame(renderFrame);
+  }
+
+  requestAnimationFrame(renderFrame);
+}
+
+/* =====================================================================
+   ELEGANT 3-CIRCLE GOLD-FOIL SCRATCH-TO-REVEAL WITH CONFETTI POP
+   ===================================================================== */
+function initScratchCard() {
+  const coins = Array.from(document.querySelectorAll(".scratch-coin"));
+  const countdownBox = document.getElementById("countdown-reveal-box");
+  const quickRevealBtn = document.getElementById("quick-reveal-btn");
+  const confettiLayer = document.getElementById("pop-confetti-layer");
+  if (!coins.length) return;
+
+  let revealedCount = 0;
+  const popColors = ["#F4D47C", "#E8829F", "#6FAEEB", "#FFF5D6", "#D4A13B"];
+
+  const spawnPopBurst = (originEl, count = 16) => {
+    if (!confettiLayer || !originEl) return;
+    const layerRect = confettiLayer.getBoundingClientRect();
+    const coinRect = originEl.getBoundingClientRect();
+    const cx = coinRect.left - layerRect.left + coinRect.width / 2;
+    const cy = coinRect.top - layerRect.top + coinRect.height / 2;
+
+    for (let i = 0; i < count; i++) {
+      const dot = document.createElement("span");
+      dot.className = "pop-spark";
+      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4;
+      const dist = 34 + Math.random() * 48;
+      dot.style.left = `${cx}px`;
+      dot.style.top = `${cy}px`;
+      dot.style.background = popColors[i % popColors.length];
+      dot.style.setProperty("--tx", `${(Math.cos(angle) * dist).toFixed(1)}px`);
+      dot.style.setProperty("--ty", `${(Math.sin(angle) * dist).toFixed(1)}px`);
+      confettiLayer.appendChild(dot);
+      setTimeout(() => dot.remove(), 900);
+    }
+  };
+
+  const revealCoin = (coinEl, canvas) => {
+    if (coinEl.dataset.done === "1") return;
+    coinEl.dataset.done = "1";
+    canvas.classList.add("is-revealed");
+    coinEl.classList.add("is-popped");
+    spawnPopBurst(coinEl, 14);
+    revealedCount++;
+
+    if (revealedCount === coins.length) {
+      if (countdownBox) countdownBox.classList.add("is-popped");
+      if (quickRevealBtn) quickRevealBtn.classList.add("is-done");
+      setTimeout(() => spawnPopBurst(coins[1], 24), 120);
+      showToast(VIEW.saveToast);
+    }
+  };
+
+  coins.forEach((coinEl, idx) => {
+    const canvas = coinEl.querySelector(".coin-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const size = 152;
+    canvas.width = size;
+    canvas.height = size;
+
+    const grad = ctx.createLinearGradient(0, 0, size, size);
+    grad.addColorStop(0, "#FBE8B2");
+    grad.addColorStop(0.3, "#D8A844");
+    grad.addColorStop(0.55, "#FCEEC5");
+    grad.addColorStop(0.8, "#C6902D");
+    grad.addColorStop(1, "#F5DC93");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, size, size);
+
+    const sheen = ctx.createLinearGradient(0, size, size, 0);
+    sheen.addColorStop(0, "rgba(255,255,255,0)");
+    sheen.addColorStop(0.45, "rgba(255,255,255,0.42)");
+    sheen.addColorStop(0.58, "rgba(255,255,255,0)");
+    ctx.fillStyle = sheen;
+    ctx.fillRect(0, 0, size, size);
+
+    ctx.strokeStyle = "rgba(255, 252, 240, 0.78)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(size / 2, size / 2, size / 2 - 11, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.fillStyle = "#6B4810";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.font = "600 22px Georgia, serif";
+    ctx.fillText("✦", size / 2, size / 2 - 12);
+    ctx.font = "600 14px 'Avenir Next', sans-serif";
+    ctx.fillText(["DAY", "MONTH", "YEAR"][idx] || "SCRATCH", size / 2, size / 2 + 18);
+
+    let drawing = false;
+    let strokes = 0;
+
+    const getPt = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const cx = e.touches ? e.touches[0].clientX : e.clientX;
+      const cy = e.touches ? e.touches[0].clientY : e.clientY;
+      return {
+        x: ((cx - rect.left) / rect.width) * size,
+        y: ((cy - rect.top) / rect.height) * size,
+      };
+    };
+
+    const scratch = (pt) => {
+      if (coinEl.dataset.done === "1") return;
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.beginPath();
+      ctx.arc(pt.x, pt.y, 26, 0, Math.PI * 2);
+      ctx.fill();
+      strokes++;
+
+      if (strokes % 6 === 0) {
+        const data = ctx.getImageData(0, 0, size, size).data;
+        let cleared = 0;
+        const total = data.length / 16;
+        for (let i = 3; i < data.length; i += 16) {
+          if (data[i] < 128) cleared++;
+        }
+        if (cleared / total > 0.30) {
+          revealCoin(coinEl, canvas);
+        }
+      }
+    };
+
+    canvas.addEventListener("mousedown", (e) => { drawing = true; scratch(getPt(e)); });
+    canvas.addEventListener("mousemove", (e) => { if (drawing) scratch(getPt(e)); });
+    window.addEventListener("mouseup", () => { drawing = false; });
+
+    canvas.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      drawing = true;
+      scratch(getPt(e));
+    }, { passive: false });
+
+    canvas.addEventListener("touchmove", (e) => {
+      e.preventDefault();
+      if (drawing) scratch(getPt(e));
+    }, { passive: false });
+
+    canvas.addEventListener("touchend", () => { drawing = false; });
+  });
+
+  if (quickRevealBtn) {
+    quickRevealBtn.addEventListener("click", () => {
+      coins.forEach((coinEl, idx) => {
+        const canvas = coinEl.querySelector(".coin-canvas");
+        if (canvas) {
+          setTimeout(() => revealCoin(coinEl, canvas), idx * 180);
+        }
+      });
+    });
+  }
+}
+
+/* =====================================================================
+   MARK CALENDAR (.ics) & REPLAY STORY
+   ===================================================================== */
+function initFinaleActions() {
+  const calBtnMid = document.getElementById("mark-cal-btn-mid");
+  const calBtnEnd = document.getElementById("save-cal-btn");
+  const replayBtn = document.getElementById("replay-top-btn");
+
+  const downloadCalendarMark = () => {
+    const icsText = (t) => String(t).replace(/[\\;,]/g, (ch) => "\\" + ch).replace(/\r?\n/g, "\\n");
+    const toIcsDate = (ms) => new Date(ms).toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    const ics = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Luxury Baby Shower//Invitation//EN",
+      "BEGIN:VEVENT",
+      `DTSTART:${toIcsDate(VIEW.startMs)}`,
+      `DTEND:${toIcsDate(VIEW.startMs + 3.75 * 3600000)}`,
+      `SUMMARY:${icsText(VIEW.eventTitle)}`,
+      `LOCATION:${icsText(VIEW.fullAddress)}`,
+      `DESCRIPTION:${icsText(`You are cordially invited to the Baby Shower hosted by ${VIEW.hostsFull}.` + (VIEW.timeText ? ` Ceremony at ${VIEW.timeText}.` : "") + (VIEW.lunchTime ? ` Lunch at ${VIEW.lunchTime}.` : ""))}`,
+      "END:VEVENT",
+      "END:VCALENDAR",
+    ].join("\r\n");
+
+    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "baby-shower-invitation.ics";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    showToast(VIEW.calendarToast);
+  };
+
+  if (calBtnMid) calBtnMid.addEventListener("click", downloadCalendarMark);
+  if (calBtnEnd) calBtnEnd.addEventListener("click", downloadCalendarMark);
+
+  if (replayBtn) {
+    replayBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+}
+
+/* =====================================================================
+   BACKGROUND MUSIC (starts on the "Tap to open" tap, gentle fade-in,
+   loops, mute/unmute button, pauses when the tab is hidden)
+   ===================================================================== */
+function initBackgroundMusic() {
+  const audio = document.getElementById("bg-music");
+  const btn = document.getElementById("music-toggle");
+  if (!audio || !btn) return;
+
+  const TARGET_VOL = 0.55;
+  let wantMusic = true;   // guest's choice via the button
+  let started = false;
+  let fadeTimer = null;
+
+  const fadeTo = (vol, ms, done) => {
+    clearInterval(fadeTimer);
+    const start = audio.volume;
+    const steps = Math.max(1, Math.round(ms / 50));
+    let i = 0;
+    fadeTimer = setInterval(() => {
+      i++;
+      audio.volume = Math.min(1, Math.max(0, start + (vol - start) * (i / steps)));
+      if (i >= steps) { clearInterval(fadeTimer); if (done) done(); }
+    }, 50);
+  };
+
+  const play = () => {
+    audio.volume = 0;
+    const pr = audio.play();
+    if (pr && pr.catch) pr.catch(() => {});
+    fadeTo(TARGET_VOL, 2500);
+  };
+
+  const pause = () => fadeTo(0, 500, () => audio.pause());
+
+  const render = () => {
+    btn.classList.toggle("is-playing", wantMusic && started);
+    btn.classList.toggle("is-muted", !wantMusic);
+    btn.setAttribute("aria-pressed", String(wantMusic));
+    btn.setAttribute("aria-label", wantMusic ? "Mute music" : "Play music");
+  };
+
+  // Called from the "Tap to open" gate (a real user tap, so browsers allow sound)
+  window.startInvitationMusic = () => {
+    if (started) return;
+    started = true;
+    btn.classList.add("is-visible");
+    if (wantMusic) play();
+    render();
+  };
+
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    wantMusic = !wantMusic;
+    if (!started) { started = true; btn.classList.add("is-visible"); }
+    if (wantMusic) play(); else pause();
+    render();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (!started || !wantMusic) return;
+    if (document.hidden) audio.pause();
+    else play();
+  });
+
+  render();
+}
+
+/* =====================================================================
+   LIVE COUNTDOWN TIMER (Dec 3, 2026 — 10:45 AM IST)
+   ===================================================================== */
+function initCountdown() {
+  const targetTs = VIEW.startMs;
+  const dEl = document.getElementById("cd-days");
+  const hEl = document.getElementById("cd-hours");
+  const mEl = document.getElementById("cd-mins");
+  const sEl = document.getElementById("cd-secs");
+
+  const tick = () => {
+    const diff = Math.max(0, targetTs - Date.now());
+    const days = Math.floor(diff / 86400000);
+    const hours = Math.floor((diff % 86400000) / 3600000);
+    const mins = Math.floor((diff % 3600000) / 60000);
+    const secs = Math.floor((diff % 60000) / 1000);
+
+    if (dEl) dEl.textContent = String(days).padStart(2, "0");
+    if (hEl) hEl.textContent = String(hours).padStart(2, "0");
+    if (mEl) mEl.textContent = String(mins).padStart(2, "0");
+    if (sEl) sEl.textContent = String(secs).padStart(2, "0");
+  };
+
+  tick();
+  setInterval(tick, 1000);
+}
+
+/* =====================================================================
+   FLOATING GOLDEN STARDUST
+   ===================================================================== */
+function initStardustCanvas(canvasId, count) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  let w = 0;
+  let h = 0;
+  const resize = () => {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = canvas.clientWidth || window.innerWidth;
+    h = canvas.clientHeight || window.innerHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+  resize();
+  window.addEventListener("resize", resize);
+
+  const colors = ["rgba(216,174,72,", "rgba(247,180,196,", "rgba(126,189,247,"];
+  const particles = Array.from({ length: count }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    r: 0.9 + Math.random() * 2.0,
+    vy: -0.16 - Math.random() * 0.32,
+    vx: (Math.random() - 0.5) * 0.2,
+    phase: Math.random() * Math.PI * 2,
+    color: colors[Math.floor(Math.random() * colors.length)],
+  }));
+
+  function loop() {
+    ctx.clearRect(0, 0, w, h);
+    const t = performance.now() * 0.002;
+    for (const pt of particles) {
+      pt.x += pt.vx;
+      pt.y += pt.vy;
+      if (pt.y < -10) { pt.y = h + 10; pt.x = Math.random() * w; }
+      if (pt.x < -10) pt.x = w + 10;
+      if (pt.x > w + 10) pt.x = -10;
+
+      const alpha = 0.22 + 0.5 * (0.5 + 0.5 * Math.sin(t + pt.phase));
+      ctx.beginPath();
+      ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2);
+      ctx.fillStyle = `${pt.color}${alpha.toFixed(2)})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+}
+
+/* =====================================================================
+   UTILITIES
+   ===================================================================== */
+function clamp(v, min, max) {
+  return Math.max(min, Math.min(max, v));
+}
+
+function easeOutCubic(t) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function easeInCubic(t) {
+  return t * t * t;
+}
+
+function showToast(msg) {
+  const el = document.getElementById("toast");
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add("is-visible");
+  setTimeout(() => el.classList.remove("is-visible"), 2600);
+}
+
+  </script>
+</body>
+</html>

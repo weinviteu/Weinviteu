@@ -11,6 +11,7 @@ const designs = [
   ['wedding-luxury-south-indian.html', 'CFG.brideName'],
   ['grand-opening-premium.html', 'CFG.company'],
   ['gruhapravesham-premium.html', 'CFG.family'],
+  ['baby-shower-teddy-dreams.html', 'CFG.hosts'],
 ];
 describe('imported premium invitations', () => {
   it.each(designs)('registers %s with its media, cover and editable details', (filename, fieldId) => {

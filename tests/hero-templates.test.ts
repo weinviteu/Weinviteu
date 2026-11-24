@@ -13,7 +13,7 @@ it('handles encoded reference filenames and excludes disabled or other-category 
   expect(selectHeroTemplate([row('new.html'), row('birthday-red-gold.html', 'Birthday', { enabled: false })], 'Birthday')).toBeUndefined();
 });
 it('falls back to the newest available category design and sorts newer uploads before bundles', () => {
-  const newest = row('new.html', 'Corporate', { created_at: '2026-11-01T00:00:00Z' });
+  const newest = row('new.html', 'Corporate', { created_at: '2026-12-01T00:00:00Z' });
   expect(withBundledTemplates([newest], [])[0]).toMatchObject(newest);
   expect(selectHeroTemplate([newest, row('old.html', 'Corporate')], 'Corporate')).toBe(newest);
 });
