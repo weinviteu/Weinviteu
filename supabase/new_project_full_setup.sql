@@ -230,7 +230,7 @@ INSERT INTO public.templates (id, title, filename, category, category_id, badge,
   (30, 'Grand Opening', 'grand-opening-premium.html', 'Opening ceremony', 39, 'SHOWROOM JOURNEY', NULL, true, '1999', '', 'luxury', 'grand-opening-ceremony-invitation', '2026-10-29T14:30:00+00:00'),
   (31, 'The Grand Reveal', 'opening-ceremony-the-grand-reveal.html', 'Opening ceremony', 39, 'RIBBON REVEAL', NULL, true, '1999', '', 'simple', 'the-grand-reveal-opening-ceremony-invitation', '2026-10-29T09:00:00+00:00'),
   (32, 'A Little Star', 'baby-naming-little-star.html', 'Baby Naming', 40, '3D KEEPSAKE', NULL, true, '1999', '', 'simple', 'a-little-star-baby-naming-invitation', '2026-10-29T09:00:00+00:00'),
-  (33, 'Teddy Dreams', 'baby-shower-teddy-dreams.html', 'Baby Shower', 4, 'TEDDY ENVELOPE', NULL, true, '3999', '', 'luxury', 'teddy-dreams-baby-shower-invitation', '2026-11-24T10:00:00+00:00')
+  (33, 'Teddy Dreams', 'baby-shower-teddy-dreams.html', 'Baby Shower', 4, 'TEDDY ENVELOPE', NULL, true, '2999', '', 'premium', 'teddy-dreams-baby-shower-invitation', '2026-11-24T10:00:00+00:00')
 ON CONFLICT DO NOTHING;
 -- The collection tier sets the price: Simple ₹1,999, Premium ₹2,999, Luxury ₹3,999 (GST is added on the site).
 UPDATE public.templates SET price = CASE tier WHEN 'simple' THEN '1999' WHEN 'luxury' THEN '3999' ELSE '2999' END;

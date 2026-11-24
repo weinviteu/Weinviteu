@@ -21,7 +21,7 @@ FROM (VALUES
   ('Luxury South Indian Wedding', 'wedding-luxury-south-indian.html', 'Wedding', 'TRADITIONAL LUXURY', 'luxury', 'luxury-south-indian-wedding-invitation', '2026-10-29T14:30:00.000Z'),
   ('Grand Opening', 'grand-opening-premium.html', 'Opening ceremony', 'SHOWROOM JOURNEY', 'luxury', 'grand-opening-ceremony-invitation', '2026-10-29T14:30:00.000Z'),
   ('Gruhapravesham', 'gruhapravesham-premium.html', 'Traditional', 'HOUSEWARMING', 'luxury', 'gruhapravesham-traditional-invitation', '2026-10-29T14:30:00.000Z'),
-  ('Teddy Dreams', 'baby-shower-teddy-dreams.html', 'Baby Shower', 'TEDDY ENVELOPE', 'luxury', 'teddy-dreams-baby-shower-invitation', '2026-11-24T10:00:00.000Z')
+  ('Teddy Dreams', 'baby-shower-teddy-dreams.html', 'Baby Shower', 'TEDDY ENVELOPE', 'premium', 'teddy-dreams-baby-shower-invitation', '2026-11-24T10:00:00.000Z')
 ) AS d(title, filename, category, badge, tier, slug, created_at)
 LEFT JOIN public.categories c ON lower(trim(c.name)) = lower(d.category)
 WHERE NOT EXISTS (SELECT 1 FROM public.templates t WHERE t.filename = d.filename);

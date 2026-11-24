@@ -156,9 +156,9 @@ export const bundledTemplates: Template[] = [
     "badge": "TEDDY ENVELOPE",
     "enabled": true,
     "created_at": "2026-11-24T10:00:00.000Z",
-    "price": "3999",
+    "price": "2999",
     "original_price": "",
-    "tier": "luxury"
+    "tier": "premium"
   }
 ];
 
