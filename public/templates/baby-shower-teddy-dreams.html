@@ -2827,7 +2827,10 @@ function initFinaleActions() {
       const q = new URLSearchParams({ action: "TEMPLATE", text: VIEW.eventTitle, dates: `${gDate(VIEW.startMs)}/${gDate(endMs)}`, details, location: VIEW.fullAddress });
       url = `https://calendar.google.com/calendar/render?${q}`;
     }
-    if (!window.open(url, "_blank")) window.location.href = url;
+    // iPhone Safari only shows its "Add to Calendar" screen when the calendar file opens in the same
+    // tab (a new tab stays blank); the invitation stays put underneath. Inside a preview frame, use a tab.
+    if (appleTouch && window.top === window) window.location.href = url;
+    else if (!window.open(url, "_blank")) window.location.href = url;
     showToast(VIEW.calendarToast);
   };
 
