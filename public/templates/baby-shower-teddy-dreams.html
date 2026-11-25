@@ -742,11 +742,12 @@ html.is-scroll-locked body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 7px;
-  padding: 9px 18px;
+  gap: 8px;
+  padding: 10px 22px 12px;
   border-radius: 999px;
-  background: rgba(255, 253, 249, 0.74);
-  border: 1px solid rgba(216, 174, 72, 0.42);
+  background: rgba(255, 253, 249, 0.86);
+  border: 1.5px solid rgba(216, 174, 72, 0.7);
+  box-shadow: 0 6px 18px rgba(120, 90, 30, 0.16);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   pointer-events: none;
@@ -755,33 +756,33 @@ html.is-scroll-locked body {
 }
 
 .scroll-cue-text {
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   color: var(--ink);
 }
 
-.scroll-mouse {
-  width: 16px;
-  height: 25px;
-  border-radius: 999px;
-  border: 1.5px solid var(--gold-deep);
-  display: flex;
-  justify-content: center;
-  padding-top: 4px;
+/* Down arrow: a gold chevron that keeps bouncing downward so guests notice where to go */
+.cue-arrow {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-right: 2.5px solid var(--gold-deep);
+  border-bottom: 2.5px solid var(--gold-deep);
+  transform: rotate(45deg);
+  animation: cueArrowDown 1.2s ease-in-out infinite;
 }
 
-.scroll-wheel {
-  width: 3px;
-  height: 5px;
-  border-radius: 999px;
-  background: var(--blue-deep);
-  animation: wheelBounce 1.5s ease-in-out infinite;
+.cue-arrow--big {
+  width: 13px;
+  height: 13px;
+  border-width: 0 3px 3px 0;
+  margin-top: -4px;
 }
 
-@keyframes wheelBounce {
-  0%, 100% { transform: translateY(0); opacity: 1; }
-  65% { transform: translateY(7px); opacity: 0.2; }
+@keyframes cueArrowDown {
+  0%, 100% { transform: translateY(-2px) rotate(45deg); opacity: 0.55; }
+  50% { transform: translateY(4px) rotate(45deg); opacity: 1; }
 }
 
 /* Pure Floating Welcome + Parents' Name when Teddy Bear opens */
@@ -1152,12 +1153,19 @@ html.is-scroll-locked body {
   font-weight: 600;
 }
 
-/* Subtle "Scroll gently ↓" cue that fades in ONLY after text finishes writing */
+/* "Scroll down" cue with a bouncing arrow; fades in ONLY after text finishes writing */
 .beat-next-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   margin-top: 12px;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.22em;
+  padding: 5px 14px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(216, 174, 72, 0.6);
+  background: rgba(255, 253, 249, 0.7);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--gold-deep);
   opacity: 0;
@@ -1165,15 +1173,16 @@ html.is-scroll-locked body {
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
-.story-card.is-ready-next .beat-next-cue {
-  opacity: 0.85;
-  transform: translateY(0);
-  animation: gentleCueBob 1.9s ease-in-out infinite;
+.beat-next-cue .cue-arrow {
+  width: 7px;
+  height: 7px;
+  border-width: 0 2px 2px 0;
+  margin-top: -3px;
 }
 
-@keyframes gentleCueBob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
+.story-card.is-ready-next .beat-next-cue {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Beat 3: Moments List (Clean, minimal, pastel-tinted) */
@@ -1838,8 +1847,7 @@ html.is-scroll-locked body {
         <h2 class="wing-script wing-script--blue" data-bind="timeText"></h2>
         <p class="wing-body">
           <span data-show="lunchTime"><span data-bind="lunchLead"></span> <strong data-bind="lunchWhen"></strong><br /></span>
-          <strong data-bind="fullAddress"></strong><br />
-          Tap the teddy seal in the center &amp; scroll gently.
+          <strong data-bind="fullAddress"></strong>
         </p>
       </div>
     </aside>
@@ -1914,10 +1922,8 @@ html.is-scroll-locked body {
         </button>
 
         <div class="scroll-cue" id="scroll-cue">
-          <span class="scroll-cue-text">SCROLL GENTLY</span>
-          <div class="scroll-mouse">
-            <span class="scroll-wheel"></span>
-          </div>
+          <span class="scroll-cue-text">SCROLL DOWN</span>
+          <span class="cue-arrow cue-arrow--big" aria-hidden="true"></span>
         </div>
 
         <!-- Cardless Handwritten Welcome + Parents' Names when Teddy Bear opens -->
@@ -1982,7 +1988,7 @@ html.is-scroll-locked body {
                 <div class="parents-names pen-write-script" data-bind="hostsFull"></div>
               </div>
             </div>
-            <span class="beat-next-cue" aria-hidden="true">Scroll gently ↓</span>
+            <span class="beat-next-cue" aria-hidden="true">Scroll down <span class="cue-arrow"></span></span>
           </article>
 
           <!-- BEAT 2: Save the Date - 3 gold date circles + countdown -->
@@ -2039,7 +2045,7 @@ html.is-scroll-locked body {
               </div>
             </div>
 
-            <span class="beat-next-cue" aria-hidden="true">Scroll gently ↓</span>
+            <span class="beat-next-cue" aria-hidden="true">Scroll down <span class="cue-arrow"></span></span>
           </article>
 
           <!-- BEAT 3: Schedule & Venue Details -->
@@ -2075,7 +2081,7 @@ html.is-scroll-locked body {
                 </div>
               </li>
             </ul>
-            <span class="beat-next-cue" aria-hidden="true">Scroll gently ↓</span>
+            <span class="beat-next-cue" aria-hidden="true">Scroll down <span class="cue-arrow"></span></span>
           </article>
 
           <!-- BEAT 4: "Mark Your Calendar" (the event day is circled) -->
@@ -2097,7 +2103,7 @@ html.is-scroll-locked body {
             <button type="button" id="mark-cal-btn-mid" class="card-cta-btn">
               <span>✦ Mark in My Calendar</span>
             </button>
-            <span class="beat-next-cue" aria-hidden="true">Scroll gently ↓</span>
+            <span class="beat-next-cue" aria-hidden="true">Scroll down <span class="cue-arrow"></span></span>
           </article>
 
         </div>
