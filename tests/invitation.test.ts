@@ -38,6 +38,15 @@ describe('invitation persistence', () => {
     expect(dom.window.document.getElementById('invitation-audio')?.textContent).toBe('Play music');
     dom.window.close();
   });
+
+  it("plays uploaded music through a template's own player instead of adding a second one", async () => {
+    const dom = open('<body><audio id="bg-music" src="/lullaby.mp3" loop></audio></body>', { ...emptyEditor(), musicUrl: 'data:audio/mpeg;base64,YQ==' });
+    await ready();
+    const doc = dom.window.document;
+    expect(doc.getElementById('bg-music')?.getAttribute('src')).toBe('data:audio/mpeg;base64,YQ==');
+    expect(doc.getElementById('invitation-audio')).toBeNull();
+    dom.window.close();
+  });
   it('never executes edited text as HTML', async () => {
     const dom = open('<body><h1>Name</h1></body>', { ...emptyEditor(), texts: { 'body.0.0': '<img src=x onerror="window.hacked=1">' } });
     await ready();

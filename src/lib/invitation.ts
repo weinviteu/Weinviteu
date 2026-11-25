@@ -357,7 +357,13 @@ function invitationRuntime(initial: EditorState, channel: string, mediaSlots: { 
   function start() {
     observer = new MutationObserver(apply);
     apply();
-    if (state.musicUrl) {
+    // Templates with their own music player (<audio id="bg-music">) play the uploaded song through it,
+    // keeping their tap-to-start, fade-in and mute button instead of adding a second player.
+    const ownPlayer = document.getElementById('bg-music');
+    if (state.musicUrl && ownPlayer instanceof HTMLAudioElement) {
+      ownPlayer.src = state.musicUrl;
+      ownPlayer.load();
+    } else if (state.musicUrl) {
       // Mute the template's original effects so the uploaded track cannot overlap them.
       const sound = document.getElementById('snd');
       const muteOriginal = () => {
