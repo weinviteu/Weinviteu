@@ -2180,11 +2180,11 @@ const CFG = {
   EVENT_ISO: "2026-12-03T10:45:00+05:30",
   dateText: "Thursday, December 3, 2026",
   timeText: "10:45 AM",
-  lunchTime: "11:30 AM",
+  lunchTime: "After 12:30 PM",
   venue: "Attur Layout, Yelahanka, Bangalore",
-  lunchPlace: "Attur Layout, Yelahanka",
+  lunchPlace: "Kindly join us for lunch",
   address: "#238, 2nd Main, 2nd Cross, Attur Layout, Yelahanka, Bangalore",
-  map: "https://maps.google.com/?q=238+2nd+Main+2nd+Cross+Attur+Layout+Yelahanka+Bangalore",
+  map: "http://google.com/maps/place/RAKVIH+Solutions+Private+Limited./@13.0995496,77.5648049,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae191a55d911b5:0x5103fd57d9258ad6!8m2!3d13.0995496!4d77.5673798!16s%2Fg%2F11sqdb8m7_?entry=ttu&g_ep=EgoyMDI2MTEyMi4wIKXMDSoASAFQAw%3D%3D",
   thanks: "We sincerely look forward to your gracious presence and blessings."
 };
 
@@ -2238,7 +2238,6 @@ function buildView(c) {
     venue,
     lunchPlace: String(c.lunchPlace || "").trim() || venue,
     fullAddress: address || venue,
-    icsName: (hosts.toLowerCase().replace(/&/g, " ").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "invitation") + "-baby-shower.ics",
     thanks: String(c.thanks || "").trim(),
     map: String(c.map || "").trim(),
     eventDayNum: valid ? String(d).padStart(2, "0") : "",
@@ -2809,37 +2808,31 @@ function initFinaleActions() {
   const calBtnEnd = document.getElementById("save-cal-btn");
   const replayBtn = document.getElementById("replay-top-btn");
 
-  const downloadCalendarMark = () => {
-    const icsText = (t) => String(t).replace(/[\\;,]/g, (ch) => "\\" + ch).replace(/\r?\n/g, "\\n");
-    const toIcsDate = (ms) => new Date(ms).toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
-    const ics = [
-      "BEGIN:VCALENDAR",
-      "VERSION:2.0",
-      "PRODID:-//Luxury Baby Shower//Invitation//EN",
-      "BEGIN:VEVENT",
-      `DTSTART:${toIcsDate(VIEW.startMs)}`,
-      `DTEND:${toIcsDate(VIEW.startMs + 3.75 * 3600000)}`,
-      `SUMMARY:${icsText(VIEW.eventTitle)}`,
-      `LOCATION:${icsText(VIEW.fullAddress)}`,
-      `DESCRIPTION:${icsText(`You are cordially invited to the Baby Shower hosted by ${VIEW.hostsFull}.` + (VIEW.timeText ? ` Ceremony at ${VIEW.timeText}.` : "") + (VIEW.lunchTime ? ` ${VIEW.lunchLead} ${VIEW.lunchWhen}.` : ""))}`,
-      "END:VEVENT",
-      "END:VCALENDAR",
-    ].join("\r\n");
-
-    const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = VIEW.icsName;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
+  // Opens the guest's real calendar with the event filled in (the invitation's sandbox cannot download files):
+  // iPhone / iPad -> Calendar app "Add event" screen, everything else -> Google Calendar.
+  const openCalendar = () => {
+    if (!VIEW.startMs) return;
+    const endMs = VIEW.startMs + 3.75 * 3600000;
+    const details = `You are cordially invited to the Baby Shower hosted by ${VIEW.hostsFull}.`
+      + (VIEW.timeText ? ` Ceremony at ${VIEW.timeText}.` : "")
+      + (VIEW.lunchTime ? ` ${VIEW.lunchLead} ${VIEW.lunchWhen}.` : "");
+    const ua = navigator.userAgent;
+    const appleTouch = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    let url;
+    if (appleTouch) {
+      const q = new URLSearchParams({ title: VIEW.eventTitle, start: String(VIEW.startMs), end: String(endMs), location: VIEW.fullAddress, details });
+      url = `https://www.weinviteu.in/api/calendar?${q}`;
+    } else {
+      const gDate = (ms) => new Date(ms).toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+      const q = new URLSearchParams({ action: "TEMPLATE", text: VIEW.eventTitle, dates: `${gDate(VIEW.startMs)}/${gDate(endMs)}`, details, location: VIEW.fullAddress });
+      url = `https://calendar.google.com/calendar/render?${q}`;
+    }
+    if (!window.open(url, "_blank")) window.location.href = url;
     showToast(VIEW.calendarToast);
   };
 
-  if (calBtnMid) calBtnMid.addEventListener("click", downloadCalendarMark);
-  if (calBtnEnd) calBtnEnd.addEventListener("click", downloadCalendarMark);
+  if (calBtnMid) calBtnMid.addEventListener("click", openCalendar);
+  if (calBtnEnd) calBtnEnd.addEventListener("click", openCalendar);
 
   if (replayBtn) {
     replayBtn.addEventListener("click", () => {

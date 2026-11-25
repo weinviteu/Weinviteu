@@ -15,7 +15,7 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
   if (downloadError || !file) return new Response('Invitation not found', { status: 404 });
   return new Response(await file.text(), { headers: {
     'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store',
-    'Content-Security-Policy': "sandbox allow-scripts allow-forms allow-popups allow-modals; base-uri 'none'",
+    'Content-Security-Policy': "sandbox allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-modals; base-uri 'none'",
     'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer',
     // Personal invitations are shared privately and must never appear in search results.
     'X-Robots-Tag': 'noindex, nofollow',

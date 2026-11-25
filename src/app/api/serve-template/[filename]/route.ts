@@ -40,7 +40,7 @@ export async function GET(request: Request, context: { params: Promise<{ filenam
 
   return new Response(html, { headers: {
     'Content-Type': 'text/html; charset=utf-8',
-    'Content-Security-Policy': "sandbox allow-scripts allow-forms allow-popups allow-modals; base-uri 'none'",
+    'Content-Security-Policy': "sandbox allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-modals; base-uri 'none'",
     'X-Content-Type-Options': 'nosniff',
   } });
 }
