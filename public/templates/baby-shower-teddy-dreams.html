@@ -311,6 +311,22 @@ html, body {
   display: block;
 }
 
+/* Phones don't load a video until it plays, so the opening envelope is shown as a
+   plain image on top and fades out once the video is really moving. */
+.stage-video-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.stage-video-cover.is-hidden {
+  opacity: 0;
+}
+
 .transition-veil {
   position: absolute;
   inset: 0;
@@ -1961,6 +1977,7 @@ html.is-scroll-locked body {
             webkit-playsinline
             preload="auto"
           ></video>
+          <img id="video-opening-cover" class="stage-video-cover" src="/template-assets/premium/teddy-dreams-opening-poster.jpg" alt="" aria-hidden="true" />
         </div>
 
         <!-- Dreamy cloud bloom covering the 6.75s -> 10.45s skip -->
@@ -2563,8 +2580,19 @@ function initScrollChoreography() {
 
   // Park the opening video on the sitting teddy bear
   const parkOnTeddy = () => {
+    // Skip a needless seek: on iPhone it blanks the video while the frame is not downloaded yet.
+    if (Math.abs(vOpening.currentTime - cfg.introStartSec) < 0.05) return;
     try { vOpening.currentTime = cfg.introStartSec; } catch {}
   };
+  const openingCover = document.getElementById("video-opening-cover");
+  if (vOpening && openingCover) {
+    const hideCover = () => {
+      if (vOpening.paused || vOpening.currentTime <= cfg.introStartSec + 0.05) return;
+      openingCover.classList.add("is-hidden");
+      vOpening.removeEventListener("timeupdate", hideCover);
+    };
+    vOpening.addEventListener("timeupdate", hideCover);
+  }
   if (vOpening) {
     vOpening.muted = true;
     if (vOpening.readyState >= 1) parkOnTeddy();
