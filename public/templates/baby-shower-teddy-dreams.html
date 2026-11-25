@@ -1023,36 +1023,8 @@ html.is-scroll-locked body {
 }
 
 /* =====================================================================
-   ELEGANT 3-CIRCLE GOLD-FOIL SCRATCH-TO-REVEAL & POP COUNTDOWN
+   SAVE THE DATE: 3 GOLD DATE CIRCLES & COUNTDOWN (shown open, no scratching)
    ===================================================================== */
-
-.pop-confetti-layer {
-  position: absolute;
-  inset: -16px;
-  pointer-events: none;
-  z-index: 20;
-  overflow: visible;
-}
-
-.pop-spark {
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  pointer-events: none;
-  animation: sparkFly 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes sparkFly {
-  0% {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(var(--tx), var(--ty)) scale(0.25);
-  }
-}
 
 .scratch-trio {
   display: flex;
@@ -1074,19 +1046,6 @@ html.is-scroll-locked body {
     inset 0 1px 2px rgba(255, 255, 255, 0.85);
   overflow: hidden;
   transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
-}
-
-.scratch-coin.is-popped {
-  animation: coinPop 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  box-shadow:
-    0 12px 28px rgba(216, 174, 72, 0.36),
-    0 0 0 3px rgba(248, 228, 168, 0.55);
-}
-
-@keyframes coinPop {
-  0%   { transform: scale(1); }
-  45%  { transform: scale(1.18); }
-  100% { transform: scale(1); }
 }
 
 .coin-underlay {
@@ -1140,25 +1099,7 @@ html.is-scroll-locked body {
   margin-top: 2px;
 }
 
-.coin-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  cursor: pointer;
-  touch-action: none;
-  z-index: 4;
-  transition: opacity 0.45s ease, transform 0.45s ease;
-}
-
-.coin-canvas.is-revealed {
-  opacity: 0;
-  transform: scale(1.16);
-  pointer-events: none;
-}
-
-/* Countdown pops open cleanly once all 3 gold circles are revealed */
+/* Countdown shown under the 3 gold date circles */
 .countdown-reveal-box {
   width: 100%;
   max-width: 256px;
@@ -1166,20 +1107,6 @@ html.is-scroll-locked body {
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  opacity: 0;
-  transform: translateY(14px) scale(0.9);
-  max-height: 0;
-  overflow: hidden;
-  transition:
-    opacity 0.6s ease,
-    transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1),
-    max-height 0.6s ease;
-}
-
-.countdown-reveal-box.is-popped {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  max-height: 130px;
   margin-top: 2px;
   margin-bottom: 4px;
 }
@@ -1223,26 +1150,6 @@ html.is-scroll-locked body {
   letter-spacing: 0.15em;
   color: var(--ink-muted);
   font-weight: 600;
-}
-
-.scratch-hint-btn {
-  background: transparent;
-  border: none;
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--gold-deep);
-  font-weight: 600;
-  cursor: pointer;
-  padding: 4px 10px;
-  transition: opacity 0.35s ease;
-}
-
-.scratch-hint-btn.is-done {
-  opacity: 0;
-  pointer-events: none;
-  height: 0;
-  padding: 0;
 }
 
 /* Subtle "Scroll gently ↓" cue that fades in ONLY after text finishes writing */
@@ -1930,8 +1837,8 @@ html.is-scroll-locked body {
         <span class="wing-kicker">✦ &nbsp; <span data-bind="dateShort"></span> &nbsp; ✦</span>
         <h2 class="wing-script wing-script--blue" data-bind="timeText"></h2>
         <p class="wing-body">
-          <span data-show="lunchTime">Lunch at <strong data-bind="lunchTime"></strong><br /></span>
-          <strong data-bind="venue"></strong><br />
+          <span data-show="lunchTime"><span data-bind="lunchLead"></span> <strong data-bind="lunchWhen"></strong><br /></span>
+          <strong data-bind="fullAddress"></strong><br />
           Tap the teddy seal in the center &amp; scroll gently.
         </p>
       </div>
@@ -2036,7 +1943,7 @@ html.is-scroll-locked body {
 
       <!-- =====================================================
            ACT II: WATERCOLOR PLACEHOLDER VIDEO (second half.mp4)
-           Real fluid handwriting animation + Scratch-to-Reveal
+           Real fluid handwriting animation + Save the Date circles
            Countdown in video-matched Blush Pink, Sky Blue & Gold
            ===================================================== -->
       <div class="act-layer act-layer--2" id="act-2">
@@ -2078,23 +1985,20 @@ html.is-scroll-locked body {
             <span class="beat-next-cue" aria-hidden="true">Scroll gently ↓</span>
           </article>
 
-          <!-- BEAT 2: Elegant 3-Circle Gold-Foil Scratch-to-Reveal + Pop Countdown -->
+          <!-- BEAT 2: Save the Date - 3 gold date circles + countdown -->
           <article class="story-card" id="card-scratch">
-            <div class="card-eyebrow ink-write-line">SCRATCH ALL THREE TO REVEAL</div>
+            <div class="card-eyebrow ink-write-line">JOIN US ON THIS JOYFUL DAY</div>
             <div class="pen-script-wrap">
               <h2 class="card-script-title card-script-title--blue pen-write-script">Save the Date</h2>
             </div>
 
-            <div class="pop-confetti-layer" id="pop-confetti-layer" aria-hidden="true"></div>
-
-            <!-- Three Luxury Circular Gold-Foil Scratch Medallions -->
+            <!-- Three gold date circles: day, month, year -->
             <div class="scratch-trio" id="scratch-trio">
               <div class="scratch-coin scratch-coin--pink" data-coin="0">
                 <div class="coin-underlay">
                   <span class="coin-val" data-bind="eventDayNum"></span>
                   <span class="coin-sub" data-bind="weekdayShort"></span>
                 </div>
-                <canvas class="coin-canvas" aria-label="Scratch first circle to reveal day"></canvas>
               </div>
 
               <div class="scratch-coin scratch-coin--gold" data-coin="1">
@@ -2102,7 +2006,6 @@ html.is-scroll-locked body {
                   <span class="coin-val coin-val--month" data-bind="eventMonth"></span>
                   <span class="coin-sub">MONTH</span>
                 </div>
-                <canvas class="coin-canvas" aria-label="Scratch second circle to reveal month"></canvas>
               </div>
 
               <div class="scratch-coin scratch-coin--blue" data-coin="2">
@@ -2110,11 +2013,10 @@ html.is-scroll-locked body {
                   <span class="coin-val coin-val--year" data-bind="eventYear"></span>
                   <span class="coin-sub">YEAR</span>
                 </div>
-                <canvas class="coin-canvas" aria-label="Scratch third circle to reveal year"></canvas>
               </div>
             </div>
 
-            <!-- Pops open smoothly once all 3 circles are scratched -->
+            <!-- Countdown to the event -->
             <div class="countdown-reveal-box" id="countdown-reveal-box">
               <span class="date-time-pop" data-bind="eventTimeLine"></span>
               <div class="countdown-grid" aria-label="Countdown to Baby Shower">
@@ -2136,10 +2038,6 @@ html.is-scroll-locked body {
                 </div>
               </div>
             </div>
-
-            <button type="button" id="quick-reveal-btn" class="scratch-hint-btn">
-              ✦ Scratch all 3 gold circles (or tap to pop)
-            </button>
 
             <span class="beat-next-cue" aria-hidden="true">Scroll gently ↓</span>
           </article>
@@ -2322,6 +2220,10 @@ function buildView(c) {
   const timeText = String(c.timeText || "").trim();
   const venue = String(c.venue || "").trim();
   const address = String(c.address || "").trim();
+  // "11:30 AM" reads "Lunch at 11:30 AM"; "After 12:30 PM" reads "Lunch after 12:30 PM".
+  const lunchHasWord = /^(after|from|before|around|by|till|until|onwards)\b/i.test(lunch);
+  const lunchWhen = lunchHasWord ? lunch.charAt(0).toLowerCase() + lunch.slice(1) : lunch;
+  const lunchPhrase = lunch ? (lunchHasWord ? `Lunch ${lunchWhen}` : `Lunch at ${lunch}`) : "";
   return {
     hosts,
     hostsFull: hosts.replace(/\s*&\s*/g, " and "),
@@ -2329,7 +2231,10 @@ function buildView(c) {
     eventTitle: hosts ? `Baby Shower — ${hosts}` : "Baby Shower",
     dateText: String(c.dateText || "").trim(),
     timeText,
-    lunchTime: lunch,
+    // Keeps "12:30 PM" on one line in the narrow schedule column.
+    lunchTime: lunch.replace(/\s+(AM|PM)\b/gi, " $1"),
+    lunchLead: lunchHasWord ? "Lunch" : "Lunch at",
+    lunchWhen,
     venue,
     lunchPlace: String(c.lunchPlace || "").trim() || venue,
     fullAddress: address || venue,
@@ -2343,8 +2248,7 @@ function buildView(c) {
     dateShort: valid ? `${d} ${MONTHS[mo].toUpperCase()} ${y}` : "",
     dateNumeric: valid ? `${String(d).padStart(2, "0")}/${String(mo + 1).padStart(2, "0")}/${y}` : "",
     monthYear: valid ? `${MONTHS[mo].toUpperCase()} ${y}` : "",
-    eventTimeLine: [timeText, lunch ? `LUNCH ${lunch}` : ""].filter(Boolean).join(" \u00a0•\u00a0 "),
-    saveToast: valid ? `${d} ${MONTHS[mo].slice(0, 3)} ${y} — Save the Date! ✦` : "Save the Date! ✦",
+    eventTimeLine: [timeText, lunchPhrase.toUpperCase()].filter(Boolean).join(" \u00a0•\u00a0 "),
     calendarToast: valid ? `${MONTHS[mo].slice(0, 3)} ${d}, ${y} marked in your calendar ✦` : "Saved to your calendar ✦",
     cal: valid ? { y, mo, d, monthName: MONTHS[mo] } : null,
     startMs: isNaN(start.getTime()) ? 0 : start.getTime(),
@@ -2359,7 +2263,6 @@ function buildView(c) {
   prepareHandwritingChars();
   initCountdown();
   initStardustCanvas("mobile-stardust", 42);
-  initScratchCard();
   initScrollChoreography();
   initFinaleActions();
   initDesktopTeddyWings();
@@ -2899,161 +2802,6 @@ function initScrollChoreography() {
 }
 
 /* =====================================================================
-   ELEGANT 3-CIRCLE GOLD-FOIL SCRATCH-TO-REVEAL WITH CONFETTI POP
-   ===================================================================== */
-function initScratchCard() {
-  const coins = Array.from(document.querySelectorAll(".scratch-coin"));
-  const countdownBox = document.getElementById("countdown-reveal-box");
-  const quickRevealBtn = document.getElementById("quick-reveal-btn");
-  const confettiLayer = document.getElementById("pop-confetti-layer");
-  if (!coins.length) return;
-
-  let revealedCount = 0;
-  const popColors = ["#F4D47C", "#E8829F", "#6FAEEB", "#FFF5D6", "#D4A13B"];
-
-  const spawnPopBurst = (originEl, count = 16) => {
-    if (!confettiLayer || !originEl) return;
-    const layerRect = confettiLayer.getBoundingClientRect();
-    const coinRect = originEl.getBoundingClientRect();
-    const cx = coinRect.left - layerRect.left + coinRect.width / 2;
-    const cy = coinRect.top - layerRect.top + coinRect.height / 2;
-
-    for (let i = 0; i < count; i++) {
-      const dot = document.createElement("span");
-      dot.className = "pop-spark";
-      const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4;
-      const dist = 34 + Math.random() * 48;
-      dot.style.left = `${cx}px`;
-      dot.style.top = `${cy}px`;
-      dot.style.background = popColors[i % popColors.length];
-      dot.style.setProperty("--tx", `${(Math.cos(angle) * dist).toFixed(1)}px`);
-      dot.style.setProperty("--ty", `${(Math.sin(angle) * dist).toFixed(1)}px`);
-      confettiLayer.appendChild(dot);
-      setTimeout(() => dot.remove(), 900);
-    }
-  };
-
-  const revealCoin = (coinEl, canvas) => {
-    if (coinEl.dataset.done === "1") return;
-    coinEl.dataset.done = "1";
-    canvas.classList.add("is-revealed");
-    coinEl.classList.add("is-popped");
-    spawnPopBurst(coinEl, 14);
-    revealedCount++;
-
-    if (revealedCount === coins.length) {
-      if (countdownBox) countdownBox.classList.add("is-popped");
-      if (quickRevealBtn) quickRevealBtn.classList.add("is-done");
-      setTimeout(() => spawnPopBurst(coins[1], 24), 120);
-      showToast(VIEW.saveToast);
-    }
-  };
-
-  coins.forEach((coinEl, idx) => {
-    const canvas = coinEl.querySelector(".coin-canvas");
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const size = 152;
-    canvas.width = size;
-    canvas.height = size;
-
-    const grad = ctx.createLinearGradient(0, 0, size, size);
-    grad.addColorStop(0, "#FBE8B2");
-    grad.addColorStop(0.3, "#D8A844");
-    grad.addColorStop(0.55, "#FCEEC5");
-    grad.addColorStop(0.8, "#C6902D");
-    grad.addColorStop(1, "#F5DC93");
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, size, size);
-
-    const sheen = ctx.createLinearGradient(0, size, size, 0);
-    sheen.addColorStop(0, "rgba(255,255,255,0)");
-    sheen.addColorStop(0.45, "rgba(255,255,255,0.42)");
-    sheen.addColorStop(0.58, "rgba(255,255,255,0)");
-    ctx.fillStyle = sheen;
-    ctx.fillRect(0, 0, size, size);
-
-    ctx.strokeStyle = "rgba(255, 252, 240, 0.78)";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.arc(size / 2, size / 2, size / 2 - 11, 0, Math.PI * 2);
-    ctx.stroke();
-
-    ctx.fillStyle = "#6B4810";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.font = "600 22px Georgia, serif";
-    ctx.fillText("✦", size / 2, size / 2 - 12);
-    ctx.font = "600 14px 'Avenir Next', sans-serif";
-    ctx.fillText(["DAY", "MONTH", "YEAR"][idx] || "SCRATCH", size / 2, size / 2 + 18);
-
-    let drawing = false;
-    let strokes = 0;
-
-    const getPt = (e) => {
-      const rect = canvas.getBoundingClientRect();
-      const cx = e.touches ? e.touches[0].clientX : e.clientX;
-      const cy = e.touches ? e.touches[0].clientY : e.clientY;
-      return {
-        x: ((cx - rect.left) / rect.width) * size,
-        y: ((cy - rect.top) / rect.height) * size,
-      };
-    };
-
-    const scratch = (pt) => {
-      if (coinEl.dataset.done === "1") return;
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.beginPath();
-      ctx.arc(pt.x, pt.y, 26, 0, Math.PI * 2);
-      ctx.fill();
-      strokes++;
-
-      if (strokes % 6 === 0) {
-        const data = ctx.getImageData(0, 0, size, size).data;
-        let cleared = 0;
-        const total = data.length / 16;
-        for (let i = 3; i < data.length; i += 16) {
-          if (data[i] < 128) cleared++;
-        }
-        if (cleared / total > 0.30) {
-          revealCoin(coinEl, canvas);
-        }
-      }
-    };
-
-    canvas.addEventListener("mousedown", (e) => { drawing = true; scratch(getPt(e)); });
-    canvas.addEventListener("mousemove", (e) => { if (drawing) scratch(getPt(e)); });
-    window.addEventListener("mouseup", () => { drawing = false; });
-
-    canvas.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      drawing = true;
-      scratch(getPt(e));
-    }, { passive: false });
-
-    canvas.addEventListener("touchmove", (e) => {
-      e.preventDefault();
-      if (drawing) scratch(getPt(e));
-    }, { passive: false });
-
-    canvas.addEventListener("touchend", () => { drawing = false; });
-  });
-
-  if (quickRevealBtn) {
-    quickRevealBtn.addEventListener("click", () => {
-      coins.forEach((coinEl, idx) => {
-        const canvas = coinEl.querySelector(".coin-canvas");
-        if (canvas) {
-          setTimeout(() => revealCoin(coinEl, canvas), idx * 180);
-        }
-      });
-    });
-  }
-}
-
-/* =====================================================================
    MARK CALENDAR (.ics) & REPLAY STORY
    ===================================================================== */
 function initFinaleActions() {
@@ -3073,7 +2821,7 @@ function initFinaleActions() {
       `DTEND:${toIcsDate(VIEW.startMs + 3.75 * 3600000)}`,
       `SUMMARY:${icsText(VIEW.eventTitle)}`,
       `LOCATION:${icsText(VIEW.fullAddress)}`,
-      `DESCRIPTION:${icsText(`You are cordially invited to the Baby Shower hosted by ${VIEW.hostsFull}.` + (VIEW.timeText ? ` Ceremony at ${VIEW.timeText}.` : "") + (VIEW.lunchTime ? ` Lunch at ${VIEW.lunchTime}.` : ""))}`,
+      `DESCRIPTION:${icsText(`You are cordially invited to the Baby Shower hosted by ${VIEW.hostsFull}.` + (VIEW.timeText ? ` Ceremony at ${VIEW.timeText}.` : "") + (VIEW.lunchTime ? ` ${VIEW.lunchLead} ${VIEW.lunchWhen}.` : ""))}`,
       "END:VEVENT",
       "END:VCALENDAR",
     ].join("\r\n");
