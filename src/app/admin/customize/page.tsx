@@ -326,7 +326,7 @@ export default function CustomizeTemplate() {
           {visualEdit ? 'Click outlined text to edit, or a portrait to replace it. Switch to Preview mode to navigate.' : 'Open the door and navigate to a page, then turn editing on.'}
         </p>
         <div className={styles.previewFrame}>
-          <iframe ref={iframe} title="Invitation preview" sandbox="allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-modals" className={styles.editorPreview} onLoad={() => iframe.current?.contentWindow?.postMessage({ type: 'invitation-update', channel: channel.current, state: latest.current }, '*')} />
+          <iframe ref={iframe} title="Invitation preview" sandbox="allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-modals allow-downloads" className={styles.editorPreview} onLoad={() => iframe.current?.contentWindow?.postMessage({ type: 'invitation-update', channel: channel.current, state: latest.current }, '*')} />
           {pageNav && <div role="status" className={`${styles.pageNavChip} ${pageNav.status === 'moving' ? styles.pageNavMoving : pageNav.status === 'arrived' ? styles.pageNavArrived : styles.pageNavFailed}`}>
             {pageNav.status === 'moving' ? <><span className={styles.pageNavDot} />Going to {pageNav.label}…{pageNav.step && pageNav.total ? <small className={styles.pageNavStep}>{pageNav.step}/{pageNav.total}</small> : null}</>
               : pageNav.status === 'arrived' ? <>✓ {pageNav.label}</>

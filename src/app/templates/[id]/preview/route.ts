@@ -113,7 +113,7 @@ export async function GET(request: Request, context: { params: Promise<{ id: str
   return new Response(body, { headers: {
     ...(embed ? { "Cache-Control": "public, max-age=300" } : {}),
     "Content-Type": "text/html; charset=utf-8",
-    "Content-Security-Policy": "sandbox allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-modals; base-uri 'none'",
+    "Content-Security-Policy": "sandbox allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-modals allow-downloads; base-uri 'none'",
     "X-Content-Type-Options": "nosniff",
     "X-Robots-Tag": "noindex, follow",
     Link: `<${new URL(templatePath(template), request.url)}>; rel="canonical"`,
