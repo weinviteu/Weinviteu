@@ -742,8 +742,8 @@ html.is-scroll-locked body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 10px 22px 12px;
+  gap: 6px;
+  padding: 11px 24px 10px;
   border-radius: 999px;
   background: rgba(255, 253, 249, 0.86);
   border: 1.5px solid rgba(216, 174, 72, 0.7);
@@ -762,27 +762,53 @@ html.is-scroll-locked body {
   color: var(--ink);
 }
 
-/* Down arrow: a gold chevron that keeps bouncing downward so guests notice where to go */
+/* Down arrow at the bottom centre of the pill: two gold chevrons that keep flowing downward
+   one after the other, fading in at the top and out at the bottom, so guests know to scroll */
 .cue-arrow {
-  display: inline-block;
-  width: 9px;
-  height: 9px;
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+.cue-arrow::before,
+.cue-arrow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
   border-right: 2.5px solid var(--gold-deep);
   border-bottom: 2.5px solid var(--gold-deep);
-  transform: rotate(45deg);
-  animation: cueArrowDown 1.2s ease-in-out infinite;
+  opacity: 0;
+  animation: cueArrowFlow 1.8s cubic-bezier(0.45, 0, 0.35, 1) infinite;
+}
+
+.cue-arrow::after {
+  animation-delay: 0.9s;
 }
 
 .cue-arrow--big {
-  width: 13px;
-  height: 13px;
-  border-width: 0 3px 3px 0;
-  margin-top: -4px;
+  width: 24px;
+  height: 24px;
 }
 
-@keyframes cueArrowDown {
-  0%, 100% { transform: translateY(-2px) rotate(45deg); opacity: 0.55; }
-  50% { transform: translateY(4px) rotate(45deg); opacity: 1; }
+.cue-arrow--big::before,
+.cue-arrow--big::after {
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  border-width: 0 3px 3px 0;
+}
+
+@keyframes cueArrowFlow {
+  0% { opacity: 0; transform: translateY(-6px) rotate(45deg); }
+  30% { opacity: 1; }
+  70% { opacity: 0.85; }
+  100% { opacity: 0; transform: translateY(10px) rotate(45deg); }
 }
 
 /* Pure Floating Welcome + Parents' Name when Teddy Bear opens */
@@ -1155,12 +1181,22 @@ html.is-scroll-locked body {
 
 /* "Scroll down" cue with a bouncing arrow; fades in ONLY after text finishes writing */
 .beat-next-cue {
-  display: inline-flex;
+  /* Pinned to the bottom centre of the screen, in the open space below the card, so it never
+     pushes or overlaps the card's text. The card ends 16% above the screen's bottom edge and is
+     57% of the screen tall, so -28.07% of the card's height is the screen's bottom edge. */
+  position: absolute;
+  bottom: calc(-28.07% + max(18px, env(safe-area-inset-bottom)));
+  left: 0;
+  right: 0;
+  width: max-content;
+  margin: 0 auto;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 9px;
-  margin-top: 12px;
-  padding: 5px 14px 6px;
-  border-radius: 999px;
+  gap: 4px;
+  padding: 7px 18px 6px;
+  border-radius: 22px;
   border: 1px solid rgba(216, 174, 72, 0.6);
   background: rgba(255, 253, 249, 0.7);
   font-size: 11px;
@@ -1173,11 +1209,18 @@ html.is-scroll-locked body {
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
-.beat-next-cue .cue-arrow {
-  width: 7px;
-  height: 7px;
-  border-width: 0 2px 2px 0;
-  margin-top: -3px;
+/* Short phones (iPhone SE and similar): a more compact pill so it stays clear of the text */
+@media (max-height: 700px) {
+  .beat-next-cue {
+    gap: 2px;
+    padding: 5px 14px 4px;
+    font-size: 10px;
+    bottom: calc(-28.07% + max(10px, env(safe-area-inset-bottom)));
+  }
+  .beat-next-cue .cue-arrow {
+    width: 16px;
+    height: 15px;
+  }
 }
 
 .story-card.is-ready-next .beat-next-cue {
@@ -1988,7 +2031,7 @@ html.is-scroll-locked body {
                 <div class="parents-names pen-write-script" data-bind="hostsFull"></div>
               </div>
             </div>
-            <span class="beat-next-cue" aria-hidden="true">Scroll down <span class="cue-arrow"></span></span>
+            <span class="beat-next-cue" aria-hidden="true">Scroll down<span class="cue-arrow"></span></span>
           </article>
 
           <!-- BEAT 2: Save the Date - 3 gold date circles + countdown -->
@@ -2045,7 +2088,7 @@ html.is-scroll-locked body {
               </div>
             </div>
 
-            <span class="beat-next-cue" aria-hidden="true">Scroll down <span class="cue-arrow"></span></span>
+            <span class="beat-next-cue" aria-hidden="true">Scroll down<span class="cue-arrow"></span></span>
           </article>
 
           <!-- BEAT 3: Schedule & Venue Details -->
@@ -2081,7 +2124,7 @@ html.is-scroll-locked body {
                 </div>
               </li>
             </ul>
-            <span class="beat-next-cue" aria-hidden="true">Scroll down <span class="cue-arrow"></span></span>
+            <span class="beat-next-cue" aria-hidden="true">Scroll down<span class="cue-arrow"></span></span>
           </article>
 
           <!-- BEAT 4: "Mark Your Calendar" (the event day is circled) -->
@@ -2103,7 +2146,7 @@ html.is-scroll-locked body {
             <button type="button" id="mark-cal-btn-mid" class="card-cta-btn">
               <span>✦ Mark in My Calendar</span>
             </button>
-            <span class="beat-next-cue" aria-hidden="true">Scroll down <span class="cue-arrow"></span></span>
+            <span class="beat-next-cue" aria-hidden="true">Scroll down<span class="cue-arrow"></span></span>
           </article>
 
         </div>
